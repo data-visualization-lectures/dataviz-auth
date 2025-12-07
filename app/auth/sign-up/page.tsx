@@ -1,13 +1,14 @@
-export const dynamic = "force-dynamic";
-
 import { SignUpForm } from "@/components/sign-up-form";
+import { Suspense } from "react";
 
 export default function Page() {
   return (
-    <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
-      <div className="w-full max-w-sm">
-        <SignUpForm />
+    <Suspense fallback={<div className="p-6 text-center">Loading...</div>}>
+      <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
+        <div className="w-full max-w-sm">
+          <SignUpForm />
+        </div>
       </div>
-    </div>
+    </Suspense>
   );
 }
