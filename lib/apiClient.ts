@@ -35,9 +35,9 @@ export async function fetchMe() {
 }
 
 export async function createCheckoutSession() {
-  return callApi("/api/billing/create-checkout-session", { method: "POST" });
+  return callApi("/api/billing-create-checkout-session", { method: "POST" });
 }
 
 export async function createPortalSession() {
-  return callApi("/api/billing/create-portal-session", { method: "POST" });
+  return callApi("/api/billing-create-portal-session", { method: "POST" });
 }
