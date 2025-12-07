@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { createClient } from "@/lib/supabase/client";
+import { STORAGE_KEY, createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -51,6 +51,25 @@ export function LoginForm({
         password,
       });
       if (error) throw error;
+
+      try {
+        const sessionPayload = data.session;
+        if (sessionPayload) {
+          await fetch("/api/auth/set-cookie", {
+            method: "POST",
+            credentials: "include",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              session: sessionPayload,
+              storageKey: STORAGE_KEY,
+            }),
+          });
+        }
+      } catch (cookieError) {
+        console.error("Failed to set shared cookie", cookieError);
+      }
 
       const me = await fetchMe().catch((apiError) => {
         console.error("fetchMe failed", apiError);

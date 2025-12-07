@@ -11,6 +11,7 @@ const projectRef = (() => {
   }
 })();
 const STORAGE_KEY = `sb-${projectRef}-auth-token`;
+export { STORAGE_KEY };
 
 const cookieStorage = {
   getItem: (key: string) => {
@@ -27,7 +28,8 @@ const cookieStorage = {
     const encodedKey = encodeURIComponent(key);
     const encodedValue = encodeURIComponent(value);
     const maxAge = 60 * 60 * 24 * 365; // 1年
-    // eTLD+1 で共有。ホストスコープが残らないよう domain を付けて発行
+    // ホストスコープ＋eTLD+1 の両方を発行して、確実に共有
+    document.cookie = `${encodedKey}=${encodedValue}; Path=/; Max-Age=${maxAge}; SameSite=Lax; Secure`;
     document.cookie = `${encodedKey}=${encodedValue}; Path=/; Domain=${COOKIE_DOMAIN}; Max-Age=${maxAge}; SameSite=Lax; Secure`;
   },
   removeItem: (key: string) => {
