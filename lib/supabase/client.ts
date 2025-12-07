@@ -2,6 +2,21 @@ import { createBrowserClient } from "@supabase/ssr";
 import type { Session } from "@supabase/supabase-js";
 
 const COOKIE_DOMAIN = ".dataviz.jp";
+const getHost = () => {
+  if (typeof window === "undefined") return null;
+  return window.location.hostname;
+};
+
+const clearCookie = (key: string) => {
+  if (typeof document === "undefined") return;
+  const encodedKey = encodeURIComponent(key);
+  const host = getHost();
+  document.cookie = `${encodedKey}=; Path=/; Max-Age=0; SameSite=Lax; Secure`;
+  document.cookie = `${encodedKey}=; Path=/; Domain=${COOKIE_DOMAIN}; Max-Age=0; SameSite=Lax; Secure`;
+  if (host && host !== COOKIE_DOMAIN.replace(/^\./, "")) {
+    document.cookie = `${encodedKey}=; Path=/; Domain=${host}; Max-Age=0; SameSite=Lax; Secure`;
+  }
+};
 const projectRef = (() => {
   try {
     const url = new URL(process.env.NEXT_PUBLIC_SUPABASE_URL!);
@@ -23,6 +38,7 @@ const cookieStorage = {
   },
   setItem: (key: string, value: string) => {
     if (typeof document === "undefined") return;
+    clearCookie(key);
     const encodedKey = encodeURIComponent(key);
     const encodedValue = encodeURIComponent(value);
     const expires = 60 * 60 * 24 * 365; // 1年
@@ -30,9 +46,7 @@ const cookieStorage = {
   },
   removeItem: (key: string) => {
     if (typeof document === "undefined") return;
-    document.cookie = `${encodeURIComponent(
-      key,
-    )}=; Path=/; Domain=${COOKIE_DOMAIN}; Max-Age=0; SameSite=Lax; Secure`;
+    clearCookie(key);
   },
 };
 
@@ -66,6 +80,7 @@ export function persistSession(session: Session | null) {
   };
   const value = JSON.stringify(payload);
   const maxAge = session.expires_in ?? 60 * 60 * 24 * 7; // refresh前提で1週間
+  clearCookie(SUPABASE_STORAGE_KEY);
   document.cookie = `${encodeURIComponent(
     SUPABASE_STORAGE_KEY,
   )}=${encodeURIComponent(
