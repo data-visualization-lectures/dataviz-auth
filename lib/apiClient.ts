@@ -1,23 +1,19 @@
-// lib/apiClient.ts
-import { createClient } from "@supabase/supabase-js";
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!;
-export const supabase = createClient(supabaseUrl, supabaseKey);
+// ✅ テンプレ付属のブラウザ用クライアントを使う版
+import { createClient } from "@/lib/supabase/client";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE!; // https://api.dataviz.jp
 
 async function getAccessToken() {
+  const supabase = createClient();               // ← ここが重要
   const { data } = await supabase.auth.getSession();
   return data.session?.access_token ?? null;
 }
 
-export async function callApi(
-  path: string,
-  options: RequestInit = {}
-) {
+export async function callApi(path: string, options: RequestInit = {}) {
   const token = await getAccessToken();
-  if (!token) throw new Error("Not authenticated");
+  if (!token) {
+    throw new Error("Not authenticated");
+  }
 
   const res = await fetch(`${API_BASE}${path}`, {
     ...options,
@@ -30,6 +26,7 @@ export async function callApi(
   if (!res.ok) {
     throw new Error(`API error: ${res.status}`);
   }
+
   return res.json();
 }
 
