@@ -11,10 +11,11 @@ const clearCookie = (key: string) => {
   if (typeof document === "undefined") return;
   const encodedKey = encodeURIComponent(key);
   const host = getHost();
-  document.cookie = `${encodedKey}=; Path=/; Max-Age=0; SameSite=Lax; Secure`;
-  document.cookie = `${encodedKey}=; Path=/; Domain=${COOKIE_DOMAIN}; Max-Age=0; SameSite=Lax; Secure`;
+  document.cookie = `${encodedKey}=; Path=/; Max-Age=0; SameSite=Lax; Secure`; // host-only
+  document.cookie = `${encodedKey}=; Path=/; Domain=${COOKIE_DOMAIN}; Max-Age=0; SameSite=Lax; Secure`; // eTLD+1
   if (host && host !== COOKIE_DOMAIN.replace(/^\./, "")) {
-    document.cookie = `${encodedKey}=; Path=/; Domain=${host}; Max-Age=0; SameSite=Lax; Secure`;
+    document.cookie = `${encodedKey}=; Path=/; Domain=.${host}; Max-Age=0; SameSite=Lax; Secure`; // explicit current host with dot
+    document.cookie = `${encodedKey}=; Path=/; Domain=${host}; Max-Age=0; SameSite=Lax; Secure`; // explicit current host
   }
 };
 const projectRef = (() => {
