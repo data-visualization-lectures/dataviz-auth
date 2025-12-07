@@ -1,10 +1,10 @@
 // ✅ テンプレ付属のブラウザ用クライアントを使う版
 import { createClient } from "@/lib/supabase/client";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE!; // https://api.dataviz.jp
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE!;
 
 async function getAccessToken() {
-  const supabase = createClient();               // ← ここが重要
+  const supabase = createClient();
   const { data } = await supabase.auth.getSession();
   return data.session?.access_token ?? null;
 }
