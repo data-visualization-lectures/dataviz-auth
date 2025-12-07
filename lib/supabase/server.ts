@@ -8,6 +8,11 @@ import { cookies } from "next/headers";
  */
 export async function createClient() {
   const cookieStore = await cookies();
+  const cookieOptions = {
+    domain: ".dataviz.jp",
+    sameSite: "lax" as const,
+    secure: true,
+  };
 
   return createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -29,6 +34,7 @@ export async function createClient() {
           }
         },
       },
+      cookieOptions,
     },
   );
 }

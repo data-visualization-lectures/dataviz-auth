@@ -6,6 +6,11 @@ export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({
     request,
   });
+  const cookieOptions = {
+    domain: ".dataviz.jp",
+    sameSite: "lax" as const,
+    secure: true,
+  };
 
   // If the env vars are not set, skip proxy check. You can remove this
   // once you setup the project.
@@ -35,6 +40,7 @@ export async function updateSession(request: NextRequest) {
           );
         },
       },
+      cookieOptions,
     },
   );
 

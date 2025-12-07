@@ -13,8 +13,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
+import { fetchMe } from "@/lib/apiClient";
 
 export function LoginForm({
   className,
@@ -25,6 +26,11 @@ export function LoginForm({
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectTo = searchParams.get("redirect_to");
+
+  const isSubscribed = (status: string | null | undefined) =>
+    status === "active" || status === "trialing";
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,8 +44,21 @@ export function LoginForm({
         password,
       });
       if (error) throw error;
-      // Update this route to redirect to an authenticated route. The user already has an active session.
-      router.push("/protected");
+
+      const me = await fetchMe().catch((apiError) => {
+        console.error("fetchMe failed", apiError);
+        return null;
+      });
+      const subscriptionStatus = me?.subscription?.status ?? null;
+
+      if (isSubscribed(subscriptionStatus)) {
+        router.replace(redirectTo ?? "/protected");
+      } else {
+        const fallback = redirectTo
+          ? `/account?redirect_to=${encodeURIComponent(redirectTo)}`
+          : "/account";
+        router.replace(fallback);
+      }
     } catch (error: unknown) {
       setError(error instanceof Error ? error.message : "An error occurred");
     } finally {
