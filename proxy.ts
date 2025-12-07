@@ -8,8 +8,8 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  // auth系と静的アセットは除外し、それ以外でセッション更新だけを行う
+  // 静的アセットのみ除外し、auth含めてセッション更新を行う（ドメイン付きクッキー発行を確実にするため）
   matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|auth|api/auth|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
   ],
 };
