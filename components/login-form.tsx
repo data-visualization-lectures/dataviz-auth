@@ -27,7 +27,11 @@ export function LoginForm({
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const searchParams = useSearchParams();
-  const redirectTo = searchParams.get("redirect_to");
+  const redirectTo =
+    searchParams.get("redirect_to") ||
+    (typeof window !== "undefined"
+      ? new URLSearchParams(window.location.search).get("redirect_to")
+      : null);
   const redirectQuery = redirectTo
     ? `?redirect_to=${encodeURIComponent(redirectTo)}`
     : "";
