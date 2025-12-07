@@ -6,11 +6,6 @@ export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({
     request,
   });
-  const cookieOptions = {
-    domain: ".dataviz.jp",
-    sameSite: "lax" as const,
-    secure: true,
-  };
 
   // If the env vars are not set, skip proxy check. You can remove this
   // once you setup the project.
@@ -40,7 +35,6 @@ export async function updateSession(request: NextRequest) {
           );
         },
       },
-      cookieOptions,
     },
   );
 
@@ -50,20 +44,15 @@ export async function updateSession(request: NextRequest) {
 
   // IMPORTANT: If you remove getClaims() and you use server-side rendering
   // with the Supabase client, your users may be randomly logged out.
-  const { data } = await supabase.auth.getClaims();
-  const user = data?.claims;
-
-  if (
-    request.nextUrl.pathname !== "/" &&
-    !user &&
-    !request.nextUrl.pathname.startsWith("/login") &&
-    !request.nextUrl.pathname.startsWith("/auth")
-  ) {
-    // no user, potentially respond by redirecting the user to the login page
-    const url = request.nextUrl.clone();
-    url.pathname = "/auth/login";
-    return NextResponse.redirect(url);
+  let user = null;
+  try {
+    const { data } = await supabase.auth.getClaims();
+    user = data?.claims ?? null;
+  } catch (error) {
+    console.error("getClaims error", error);
   }
+
+  // Note: 一律リダイレクトを外し、まずはログイン処理とクッキー定着を優先
 
   // IMPORTANT: You *must* return the supabaseResponse object as it is.
   // If you're creating a new response object with NextResponse.next() make sure to:

@@ -16,7 +16,6 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { fetchMe } from "@/lib/apiClient";
-import { persistSession } from "@/lib/supabase/client";
 
 export function LoginForm({
   className,
@@ -52,7 +51,6 @@ export function LoginForm({
         password,
       });
       if (error) throw error;
-      persistSession(data.session);
 
       const me = await fetchMe().catch((apiError) => {
         console.error("fetchMe failed", apiError);
