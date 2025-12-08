@@ -11,7 +11,8 @@ export function createClient() {
         domain: ".dataviz.jp",
         sameSite: "none",
         secure: true,
-        httpOnly: false
+        httpOnly: false,
+        name: "sb-dataviz-auth-token",
       }
     }
   );

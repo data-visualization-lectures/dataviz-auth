@@ -11,6 +11,7 @@ export async function updateSession(request: NextRequest) {
     sameSite: "none" as const,
     secure: true,
     httpOnly: false,
+    name: "sb-dataviz-auth-token",
   };
 
   // If the env vars are not set, skip proxy check. You can remove this

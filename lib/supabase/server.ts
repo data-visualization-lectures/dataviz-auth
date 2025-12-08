@@ -13,6 +13,7 @@ export async function createClient() {
     sameSite: "none" as const,
     secure: true,
     httpOnly: false,
+    name: "sb-dataviz-auth-token",
   };
 
   return createServerClient(
