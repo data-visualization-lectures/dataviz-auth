@@ -21,7 +21,7 @@ const encode = (value: string) => {
   }
 };
 
-const decode = (value: string | undefined) => {
+const decode = (value: string | undefined | null) => {
   if (!value) return null;
   try {
     return decodeURIComponent(escape(atob(value)));
