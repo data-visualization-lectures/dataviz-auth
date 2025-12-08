@@ -8,7 +8,7 @@ export async function updateSession(request: NextRequest) {
   });
   const cookieOptions = {
     domain: ".dataviz.jp",
-    sameSite: "lax" as const,
+    sameSite: "none" as const,
     secure: true,
     httpOnly: false,
   };
@@ -91,7 +91,7 @@ export async function updateSession(request: NextRequest) {
               const newOptions = {
                 ...options,
                 domain: ".dataviz.jp",
-                sameSite: "lax" as const,
+                sameSite: "none" as const,
                 secure: true,
                 httpOnly: false,
                 maxAge

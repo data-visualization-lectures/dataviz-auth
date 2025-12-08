@@ -10,7 +10,7 @@ export async function createClient() {
   const cookieStore = await cookies();
   const cookieOptions = {
     domain: ".dataviz.jp",
-    sameSite: "lax" as const,
+    sameSite: "none" as const,
     secure: true,
     httpOnly: false,
   };
@@ -85,7 +85,7 @@ export async function createClient() {
                 const newOptions = {
                   ...options,
                   domain: ".dataviz.jp",
-                  sameSite: "lax" as const,
+                  sameSite: "none" as const,
                   secure: true,
                   httpOnly: false,
                   maxAge

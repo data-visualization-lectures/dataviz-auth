@@ -62,7 +62,7 @@ export async function POST(request: NextRequest) {
       domain: COOKIE_DOMAIN,
       path: "/",
       httpOnly: false,
-      sameSite: "lax",
+      sameSite: "none",
       secure: true,
       maxAge,
     });

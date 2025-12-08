@@ -81,13 +81,13 @@ export const CookieStorageAdapter: StorageAdapter = {
             // Set cookie for .dataviz.jp
             const domain = ".dataviz.jp";
 
-            document.cookie = `${key}=${cookieValue}; path=/; domain=${domain}; max-age=${maxAge}; SameSite=Lax; Secure`;
+            document.cookie = `${key}=${cookieValue}; path=/; domain=${domain}; max-age=${maxAge}; SameSite=None; Secure`;
         } catch (e) {
             console.error("Failed to stringify/encode session", e);
         }
     },
     removeItem: (key: string) => {
         if (typeof document === "undefined") return;
-        document.cookie = `${key}=; path=/; domain=.dataviz.jp; max-age=0; SameSite=Lax; Secure`;
+        document.cookie = `${key}=; path=/; domain=.dataviz.jp; max-age=0; SameSite=None; Secure`;
     },
 };
