@@ -12,6 +12,7 @@ export async function createClient() {
     domain: ".dataviz.jp",
     sameSite: "lax" as const,
     secure: true,
+    httpOnly: false,
   };
 
   return createServerClient(
@@ -86,6 +87,7 @@ export async function createClient() {
                   domain: ".dataviz.jp",
                   sameSite: "lax" as const,
                   secure: true,
+                  httpOnly: false,
                   maxAge
                 };
 
@@ -94,7 +96,8 @@ export async function createClient() {
                 // Should rarely happen if catch block above handles non-JSON
                 cookieStore.set(name, value, {
                   ...options,
-                  domain: ".dataviz.jp"
+                  domain: ".dataviz.jp",
+                  httpOnly: false
                 });
               }
             });

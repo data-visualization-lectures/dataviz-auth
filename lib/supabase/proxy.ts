@@ -10,6 +10,7 @@ export async function updateSession(request: NextRequest) {
     domain: ".dataviz.jp",
     sameSite: "lax" as const,
     secure: true,
+    httpOnly: false,
   };
 
   // If the env vars are not set, skip proxy check. You can remove this
@@ -92,6 +93,7 @@ export async function updateSession(request: NextRequest) {
                 domain: ".dataviz.jp",
                 sameSite: "lax" as const,
                 secure: true,
+                httpOnly: false,
                 maxAge
               };
 
@@ -99,7 +101,8 @@ export async function updateSession(request: NextRequest) {
             } catch {
               supabaseResponse.cookies.set(name, value, {
                 ...options,
-                domain: ".dataviz.jp"
+                domain: ".dataviz.jp",
+                httpOnly: false
               });
             }
           });
