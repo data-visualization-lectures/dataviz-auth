@@ -26,7 +26,29 @@ export async function updateSession(request: NextRequest) {
     {
       cookies: {
         getAll() {
-          return request.cookies.getAll();
+          try {
+            const allCookies = request.cookies.getAll();
+            // Map them to handle decoding if necessary (Replicate logic from server.ts)
+            return allCookies.map((cookie) => {
+              try {
+                const value0 = cookie.value;
+                const decodedStr = Buffer.from(value0, "base64").toString("utf8");
+                const decodedJson = JSON.parse(decodedStr);
+
+                if (decodedJson.currentSession || decodedJson.expiresAt) {
+                  return {
+                    ...cookie,
+                    value: JSON.stringify(decodedJson.currentSession ?? decodedJson)
+                  };
+                }
+              } catch {
+                // Not our custom base64 cookie
+              }
+              return cookie;
+            });
+          } catch {
+            return request.cookies.getAll();
+          }
         },
         setAll(cookiesToSet) {
           cookiesToSet.forEach(({ name, value }) =>
@@ -35,9 +57,33 @@ export async function updateSession(request: NextRequest) {
           supabaseResponse = NextResponse.next({
             request,
           });
-          cookiesToSet.forEach(({ name, value, options }) =>
-            supabaseResponse.cookies.set(name, value, options),
-          );
+          cookiesToSet.forEach(({ name, value, options }) => {
+            // Encode value to Base64 before setting (Replicate logic from server.ts)
+            try {
+              const session = JSON.parse(value);
+              const now = Math.round(Date.now() / 1000);
+              const expiresAt = session.expires_at ?? (now + 60 * 60 * 24 * 7);
+
+              const cookieValue = Buffer.from(JSON.stringify({
+                currentSession: session,
+                expiresAt
+              })).toString("base64");
+
+              const newOptions = {
+                ...options,
+                domain: ".dataviz.jp",
+                sameSite: "lax" as const,
+                secure: true,
+              };
+
+              supabaseResponse.cookies.set(name, cookieValue, newOptions);
+            } catch {
+              supabaseResponse.cookies.set(name, value, {
+                ...options,
+                domain: ".dataviz.jp"
+              });
+            }
+          });
         },
       },
       cookieOptions,
