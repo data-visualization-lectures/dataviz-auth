@@ -52,24 +52,6 @@ export function LoginForm({
       });
       if (error) throw error;
 
-      try {
-        const sessionPayload = data.session;
-        if (sessionPayload) {
-          await fetch("/api/auth/set-cookie", {
-            method: "POST",
-            credentials: "include",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              session: sessionPayload,
-            }),
-          });
-        }
-      } catch (cookieError) {
-        console.error("Failed to set shared cookie", cookieError);
-      }
-
       const me = await fetchMe().catch((apiError) => {
         console.error("fetchMe failed", apiError);
         return null;
