@@ -24,43 +24,54 @@ export const CookieStorageAdapter: StorageAdapter = {
 
         try {
             // The server sets it as Base64 encoded JSON
-            // Value format: base64(JSON.stringify({ currentSession, expiresAt }))
-            // But Supabase Client expects just the JSON string of the session, 
-            // OR a JSON object relative to the key structure (depending on how internal logic works).
-            // However, usually Supabase `storage` expects the *raw string* that was saved.
-            // But here we are bridging:
-            // Server saves: Base64({ currentSession, expiresAt })
-            // Supabase expects: JSON(session)
-
-            // Let's decode to see what we have
+            // Attempt to decode
             const decodedJson = JSON.parse(atob(value));
 
             // If the structure is { currentSession, expiresAt }, we extract currentSession
-            if (decodedJson.currentSession) {
-                return JSON.stringify(decodedJson.currentSession);
+            if (decodedJson.currentSession || decodedJson.expiresAt) {
+                const sess = decodedJson.currentSession;
+                // If it's an object, stringify it (Supabase expects JSON string for sessions)
+                // If it's a primitive string (PKCE, etc.), return as is
+                return typeof sess === "object" ? JSON.stringify(sess) : sess;
             }
 
-            // Fallback if it was just the session
-            return JSON.stringify(decodedJson);
+            // If it decoded but doesn't look like our wrapper, return original or re-stringified?
+            // Safer to just return the original value if it doesn't match our specific schema
+            return value;
         } catch (e) {
-            console.error("Failed to parse cookie value", e);
-            return null;
+            // If Base64 decode or JSON parse fails, it might be a legacy or raw cookie.
+            // Return it as-is to be safe.
+            return value;
         }
     },
     setItem: (key: string, value: string) => {
         if (typeof document === "undefined") return;
 
         try {
-            // Value comes in as JSON string of the session from Supabase
-            const session = JSON.parse(value);
+            let session;
+            let expiresAt;
+            let maxAge;
 
-            // Re-encode to match the server-side format:
-            // { currentSession: session, expiresAt: ... }
-            // We need to calculate expiresAt for consistency with server logic if possible, 
-            // but strictly speaking, if we just want to save what Supabase gave us:
+            try {
+                // Try to parse as JSON (expected for Session objects)
+                session = JSON.parse(value);
+            } catch {
+                // If parsing fails, treat as a raw string (e.g., PKCE verifier or non-JSON token)
+                session = value;
+            }
 
             const now = Math.round(Date.now() / 1000);
-            const expiresAt = session.expires_at ?? (now + 60 * 60 * 24 * 7);
+
+            // Determine expiration
+            if (typeof session === "object" && session !== null && "expires_at" in session) {
+                // It's a session object
+                expiresAt = session.expires_at ?? (now + 60 * 60 * 24 * 7);
+                maxAge = session.expires_in ?? 60 * 60 * 24 * 7;
+            } else {
+                // Default for non-session data (1 week)
+                expiresAt = now + 60 * 60 * 24 * 7;
+                maxAge = 60 * 60 * 24 * 7;
+            }
 
             const cookieValue = btoa(JSON.stringify({
                 currentSession: session,
@@ -69,7 +80,6 @@ export const CookieStorageAdapter: StorageAdapter = {
 
             // Set cookie for .dataviz.jp
             const domain = ".dataviz.jp";
-            const maxAge = session.expires_in ?? 60 * 60 * 24 * 7;
 
             document.cookie = `${key}=${cookieValue}; path=/; domain=${domain}; max-age=${maxAge}; SameSite=Lax; Secure`;
         } catch (e) {

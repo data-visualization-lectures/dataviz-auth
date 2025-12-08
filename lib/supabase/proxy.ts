@@ -36,9 +36,10 @@ export async function updateSession(request: NextRequest) {
                 const decodedJson = JSON.parse(decodedStr);
 
                 if (decodedJson.currentSession || decodedJson.expiresAt) {
+                  const sess = decodedJson.currentSession;
                   return {
                     ...cookie,
-                    value: JSON.stringify(decodedJson.currentSession ?? decodedJson)
+                    value: typeof sess === "object" ? JSON.stringify(sess) : sess
                   };
                 }
               } catch {
@@ -60,9 +61,26 @@ export async function updateSession(request: NextRequest) {
           cookiesToSet.forEach(({ name, value, options }) => {
             // Encode value to Base64 before setting (Replicate logic from server.ts)
             try {
-              const session = JSON.parse(value);
+              let session;
+              try {
+                session = JSON.parse(value);
+              } catch {
+                session = value;
+              }
+
               const now = Math.round(Date.now() / 1000);
-              const expiresAt = session.expires_at ?? (now + 60 * 60 * 24 * 7);
+
+              let expiresAt;
+              let maxAge;
+
+              // Determine expiration
+              if (typeof session === "object" && session !== null && "expires_at" in session) {
+                expiresAt = session.expires_at ?? (now + 60 * 60 * 24 * 7);
+                maxAge = session.expires_in ?? 60 * 60 * 24 * 7;
+              } else {
+                expiresAt = now + 60 * 60 * 24 * 7;
+                maxAge = 60 * 60 * 24 * 7;
+              }
 
               const cookieValue = Buffer.from(JSON.stringify({
                 currentSession: session,
@@ -74,6 +92,7 @@ export async function updateSession(request: NextRequest) {
                 domain: ".dataviz.jp",
                 sameSite: "lax" as const,
                 secure: true,
+                maxAge
               };
 
               supabaseResponse.cookies.set(name, cookieValue, newOptions);
