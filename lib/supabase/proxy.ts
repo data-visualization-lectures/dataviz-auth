@@ -27,30 +27,7 @@ export async function updateSession(request: NextRequest) {
     {
       cookies: {
         getAll() {
-          try {
-            const allCookies = request.cookies.getAll();
-            // Map them to handle decoding if necessary (Replicate logic from server.ts)
-            return allCookies.map((cookie) => {
-              try {
-                const value0 = cookie.value;
-                const decodedStr = Buffer.from(value0, "base64").toString("utf8");
-                const decodedJson = JSON.parse(decodedStr);
-
-                if (decodedJson.currentSession || decodedJson.expiresAt) {
-                  const sess = decodedJson.currentSession;
-                  return {
-                    ...cookie,
-                    value: typeof sess === "object" ? JSON.stringify(sess) : sess
-                  };
-                }
-              } catch {
-                // Not our custom base64 cookie
-              }
-              return cookie;
-            });
-          } catch {
-            return request.cookies.getAll();
-          }
+          return request.cookies.getAll();
         },
         setAll(cookiesToSet) {
           cookiesToSet.forEach(({ name, value }) =>
@@ -59,53 +36,12 @@ export async function updateSession(request: NextRequest) {
           supabaseResponse = NextResponse.next({
             request,
           });
-          cookiesToSet.forEach(({ name, value, options }) => {
-            // Encode value to Base64 before setting (Replicate logic from server.ts)
-            try {
-              let session;
-              try {
-                session = JSON.parse(value);
-              } catch {
-                session = value;
-              }
-
-              const now = Math.round(Date.now() / 1000);
-
-              let expiresAt;
-              let maxAge;
-
-              // Determine expiration
-              if (typeof session === "object" && session !== null && "expires_at" in session) {
-                expiresAt = session.expires_at ?? (now + 60 * 60 * 24 * 7);
-                maxAge = session.expires_in ?? 60 * 60 * 24 * 7;
-              } else {
-                expiresAt = now + 60 * 60 * 24 * 7;
-                maxAge = 60 * 60 * 24 * 7;
-              }
-
-              const cookieValue = Buffer.from(JSON.stringify({
-                currentSession: session,
-                expiresAt
-              })).toString("base64");
-
-              const newOptions = {
-                ...options,
-                domain: ".dataviz.jp",
-                sameSite: "none" as const,
-                secure: true,
-                httpOnly: false,
-                maxAge
-              };
-
-              supabaseResponse.cookies.set(name, cookieValue, newOptions);
-            } catch {
-              supabaseResponse.cookies.set(name, value, {
-                ...options,
-                domain: ".dataviz.jp",
-                httpOnly: false
-              });
-            }
-          });
+          cookiesToSet.forEach(({ name, value, options }) =>
+            supabaseResponse.cookies.set(name, value, {
+              ...options,
+              ...cookieOptions,
+            }),
+          );
         },
       },
       cookieOptions,
@@ -125,8 +61,6 @@ export async function updateSession(request: NextRequest) {
   } catch (error) {
     console.error("getClaims error", error);
   }
-
-  // Note: 一律リダイレクトを外し、まずはログイン処理とクッキー定着を優先
 
   // IMPORTANT: You *must* return the supabaseResponse object as it is.
   // If you're creating a new response object with NextResponse.next() make sure to:

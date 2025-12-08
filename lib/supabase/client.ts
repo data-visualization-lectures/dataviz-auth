@@ -1,23 +1,18 @@
 import { createBrowserClient } from "@supabase/ssr";
-import { CookieStorageAdapter } from "./storage-adapter";
 
-// クライアント側で共有クッキー(Base64)を読み書きするアダプターを使用する
+// クライアント側で共有クッキーを読み書きする場合も、
+// Domain指定を入れた標準的な実装に戻す。
 export function createClient() {
   return createBrowserClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
     {
-      cookies: {
-        get(key) {
-          return CookieStorageAdapter.getItem(key);
-        },
-        set(key, value, options) {
-          CookieStorageAdapter.setItem(key, value);
-        },
-        remove(key, options) {
-          CookieStorageAdapter.removeItem(key);
-        },
-      },
+      cookieOptions: {
+        domain: ".dataviz.jp",
+        sameSite: "none",
+        secure: true,
+        httpOnly: false
+      }
     }
   );
 }
