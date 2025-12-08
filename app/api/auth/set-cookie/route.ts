@@ -15,7 +15,22 @@ const STORAGE_KEY = `sb-${projectRef}-auth-token`;
 
 export async function POST(request: NextRequest) {
   try {
-    const { session } = await request.json();
+    let { session } = await request.json();
+
+    // セッションが文字列（例: base64-...）で渡された場合はデコードする
+    if (typeof session === "string") {
+      try {
+        const trimmed = session.replace(/^base64-/, "");
+        const decoded = Buffer.from(trimmed, "base64").toString("utf8");
+        session = JSON.parse(decoded)?.currentSession ?? JSON.parse(decoded);
+      } catch (e) {
+        console.error("Failed to decode session string", e);
+        return NextResponse.json(
+          { error: "Invalid session payload" },
+          { status: 400 },
+        );
+      }
+    }
 
     if (!session?.access_token) {
       return NextResponse.json(
