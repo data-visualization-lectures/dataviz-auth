@@ -34,27 +34,16 @@ export async function POST(request: NextRequest) {
       expiresAt,
     };
 
-    const encodedValue = encodeURIComponent(JSON.stringify(payload));
+    // Supabase JS expects plain JSON string (decodeなしで使われるため、URIエンコードしない)
+    const value = JSON.stringify(payload);
     const maxAge = session.expires_in ?? 60 * 60 * 24 * 7;
 
     const response = NextResponse.json({ ok: true });
 
-    // ドメイン共有用
     response.cookies.set({
       name: STORAGE_KEY,
-      value: encodedValue,
+      value,
       domain: COOKIE_DOMAIN,
-      path: "/",
-      httpOnly: false,
-      sameSite: "lax",
-      secure: true,
-      maxAge,
-    });
-
-    // ホストスコープ（念のため。ブラウザがドメイン付きのみを拒否するケースに対応）
-    response.cookies.set({
-      name: STORAGE_KEY,
-      value: encodedValue,
       path: "/",
       httpOnly: false,
       sameSite: "lax",
