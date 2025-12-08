@@ -48,25 +48,6 @@ export function LoginForm({
       });
       if (error) throw error;
 
-      // クッキー共有用のAPIを呼ぶ（失敗してもログインは継続）
-      try {
-        const sessionPayload = data.session;
-        if (sessionPayload) {
-          await fetch("/api/auth/set-cookie", {
-            method: "POST",
-            credentials: "include",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              session: sessionPayload,
-            }),
-          });
-        }
-      } catch (cookieError) {
-        console.error("Failed to set shared cookie", cookieError);
-      }
-
       router.replace(redirectTo ?? "/protected");
     } catch (error: unknown) {
       setError(error instanceof Error ? error.message : "An error occurred");
