@@ -13,6 +13,7 @@
   - 試行: 実施（公式フォーマットをBase64でSet-Cookie）  
   - 結果: `.dataviz.jp` に定着せず、authのみ。クライアント側がlocalStorageのままなのも影響。Storage切替とセットで再検証が必要。  
   - 注意（cookie.md/cookie_b.md から再確認）: 必ず https://auth.dataviz.jp で呼ぶこと、`Domain=.dataviz.jp; Path=/; SameSite=Lax(or None); Secure` を付けること、Set-Cookie をレスポンスヘッダーで返すこと（JS書き込みは避ける）。安全な文字列（Base64等）で、秘密鍵やサービスロールキーは入れない。
+  - 失敗の学び: セッションの公式フォーマット（`{currentSession, expiresAt}`）を壊すとSupabaseが復元できずログイン不能になる。クライアント/サーバーで storageKey・フォーマットを一致させることが必須。クライアント側も cookie を読む実装に切り替えないと、サーバー配布だけでは効果が出ない。
 
 ## 選択肢C: クライアント側のストレージ
 - C1: Supabaseデフォルト（localStorage）  
