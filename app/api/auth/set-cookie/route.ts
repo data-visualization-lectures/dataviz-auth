@@ -29,12 +29,14 @@ export async function POST(request: NextRequest) {
       session.expires_at ??
       (session.expires_in ? now + session.expires_in : now + 60 * 60 * 24 * 7);
 
-    // Supabase auth-js が storage に保存する形式に合わせる
-    // { currentSession: <session>, expiresAt: <epoch seconds> }
-    const value = JSON.stringify({
-      currentSession: session,
-      expiresAt,
-    });
+    // Supabase auth-js の storage フォーマットを Base64 で安全にクッキー化
+    const value = Buffer.from(
+      JSON.stringify({
+        currentSession: session,
+        expiresAt,
+      }),
+      "utf8",
+    ).toString("base64");
     const maxAge = session.expires_in ?? 60 * 60 * 24 * 7;
 
     const response = NextResponse.json({ ok: true });
