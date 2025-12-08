@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { STORAGE_KEY, createClient } from "@/lib/supabase/client";
+import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -63,7 +63,6 @@ export function LoginForm({
             },
             body: JSON.stringify({
               session: sessionPayload,
-              storageKey: STORAGE_KEY,
             }),
           });
         }
