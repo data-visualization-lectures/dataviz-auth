@@ -15,7 +15,6 @@ import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
-import { fetchMe } from "@/lib/apiClient";
 
 export function LoginForm({
   className,
@@ -36,9 +35,6 @@ export function LoginForm({
     ? `?redirect_to=${encodeURIComponent(redirectTo)}`
     : "";
 
-  const isSubscribed = (status: string | null | undefined) =>
-    status === "active" || status === "trialing";
-
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     const supabase = createClient();
@@ -51,40 +47,7 @@ export function LoginForm({
         password,
       });
       if (error) throw error;
-
-      // サブドメイン共有用の cookie をサーバーから配布
-      try {
-        const sessionPayload = data.session;
-        if (sessionPayload) {
-          await fetch("/api/auth/set-cookie", {
-            method: "POST",
-            credentials: "include",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              session: sessionPayload,
-            }),
-          });
-        }
-      } catch (cookieError) {
-        console.error("Failed to set shared cookie", cookieError);
-      }
-
-      const me = await fetchMe().catch((apiError) => {
-        console.error("fetchMe failed", apiError);
-        return null;
-      });
-      const subscriptionStatus = me?.subscription?.status ?? null;
-
-      if (isSubscribed(subscriptionStatus)) {
-        router.replace(redirectTo ?? "/protected");
-      } else {
-        const fallback = redirectTo
-          ? `/account?redirect_to=${encodeURIComponent(redirectTo)}`
-          : "/account";
-        router.replace(fallback);
-      }
+      router.replace(redirectTo ?? "/protected");
     } catch (error: unknown) {
       setError(error instanceof Error ? error.message : "An error occurred");
     } finally {
