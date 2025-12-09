@@ -16,8 +16,31 @@ type MeResponse = {
   } | null;
   subscription: {
     status: SubscriptionStatus;
+    cancel_at_period_end?: boolean;
+    current_period_end?: string;
   } | null;
 };
+
+function formatSubscriptionStatus(sub: MeResponse['subscription']) {
+  if (!sub) return "未加入";
+
+  if (sub.cancel_at_period_end && sub.current_period_end) {
+    const date = new Date(sub.current_period_end);
+    const dateStr = `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
+    return `解約予約中（${dateStr} まで利用可能）`;
+  }
+
+  const statusMap: Record<SubscriptionStatus, string> = {
+    none: "未加入",
+    active: "加入中",
+    past_due: "支払い遅延中",
+    canceled: "解約済み",
+    incomplete: "チェックアウト完了待ち",
+    trialing: "トライアル中",
+  };
+
+  return statusMap[sub.status] ?? sub.status;
+}
 
 export default function AccountPage() {
   const [data, setData] = useState<MeResponse | null>(null);
@@ -63,7 +86,19 @@ export default function AccountPage() {
   if (error) return <p>エラー: {error}</p>;
   if (!data) return <p>ログインしていないようです。</p>;
 
-  const status = data.subscription?.status ?? "none";
+  // subscriptionオブジェクト自体が無い場合は"none"扱い
+  const rawStatus = data.subscription?.status ?? "none";
+  const displayStatus = formatSubscriptionStatus(data.subscription);
+
+  // ボタン表示判定: active かつ キャンセル予約していない場合のみ「管理」ボタン
+  // 解約予約中(activeかつcancel_at_period_end=true)の場合、あるいはすでにcanceledなどの場合は「アップグレード(再開)」等のハンドリングが必要かもしれないが、
+  // 現状の要件では特段指定がないので、シンプルに active なら管理ボタン、それ以外ならアップグレードボタン、とするか、
+  // もしくは「解約予約中」でもポータルで「キャンセルを取り消す」ができるかもしれないので管理ボタンのままがいいかもしれない。
+  // Stripe Portal は通常、解約予約中の場合の「再開」もサポートする。
+  // ユーザーの要件: ステータス表示の変更が主。
+  // ボタンの出し分けロジックは既存に従う ('active' ? manage : upgrade)。
+  // 解約予約中でも status 自体は 'active' のまま返ってくるのが一般的な Stripe/Supabase の挙動 (cancel_at_period_end が true なだけ)。
+  // なので、status === 'active' の判定で管理画面に行けるはず。
 
   return (
     <main className="max-w-xl mx-auto p-6 space-y-4">
@@ -77,9 +112,9 @@ export default function AccountPage() {
 
       <section className="space-y-2">
         <h2 className="font-semibold">サブスクリプション</h2>
-        <div>現在のステータス: <strong>{status}</strong></div>
+        <div>現在のステータス: <strong>{displayStatus}</strong></div>
 
-        {status === "active" ? (
+        {rawStatus === "active" ? (
           <button
             className="px-4 py-2 rounded bg-gray-800 text-white"
             onClick={handleManageBilling}
