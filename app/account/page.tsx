@@ -4,45 +4,9 @@
 import { useEffect, useState } from "react";
 import { fetchMe, createCheckoutSession, createPortalSession } from "@/lib/apiClient";
 import { toast } from "sonner";
+import { MeResponse } from "@/types/user";
+import { formatSubscriptionStatus } from "@/lib/formatters";
 
-
-type SubscriptionStatus = "none" | "active" | "past_due" | "canceled" | "incomplete" | "trialing";
-
-type MeResponse = {
-  user: {
-    id: string;
-    email: string;
-  };
-  profile: {
-    display_name?: string | null;
-  } | null;
-  subscription: {
-    status: SubscriptionStatus;
-    cancel_at_period_end?: boolean;
-    current_period_end?: string;
-  } | null;
-};
-
-function formatSubscriptionStatus(sub: MeResponse['subscription']) {
-  if (!sub) return "未加入";
-
-  if (sub.cancel_at_period_end && sub.current_period_end) {
-    const date = new Date(sub.current_period_end);
-    const dateStr = `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
-    return `解約予約中（${dateStr} まで利用可能）`;
-  }
-
-  const statusMap: Record<SubscriptionStatus, string> = {
-    none: "未加入",
-    active: "加入中",
-    past_due: "支払い遅延中",
-    canceled: "解約済み",
-    incomplete: "チェックアウト完了待ち",
-    trialing: "トライアル中",
-  };
-
-  return statusMap[sub.status] ?? sub.status;
-}
 
 export default function AccountPage() {
   const [data, setData] = useState<MeResponse | null>(null);
