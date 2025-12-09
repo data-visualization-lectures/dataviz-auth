@@ -1,4 +1,6 @@
 import { createBrowserClient } from "@supabase/ssr";
+import { APP_CONFIG } from "@/lib/config";
+
 
 // クライアント側で共有クッキーを読み書きする場合も、
 // Domain指定を入れた標準的な実装に戻す。
@@ -8,11 +10,11 @@ export function createClient() {
     process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
     {
       cookieOptions: {
-        domain: ".dataviz.jp",
+        domain: APP_CONFIG.DOMAIN,
         sameSite: "none",
         secure: true,
         httpOnly: false,
-        name: "sb-dataviz-auth-token",
+        name: APP_CONFIG.COOKIE_NAME,
       }
     }
   );

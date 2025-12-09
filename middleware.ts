@@ -1,13 +1,10 @@
 import { NextResponse, type NextRequest } from 'next/server'
 import { updateSession } from '@/lib/supabase/proxy'
 
-const allowedOrigins = [
-    'https://auth.dataviz.jp',
-    'https://svg-tectures.dataviz.jp',
-    'http://localhost:3000',
-    'http://localhost:3001',
-    'http://localhost:3002',
-];
+import { APP_CONFIG } from '@/lib/config';
+
+const allowedOrigins: readonly string[] = APP_CONFIG.ALLOWED_ORIGINS;
+
 
 export async function middleware(request: NextRequest) {
     const origin = request.headers.get('origin') ?? '';
