@@ -3,6 +3,8 @@
 
 import { useEffect, useState } from "react";
 import { fetchMe, createCheckoutSession, createPortalSession } from "@/lib/apiClient";
+import { toast } from "sonner";
+
 
 type SubscriptionStatus = "none" | "active" | "past_due" | "canceled" | "incomplete" | "trialing";
 
@@ -67,7 +69,7 @@ export default function AccountPage() {
         window.location.href = url;
       }
     } catch (e: any) {
-      alert(`Checkout開始に失敗しました: ${e.message ?? e}`);
+      toast.error(`Checkout開始に失敗しました: ${e.message ?? e}`);
     }
   }
 
@@ -78,7 +80,7 @@ export default function AccountPage() {
         window.location.href = url;
       }
     } catch (e: any) {
-      alert(`ポータル起動に失敗しました: ${e.message ?? e}`);
+      toast.error(`ポータル起動に失敗しました: ${e.message ?? e}`);
     }
   }
 
