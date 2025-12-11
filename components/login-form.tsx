@@ -99,15 +99,9 @@ export function LoginForm({
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
-              <div className="grid gap-2">
+              <div className="grid gap-2 relative">
                 <div className="flex items-center">
                   <Label htmlFor="password">Password</Label>
-                  <Link
-                    href={`/auth/forgot-password${redirectQuery}`}
-                    className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
-                  >
-                    Forgot your password?
-                  </Link>
                 </div>
                 <Input
                   id="password"
@@ -116,6 +110,12 @@ export function LoginForm({
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
+                <Link
+                  href={`/auth/forgot-password${redirectQuery}`}
+                  className="ml-auto inline-block text-sm underline-offset-4 hover:underline absolute right-0 top-0"
+                >
+                  Forgot your password?
+                </Link>
               </div>
               {error && <p className="text-sm text-red-500">{error}</p>}
               <Button type="submit" className="w-full" disabled={isLoading}>
