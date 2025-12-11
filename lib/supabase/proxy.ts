@@ -9,10 +9,7 @@ export async function updateSession(request: NextRequest) {
     request,
   });
 
-  const isLocal = process.env.NODE_ENV === "development";
-
   const cookieOptions = {
-    domain: isLocal ? undefined : APP_CONFIG.DOMAIN,
     sameSite: "lax" as const,
     secure: true,
     httpOnly: false,
