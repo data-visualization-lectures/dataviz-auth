@@ -13,7 +13,12 @@ import { APP_CONFIG } from "@/lib/config";
 export async function createClient() {
   const cookieStore = await cookies();
 
+  // Determine if we are in a local environment
+  const isLocal = process.env.NODE_ENV === "development";
+
   const cookieOptions = {
+    // Share cookie across subdomains in production for SSO
+    domain: isLocal ? undefined : APP_CONFIG.DOMAIN,
     sameSite: "lax" as const,
     secure: true,
     httpOnly: false,
