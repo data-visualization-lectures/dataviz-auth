@@ -13,6 +13,7 @@ export async function updateSession(request: NextRequest) {
     sameSite: "lax" as const,
     secure: true,
     httpOnly: false,
+    name: APP_CONFIG.COOKIE_NAME,
   };
 
   // If the env vars are not set, skip proxy check. You can remove this
@@ -38,12 +39,15 @@ export async function updateSession(request: NextRequest) {
           supabaseResponse = NextResponse.next({
             request,
           });
-          cookiesToSet.forEach(({ name, value, options }) =>
+          cookiesToSet.forEach(({ name, value, options }) => {
+            // Remove 'name' from the options passed to Set-Cookie header
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            const { name: _, ...optionsToSet } = cookieOptions;
             supabaseResponse.cookies.set(name, value, {
               ...options,
-              ...cookieOptions,
-            }),
-          );
+              ...optionsToSet,
+            });
+          });
         },
       },
       cookieOptions,

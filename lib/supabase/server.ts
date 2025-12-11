@@ -17,6 +17,7 @@ export async function createClient() {
     sameSite: "lax" as const,
     secure: true,
     httpOnly: false,
+    name: APP_CONFIG.COOKIE_NAME,
   };
 
   return createServerClient(
@@ -30,9 +31,12 @@ export async function createClient() {
         setAll(cookiesToSet) {
           try {
             cookiesToSet.forEach(({ name, value, options }) => {
+              // Remove 'name' from the options passed to cookieStore.set
+              // eslint-disable-next-line @typescript-eslint/no-unused-vars
+              const { name: _, ...optionsToSet } = cookieOptions;
               cookieStore.set(name, value, {
                 ...options,
-                ...cookieOptions,
+                ...optionsToSet,
               });
             });
           } catch {
