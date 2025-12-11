@@ -6,14 +6,19 @@ import { cookies } from "next/headers";
  * global variable. Always create a new client within each function when using
  * it.
  */
+import { APP_CONFIG } from "@/lib/config";
+
+// ...
+
 export async function createClient() {
   const cookieStore = await cookies();
+  const isLocal = process.env.NODE_ENV === "development";
+
   const cookieOptions = {
-    domain: ".dataviz.jp",
-    sameSite: "none" as const,
+    domain: isLocal ? undefined : APP_CONFIG.DOMAIN,
+    sameSite: "lax" as const,
     secure: true,
     httpOnly: false,
-    name: "sb-dataviz-auth-token",
   };
 
   return createServerClient(

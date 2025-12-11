@@ -2,16 +2,20 @@ import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { hasEnvVars } from "../utils";
 
+import { APP_CONFIG } from "@/lib/config";
+
 export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({
     request,
   });
+
+  const isLocal = process.env.NODE_ENV === "development";
+
   const cookieOptions = {
-    domain: ".dataviz.jp",
-    sameSite: "none" as const,
+    domain: isLocal ? undefined : APP_CONFIG.DOMAIN,
+    sameSite: "lax" as const,
     secure: true,
     httpOnly: false,
-    name: "sb-dataviz-auth-token",
   };
 
   // If the env vars are not set, skip proxy check. You can remove this
