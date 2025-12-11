@@ -23,6 +23,9 @@ export async function GET(request: Request) {
                 return NextResponse.redirect(`${origin}${next}`);
             }
         }
+        console.error('Auth Loop Error:', error);
+    } else {
+        console.error('No code found in search params');
     }
 
     // return the user to an error page with instructions
