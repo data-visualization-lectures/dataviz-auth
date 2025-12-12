@@ -37,7 +37,7 @@ export function AuthedActions({ email }: AuthedActionsProps) {
       onClick={handleNavigate}
       onKeyDown={handleKeyDown}
     >
-      <span>Hey, {email}!</span>
+      <span>{email}</span>
       <div onClick={stopPropagation} onKeyDown={(event) => event.stopPropagation()}>
         <LogoutButton />
       </div>
