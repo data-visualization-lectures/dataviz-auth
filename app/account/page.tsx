@@ -37,6 +37,8 @@ export default async function AccountPage() {
     .eq("user_id", user.id)
     .maybeSingle();
 
+  console.log("DEBUG: Raw current_period_end:", subscription?.current_period_end);
+
   // Generate initials for avatar
   const email = user.email || "";
 
