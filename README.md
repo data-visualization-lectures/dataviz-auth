@@ -4,9 +4,10 @@
 ## CSS Framework
 
 - Tailwind CSS
-- Radix UI (おそらく shadcn/ui 経由)
+- Radix UI
+- class-variance-authority (cva) 
 
-
+shadcn/ui のコンポーネントをCLIで追加しながら、独自のデザインシステムを構築する方針。
 
 <a href="https://demo-nextjs-with-supabase.vercel.app/">
   <img alt="Next.js and Supabase Starter Kit - the fastest way to build apps with Next.js and Supabase" src="https://demo-nextjs-with-supabase.vercel.app/opengraph-image.png">
