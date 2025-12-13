@@ -13,8 +13,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useState } from "react";
+
+import { login } from "@/app/auth/actions";
 
 export function LoginForm({
   className,
@@ -24,7 +26,6 @@ export function LoginForm({
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
   const searchParams = useSearchParams();
   const redirectTo =
     searchParams.get("redirect_to") ||
@@ -35,25 +36,23 @@ export function LoginForm({
     ? `?redirect_to=${encodeURIComponent(redirectTo)}`
     : "";
 
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const supabase = createClient();
+  const handleLogin = async (formData: FormData) => {
     setIsLoading(true);
     setError(null);
 
-    try {
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-      if (error) throw error;
+    // Append redirect to form data if needed, or pass it as argument
+    if (redirectTo) {
+      formData.append("redirectTo", redirectTo);
+    }
 
-      router.replace(redirectTo ?? "/protected");
-    } catch (error: unknown) {
-      setError(error instanceof Error ? error.message : "An error occurred");
-    } finally {
+    const result = await login(formData);
+
+    if (result?.error) {
+      setError(result.error);
       setIsLoading(false);
     }
+    // If success, the server action will redirect, so we don't need to do anything here
+    // but the state update might unmount the component.
   };
 
   const handleGoogleLogin = async () => {
@@ -86,12 +85,13 @@ export function LoginForm({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleLogin}>
+          <form action={handleLogin}>
             <div className="flex flex-col gap-6">
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
                 <Input
                   id="email"
+                  name="email"
                   type="email"
                   placeholder="m@example.com"
                   required
@@ -105,6 +105,7 @@ export function LoginForm({
                 </div>
                 <Input
                   id="password"
+                  name="password"
                   type="password"
                   required
                   value={password}
