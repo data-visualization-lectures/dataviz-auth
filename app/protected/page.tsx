@@ -94,6 +94,23 @@ export default async function DashboardPage() {
           </p>
         </div>
 
+        {/* User Info */}
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">
+              ユーザー情報
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex flex-col gap-1">
+              <div className="text-xl font-bold">{email}</div>
+              <p className="text-sm text-muted-foreground">
+                アカウント作成日: {formatDate(user.created_at)}
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Subscription Status */}
         <Card className="bg-gradient-to-br from-primary/5 to-secondary/5 border-primary/20">
           <CardHeader className="pb-2">
