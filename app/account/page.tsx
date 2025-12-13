@@ -31,7 +31,8 @@ export default async function AccountPage() {
     .select(`
       status,
       current_period_end,
-      plan_id
+      plan_id,
+      cancel_at_period_end
     `)
     .eq("user_id", user.id)
     .maybeSingle();
@@ -50,6 +51,7 @@ export default async function AccountPage() {
   };
 
   const isActive = subscription?.status === "active" || subscription?.status === "trialing";
+  const isCanceled = subscription?.cancel_at_period_end;
 
   // Determine product name from plan_id
   let productName = "プラン不明";
@@ -64,8 +66,19 @@ export default async function AccountPage() {
   }
 
   const planName = isActive ? productName : "フリープラン";
-  const planStatus = isActive ? "有効" : "未契約";
-  const statusColor = isActive ? "bg-green-100 text-green-700 border-green-200" : "bg-gray-100 text-gray-700 border-gray-200";
+
+  let planStatus = "未契約";
+  let statusColor = "bg-gray-100 text-gray-700 border-gray-200";
+
+  if (isActive) {
+    if (isCanceled) {
+      planStatus = "解約済 (期限まで有効)";
+      statusColor = "bg-amber-100 text-amber-700 border-amber-200";
+    } else {
+      planStatus = "有効";
+      statusColor = "bg-green-100 text-green-700 border-green-200";
+    }
+  }
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40 p-4 md:p-10 gap-8">
