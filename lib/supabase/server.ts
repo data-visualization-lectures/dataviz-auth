@@ -20,7 +20,7 @@ export async function createClient() {
     // Share cookie across subdomains in production for SSO
     domain: isLocal ? undefined : APP_CONFIG.DOMAIN,
     sameSite: "none" as const,
-    secure: !isLocal,
+    secure: true,
     httpOnly: false,
     name: APP_CONFIG.COOKIE_NAME,
   };

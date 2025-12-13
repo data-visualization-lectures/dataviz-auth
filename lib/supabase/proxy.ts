@@ -14,7 +14,7 @@ export async function updateSession(request: NextRequest) {
   const cookieOptions = {
     domain: isLocal ? undefined : APP_CONFIG.DOMAIN,
     sameSite: "none" as const,
-    secure: !isLocal,
+    secure: true,
     httpOnly: false,
     name: APP_CONFIG.COOKIE_NAME,
   };

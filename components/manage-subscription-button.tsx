@@ -13,6 +13,8 @@ export function ManageSubscriptionButton({ isActive }: { isActive: boolean }) {
 
             if (url) {
                 window.location.href = url;
+            } else {
+                toast.error("リダイレクトURLが取得できませんでした。時間をおいて再試行してください。");
             }
         } catch (e: any) {
             toast.error(`操作に失敗しました: ${e.message ?? e}`);
