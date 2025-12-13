@@ -26,57 +26,15 @@ export default async function AccountPage() {
   }
 
   // Fetch Subscription Data
-  let { data: subscription } = await supabase
+  const { data: subscription } = await supabase
     .from("subscriptions")
     .select(`
       status,
       current_period_end,
-      prices (
-        products (
-          name
-        )
-      )
+      plan_id
     `)
     .eq("user_id", user.id)
     .maybeSingle();
-
-  // Check if subscription exists but relational data is missing (common with RLS issues)
-  if (!subscription || !subscription.prices) {
-    // Fallback: リレーション取得（prices/products）でRLSエラー等の可能性があるため、
-    // subscriptionsテーブル単体での取得を試みる
-    const { data: simpleSubscription } = await supabase
-      .from("subscriptions")
-      .select("status, current_period_end, price_id") // price_idも取得
-      .eq("user_id", user.id)
-      .maybeSingle();
-
-    if (simpleSubscription) {
-      // interval情報を取得するためにpricesテーブルを単独で引く
-      let interval = "month";
-      if (simpleSubscription.price_id) {
-        const { data: priceData } = await supabase
-          .from("prices")
-          .select("interval")
-          .eq("id", simpleSubscription.price_id)
-          .maybeSingle();
-        if (priceData?.interval) {
-          interval = priceData.interval;
-        }
-      }
-
-      const productName = interval === "year" ? "dataviz.jp利用サブスク (年払い)" : "dataviz.jp利用サブスク (月払い)";
-
-      // データが取れた場合、型を合わせるために擬似的なオブジェクトを作成
-      subscription = {
-        ...simpleSubscription,
-        prices: {
-          products: {
-            name: productName
-          }
-        }
-      } as any;
-    }
-  }
 
   // Generate initials for avatar
   const email = user.email || "";
@@ -93,9 +51,17 @@ export default async function AccountPage() {
 
   const isActive = subscription?.status === "active" || subscription?.status === "trialing";
 
-  // Extract product name safely
-  // @ts-ignore: Nested relationships might not be fully typed in the automatic client
-  const productName = subscription?.prices?.products?.name ?? "プラン不明";
+  // Determine product name from plan_id
+  let productName = "プラン不明";
+  const planId = subscription?.plan_id;
+
+  if (planId === "pro_monthly") {
+    productName = "dataviz.jp利用サブスク (月払い)";
+  } else if (planId === "pro_yearly") {
+    productName = "dataviz.jp利用サブスク (年払い)";
+  } else if (isActive) {
+    productName = "dataviz.jp利用サブスク";
+  }
 
   const planName = isActive ? productName : "フリープラン";
   const planStatus = isActive ? "有効" : "未契約";
