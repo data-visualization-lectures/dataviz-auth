@@ -26,7 +26,7 @@ export default async function AccountPage() {
   }
 
   // Fetch Subscription Data
-  const { data: subscription } = await supabase
+  let { data: subscription } = await supabase
     .from("subscriptions")
     .select(`
       status,
@@ -38,7 +38,44 @@ export default async function AccountPage() {
       )
     `)
     .eq("user_id", user.id)
-    .single();
+    .maybeSingle();
+
+  if (!subscription) {
+    // Fallback: リレーション取得（prices/products）でRLSエラー等の可能性があるため、
+    // subscriptionsテーブル単体での取得を試みる
+    const { data: simpleSubscription } = await supabase
+      .from("subscriptions")
+      .select("status, current_period_end, price_id") // price_idも取得
+      .eq("user_id", user.id)
+      .maybeSingle();
+
+    if (simpleSubscription) {
+      // interval情報を取得するためにpricesテーブルを単独で引く
+      let interval = "month";
+      if (simpleSubscription.price_id) {
+        const { data: priceData } = await supabase
+          .from("prices")
+          .select("interval")
+          .eq("id", simpleSubscription.price_id)
+          .maybeSingle();
+        if (priceData?.interval) {
+          interval = priceData.interval;
+        }
+      }
+
+      const productName = interval === "year" ? "dataviz.jp利用サブスク (年払い)" : "dataviz.jp利用サブスク (月払い)";
+
+      // データが取れた場合、型を合わせるために擬似的なオブジェクトを作成
+      subscription = {
+        ...simpleSubscription,
+        prices: {
+          products: {
+            name: productName
+          }
+        }
+      } as any;
+    }
+  }
 
   // Generate initials for avatar
   const email = user.email || "";
