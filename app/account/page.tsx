@@ -40,7 +40,10 @@ export default async function AccountPage() {
     .eq("user_id", user.id)
     .maybeSingle();
 
-  if (!subscription) {
+  console.log("DEBUG: Initial Subscription Fetch Result:", JSON.stringify({ subscription }, null, 2));
+
+  // Check if subscription exists but relational data is missing (common with RLS issues)
+  if (!subscription || !subscription.prices) {
     // Fallback: リレーション取得（prices/products）でRLSエラー等の可能性があるため、
     // subscriptionsテーブル単体での取得を試みる
     const { data: simpleSubscription } = await supabase
@@ -48,6 +51,8 @@ export default async function AccountPage() {
       .select("status, current_period_end, price_id") // price_idも取得
       .eq("user_id", user.id)
       .maybeSingle();
+
+    console.log("DEBUG: Fallback Simple Subscription Fetch Result:", JSON.stringify({ simpleSubscription }, null, 2));
 
     if (simpleSubscription) {
       // interval情報を取得するためにpricesテーブルを単独で引く
