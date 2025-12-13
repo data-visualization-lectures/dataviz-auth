@@ -129,7 +129,7 @@ export default async function AccountPage() {
                 </div>
                 {isActive && (
                   <p className="text-sm text-muted-foreground mt-1">
-                    次回更新日: {formatDate(subscription?.current_period_end)}
+                    {isCanceled ? "有効期限" : "次回更新日"}: {formatDate(subscription?.current_period_end)}
                   </p>
                 )}
               </div>
