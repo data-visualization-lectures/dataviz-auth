@@ -13,8 +13,8 @@ export async function updateSession(request: NextRequest) {
 
   const cookieOptions = {
     domain: isLocal ? undefined : APP_CONFIG.DOMAIN,
-    sameSite: "lax" as const,
-    secure: true,
+    sameSite: (isLocal ? "lax" : "none") as "lax" | "none" | "strict",
+    secure: !isLocal,
     httpOnly: false,
     name: APP_CONFIG.COOKIE_NAME,
   };
@@ -35,7 +35,7 @@ export async function updateSession(request: NextRequest) {
         getAll() {
           return request.cookies.getAll();
         },
-        setAll(cookiesToSet) {
+        setAll(cookiesToSet: any) {
           cookiesToSet.forEach(({ name, value }) =>
             request.cookies.set(name, value),
           );

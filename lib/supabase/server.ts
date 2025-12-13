@@ -19,8 +19,8 @@ export async function createClient() {
   const cookieOptions = {
     // Share cookie across subdomains in production for SSO
     domain: isLocal ? undefined : APP_CONFIG.DOMAIN,
-    sameSite: "lax" as const,
-    secure: true,
+    sameSite: (isLocal ? "lax" : "none") as "lax" | "none" | "strict",
+    secure: !isLocal,
     httpOnly: false,
     name: APP_CONFIG.COOKIE_NAME,
   };
@@ -33,7 +33,7 @@ export async function createClient() {
         getAll() {
           return cookieStore.getAll();
         },
-        setAll(cookiesToSet) {
+        setAll(cookiesToSet: any) {
           try {
             cookiesToSet.forEach(({ name, value, options }) => {
               // Remove 'name' from the options passed to cookieStore.set
