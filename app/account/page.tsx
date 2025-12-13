@@ -1,101 +1,145 @@
-// app/account/page.tsx
-"use client";
+import { redirect } from "next/navigation";
+import { createClient } from "@/lib/supabase/server";
+import {
+  LayoutDashboard,
+} from "lucide-react";
 
-import { useEffect, useState } from "react";
-import { fetchMe, createCheckoutSession, createPortalSession } from "@/lib/apiClient";
-import { toast } from "sonner";
-import { MeResponse } from "@/types/user";
-import { formatSubscriptionStatus } from "@/lib/formatters";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { ManageSubscriptionButton } from "@/components/manage-subscription-button";
+import { Button } from "@/components/ui/button";
 
+export const dynamic = "force-dynamic";
 
-export default function AccountPage() {
-  const [data, setData] = useState<MeResponse | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+export default async function AccountPage() {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const res = await fetchMe();
-        setData(res);
-      } catch (e: any) {
-        setError(e.message ?? "エラーが発生しました");
-      } finally {
-        setLoading(false);
-      }
-    })();
-  }, []);
-
-  async function handleUpgrade() {
-    try {
-      const { url } = await createCheckoutSession();
-      if (url) {
-        window.location.href = url;
-      }
-    } catch (e: any) {
-      toast.error(`Checkout開始に失敗しました: ${e.message ?? e}`);
-    }
+  if (!user) {
+    return redirect("/auth/login");
   }
 
-  async function handleManageBilling() {
-    try {
-      const { url } = await createPortalSession();
-      if (url) {
-        window.location.href = url;
-      }
-    } catch (e: any) {
-      toast.error(`ポータル起動に失敗しました: ${e.message ?? e}`);
-    }
-  }
+  // Fetch Subscription Data
+  const { data: subscription } = await supabase
+    .from("subscriptions")
+    .select(`
+      status,
+      current_period_end,
+      prices (
+        products (
+          name
+        )
+      )
+    `)
+    .eq("user_id", user.id)
+    .single();
 
-  if (loading) return <p>読み込み中...</p>;
-  if (error) return <p>エラー: {error}</p>;
-  if (!data) return <p>ログインしていないようです。</p>;
+  // Generate initials for avatar
+  const email = user.email || "";
 
-  // subscriptionオブジェクト自体が無い場合は"none"扱い
-  const rawStatus = data.subscription?.status ?? "none";
-  const displayStatus = formatSubscriptionStatus(data.subscription);
+  // Format Date
+  const formatDate = (dateString?: string) => {
+    if (!dateString) return "不明";
+    return new Date(dateString).toLocaleDateString("ja-JP", {
+      year: "numeric",
+      month: "long",
+      day: "numeric"
+    });
+  };
 
-  // ボタン表示判定: active かつ キャンセル予約していない場合のみ「管理」ボタン
-  // 解約予約中(activeかつcancel_at_period_end=true)の場合、あるいはすでにcanceledなどの場合は「アップグレード(再開)」等のハンドリングが必要かもしれないが、
-  // 現状の要件では特段指定がないので、シンプルに active なら管理ボタン、それ以外ならアップグレードボタン、とするか、
-  // もしくは「解約予約中」でもポータルで「キャンセルを取り消す」ができるかもしれないので管理ボタンのままがいいかもしれない。
-  // Stripe Portal は通常、解約予約中の場合の「再開」もサポートする。
-  // ユーザーの要件: ステータス表示の変更が主。
-  // ボタンの出し分けロジックは既存に従う ('active' ? manage : upgrade)。
-  // 解約予約中でも status 自体は 'active' のまま返ってくるのが一般的な Stripe/Supabase の挙動 (cancel_at_period_end が true なだけ)。
-  // なので、status === 'active' の判定で管理画面に行けるはず。
+  const isActive = subscription?.status === "active" || subscription?.status === "trialing";
+
+  // Extract product name safely
+  // @ts-ignore: Nested relationships might not be fully typed in the automatic client
+  const productName = subscription?.prices?.products?.name ?? "プラン不明";
+
+  const planName = isActive ? productName : "フリープラン";
+  const planStatus = isActive ? "有効" : "未契約";
+  const statusColor = isActive ? "bg-green-100 text-green-700 border-green-200" : "bg-gray-100 text-gray-700 border-gray-200";
 
   return (
-    <main className="max-w-xl mx-auto p-6 space-y-4">
-      <h1 className="text-2xl font-bold">アカウント</h1>
+    <div className="flex min-h-screen w-full flex-col bg-muted/40 p-4 md:p-10 gap-8">
 
-      <section className="space-y-1">
-        <div>ユーザーID: {data.user.id}</div>
-        <div>メールアドレス: {data.user.email}</div>
-        <div>表示名: {data.profile?.display_name ?? "（未設定）"}</div>
-      </section>
+      {/* Main Content */}
+      <main className="grid flex-1 items-start gap-4 p-4 md:gap-8 md:p-0 max-w-5xl mx-auto w-full">
 
-      <section className="space-y-2">
-        <h2 className="font-semibold">サブスクリプション</h2>
-        <div>現在のステータス: <strong>{displayStatus}</strong></div>
+        {/* Welcome Banner */}
+        <div className="flex flex-col gap-2 mb-4">
+          <h2 className="text-3xl font-bold tracking-tight">アカウント情報</h2>
+          <p className="text-muted-foreground">
+            契約プランやプロフィールの管理を行えます。
+          </p>
+        </div>
 
-        {rawStatus === "active" ? (
-          <button
-            className="px-4 py-2 rounded bg-gray-800 text-white"
-            onClick={handleManageBilling}
-          >
-            支払い情報を確認・変更
-          </button>
-        ) : (
-          <button
-            className="px-4 py-2 rounded bg-blue-600 text-white"
-            onClick={handleUpgrade}
-          >
-            有料プランにアップグレード
-          </button>
-        )}
-      </section>
-    </main>
+        {/* User Info */}
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">
+              ユーザー情報
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex flex-col gap-1">
+              <div className="text-xl font-bold">{email}</div>
+              <p className="text-sm text-muted-foreground">
+                アカウント作成日: {formatDate(user.created_at)}
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Subscription Status */}
+        <Card className="bg-gradient-to-br from-primary/5 to-secondary/5 border-primary/20">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">
+              現在のプラン
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <div className="text-2xl font-bold flex items-center gap-2">
+                  {planName}
+                  <span className={`text-xs px-2 py-0.5 rounded-full border ${statusColor}`}>
+                    {planStatus}
+                  </span>
+                </div>
+                {isActive && (
+                  <p className="text-sm text-muted-foreground mt-1">
+                    次回更新日: {formatDate(subscription?.current_period_end)}
+                  </p>
+                )}
+              </div>
+              <ManageSubscriptionButton isActive={isActive} />
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Link to Main Site */}
+        <Card className="hover:bg-muted/50 transition-colors cursor-pointer" >
+          <CardContent className="p-6 flex items-center justify-between">
+            <div className="space-y-1">
+              <h3 className="font-semibold text-lg flex items-center gap-2">
+                <LayoutDashboard className="h-5 w-5 text-primary" />
+                ツール一覧へ戻る
+              </h3>
+              <p className="text-sm text-muted-foreground">
+                すべてのツールは公式サイトから利用できます。
+              </p>
+            </div>
+            <Button asChild>
+              <a href="https://www.dataviz.jp">公式サイトを開く</a>
+            </Button>
+          </CardContent>
+        </Card>
+
+      </main>
+    </div>
   );
 }
