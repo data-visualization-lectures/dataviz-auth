@@ -7,14 +7,14 @@ import { toast } from "sonner";
 export function ManageSubscriptionButton({ isActive }: { isActive: boolean }) {
     async function handleAction() {
         try {
-            const { url } = isActive
+            const data = isActive
                 ? await createPortalSession()
                 : await createCheckoutSession();
 
-            if (url) {
-                window.location.href = url;
+            if (data && data.url) {
+                window.location.href = data.url;
             } else {
-                toast.error("リダイレクトURLが取得できませんでした。時間をおいて再試行してください。");
+                toast.error(`レスポンス異常: ${JSON.stringify(data)}`);
             }
         } catch (e: any) {
             toast.error(`操作に失敗しました: ${e.message ?? e}`);
