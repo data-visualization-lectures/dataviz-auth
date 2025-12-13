@@ -9,7 +9,7 @@
 
 shadcn/ui のコンポーネントをCLIで追加しながら、独自のデザインシステムを構築する方針。
 
-## 
+## ユーザーが「解約」ボタンを押したが、まだ契約期間が残っている状態
 
 subscriptions.cancel_at_period_end
 
