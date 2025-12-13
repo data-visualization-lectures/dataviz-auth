@@ -8,9 +8,10 @@ const allowedOrigins: readonly string[] = APP_CONFIG.ALLOWED_ORIGINS;
 
 export async function middleware(request: NextRequest) {
     const origin = request.headers.get('origin') ?? '';
-    // Simplify verification: check if the origin ends with allowed domains to handle potential sub-paths or http vs https quirks (though accurate matching is better)
-    // Here we stick to exact string match for security, but ensure no trailing slash issues
-    const isAllowedOrigin = allowedOrigins.includes(origin) || allowedOrigins.some(o => origin.startsWith(o));
+    // Allow specific origins OR any subdomain of the main domain (securely checked via suffix)
+    const isAllowedOrigin = allowedOrigins.includes(origin) ||
+        allowedOrigins.some(o => origin.startsWith(o)) ||
+        (origin.startsWith("https://") && origin.endsWith(APP_CONFIG.DOMAIN));
 
     // Handle Preflight Request
     if (request.method === 'OPTIONS') {
