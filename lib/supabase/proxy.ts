@@ -36,13 +36,13 @@ export async function updateSession(request: NextRequest) {
           return request.cookies.getAll();
         },
         setAll(cookiesToSet: any) {
-          cookiesToSet.forEach(({ name, value }) =>
+          cookiesToSet.forEach(({ name, value }: { name: string; value: string }) =>
             request.cookies.set(name, value),
           );
           supabaseResponse = NextResponse.next({
             request,
           });
-          cookiesToSet.forEach(({ name, value, options }) => {
+          cookiesToSet.forEach(({ name, value, options }: { name: string; value: string; options: any }) => {
             // Remove 'name' from the options passed to Set-Cookie header
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             const { name: _, ...optionsToSet } = cookieOptions;

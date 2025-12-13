@@ -35,7 +35,7 @@ export async function createClient() {
         },
         setAll(cookiesToSet: any) {
           try {
-            cookiesToSet.forEach(({ name, value, options }) => {
+            cookiesToSet.forEach(({ name, value, options }: { name: string; value: string; options: any }) => {
               // Remove 'name' from the options passed to cookieStore.set
               // eslint-disable-next-line @typescript-eslint/no-unused-vars
               const { name: _, ...optionsToSet } = cookieOptions;
