@@ -5,7 +5,7 @@ import { APP_CONFIG } from "@/lib/config";
 // Helper for CORS
 function corsHeaders(origin: string) {
     return {
-        "Access-Control-Allow-Origin": APP_CONFIG.ALLOWED_ORIGINS.includes(origin)
+        "Access-Control-Allow-Origin": APP_CONFIG.ALLOWED_ORIGINS.includes(origin as any)
             ? origin
             : APP_CONFIG.ALLOWED_ORIGINS[0], // Fallback or strict? Better strict.
         "Access-Control-Allow-Methods": "GET, OPTIONS, DELETE",
