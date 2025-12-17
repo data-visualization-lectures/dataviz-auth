@@ -10,6 +10,7 @@ function corsHeaders(origin: string) {
             : APP_CONFIG.ALLOWED_ORIGINS[0], // Fallback or strict? Better strict.
         "Access-Control-Allow-Methods": "GET, OPTIONS, DELETE",
         "Access-Control-Allow-Headers": "Authorization, Content-Type, x-client-info, apikey",
+        "Access-Control-Allow-Credentials": "true",
     };
 }
 

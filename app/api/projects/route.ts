@@ -10,6 +10,7 @@ function corsHeaders(origin: string) {
             : APP_CONFIG.ALLOWED_ORIGINS[0],
         "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
         "Access-Control-Allow-Headers": "Authorization, Content-Type, x-client-info, apikey",
+        "Access-Control-Allow-Credentials": "true",
     };
 }
 
