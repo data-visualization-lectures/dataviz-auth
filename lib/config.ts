@@ -5,11 +5,11 @@ export const APP_CONFIG = {
         "http://localhost:3000",
         "http://localhost:3001",
         "http://localhost:3002",
-        "https://raw.dataviz.jp",
+        "https://rawgraphs.dataviz.jp",
         "https://svg-textures.dataviz.jp",
     ],
     TOOL_URLS: {
-        "rawgraphs": "https://raw.dataviz.jp",
+        "rawgraphs": "https://rawgraphs.dataviz.jp",
         "svg-textures": "https://svg-textures.dataviz.jp",
     }
 } as const;
