@@ -163,7 +163,7 @@ export function SavedProjectsGrid({ projects }: { projects: SavedProject[] }) {
                                     </span>
                                 </div>
 
-                                <p className="text-xs text-muted-foreground mt-auto">
+                                <p className="text-xs text-muted-foreground mt-auto" suppressHydrationWarning>
                                     更新: {formatDate(project.updated_at)}
                                 </p>
 
