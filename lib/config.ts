@@ -9,13 +9,15 @@ export const APP_CONFIG = {
         "https://kepler-gl.dataviz.jp",
         "https://cartogram-japan.dataviz.jp",
         "https://cartogram-prefectures.dataviz.jp",
-        "https://sankeymatic.dataviz.jp"
+        "https://sankeymatic.dataviz.jp",
+        "https://voyager2.dataviz.jp/"
     ],
     TOOL_URLS: {
         "rawgraphs": "https://rawgraphs.dataviz.jp",
         "kepler-gl": "https://kepler-gl.dataviz.jp",
         "cartogram-japan": "https://cartogram-japan.dataviz.jp",
         "cartogram-prefectures": "https://cartogram-prefectures.dataviz.jp",
-        "sankeymatic": "https://sankeymatic.dataviz.jp"
+        "sankeymatic": "https://sankeymatic.dataviz.jp",
+        "voyager2": "https://voyager2.dataviz.jp/"
     }
 } as const;
