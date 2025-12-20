@@ -18,6 +18,6 @@ export const APP_CONFIG = {
         "cartogram-japan": "https://cartogram-japan.dataviz.jp",
         "cartogram-prefectures": "https://cartogram-prefectures.dataviz.jp",
         "sankeymatic": "https://sankeymatic.dataviz.jp",
-        "voyager": "https://voyager2.dataviz.jp"
+        "voyager2": "https://voyager2.dataviz.jp"
     }
 } as const;
