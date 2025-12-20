@@ -10,7 +10,8 @@ export const APP_CONFIG = {
         "https://cartogram-japan.dataviz.jp",
         "https://cartogram-prefectures.dataviz.jp",
         "https://sankeymatic.dataviz.jp",
-        "https://voyager2.dataviz.jp"
+        "https://voyager2.dataviz.jp",
+        "https://tilegrams.dataviz.jp"
     ],
     TOOL_URLS: {
         "rawgraphs": "https://rawgraphs.dataviz.jp",
@@ -18,6 +19,7 @@ export const APP_CONFIG = {
         "cartogram-japan": "https://cartogram-japan.dataviz.jp",
         "cartogram-prefectures": "https://cartogram-prefectures.dataviz.jp",
         "sankeymatic": "https://sankeymatic.dataviz.jp",
-        "voyager2": "https://voyager2.dataviz.jp"
+        "voyager2": "https://voyager2.dataviz.jp",
+        "tilegrams": "https://tilegrams.dataviz.jp"
     }
 } as const;
