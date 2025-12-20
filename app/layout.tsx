@@ -3,6 +3,7 @@ import { Geist } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import { Header } from "@/components/header";
 
 
 const defaultUrl = process.env.VERCEL_URL
@@ -11,7 +12,10 @@ const defaultUrl = process.env.VERCEL_URL
 
 export const metadata: Metadata = {
   metadataBase: new URL(defaultUrl),
-  title: "Next.js and Supabase Starter Kit",
+  title: {
+    template: "%s | dataviz.jp",
+    default: "使い放題のデータ可視化ツール集 | dataviz.jp",
+  },
   description: "The fastest way to build apps with Next.js and Supabase",
 };
 
@@ -35,6 +39,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Header />
           {children}
           <Toaster />
         </ThemeProvider>
