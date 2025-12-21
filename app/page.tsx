@@ -5,7 +5,14 @@ import { SavedProjectsGrid, type SavedProject } from "@/components/saved-project
 import { hasEnvVars } from "@/lib/utils";
 import { createClient } from "@/lib/supabase/server"; // Import createClient
 
-export default async function Home() {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{ tool?: string }>;
+}) {
+  const params = await searchParams;
+  const initialTool = params.tool || "all";
+
   const supabase = await createClient();
   const {
     data: { user },
@@ -49,7 +56,7 @@ export default async function Home() {
                   さまざまなツールから保存したプロジェクトへアクセスできます。
                 </p>
               </div>
-              <SavedProjectsGrid projects={projects} />
+              <SavedProjectsGrid projects={projects} initialFilter={initialTool} />
             </div>
           ) : (
             <Hero />

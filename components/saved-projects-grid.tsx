@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { Trash2, ExternalLink, Image as ImageIcon, Filter, ChevronDown, Check } from "lucide-react";
 import { toast } from "sonner";
 import { deleteProject } from "@/app/actions";
@@ -35,9 +36,19 @@ export type SavedProject = {
     signedUrl: string | null;
 };
 
-export function SavedProjectsGrid({ projects }: { projects: SavedProject[] }) {
+export function SavedProjectsGrid({
+    projects,
+    initialFilter = "all"
+}: {
+    projects: SavedProject[];
+    initialFilter?: string;
+}) {
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
+
     const [isDeleting, setIsDeleting] = useState<string | null>(null);
-    const [filterApp, setFilterApp] = useState<string>("all");
+    const [filterApp, setFilterApp] = useState<string>(initialFilter);
 
     // Extract unique app names for the filter dropdown
     const uniqueApps = Array.from(new Set(projects.map((p) => p.app_name))).sort();
@@ -46,6 +57,27 @@ export function SavedProjectsGrid({ projects }: { projects: SavedProject[] }) {
     const filteredProjects = projects.filter(
         (p) => filterApp === "all" || p.app_name === filterApp
     );
+
+    // Update filter and URL
+    const updateFilter = (newFilter: string) => {
+        setFilterApp(newFilter);
+
+        // Create URLSearchParams
+        const params = new URLSearchParams(searchParams.toString());
+
+        if (newFilter === "all") {
+            params.delete("tool"); // Remove parameter for "all"
+        } else {
+            params.set("tool", newFilter);
+        }
+
+        // Update URL without page reload
+        const newUrl = params.toString()
+            ? `${pathname}?${params.toString()}`
+            : pathname;
+
+        router.replace(newUrl, { scroll: false });
+    };
 
     const getToolUrl = (appName: string, projectId: string) => {
         // @ts-ignore - Indexing strictly typed object with string
@@ -104,14 +136,14 @@ export function SavedProjectsGrid({ projects }: { projects: SavedProject[] }) {
                         </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
-                        <DropdownMenuItem onClick={() => setFilterApp("all")}>
+                        <DropdownMenuItem onClick={() => updateFilter("all")}>
                             <div className="flex items-center justify-between w-full gap-4">
                                 <span>すべてのツール</span>
                                 {filterApp === "all" && <Check className="w-4 h-4" />}
                             </div>
                         </DropdownMenuItem>
                         {uniqueApps.map((appName) => (
-                            <DropdownMenuItem key={appName} onClick={() => setFilterApp(appName)}>
+                            <DropdownMenuItem key={appName} onClick={() => updateFilter(appName)}>
                                 <div className="flex items-center justify-between w-full gap-4">
                                     <span>{appName}</span>
                                     {filterApp === appName && <Check className="w-4 h-4" />}
