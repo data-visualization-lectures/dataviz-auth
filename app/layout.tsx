@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(defaultUrl),
   title: {
     template: "%s | dataviz.jp",
-    default: "使い放題のデータ可視化ツール集 | dataviz.jp",
+    default: "データ可視化ツール集 | dataviz.jp",
   },
   description: "The fastest way to build apps with Next.js and Supabase",
 };
