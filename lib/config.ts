@@ -12,7 +12,8 @@ export const APP_CONFIG = {
         "https://sankeymatic.dataviz.jp",
         "https://voyager2.dataviz.jp",
         "https://tilegrams.dataviz.jp",
-        "https://gephi-lite.dataviz.jp"
+        "https://gephi-lite.dataviz.jp",
+        "https://data-illustrateur.dataviz.jp"
     ],
     TOOL_URLS: {
         "rawgraphs": "https://rawgraphs.dataviz.jp",
@@ -22,6 +23,7 @@ export const APP_CONFIG = {
         "sankeymatic": "https://sankeymatic.dataviz.jp",
         "voyager2": "https://voyager2.dataviz.jp",
         "tilegrams": "https://tilegrams.dataviz.jp",
-        "gephi-lite": "https://gephi-lite.dataviz.jp"
+        "gephi-lite": "https://gephi-lite.dataviz.jp",
+        "data-illustrateur": "https://data-illustrateur.dataviz.jp"
     }
 } as const;
