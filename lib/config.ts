@@ -13,7 +13,8 @@ export const APP_CONFIG = {
         "https://voyager2.dataviz.jp",
         "https://tilegrams.dataviz.jp",
         "https://gephi-lite.dataviz.jp",
-        "https://data-illustrateur.dataviz.jp"
+        "https://data-illustrateur.dataviz.jp",
+        "https://vega-editor.dataviz.jp"
     ],
     TOOL_URLS: {
         "rawgraphs": "https://rawgraphs.dataviz.jp",
@@ -24,6 +25,7 @@ export const APP_CONFIG = {
         "voyager2": "https://voyager2.dataviz.jp",
         "tilegrams": "https://tilegrams.dataviz.jp",
         "gephi-lite": "https://gephi-lite.dataviz.jp",
-        "data-illustrateur": "https://data-illustrateur.dataviz.jp"
+        "data-illustrateur": "https://data-illustrateur.dataviz.jp",
+        "vega-editor": "https://vega-editor.dataviz.jp"
     }
 } as const;
