@@ -70,7 +70,7 @@ export function LoginForm({
       });
       if (error) throw error;
     } catch (error: unknown) {
-      setError(error instanceof Error ? error.message : "An error occurred");
+      setError(error instanceof Error ? error.message : "エラーが発生しました");
       setIsLoading(false);
     }
   };
@@ -79,16 +79,16 @@ export function LoginForm({
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
         <CardHeader>
-          <CardTitle className="text-2xl">Login</CardTitle>
+          <CardTitle className="text-2xl">ログイン</CardTitle>
           <CardDescription>
-            Enter your email below to login to your account
+            アカウントにログインするにはメールアドレスを入力してください
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form action={handleLogin}>
             <div className="flex flex-col gap-6">
               <div className="grid gap-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email">メールアドレス</Label>
                 <Input
                   id="email"
                   name="email"
@@ -101,7 +101,7 @@ export function LoginForm({
               </div>
               <div className="grid gap-2 relative">
                 <div className="flex items-center">
-                  <Label htmlFor="password">Password</Label>
+                  <Label htmlFor="password">パスワード</Label>
                 </div>
                 <Input
                   id="password"
@@ -115,16 +115,16 @@ export function LoginForm({
                   href={`/auth/forgot-password${redirectQuery}`}
                   className="ml-auto inline-block text-sm underline-offset-4 hover:underline absolute right-0 top-0"
                 >
-                  Forgot your password?
+                  パスワードをお忘れですか？
                 </Link>
               </div>
               {error && <p className="text-sm text-red-500">{error}</p>}
               <Button type="submit" className="w-full" disabled={isLoading}>
-                {isLoading ? "Logging in..." : "Login"}
+                {isLoading ? "ログイン中..." : "ログイン"}
               </Button>
               <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
                 <span className="relative z-10 bg-background px-2 text-muted-foreground">
-                  Or continue with
+                  または
                 </span>
               </div>
               <Button
@@ -149,16 +149,16 @@ export function LoginForm({
                     d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"
                   ></path>
                 </svg>
-                Login with Google
+                Googleでログイン
               </Button>
             </div>
             <div className="mt-4 text-center text-sm">
-              Don&apos;t have an account?{" "}
+              アカウントをお持ちでないですか？{" "}
               <Link
                 href={`/auth/sign-up${redirectQuery}`}
                 className="underline underline-offset-4"
               >
-                Sign up
+                新規登録
               </Link>
             </div>
           </form>
