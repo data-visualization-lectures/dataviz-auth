@@ -14,7 +14,9 @@ export const APP_CONFIG = {
         "https://tilegrams.dataviz.jp",
         "https://gephi-lite.dataviz.jp",
         "https://data-illustrateur.dataviz.jp",
-        "https://vega-editor.dataviz.jp"
+        "https://vega-editor.dataviz.jp",
+        "https://word-cloud.dataviz.jp",
+        "https://cytoscape.dataviz.jp"
     ],
     TOOL_URLS: {
         "rawgraphs": "https://rawgraphs.dataviz.jp",
@@ -26,6 +28,8 @@ export const APP_CONFIG = {
         "tilegrams": "https://tilegrams.dataviz.jp",
         "gephi-lite": "https://gephi-lite.dataviz.jp",
         "data-illustrateur": "https://data-illustrateur.dataviz.jp",
-        "vega-editor": "https://vega-editor.dataviz.jp"
+        "vega-editor": "https://vega-editor.dataviz.jp",
+        "word-cloud": "https://word-cloud.dataviz.jp",
+        "cytoscape": "https://cytoscape.dataviz.jp"
     }
 } as const;
