@@ -59,7 +59,11 @@ export default async function AccountPage() {
   const planId = subscription?.plan_id;
 
   if (planId === "pro_monthly") {
-    productName = "dataviz.jp利用サブスク (月払い)";
+    if (subscription?.status === "trialing") {
+      productName = "dataviz.jp利用サブスク (トライアル)";
+    } else {
+      productName = "dataviz.jp利用サブスク (月払い)";
+    }
   } else if (planId === "pro_yearly") {
     productName = "dataviz.jp利用サブスク (年払い)";
   } else if (isActive) {
@@ -75,6 +79,9 @@ export default async function AccountPage() {
     if (isCanceled) {
       planStatus = "解約済 (期限まで有効)";
       statusColor = "bg-amber-100 text-amber-700 border-amber-200";
+    } else if (subscription?.status === "trialing") {
+      planStatus = "トライアル中";
+      statusColor = "bg-blue-100 text-blue-700 border-blue-200";
     } else {
       planStatus = "有効";
       statusColor = "bg-green-100 text-green-700 border-green-200";
@@ -145,14 +152,14 @@ export default async function AccountPage() {
             <div className="space-y-1">
               <h3 className="font-semibold text-lg flex items-center gap-2">
                 <LayoutDashboard className="h-5 w-5 text-primary" />
-                ツール一覧へ戻る
+                ツール一覧へ行く
               </h3>
               <p className="text-sm text-muted-foreground">
                 すべてのツールは公式サイトから利用できます。
               </p>
             </div>
             <Button asChild>
-              <a href="https://www.dataviz.jp">公式サイトを開く</a>
+              <a href="https://www.dataviz.jp">ツール一覧</a>
             </Button>
           </CardContent>
         </Card>
