@@ -141,7 +141,9 @@ export default async function AccountPage() {
                   </p>
                 )}
               </div>
-              <ManageSubscriptionButton isActive={isActive} />
+              {/* {subscription?.status !== "trialing" && (
+                <ManageSubscriptionButton isActive={isActive} />
+              )} */}
             </div>
           </CardContent>
         </Card>
