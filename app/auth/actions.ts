@@ -23,9 +23,12 @@ export async function login(formData: FormData) {
 }
 
 export async function signUp(formData: FormData) {
+    console.log("[DEBUG] signUp action called");
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
     const inviteCode = formData.get("inviteCode") as string | null;
+
+    console.log("[DEBUG] Form data parsed", { hasEmail: !!email, hasPassword: !!password, inviteCode });
 
     const supabase = await createClient();
 
@@ -39,6 +42,7 @@ export async function signUp(formData: FormData) {
     });
 
     if (error) {
+        console.error("[ERROR] Supabase signUp failed:", error.message);
         return { error: error.message };
     }
 
