@@ -1,7 +1,6 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -38,7 +37,6 @@ export function SignUpForm({
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
-    const supabase = createClient();
     setIsLoading(true);
     setError(null);
 
@@ -49,14 +47,25 @@ export function SignUpForm({
     }
 
     try {
-      const { error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          emailRedirectTo: `${window.location.origin}/account`,
-        },
-      });
-      if (error) throw error;
+      // URLパラメータから招待コードを取得
+      const inviteCode = searchParams.get("code");
+
+      // FormDataを作成
+      const formData = new FormData();
+      formData.append("email", email);
+      formData.append("password", password);
+      if (inviteCode) {
+        formData.append("inviteCode", inviteCode);
+      }
+
+      // Server Actionを使用してサインアップ
+      const { signUp } = await import("@/app/auth/actions");
+      const result = await signUp(formData);
+
+      if (result.error) {
+        throw new Error(result.error);
+      }
+
       router.push("/auth/sign-up-success");
     } catch (error: unknown) {
       setError(error instanceof Error ? error.message : "エラーが発生しました");
