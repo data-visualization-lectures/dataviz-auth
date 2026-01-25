@@ -8,10 +8,18 @@ export async function GET(request: Request) {
     // if "next" is in param, use it as the redirect URL
     const next = searchParams.get("next") ?? "/";
 
+    const inviteCode = searchParams.get("invite_code");
+
     if (code) {
         const supabase = await createClient();
-        const { error } = await supabase.auth.exchangeCodeForSession(code);
-        if (!error) {
+        const { data, error } = await supabase.auth.exchangeCodeForSession(code);
+        if (!error && data?.user) {
+            // Apply trial subscription if invite code is present
+            if (inviteCode) {
+                const { applyTrialSubscription } = await import("@/lib/auth-utils");
+                await applyTrialSubscription(data.user.id, inviteCode);
+            }
+
             // Check if next is an absolute URL
             if (next.startsWith('http')) {
                 return NextResponse.redirect(next);
