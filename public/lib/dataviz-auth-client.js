@@ -413,20 +413,6 @@ async function initDatavizToolAuth() {
 
   let isCheckDone = false;
 
-  // Immediate initial check to avoid waiting for onAuthStateChange to fire
-  try {
-    const { data: { session } } = await supabase.auth.getSession();
-    if (session) {
-      await handleSession(session);
-    } else {
-      // Even if no session found immediately, update state to stop loading
-      if (headerEl) headerEl.updateState({ isLoading: false, user: null });
-      // But don't call verifyUserAccess(null) yet to avoid premature redirect loop
-    }
-  } catch (e) {
-    console.warn("[dataviz-auth-client] Initial session check failed", e);
-  }
-
   const handleSession = async (session) => {
     // URLパラメータ掃除
     const hashParams = new URLSearchParams(window.location.hash.substring(1));
@@ -450,6 +436,20 @@ async function initDatavizToolAuth() {
     }
     // 失敗時は verifyUserAccess 内でリダイレクトされる
   };
+
+  // Immediate initial check to avoid waiting for onAuthStateChange to fire
+  try {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session) {
+      await handleSession(session);
+    } else {
+      // Even if no session found immediately, update state to stop loading
+      if (headerEl) headerEl.updateState({ isLoading: false, user: null });
+      // But don't call verifyUserAccess(null) yet to avoid premature redirect loop
+    }
+  } catch (e) {
+    console.warn("[dataviz-auth-client] Initial session check failed", e);
+  }
 
   // authStateChange のみで判定（初期化タイミング問題を回避）
   supabase.auth.onAuthStateChange(async (event, session) => {
