@@ -144,7 +144,6 @@ class DatavizToolHeader extends HTMLElement {
       }
       .dv-logo-image { /* Renamed from .dv-tool-logo */
         max-height: 24px;
-        margin-right: 12px; /* mr-3 equivalent */
       }
       .dv-logo-text {
         font-weight: 600; /* Semi-bold */
