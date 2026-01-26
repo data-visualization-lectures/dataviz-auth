@@ -1,0 +1,232 @@
+// =========================================================================
+// UI Component: Tool-specific Sub-Header (Web Component Standard)
+// Implemented with Tailwind CSS
+//
+// HOW TO USE:
+// 1. Include this script in your tool's HTML file:
+//    <script src="https://auth.dataviz.jp/lib/dataviz-tool-header.js"></script>
+//
+// 2. Place the component tag where you want the sub-header to appear:
+//    <dataviz-tool-header></dataviz-tool-header>
+//
+// 3. In your tool's main JavaScript, get the component and pass your configuration:
+//    const header = document.querySelector('dataviz-tool-header');
+//    if (header) {
+//      header.setConfig({
+//        logoUrl: '/path/to/your/tool-logo.png', // Optional: URL for the tool's logo image
+//        buttons: [
+//          {
+//            label: 'Load Sample Data',
+//            action: () => { console.log('Loading sample data...'); },
+//            type: 'button'
+//          },
+//          {
+//            label: 'Export as JSON',
+//            action: () => { console.log('Exporting...'); },
+//            type: 'button'
+//          },
+//          {
+//            label: 'Help',
+//            type: 'link',
+//            href: '/help.html'
+//          }
+//        ]
+//      });
+//
+//      // To display a toast message
+//      header.showMessage('プロジェクトが正常に保存されました！', 'success');
+//      header.showMessage('プロジェクトの読み込みに失敗しました。', 'error', 5000);
+//    }
+//
+// =========================================================================
+class DatavizToolHeader extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+    this.config = { buttons: [] };
+    this.toastTimeout = null;
+  }
+
+  connectedCallback() {
+    this.render();
+  }
+
+  /**
+   * Sets the configuration for the header, including logo and buttons, and re-renders.
+   * @param {object} config - The configuration object.
+   * @param {string} [config.logoUrl] - URL of the logo image.
+   * @param {Array<object>} [config.buttons] - Array of button/link configurations.
+   */
+  setConfig(config) {
+    this.config = { ...{ buttons: [] }, ...config };
+    this.render();
+  }
+
+  /**
+   * Displays a transient toast message within the tool header.
+   * @param {string} message - The message to display.
+   * @param {'success'|'error'|'info'} [type='info'] - Type of message for styling.
+   * @param {number} [duration=3000] - Duration in milliseconds before the toast disappears.
+   */
+  showMessage(message, type = 'info', duration = 3000) {
+    const toastContainer = this.shadowRoot.getElementById('dv-toast-container');
+    if (!toastContainer) return;
+
+    // Clear existing timeout and hide any existing toast
+    if (this.toastTimeout) {
+      clearTimeout(this.toastTimeout);
+      this.toastTimeout = null;
+    }
+    toastContainer.innerHTML = ''; // Clear previous message
+    toastContainer.classList.add('hidden');
+
+    let bgColorClass = 'bg-gray-700';
+    let textColorClass = 'text-white';
+    if (type === 'success') {
+      bgColorClass = 'bg-green-600';
+    } else if (type === 'error') {
+      bgColorClass = 'bg-red-600';
+    } else if (type === 'info') {
+      bgColorClass = 'bg-blue-600';
+    }
+
+    toastContainer.innerHTML = `
+      <div class="px-3 py-2 rounded-md shadow-lg flex items-center space-x-2 ${bgColorClass} ${textColorClass}">
+        <span>${message}</span>
+      </div>
+    `;
+    toastContainer.classList.remove('hidden');
+    toastContainer.classList.add('flex'); // Show with flex to center content
+
+    this.toastTimeout = setTimeout(() => {
+      toastContainer.classList.remove('flex');
+      toastContainer.classList.add('hidden');
+      toastContainer.innerHTML = '';
+      this.toastTimeout = null;
+    }, duration);
+  }
+
+  getStyles() {
+    // This is a minimal set of Tailwind-like utility classes that are conceptually
+    // compiled into the Shadow DOM. In a real build, this would be generated.
+    // For this demonstration, we'll embed common necessary styles.
+    return `
+      :host {
+        display: block;
+        /* Tailwind-like base styles */
+        --tw-bg-opacity: 1;
+        background-color: rgb(40 40 40 / var(--tw-bg-opacity)); /* bg-gray-800 */
+        padding: 8px 16px; /* px-4 py-2 equivalent */
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        box-shadow: 0 2px 4px rgb(0 0 0 / 0.2); /* shadow-md equivalent */
+        border-top: 1px solid rgb(68 68 68); /* border-t border-gray-600 equivalent */
+        position: relative; /* For toast positioning */
+        z-index: 9998;
+      }
+      .dv-tool-header-inner {
+        display: flex;
+        align-items: center;
+        gap: 12px; /* space-x-3 equivalent for direct children */
+      }
+      .dv-tool-logo {
+        max-height: 24px;
+        margin-right: 12px; /* mr-3 equivalent */
+      }
+      .dv-btn, a.dv-btn {
+        /* Tailwind-like button styles */
+        --tw-bg-opacity: 1;
+        background-color: rgb(58 58 58 / var(--tw-bg-opacity)); /* bg-gray-700 */
+        --tw-border-opacity: 1;
+        border: 1px solid rgb(85 85 85 / var(--tw-border-opacity)); /* border border-gray-500 */
+        color: rgb(221 221 221); /* text-gray-300 */
+        padding: 5px 12px; /* px-3 py-1 equivalent */
+        border-radius: 4px; /* rounded-md equivalent */
+        text-decoration: none;
+        font-size: 13px; /* text-sm equivalent */
+        cursor: pointer;
+        transition: background-color 0.2s, border-color 0.2s;
+        white-space: nowrap; /* Prevent wrapping */
+      }
+      .dv-btn:hover, a.dv-btn:hover {
+        --tw-bg-opacity: 1;
+        background-color: rgb(74 74 74 / var(--tw-bg-opacity)); /* hover:bg-gray-600 */
+        --tw-border-opacity: 1;
+        border-color: rgb(119 119 119 / var(--tw-border-opacity)); /* hover:border-gray-400 */
+        color: rgb(255 255 255); /* hover:text-white */
+      }
+
+      /* Toast styles */
+      #dv-toast-container {
+        position: absolute;
+        bottom: 8px; /* Position at the bottom of the header */
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10000;
+        pointer-events: none; /* Allow clicks through to elements behind */
+        display: flex; /* Centered content */
+        justify-content: center; /* Centered content */
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+      }
+      #dv-toast-container.flex {
+        opacity: 1;
+      }
+      #dv-toast-container.hidden {
+        display: none;
+      }
+      .bg-gray-700 { background-color: #4a5568; }
+      .bg-green-600 { background-color: #38a169; }
+      .bg-red-600   { background-color: #e53e3e; }
+      .bg-blue-600  { background-color: #3182ce; }
+      .text-white   { color: #fff; }
+      .px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
+      .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+      .rounded-md { border-radius: 0.375rem; }
+      .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+      .flex { display: flex; }
+      .items-center { align-items: center; }
+      .space-x-2 > :not([hidden]) ~ :not([hidden]) { margin-right: calc(0.5rem * var(--tw-space-x-reverse)); margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse))); }
+    `;
+  }
+
+  render() {
+    const { logoUrl, buttons } = this.config;
+
+    const logoHtml = logoUrl ? `<img src="${logoUrl}" alt="Tool Logo" class="dv-tool-logo">` : '';
+
+    let buttonsHtml = '';
+    buttons.forEach((btn, index) => {
+      const id = `dv-tool-btn-${index}`;
+      if (btn.type === 'link') {
+        buttonsHtml += `<a href="${btn.href || '#'}" class="dv-btn" ${btn.target ? `target="${btn.target}"` : ''}>${btn.label}</a>`;
+      } else {
+        buttonsHtml += `<button id="${id}" class="dv-btn">${btn.label}</button>`;
+      }
+    });
+
+    this.shadowRoot.innerHTML = `
+      <style>${this.getStyles()}</style>
+      <div class="dv-tool-header-inner relative">
+        ${logoHtml}
+        ${buttonsHtml}
+        <div id="dv-toast-container" class="absolute bottom-2 left-1/2 -translate-x-1/2 hidden opacity-0 transition-opacity duration-300"></div>
+      </div>
+    `;
+
+    // Re-attach event listeners
+    buttons.forEach((btn, index) => {
+      if (btn.action && typeof btn.action === 'function' && btn.type !== 'link') {
+        const id = `dv-tool-btn-${index}`;
+        const buttonEl = this.shadowRoot.getElementById(id);
+        if (buttonEl) {
+          buttonEl.addEventListener('click', btn.action);
+        }
+      }
+    });
+  }
+}
+
+// Define the custom element if it's not already defined
+if (!window.customElements.get('dataviz-tool-header')) {
+  window.customElements.define('dataviz-tool-header', DatavizToolHeader);
+}
