@@ -9,6 +9,9 @@ export function createClient() {
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
     {
+      auth: {
+        storageKey: APP_CONFIG.COOKIE_NAME,
+      },
       cookieOptions: {
         domain: process.env.NODE_ENV === "development" ? undefined : APP_CONFIG.DOMAIN,
         sameSite: "none" as const,
