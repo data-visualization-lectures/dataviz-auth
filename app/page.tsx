@@ -53,7 +53,7 @@ export default async function Home({
               <div className="flex flex-col gap-2">
                 <h1 className="text-3xl font-bold">保存プロジェクト一覧</h1>
                 <p className="text-muted-foreground">
-                  さまざまなツールから保存したプロジェクトへアクセスできます。
+                  【クローズド・テスト中】さまざまなツールから保存したプロジェクトへアクセスできます。
                 </p>
               </div>
               <SavedProjectsGrid projects={projects} initialFilter={initialTool} />
