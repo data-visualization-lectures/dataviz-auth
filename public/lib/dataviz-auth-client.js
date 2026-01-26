@@ -10,6 +10,9 @@ const AUTH_APP_URL = "https://auth.dataviz.jp"; // ログイン画面
 // ガイドに従った固定クッキー名
 const AUTH_COOKIE_NAME = "sb-dataviz-auth-token";
 const COOKIE_MAX_AGE = 60 * 60 * 24 * 365; // 1年
+const NO_SESSION_REDIRECT_DELAY_MS = 5000; // 未ログイン確定までの猶予
+const PROFILE_RETRY_COUNT = 2; // /api/me の再試行回数
+const PROFILE_RETRY_DELAYS_MS = [1000, 2000]; // 再試行間隔
 
 /**
  * クッキー操作ヘルパー
@@ -154,7 +157,8 @@ class DatavizGlobalHeader extends HTMLElement {
     this.attachShadow({ mode: 'open' });
     this.state = {
       isLoading: true,
-      user: null
+      user: null,
+      error: null
     };
   }
 
@@ -258,7 +262,7 @@ class DatavizGlobalHeader extends HTMLElement {
   }
 
   render() {
-    const { isLoading, user } = this.state;
+    const { isLoading, user, error } = this.state;
 
     // アカウントページのURL
     const accountUrl = `${AUTH_APP_URL}/account`;
@@ -268,6 +272,8 @@ class DatavizGlobalHeader extends HTMLElement {
 
     if (isLoading) {
       rightContent = `<span class="dv-loading">Loading...</span>`;
+    } else if (error) {
+      rightContent = `<span class="dv-loading">${error}</span>`;
     } else if (user) {
       const email = user.email || 'User';
       rightContent = `
@@ -327,6 +333,10 @@ function performRedirect(url, reason) {
   window.location.href = url;
 }
 
+function wait(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 /**
  * ユーザー状態検証
  * @returns UserProfile object OR null (if unauthenticated/invalid)
@@ -345,47 +355,61 @@ async function verifyUserAccess(session) {
   }
 
   try {
-    const res = await fetch(`${API_BASE_URL}/api/me`, {
-      method: "GET",
-      headers: { Authorization: `Bearer ${session.access_token}` },
-      credentials: "include", // Cookie送信
-    });
-    if (!res.ok) throw new Error(`Status ${res.status}`);
+    let lastError = null;
+    for (let attempt = 0; attempt <= PROFILE_RETRY_COUNT; attempt++) {
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/me`, {
+          method: "GET",
+          headers: { Authorization: `Bearer ${session.access_token}` },
+          credentials: "include", // Cookie送信
+        });
+        if (!res.ok) throw new Error(`Status ${res.status}`);
 
-    const profile = await res.json();
+        const profile = await res.json();
+        lastError = null;
 
-    // サブスクチェック
-    const sub = profile.subscription || {};
-    const status = sub.status || "none";
+        // サブスクチェック
+        const sub = profile.subscription || {};
+        const status = sub.status || "none";
 
-    // 「キャンセル済みだが期間内」は cancel_at_period_end で判断
-    const isCanceledButValid = sub.cancel_at_period_end;
+        // 「キャンセル済みだが期間内」は cancel_at_period_end で判断
+        const isCanceledButValid = sub.cancel_at_period_end;
 
-    const isActive = status === "active" || status === "trialing" || isCanceledButValid;
+        const isActive = status === "active" || status === "trialing" || isCanceledButValid;
 
-    if (!isActive) {
-      // 公開モードなら期限切れでもスルー（ただしログインユーザーとしては扱うか、あるいはnullにするか）
-      // ここでは「ログイン済みだが権限なし」としてスルーして、UI側でハンドリングも可能だが、
-      // 基本的には「ツール利用権限なし」ならログアウト扱いにするのが安全。
-      // ただしショーケースなら「ログインはしてるけど使えません」表示などが親切。
-      // 現状はシンプルに「公開モードならリダイレクトしない」とする。
-      if (window.DATAVIZ_HEADER_CONFIG && window.DATAVIZ_HEADER_CONFIG.mode === 'public') {
-        // In public mode, we still want to indicate the user is logged in
-        // even if their subscription is inactive or expired.
-        return { ...profile, email: session.user.email, _inactive: true };
+        if (!isActive) {
+          // 公開モードなら期限切れでもスルー（ただしログインユーザーとしては扱うか、あるいはnullにするか）
+          // ここでは「ログイン済みだが権限なし」としてスルーして、UI側でハンドリングも可能だが、
+          // 基本的には「ツール利用権限なし」ならログアウト扱いにするのが安全。
+          // ただしショーケースなら「ログインはしてるけど使えません」表示などが親切。
+          // 現状はシンプルに「公開モードならリダイレクトしない」とする。
+          if (window.DATAVIZ_HEADER_CONFIG && window.DATAVIZ_HEADER_CONFIG.mode === 'public') {
+            // In public mode, we still want to indicate the user is logged in
+            // even if their subscription is inactive or expired.
+            return { ...profile, email: session.user.email, _inactive: true };
+          }
+
+          performRedirect(AUTH_APP_URL, `Inactive Subscription (${status})`);
+          return null;
+        }
+
+        // ユーザー情報にemailが含まれていない場合があるので、Sessionからマージ
+        return { ...profile, email: session.user.email };
+      } catch (err) {
+        lastError = err;
+        if (attempt < PROFILE_RETRY_COUNT) {
+          const delayMs = PROFILE_RETRY_DELAYS_MS[attempt] || PROFILE_RETRY_DELAYS_MS[PROFILE_RETRY_DELAYS_MS.length - 1];
+          await wait(delayMs);
+          continue;
+        }
       }
-
-      performRedirect(AUTH_APP_URL, `Inactive Subscription (${status})`);
-      return null;
     }
 
-    // ユーザー情報にemailが含まれていない場合があるので、Sessionからマージ
-    return { ...profile, email: session.user.email };
-
+    console.error("[dataviz-auth-client] Profile check failed after retries", lastError);
+    return { _error: "Temporarily unavailable" };
   } catch (err) {
     console.error("[dataviz-auth-client] Profile check failed", err);
-    performRedirect(AUTH_APP_URL, 'Profile Error');
-    return null;
+    return { _error: "Temporarily unavailable" };
   }
 }
 
@@ -412,6 +436,22 @@ async function initDatavizToolAuth() {
   }
 
   let isCheckDone = false;
+  let noSessionTimer = null;
+
+  const clearNoSessionTimer = () => {
+    if (noSessionTimer) {
+      clearTimeout(noSessionTimer);
+      noSessionTimer = null;
+    }
+  };
+
+  const scheduleNoSessionRedirect = () => {
+    if (noSessionTimer) return;
+    noSessionTimer = setTimeout(async () => {
+      noSessionTimer = null;
+      await verifyUserAccess(null); // 未ログイン確定後のみリダイレクト
+    }, NO_SESSION_REDIRECT_DELAY_MS);
+  };
 
   const handleSession = async (session) => {
     // URLパラメータ掃除
@@ -423,16 +463,19 @@ async function initDatavizToolAuth() {
 
     if (!session) {
       // 未ログイン
-      if (headerEl) headerEl.updateState({ isLoading: false, user: null });
-      await verifyUserAccess(null); // リダイレクト実行
+      if (headerEl) headerEl.updateState({ isLoading: true, user: null, error: null });
+      scheduleNoSessionRedirect();
       return;
     }
 
     // ログイン済み -> 権限チェック
+    clearNoSessionTimer();
     const profile = await verifyUserAccess(session);
-    if (profile) {
+    if (profile && !profile._error) {
       // 成功 -> UI更新
-      if (headerEl) headerEl.updateState({ isLoading: false, user: profile });
+      if (headerEl) headerEl.updateState({ isLoading: false, user: profile, error: null });
+    } else if (profile && profile._error) {
+      if (headerEl) headerEl.updateState({ isLoading: false, user: null, error: profile._error });
     }
     // 失敗時は verifyUserAccess 内でリダイレクトされる
   };
@@ -443,9 +486,9 @@ async function initDatavizToolAuth() {
     if (session) {
       await handleSession(session);
     } else {
-      // Even if no session found immediately, update state to stop loading
-      if (headerEl) headerEl.updateState({ isLoading: false, user: null });
-      // But don't call verifyUserAccess(null) yet to avoid premature redirect loop
+      // セッションが復元される可能性があるため、猶予中はローディング維持
+      if (headerEl) headerEl.updateState({ isLoading: true, user: null, error: null });
+      scheduleNoSessionRedirect();
     }
   } catch (e) {
     console.warn("[dataviz-auth-client] Initial session check failed", e);
@@ -456,6 +499,11 @@ async function initDatavizToolAuth() {
     if (event === 'INITIAL_SESSION' || event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED' || event === 'SIGNED_OUT') {
       if (!isCheckDone) {
         isCheckDone = true;
+      }
+      if (event === 'SIGNED_OUT') {
+        clearNoSessionTimer();
+        await verifyUserAccess(null);
+        return;
       }
       await handleSession(session);
     }
