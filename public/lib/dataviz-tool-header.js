@@ -54,6 +54,7 @@ class DatavizToolHeader extends HTMLElement {
   /**
    * Sets the configuration for the header, including logo and buttons, and re-renders.
    * @param {object} config - The configuration object.
+   * @param {string} [config.backgroundColor] - Background color for the tool header (any valid CSS color string).
    * @param {object} [config.logo] - Configuration for the tool's logo.
    * @param {string} [config.logo.type='image'] - Type of logo: 'image', 'text', or 'image-and-text'.
    * @param {string} [config.logo.src] - URL of the logo image (required if type is 'image' or 'image-and-text').
@@ -121,7 +122,7 @@ class DatavizToolHeader extends HTMLElement {
         display: block;
         /* Tailwind-like base styles */
         --tw-bg-opacity: 1;
-        background-color: rgb(40 40 40 / var(--tw-bg-opacity)); /* bg-gray-800 */
+        /* background-color: rgb(40 40 40 / var(--tw-bg-opacity)); /* bg-gray-800 */ */
         padding: 8px 16px; /* px-4 py-2 equivalent */
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         box-shadow: 0 2px 4px rgb(0 0 0 / 0.2); /* shadow-md equivalent */
@@ -250,7 +251,7 @@ class DatavizToolHeader extends HTMLElement {
   }
 
   render() {
-    const { logo, buttons } = this.config;
+    const { logo, buttons, backgroundColor } = this.config;
 
     let logoHtml = '';
     if (logo) {
@@ -274,6 +275,8 @@ class DatavizToolHeader extends HTMLElement {
     let leftButtonsHtml = '';
     let rightButtonsHtml = '';
     const dropdownsToAttachListeners = []; // Store dropdown buttons to attach listeners
+
+    const headerStyle = `background-color: ${backgroundColor || 'rgb(40 40 40)'};`; // Apply dynamic background color or default
 
     buttons.forEach((btn, index) => {
       const id = `dv-tool-btn-${index}`;
@@ -315,7 +318,7 @@ class DatavizToolHeader extends HTMLElement {
 
     this.shadowRoot.innerHTML = `
       <style>${this.getStyles()}</style>
-      <div class="dv-tool-header-inner relative">
+      <div class="dv-tool-header-inner relative" style="${headerStyle}">
         <div class="dv-left-group">
           ${logoHtml}
           ${leftButtonsHtml}
