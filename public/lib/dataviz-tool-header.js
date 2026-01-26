@@ -163,6 +163,42 @@ class DatavizToolHeader extends HTMLElement {
         color: rgb(255 255 255); /* hover:text-white */
       }
 
+      .dv-dropdown {
+        position: relative;
+        display: inline-block;
+      }
+      .dv-dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: rgb(40 40 40); /* bg-gray-800 */
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+        z-index: 1000;
+        border-radius: 4px;
+        overflow: hidden; /* For rounded corners on items */
+        border: 1px solid rgb(68 68 68); /* border-gray-600 */
+        right: 0; /* Align dropdown content to the right of the toggle button */
+      }
+      .dv-dropdown-content a, .dv-dropdown-content button {
+        color: rgb(221 221 221); /* text-gray-300 */
+        padding: 8px 16px;
+        text-decoration: none;
+        display: block;
+        background-color: transparent;
+        border: none;
+        width: 100%;
+        text-align: left;
+        cursor: pointer;
+        font-size: 13px; /* text-sm */
+      }
+      .dv-dropdown-content a:hover, .dv-dropdown-content button:hover {
+        background-color: rgb(74 74 74); /* hover:bg-gray-600 */
+        color: white;
+      }
+      .dv-dropdown.active .dv-dropdown-content {
+        display: block;
+      }
+
       /* Toast styles */
       #dv-toast-container {
         position: absolute;
@@ -204,17 +240,43 @@ class DatavizToolHeader extends HTMLElement {
 
     let leftButtonsHtml = '';
     let rightButtonsHtml = '';
+    const dropdownsToAttachListeners = []; // Store dropdown buttons to attach listeners
 
     buttons.forEach((btn, index) => {
       const id = `dv-tool-btn-${index}`;
-      const buttonHtml = btn.type === 'link'
-        ? `<a href="${btn.href || '#'}" class="dv-btn" ${btn.target ? `target="${btn.target}"` : ''}>${btn.label}</a>`
-        : `<button id="${id}" class="dv-btn">${btn.label}</button>`;
 
-      if (btn.label === 'プロジェクトを保存' || btn.label === 'プロジェクトを読み込む') {
-        rightButtonsHtml += buttonHtml;
+      if (btn.type === 'dropdown') {
+        const dropdownId = `dv-dropdown-${index}`;
+        let dropdownItemsHtml = '';
+        btn.items.forEach((item, itemIndex) => {
+          const itemId = `dv-dropdown-item-${index}-${itemIndex}`;
+          if (item.type === 'link') {
+            dropdownItemsHtml += `<a href="${item.href || '#'}" class="dv-btn-dropdown-item" ${item.target ? `target="${item.target}"` : ''}>${item.label}</a>`;
+          } else {
+            dropdownItemsHtml += `<button id="${itemId}" class="dv-btn-dropdown-item">${item.label}</button>`;
+          }
+        });
+
+        // Add a placeholder for the dropdown in the leftButtonsHtml
+        leftButtonsHtml += `
+          <div class="dv-dropdown" id="${dropdownId}">
+            <button class="dv-btn dv-dropdown-toggle">${btn.label}</button>
+            <div class="dv-dropdown-content">
+              ${dropdownItemsHtml}
+            </div>
+          </div>
+        `;
+        dropdownsToAttachListeners.push({ dropdownId, items: btn.items, label: btn.label });
       } else {
-        leftButtonsHtml += buttonHtml;
+        const buttonHtml = btn.type === 'link'
+          ? `<a href="${btn.href || '#'}" class="dv-btn" ${btn.target ? `target="${btn.target}"` : ''}>${btn.label}</a>`
+          : `<button id="${id}" class="dv-btn">${btn.label}</button>`;
+
+        if (btn.label === 'プロジェクトを保存' || btn.label === 'プロジェクトを読み込む') {
+          rightButtonsHtml += buttonHtml;
+        } else {
+          leftButtonsHtml += buttonHtml;
+        }
       }
     });
 
@@ -232,15 +294,54 @@ class DatavizToolHeader extends HTMLElement {
       </div>
     `;
 
-    // Re-attach event listeners
+    // Re-attach event listeners for regular buttons
     buttons.forEach((btn, index) => {
-      if (btn.action && typeof btn.action === 'function' && btn.type !== 'link') {
+      if (btn.action && typeof btn.action === 'function' && btn.type !== 'link' && btn.type !== 'dropdown') {
         const id = `dv-tool-btn-${index}`;
         const buttonEl = this.shadowRoot.getElementById(id);
         if (buttonEl) {
           buttonEl.addEventListener('click', btn.action);
         }
       }
+    });
+
+    // Attach event listeners for dropdowns
+    dropdownsToAttachListeners.forEach(dropdownInfo => {
+      const dropdownElement = this.shadowRoot.getElementById(dropdownInfo.dropdownId);
+      const toggleButton = dropdownElement.querySelector('.dv-dropdown-toggle');
+      const dropdownContent = dropdownElement.querySelector('.dv-dropdown-content');
+
+      // Toggle dropdown visibility
+      toggleButton.addEventListener('click', (event) => {
+        event.stopPropagation(); // Prevent document click from closing immediately
+        dropdownElement.classList.toggle('active');
+      });
+
+      // Close dropdown if clicked outside
+      document.addEventListener('click', (event) => {
+        // Check if the click is outside the dropdown element
+        const path = event.composedPath(); // Use composedPath for Shadow DOM
+        if (!path.includes(dropdownElement)) {
+          dropdownElement.classList.remove('active');
+        }
+      });
+
+      // Attach listeners to dropdown items
+      dropdownInfo.items.forEach((item, itemIndex) => {
+        if (item.action && typeof item.action === 'function' && item.type !== 'link') {
+          // Find the correct original button index in the main buttons array
+          const originalButtonIndex = buttons.findIndex(b => b.type === 'dropdown' && b.label === dropdownInfo.label);
+          const itemId = `dv-dropdown-item-${originalButtonIndex}-${itemIndex}`;
+          const itemButton = dropdownElement.querySelector(`#${itemId}`);
+          if (itemButton) {
+            itemButton.addEventListener('click', (event) => {
+              event.stopPropagation(); // Prevent closing immediately
+              item.action();
+              dropdownElement.classList.remove('active'); // Close after click
+            });
+          }
+        }
+      });
     });
   }
 }
