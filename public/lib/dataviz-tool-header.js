@@ -134,6 +134,7 @@ class DatavizToolHeader extends HTMLElement {
         display: flex;
         align-items: center;
         justify-content: space-between; /* Added for left/right alignment */
+        padding: 8px 16px; /* px-4 py-2 equivalent */
       }
       .dv-left-group, .dv-right-group {
         display: flex;
