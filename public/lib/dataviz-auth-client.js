@@ -360,8 +360,13 @@ async function verifyUserAccess(session) {
       try {
         const res = await fetch(`${API_BASE_URL}/api/me`, {
           method: "GET",
-          headers: { Authorization: `Bearer ${session.access_token}` },
+          headers: {
+            Authorization: `Bearer ${session.access_token}`,
+            "Cache-Control": "no-cache",
+            Pragma: "no-cache",
+          },
           credentials: "include", // Cookie送信
+          cache: "no-store",
         });
         if (!res.ok) throw new Error(`Status ${res.status}`);
 
@@ -463,7 +468,10 @@ async function initDatavizToolAuth() {
 
     if (!session) {
       // 未ログイン
-      if (headerEl) headerEl.updateState({ isLoading: true, user: null, error: null });
+      if (headerEl) {
+        const isPublicMode = window.DATAVIZ_HEADER_CONFIG && window.DATAVIZ_HEADER_CONFIG.mode === 'public';
+        headerEl.updateState({ isLoading: !isPublicMode, user: null, error: null });
+      }
       scheduleNoSessionRedirect();
       return;
     }
@@ -487,7 +495,10 @@ async function initDatavizToolAuth() {
       await handleSession(session);
     } else {
       // セッションが復元される可能性があるため、猶予中はローディング維持
-      if (headerEl) headerEl.updateState({ isLoading: true, user: null, error: null });
+      if (headerEl) {
+        const isPublicMode = window.DATAVIZ_HEADER_CONFIG && window.DATAVIZ_HEADER_CONFIG.mode === 'public';
+        headerEl.updateState({ isLoading: !isPublicMode, user: null, error: null });
+      }
       scheduleNoSessionRedirect();
     }
   } catch (e) {
