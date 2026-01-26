@@ -177,7 +177,7 @@ class DatavizToolHeader extends HTMLElement {
         border-radius: 4px;
         overflow: hidden; /* For rounded corners on items */
         border: 1px solid rgb(68 68 68); /* border-gray-600 */
-        right: 0; /* Align dropdown content to the right of the toggle button */
+        left: 0; /* Align dropdown content to the left of the toggle button */
       }
       .dv-dropdown-content a, .dv-dropdown-content button {
         color: rgb(221 221 221); /* text-gray-300 */
@@ -266,7 +266,7 @@ class DatavizToolHeader extends HTMLElement {
             </div>
           </div>
         `;
-        dropdownsToAttachListeners.push({ dropdownId, items: btn.items, label: btn.label });
+        dropdownsToAttachListeners.push({ dropdownId, originalButtonIndex: index, items: btn.items, label: btn.label });
       } else {
         const buttonHtml = btn.type === 'link'
           ? `<a href="${btn.href || '#'}" class="dv-btn" ${btn.target ? `target="${btn.target}"` : ''}>${btn.label}</a>`
@@ -329,9 +329,7 @@ class DatavizToolHeader extends HTMLElement {
       // Attach listeners to dropdown items
       dropdownInfo.items.forEach((item, itemIndex) => {
         if (item.action && typeof item.action === 'function' && item.type !== 'link') {
-          // Find the correct original button index in the main buttons array
-          const originalButtonIndex = buttons.findIndex(b => b.type === 'dropdown' && b.label === dropdownInfo.label);
-          const itemId = `dv-dropdown-item-${originalButtonIndex}-${itemIndex}`;
+          const itemId = `dv-dropdown-item-${dropdownInfo.originalButtonIndex}-${itemIndex}`;
           const itemButton = dropdownElement.querySelector(`#${itemId}`);
           if (itemButton) {
             itemButton.addEventListener('click', (event) => {
