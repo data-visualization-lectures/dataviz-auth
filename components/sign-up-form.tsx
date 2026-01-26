@@ -14,7 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export function SignUpForm({
   className,
@@ -32,9 +32,22 @@ export function SignUpForm({
     (typeof window !== "undefined"
       ? new URLSearchParams(window.location.search).get("redirect_to")
       : null);
+  const inviteCode = searchParams.get("invite_code") || searchParams.get("code");
   const redirectQuery = redirectTo
     ? `?redirect_to=${encodeURIComponent(redirectTo)}`
     : "";
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const url = new URL(window.location.href);
+    if (!url.searchParams.has("code")) return;
+    const codeValue = url.searchParams.get("code");
+    if (codeValue && !url.searchParams.has("invite_code")) {
+      url.searchParams.set("invite_code", codeValue);
+    }
+    url.searchParams.delete("code");
+    window.history.replaceState({}, document.title, url.toString());
+  }, [searchParams]);
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,9 +61,6 @@ export function SignUpForm({
     }
 
     try {
-      // URLパラメータから招待コードを取得
-      const inviteCode = searchParams.get("code");
-
       // FormDataを作成
       const formData = new FormData();
       formData.append("email", email);
@@ -80,8 +90,6 @@ export function SignUpForm({
     setIsLoading(true);
     setError(null);
     try {
-      // URLパラメータから招待コードを取得
-      const inviteCode = searchParams.get("code");
       const nextParam = redirectTo || "/account";
       const inviteQuery = inviteCode ? `&invite_code=${encodeURIComponent(inviteCode)}` : "";
 

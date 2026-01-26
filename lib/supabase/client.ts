@@ -11,6 +11,7 @@ export function createClient() {
     {
       auth: {
         storageKey: APP_CONFIG.COOKIE_NAME,
+        detectSessionInUrl: false,
       },
       cookieOptions: {
         domain: process.env.NODE_ENV === "development" ? undefined : APP_CONFIG.DOMAIN,
