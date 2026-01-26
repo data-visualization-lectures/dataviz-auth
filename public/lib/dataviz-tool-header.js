@@ -54,7 +54,13 @@ class DatavizToolHeader extends HTMLElement {
   /**
    * Sets the configuration for the header, including logo and buttons, and re-renders.
    * @param {object} config - The configuration object.
-   * @param {string} [config.logoUrl] - URL of the logo image.
+   * @param {object} [config.logo] - Configuration for the tool's logo.
+   * @param {string} [config.logo.type='image'] - Type of logo: 'image', 'text', or 'image-and-text'.
+   * @param {string} [config.logo.src] - URL of the logo image (required if type is 'image' or 'image-and-text').
+   * @param {string} [config.logo.text] - Text to display as part of the logo (required if type is 'text' or 'image-and-text').
+   * @param {string} [config.logo.alt] - Alt text for the image.
+   * @param {string} [config.logo.textClass] - Additional Tailwind classes for the text.
+   * @param {string} [config.logo.imgClass] - Additional Tailwind classes for the image.
    * @param {Array<object>} [config.buttons] - Array of button/link configurations.
    */
   setConfig(config) {
@@ -136,9 +142,20 @@ class DatavizToolHeader extends HTMLElement {
       .dv-right-group {
         margin-left: auto; /* Force right alignment */
       }
-      .dv-tool-logo {
+      .dv-logo-image { /* Renamed from .dv-tool-logo */
         max-height: 24px;
         margin-right: 12px; /* mr-3 equivalent */
+      }
+      .dv-logo-text {
+        font-weight: 600; /* Semi-bold */
+        color: #fff;
+        font-size: 1.1em;
+        line-height: 1; /* Adjust for vertical alignment */
+      }
+      .dv-logo-image-and-text {
+        display: flex;
+        align-items: center;
+        gap: 8px; /* space-x-2 equivalent */
       }
       .dv-btn, a.dv-btn {
         /* Tailwind-like button styles */
@@ -234,9 +251,26 @@ class DatavizToolHeader extends HTMLElement {
   }
 
   render() {
-    const { logoUrl, buttons } = this.config;
+    const { logo, buttons } = this.config;
 
-    const logoHtml = logoUrl ? `<img src="${logoUrl}" alt="Tool Logo" class="dv-tool-logo">` : '';
+    let logoHtml = '';
+    if (logo) {
+      const imgClass = `dv-logo-image ${logo.imgClass || ''}`.trim();
+      const textClass = `dv-logo-text ${logo.textClass || ''}`.trim();
+
+      if (logo.type === 'image' && logo.src) {
+        logoHtml = `<img src="${logo.src}" alt="${logo.alt || ''}" class="${imgClass}">`;
+      } else if (logo.type === 'text' && logo.text) {
+        logoHtml = `<span class="${textClass}">${logo.text}</span>`;
+      } else if (logo.type === 'image-and-text' && logo.src && logo.text) {
+        logoHtml = `
+          <div class="dv-logo-image-and-text">
+            <img src="${logo.src}" alt="${logo.alt || ''}" class="${imgClass}">
+            <span class="${textClass}">${logo.text}</span>
+          </div>
+        `;
+      }
+    }
 
     let leftButtonsHtml = '';
     let rightButtonsHtml = '';
