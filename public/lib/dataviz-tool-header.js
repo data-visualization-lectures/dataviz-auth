@@ -126,7 +126,15 @@ class DatavizToolHeader extends HTMLElement {
       .dv-tool-header-inner {
         display: flex;
         align-items: center;
-        gap: 12px; /* space-x-3 equivalent for direct children */
+        justify-content: space-between; /* Added for left/right alignment */
+      }
+      .dv-left-group, .dv-right-group {
+        display: flex;
+        align-items: center;
+        gap: 12px; /* space-x-3 equivalent */
+      }
+      .dv-right-group {
+        margin-left: auto; /* Force right alignment */
       }
       .dv-tool-logo {
         max-height: 24px;
@@ -194,21 +202,32 @@ class DatavizToolHeader extends HTMLElement {
 
     const logoHtml = logoUrl ? `<img src="${logoUrl}" alt="Tool Logo" class="dv-tool-logo">` : '';
 
-    let buttonsHtml = '';
+    let leftButtonsHtml = '';
+    let rightButtonsHtml = '';
+
     buttons.forEach((btn, index) => {
       const id = `dv-tool-btn-${index}`;
-      if (btn.type === 'link') {
-        buttonsHtml += `<a href="${btn.href || '#'}" class="dv-btn" ${btn.target ? `target="${btn.target}"` : ''}>${btn.label}</a>`;
+      const buttonHtml = btn.type === 'link'
+        ? `<a href="${btn.href || '#'}" class="dv-btn" ${btn.target ? `target="${btn.target}"` : ''}>${btn.label}</a>`
+        : `<button id="${id}" class="dv-btn">${btn.label}</button>`;
+
+      if (btn.label === 'プロジェクトを保存' || btn.label === 'プロジェクトを読み込む') {
+        rightButtonsHtml += buttonHtml;
       } else {
-        buttonsHtml += `<button id="${id}" class="dv-btn">${btn.label}</button>`;
+        leftButtonsHtml += buttonHtml;
       }
     });
 
     this.shadowRoot.innerHTML = `
       <style>${this.getStyles()}</style>
       <div class="dv-tool-header-inner relative">
-        ${logoHtml}
-        ${buttonsHtml}
+        <div class="dv-left-group">
+          ${logoHtml}
+          ${leftButtonsHtml}
+        </div>
+        <div class="dv-right-group">
+          ${rightButtonsHtml}
+        </div>
         <div id="dv-toast-container" class="absolute bottom-2 left-1/2 -translate-x-1/2 hidden opacity-0 transition-opacity duration-300"></div>
       </div>
     `;
