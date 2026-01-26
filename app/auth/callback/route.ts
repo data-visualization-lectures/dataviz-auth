@@ -36,14 +36,7 @@ export async function GET(request: Request) {
                 return NextResponse.redirect(`${origin}${next}`);
             }
         }
-        const cookieHeader = request.headers.get("cookie") || "";
-        const hasCodeVerifier = cookieHeader.includes(`${process.env.NEXT_PUBLIC_SUPABASE_COOKIE_NAME ?? "sb-dataviz-auth-token"}-code-verifier`);
-        console.error("Auth Loop Error:", {
-            error,
-            hasCodeVerifier,
-            codePresent: Boolean(code),
-            inviteCodePresent: Boolean(inviteCode),
-        });
+        console.error("Auth Loop Error:", error);
     } else {
         console.error('No code found in search params');
     }
