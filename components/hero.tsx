@@ -12,6 +12,11 @@ export function Hero() {
           本サービスは現在、過去にご利用いただいたお客さま向けのクローズドテスト期間です。招待コードをお持ちの方のみご利用いただけます。フィードバックをもとに機能改善を行った後、一般公開を予定しています。
         </p>
       </div>
+      <a href="https://www.dataviz.jp/"><img
+        src="/hero-dataviz.png"
+        alt="データ可視化ツールで制作できるもののイメージ"
+        className="w-full max-w-5xl rounded-lg shadow-sm"
+      /></a>
     </div>
   );
 }
