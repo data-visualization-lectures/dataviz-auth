@@ -3,6 +3,7 @@ export function Hero() {
     <div className="flex flex-col gap-16 items-center">
       <h1 className="sr-only">Supabase and Next.js Starter Template</h1>
       <div className="text-center mx-auto">
+        <br /><br /><br />
         <p className="text-3xl lg:text-4xl !leading-tight">
           データ可視化とデータ加工の便利ツール集
         </p>
