@@ -14,6 +14,7 @@ export function createClient() {
       },
       cookieOptions: {
         domain: process.env.NODE_ENV === "development" ? undefined : APP_CONFIG.DOMAIN,
+        path: "/",
         sameSite: "none" as const,
         secure: true,
         httpOnly: false,
