@@ -155,6 +155,34 @@ class DatavizToolHeader extends HTMLElement {
     return `rgba(${r}, ${g}, ${b}, ${a})`;
   }
 
+  // Helper function to lighten a color by a percentage, handling hex and rgb/rgba
+  _lightenColor(color, percent) {
+    let r, g, b, a;
+
+    // Handle hex colors
+    if (color.startsWith('#')) {
+      const rgb = this._hexToRgb(color);
+      if (!rgb) return color;
+      r = rgb.r; g = rgb.g; b = rgb.b; a = 1;
+    } else if (color.startsWith('rgb')) { // Handle rgb/rgba
+      const rgbaMatch = color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d*\.?\d+))?\)/);
+      if (!rgbaMatch) return color;
+      r = parseInt(rgbaMatch[1]);
+      g = parseInt(rgbaMatch[2]);
+      b = parseInt(rgbaMatch[3]);
+      a = rgbaMatch[4] ? parseFloat(rgbaMatch[4]) : 1;
+    } else {
+      return color;
+    }
+
+    const lightenFactor = (100 + percent) / 100;
+    r = Math.min(255, Math.round(r * lightenFactor));
+    g = Math.min(255, Math.round(g * lightenFactor));
+    b = Math.min(255, Math.round(b * lightenFactor));
+
+    return `rgba(${r}, ${g}, ${b}, ${a})`;
+  }
+
   getStyles() {
     // This is a minimal set of Tailwind-like utility classes that are conceptually
     // compiled into the Shadow DOM. In a real build, this would be generated.
@@ -316,10 +344,10 @@ class DatavizToolHeader extends HTMLElement {
     const dropdownsToAttachListeners = []; // Store dropdown buttons to attach listeners
 
     const headerBgColor = backgroundColor || 'rgb(40, 40, 40)'; // Default dark gray
-    const buttonBgColor = this._darkenColor(headerBgColor, 10);
-    const buttonBorderColor = this._darkenColor(headerBgColor, 5); // Slightly darker for border
-    const buttonHoverBgColor = this._darkenColor(headerBgColor, 20); // Even darker for hover
-    const buttonHoverBorderColor = this._darkenColor(headerBgColor, 15);
+    const buttonBgColor = this._darkenColor(headerBgColor, 20); // 20% darker
+    const buttonBorderColor = this._darkenColor(headerBgColor, 10); // 10% darker for border
+    const buttonHoverBgColor = this._lightenColor(headerBgColor, 20); // 20% lighter for hover
+    const buttonHoverBorderColor = this._lightenColor(headerBgColor, 10); // 10% lighter for hover border
 
     const dynamicStyles = `
       :host {
