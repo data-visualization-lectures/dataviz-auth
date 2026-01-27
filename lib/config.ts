@@ -10,7 +10,7 @@ export const APP_CONFIG = {
         "https://voyager2.dataviz.jp",
         "https://tilegrams.dataviz.jp",
         "https://gephi-lite.dataviz.jp",
-        "https://data-illustrateur.dataviz.jp",
+        "https://data-illustrator.dataviz.jp",
         "https://vega-editor.dataviz.jp",
         "https://word-cloud.dataviz.jp",
         "https://cytoscape.dataviz.jp"
@@ -24,7 +24,7 @@ export const APP_CONFIG = {
         "voyager2": "https://voyager2.dataviz.jp",
         "tilegrams": "https://tilegrams.dataviz.jp",
         "gephi-lite": "https://gephi-lite.dataviz.jp",
-        "data-illustrateur": "https://data-illustrateur.dataviz.jp",
+        "data-illustrator": "https://data-illustrator.dataviz.jp",
         "vega-editor": "https://vega-editor.dataviz.jp",
         "word-cloud": "https://word-cloud.dataviz.jp",
         "cytoscape": "https://cytoscape.dataviz.jp"
