@@ -395,7 +395,7 @@ class DatavizToolHeader extends HTMLElement {
           ? `<a href="${btn.href || '#'}" class="dv-btn" ${btn.target ? `target="${btn.target}"` : ''}>${btn.label}</a>`
           : `<button id="${id}" class="dv-btn">${btn.label}</button>`;
 
-        if (btn.label === 'プロジェクトを保存' || btn.label === 'プロジェクトを読み込む') {
+        if (btn.label === 'プロジェクトの保存' || btn.label === 'プロジェクトの読込') {
           rightButtonsHtml += buttonHtml;
         } else {
           leftButtonsHtml += buttonHtml;
