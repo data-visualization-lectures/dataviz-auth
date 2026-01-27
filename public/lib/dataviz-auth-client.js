@@ -179,7 +179,11 @@ class DatavizGlobalHeader extends HTMLElement {
         display: block;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         z-index: 99999;
-        position: relative;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
       }
       .dv-header {
         background-color: #111;
