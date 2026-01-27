@@ -113,6 +113,48 @@ class DatavizToolHeader extends HTMLElement {
     }, duration);
   }
 
+  // Helper function to convert hex to RGB
+  _hexToRgb(hex) {
+    const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+    hex = hex.replace(shorthandRegex, function(m, r, g, b) {
+      return r + r + g + g + b + b;
+    });
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16)
+    } : null;
+  }
+
+  // Helper function to darken a color by a percentage, handling hex and rgb/rgba
+  _darkenColor(color, percent) {
+    let r, g, b, a;
+
+    // Handle hex colors
+    if (color.startsWith('#')) {
+      const rgb = this._hexToRgb(color);
+      if (!rgb) return color; // Return original if hex parse fails
+      r = rgb.r; g = rgb.g; b = rgb.b; a = 1;
+    } else if (color.startsWith('rgb')) { // Handle rgb/rgba
+      const rgbaMatch = color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d*\.?\d+))?\)/);
+      if (!rgbaMatch) return color; // Return original if rgb parse fails
+      r = parseInt(rgbaMatch[1]);
+      g = parseInt(rgbaMatch[2]);
+      b = parseInt(rgbaMatch[3]);
+      a = rgbaMatch[4] ? parseFloat(rgbaMatch[4]) : 1;
+    } else {
+      return color; // Unhandled color format, return as is
+    }
+
+    const darkenFactor = (100 - percent) / 100;
+    r = Math.round(r * darkenFactor);
+    g = Math.round(g * darkenFactor);
+    b = Math.round(b * darkenFactor);
+
+    return `rgba(${r}, ${g}, ${b}, ${a})`;
+  }
+
   getStyles() {
     // This is a minimal set of Tailwind-like utility classes that are conceptually
     // compiled into the Shadow DOM. In a real build, this would be generated.
@@ -160,10 +202,8 @@ class DatavizToolHeader extends HTMLElement {
       }
       .dv-btn, a.dv-btn {
         /* Tailwind-like button styles */
-        --tw-bg-opacity: 1;
-        background-color: rgb(58 58 58 / var(--tw-bg-opacity)); /* bg-gray-700 */
-        --tw-border-opacity: 1;
-        border: 1px solid rgb(85 85 85 / var(--tw-border-opacity)); /* border border-gray-500 */
+        background-color: var(--dv-button-bg);
+        border: 1px solid var(--dv-button-border);
         color: rgb(221 221 221); /* text-gray-300 */
         padding: 5px 12px; /* px-3 py-1 equivalent */
         border-radius: 4px; /* rounded-md equivalent */
@@ -174,10 +214,8 @@ class DatavizToolHeader extends HTMLElement {
         white-space: nowrap; /* Prevent wrapping */
       }
       .dv-btn:hover, a.dv-btn:hover {
-        --tw-bg-opacity: 1;
-        background-color: rgb(74 74 74 / var(--tw-bg-opacity)); /* hover:bg-gray-600 */
-        --tw-border-opacity: 1;
-        border-color: rgb(119 119 119 / var(--tw-border-opacity)); /* hover:border-gray-400 */
+        background-color: var(--dv-button-hover-bg);
+        border-color: var(--dv-button-hover-border);
         color: rgb(255 255 255); /* hover:text-white */
       }
 
@@ -277,7 +315,27 @@ class DatavizToolHeader extends HTMLElement {
     let rightButtonsHtml = '';
     const dropdownsToAttachListeners = []; // Store dropdown buttons to attach listeners
 
-    const headerStyle = `background-color: ${backgroundColor || 'rgb(40 40 40)'};`; // Apply dynamic background color or default
+    const headerBgColor = backgroundColor || 'rgb(40, 40, 40)'; // Default dark gray
+    const buttonBgColor = this._darkenColor(headerBgColor, 10);
+    const buttonBorderColor = this._darkenColor(headerBgColor, 5); // Slightly darker for border
+    const buttonHoverBgColor = this._darkenColor(headerBgColor, 20); // Even darker for hover
+    const buttonHoverBorderColor = this._darkenColor(headerBgColor, 15);
+
+    const dynamicStyles = `
+      :host {
+        --dv-button-bg: ${buttonBgColor};
+        --dv-button-border: ${buttonBorderColor};
+        --dv-button-hover-bg: ${buttonHoverBgColor};
+        --dv-button-hover-border: ${buttonHoverBorderColor};
+      }
+      .dv-dropdown-content {
+        background-color: ${buttonBgColor}; /* Dropdown content background same as buttons */
+        border: 1px solid ${buttonBorderColor};
+      }
+      .dv-dropdown-content a:hover, .dv-dropdown-content button:hover {
+        background-color: ${buttonHoverBgColor};
+      }
+    `;
 
     buttons.forEach((btn, index) => {
       const id = `dv-tool-btn-${index}`;
@@ -318,8 +376,11 @@ class DatavizToolHeader extends HTMLElement {
     });
 
     this.shadowRoot.innerHTML = `
-      <style>${this.getStyles()}</style>
-      <div class="dv-tool-header-inner relative" style="${headerStyle}">
+      <style>
+        ${dynamicStyles}
+        ${this.getStyles()}
+      </style>
+      <div class="dv-tool-header-inner relative" style="background-color: ${headerBgColor};">
         <div class="dv-left-group">
           ${logoHtml}
           ${leftButtonsHtml}
