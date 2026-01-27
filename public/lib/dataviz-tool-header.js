@@ -63,6 +63,7 @@ class DatavizToolHeader extends HTMLElement {
    * @param {string} [config.logo.textClass] - Additional Tailwind classes for the text.
    * @param {string} [config.logo.imgClass] - Additional Tailwind classes for the image.
    * @param {Array<object>} [config.buttons] - Array of button/link configurations.
+   * @param {string} [config.buttons[].align] - Alignment of the button ('left' or 'right'). Default is 'left'.
    */
   setConfig(config) {
     this.config = { ...{ buttons: [] }, ...config };
@@ -395,7 +396,7 @@ class DatavizToolHeader extends HTMLElement {
           ? `<a href="${btn.href || '#'}" class="dv-btn" ${btn.target ? `target="${btn.target}"` : ''}>${btn.label}</a>`
           : `<button id="${id}" class="dv-btn">${btn.label}</button>`;
 
-        if (btn.label === 'プロジェクトの保存' || btn.label === 'プロジェクトの読込') {
+        if (btn.align === 'right') {
           rightButtonsHtml += buttonHtml;
         } else {
           leftButtonsHtml += buttonHtml;
