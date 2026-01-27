@@ -117,7 +117,7 @@ class DatavizToolHeader extends HTMLElement {
   // Helper function to convert hex to RGB
   _hexToRgb(hex) {
     const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-    hex = hex.replace(shorthandRegex, function(m, r, g, b) {
+    hex = hex.replace(shorthandRegex, function (m, r, g, b) {
       return r + r + g + g + b + b;
     });
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -381,8 +381,7 @@ class DatavizToolHeader extends HTMLElement {
           }
         });
 
-        // Add a placeholder for the dropdown in the leftButtonsHtml
-        leftButtonsHtml += `
+        const dropdownHtml = `
           <div class="dv-dropdown" id="${dropdownId}">
             <button class="dv-btn dv-dropdown-toggle">${btn.label}</button>
             <div class="dv-dropdown-content">
@@ -390,6 +389,13 @@ class DatavizToolHeader extends HTMLElement {
             </div>
           </div>
         `;
+
+        if (btn.align === 'right') {
+          rightButtonsHtml += dropdownHtml;
+        } else {
+          leftButtonsHtml += dropdownHtml;
+        }
+
         dropdownsToAttachListeners.push({ dropdownId, originalButtonIndex: index, items: btn.items, label: btn.label });
       } else {
         const buttonHtml = btn.type === 'link'
