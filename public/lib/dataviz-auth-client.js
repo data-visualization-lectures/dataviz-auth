@@ -428,11 +428,6 @@ async function verifyUserAccess(session) {
 // =========================================================================
 
 async function initDatavizToolAuth() {
-  if (!supabase) {
-    console.error("[dataviz-auth-client] Supabase client missing.");
-    return;
-  }
-
   // 1. UIの初期化・表示 (Web Component)
   let headerEl = document.querySelector('dataviz-header');
   if (!headerEl) {
@@ -442,6 +437,15 @@ async function initDatavizToolAuth() {
     } else {
       document.body.prepend(headerEl);
     }
+  }
+
+  if (!supabase) {
+    console.error("[dataviz-auth-client] Supabase client missing. Make sure supabase.js is loaded.");
+    if (headerEl) {
+      // Show error in header
+      headerEl.updateState({ isLoading: false, user: null, error: "Auth Client Missing" });
+    }
+    return;
   }
 
   let isCheckDone = false;
