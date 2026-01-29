@@ -136,12 +136,14 @@ export default async function AccountPage() {
                   </span>
                 </div>
                 {isActive && (
-                  { subscription?.status === "trialing"
-                    ? "トライアル終了日"
-                    : isCanceled
-                      ? "有効期限"
-                      : "次回更新日"
+                  <p className="text-sm text-muted-foreground mt-1">
+                    {subscription?.status === "trialing"
+                      ? "トライアル終了日"
+                      : isCanceled
+                        ? "有効期限"
+                        : "次回更新日"
                     }: {formatDate(subscription?.current_period_end)}
+                  </p>
                 )}
               </div>
               {/* {subscription?.status !== "trialing" && (
