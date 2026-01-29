@@ -49,6 +49,13 @@ class DatavizToolHeader extends HTMLElement {
 
   connectedCallback() {
     this.render();
+    // Enforce fixed positioning to override potential external CSS
+    this.style.position = 'fixed';
+    this.style.top = '48px';
+    this.style.left = '0';
+    this.style.right = '0';
+    this.style.width = '100%';
+    this.style.zIndex = '9999';
   }
 
   /**
