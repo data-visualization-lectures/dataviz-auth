@@ -198,7 +198,15 @@ class DatavizToolHeader extends HTMLElement {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         box-shadow: 0 2px 4px rgb(0 0 0 / 0.2); /* shadow-md equivalent */
         border-top: 1px solid rgb(68 68 68); /* border-t border-gray-600 equivalent */
-        position: relative; /* For toast positioning */
+        
+        /* Fixed positioning below the global header (48px height) */
+        position: fixed;
+        top: 48px;
+        left: 0;
+        right: 0;
+        width: 100%;
+        box-sizing: border-box;
+
         z-index: 9998;
       }
       .dv-tool-header-inner {
