@@ -449,6 +449,7 @@ async function initDatavizToolAuth() {
   }
 
   let isCheckDone = false;
+  let initialHandled = false;
   let noSessionTimer = null;
 
   const clearNoSessionTimer = () => {
@@ -500,6 +501,7 @@ async function initDatavizToolAuth() {
   try {
     const { data: { session } } = await supabase.auth.getSession();
     if (session) {
+      initialHandled = true;
       await handleSession(session);
     } else {
       // セッションが復元される可能性があるため、猶予中はローディング維持
@@ -522,6 +524,10 @@ async function initDatavizToolAuth() {
       if (event === 'SIGNED_OUT') {
         clearNoSessionTimer();
         await verifyUserAccess(null);
+        return;
+      }
+      // INITIAL_SESSION は getSession() で処理済みの場合スキップ（二重実行防止）
+      if (event === 'INITIAL_SESSION' && initialHandled) {
         return;
       }
       await handleSession(session);
