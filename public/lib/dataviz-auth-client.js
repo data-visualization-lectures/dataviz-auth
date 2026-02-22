@@ -14,6 +14,31 @@ const NO_SESSION_REDIRECT_DELAY_MS = 5000; // 未ログイン確定までの猶�
 const PROFILE_RETRY_COUNT = 2; // /api/me の再試行回数
 const PROFILE_RETRY_DELAYS_MS = [1000, 2000]; // 再試行間隔
 
+// プロフィールキャッシュ（同一ブラウザセッション内でのページ遷移時の Loading 表示を防ぐ）
+const AUTH_CACHE_KEY = 'dataviz-auth-profile-cache';
+const AUTH_CACHE_TTL_MS = 5 * 60 * 1000; // 5分
+
+function getCachedProfile() {
+  try {
+    const raw = sessionStorage.getItem(AUTH_CACHE_KEY);
+    if (!raw) return null;
+    const { profile, ts } = JSON.parse(raw);
+    if (Date.now() - ts > AUTH_CACHE_TTL_MS) {
+      sessionStorage.removeItem(AUTH_CACHE_KEY);
+      return null;
+    }
+    return profile;
+  } catch (e) { return null; }
+}
+
+function setCachedProfile(profile) {
+  try { sessionStorage.setItem(AUTH_CACHE_KEY, JSON.stringify({ profile, ts: Date.now() })); } catch (e) {}
+}
+
+function clearCachedProfile() {
+  try { sessionStorage.removeItem(AUTH_CACHE_KEY); } catch (e) {}
+}
+
 /**
  * クッキー操作ヘルパー
  */
@@ -311,6 +336,7 @@ class DatavizGlobalHeader extends HTMLElement {
       logoutBtn.addEventListener('click', async () => {
         if (confirm('ログアウトしますか？')) {
           await supabase.auth.signOut();
+          clearCachedProfile();
           window.location.reload();
         }
       });
@@ -403,7 +429,9 @@ async function verifyUserAccess(session) {
         }
 
         // ユーザー情報にemailが含まれていない場合があるので、Sessionからマージ
-        return { ...profile, email: session.user.email };
+        const result = { ...profile, email: session.user.email };
+        setCachedProfile(result);
+        return result;
       } catch (err) {
         lastError = err;
         if (attempt < PROFILE_RETRY_COUNT) {
@@ -437,6 +465,12 @@ async function initDatavizToolAuth() {
     } else {
       document.body.prepend(headerEl);
     }
+  }
+
+  // キャッシュがあれば Loading なしで即表示（複数ページ構成サイトでのちらつき防止）
+  const cachedProfile = getCachedProfile();
+  if (cachedProfile && headerEl) {
+    headerEl.updateState({ isLoading: false, user: cachedProfile, error: null });
   }
 
   if (!supabase) {
@@ -523,11 +557,17 @@ async function initDatavizToolAuth() {
       }
       if (event === 'SIGNED_OUT') {
         clearNoSessionTimer();
+        clearCachedProfile();
         await verifyUserAccess(null);
         return;
       }
       // INITIAL_SESSION は getSession() で処理済みの場合スキップ（二重実行防止）
       if (event === 'INITIAL_SESSION' && initialHandled) {
+        return;
+      }
+      // TOKEN_REFRESHED はトークン更新のみ。Supabase が自動でクッキーを更新するため
+      // handleSession() の再実行（= /api/me の再呼び出し）は不要
+      if (event === 'TOKEN_REFRESHED') {
         return;
       }
       await handleSession(session);
