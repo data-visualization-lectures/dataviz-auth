@@ -294,7 +294,7 @@ class DatavizGlobalHeader extends HTMLElement {
     const { isLoading, user, error } = this.state;
 
     // アカウントページのURL
-    const accountUrl = `${AUTH_APP_URL}/account`;
+    const accountUrl = `${AUTH_APP_URL}/`;
     const loginUrl = `${AUTH_APP_URL}/auth/login?redirect_to=${encodeURIComponent(window.location.href)}`;
 
     let rightContent = '';
@@ -322,7 +322,7 @@ class DatavizGlobalHeader extends HTMLElement {
       <style>${this.getStyles()}</style>
       <div class="dv-header">
         <div class="dv-left">
-          <a href="${AUTH_APP_URL}" class="dv-brand">dataviz.jp</a>
+          <a href="https://www.dataviz.jp/" class="dv-brand">dataviz.jp</a>
         </div>
         <div class="dv-right">
           ${rightContent}
