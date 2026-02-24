@@ -50,7 +50,7 @@ export default async function Home({
           {user ? (
             <div className="flex flex-col gap-8">
               <div className="flex flex-col gap-2">
-                <h1 className="text-3xl font-bold">保存プロジェクト一覧</h1>
+                <h2 className="text-3xl font-bold tracking-tight">保存プロジェクト一覧</h2>
                 <p className="text-muted-foreground">
                   【クローズド・テスト中】さまざまなツールから保存したプロジェクトへアクセスできます。
                 </p>
