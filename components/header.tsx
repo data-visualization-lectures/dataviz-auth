@@ -10,7 +10,7 @@ export function Header() {
             <nav className="w-full flex justify-center h-12 bg-[#111] text-[#ddd] shadow-[0_1px_3px_rgba(0,0,0,0.3)]">
                 <div className="w-full max-w-5xl flex justify-between items-center px-4 text-sm">
                     <div className="flex items-center font-semibold">
-                        <Link href={"/"} className="text-white tracking-[0.5px]">dataviz.jp</Link>
+                        <Link href="https://www.dataviz.jp/" className="text-white tracking-[0.5px]">dataviz.jp</Link>
                     </div>
 
                     <div className="flex items-center gap-4">
