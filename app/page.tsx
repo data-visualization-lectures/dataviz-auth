@@ -43,39 +43,36 @@ export default async function Home({
   }
 
   return (
-    <main className="min-h-screen flex flex-col items-center">
-      <div className="flex-1 w-full flex flex-col gap-20 items-center">
-
-        <div className="flex-1 flex flex-col gap-20 max-w-5xl p-5 w-full">
-          {user ? (
-            <div className="flex flex-col gap-8">
-              <div className="flex flex-col gap-2">
-                <h2 className="text-3xl font-bold tracking-tight">保存プロジェクト一覧</h2>
-                <p className="text-muted-foreground">
-                  【クローズド・テスト中】さまざまなツールから保存したプロジェクトへアクセスできます。
-                </p>
-              </div>
-              <SavedProjectsGrid projects={projects} initialFilter={initialTool} />
+    <div className="flex min-h-screen w-full flex-col bg-muted/40 p-4 md:p-10 gap-8">
+      <main className="grid flex-1 items-start gap-4 p-4 md:gap-8 md:p-0 max-w-5xl mx-auto w-full">
+        {user ? (
+          <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-2">
+              <h2 className="text-3xl font-bold tracking-tight">保存プロジェクト一覧</h2>
+              <p className="text-muted-foreground">
+                【クローズド・テスト中】さまざまなツールから保存したプロジェクトへアクセスできます。
+              </p>
             </div>
-          ) : (
-            <Hero />
-          )}
-        </div>
+            <SavedProjectsGrid projects={projects} initialFilter={initialTool} />
+          </div>
+        ) : (
+          <Hero />
+        )}
+      </main>
 
-        <footer className="w-full flex items-center justify-center border-t mx-auto text-center text-xs gap-8 py-16">
-          <p>
-            Powered by{" "}
-            <a
-              href="https://visualizing.jp/"
-              target="_blank"
-              className="font-bold hover:underline"
-              rel="noreferrer"
-            >
-              Visualizing.JP
-            </a>
-          </p>
-        </footer>
-      </div>
-    </main>
+      <footer className="w-full flex items-center justify-center border-t mx-auto text-center text-xs gap-8 py-16">
+        <p>
+          Powered by{" "}
+          <a
+            href="https://visualizing.jp/"
+            target="_blank"
+            className="font-bold hover:underline"
+            rel="noreferrer"
+          >
+            Visualizing.JP
+          </a>
+        </p>
+      </footer>
+    </div>
   );
 }
