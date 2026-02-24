@@ -4,64 +4,43 @@ import { hasEnvVars } from "@/lib/utils";
 import Link from "next/link";
 import { Suspense } from "react";
 
-import { Button } from "@/components/ui/button";
-import {
-    Sheet,
-    SheetContent,
-    SheetHeader,
-    SheetTitle,
-    SheetTrigger,
-} from "@/components/ui/sheet";
-import { Menu } from "lucide-react";
-
 export function Header() {
     return (
-        <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
-            <div className="w-full max-w-5xl flex justify-between items-center p-3 px-5 text-sm">
-                <div className="flex gap-5 items-center font-semibold">
-                    <Link href={"/"}>dataviz.jp</Link>
-                    {/* Desktop Menu */}
-                    <div className="hidden md:flex gap-6 ml-4">
-                        <Link href={"/faq"} className="font-normal hover:underline">よくある質問</Link>
-                        <Link href={"/pricing"} className="font-normal hover:underline">価格</Link>
-                        <Link href={"/terms"} className="font-normal hover:underline">利用規約</Link>
-                        <a href="https://forms.gle/UJL643uYbWXV2ZoM7" target="_blank" rel="noopener noreferrer" className="font-normal hover:underline">お問い合わせ</a>
+        <header className="w-full">
+            <nav className="w-full flex justify-center h-12 bg-[#111] text-[#ddd] shadow-[0_1px_3px_rgba(0,0,0,0.3)]">
+                <div className="w-full max-w-5xl flex justify-between items-center px-4 text-sm">
+                    <div className="flex items-center font-semibold">
+                        <Link href={"/"} className="text-white tracking-[0.5px]">dataviz.jp</Link>
+                    </div>
+
+                    <div className="flex items-center gap-4">
+                        {!hasEnvVars ? (
+                            <EnvVarWarning />
+                        ) : (
+                            <Suspense>
+                                <AuthButton />
+                            </Suspense>
+                        )}
                     </div>
                 </div>
+            </nav>
 
-                <div className="flex items-center gap-4">
-                    {!hasEnvVars ? (
-                        <EnvVarWarning />
-                    ) : (
-                        <Suspense>
-                            <AuthButton />
-                        </Suspense>
-                    )}
-
-                    {/* Mobile/Tablet Menu */}
-                    <div className="md:hidden">
-                        <Sheet>
-                            <SheetTrigger asChild>
-                                <Button variant="ghost" size="icon">
-                                    <Menu className="h-6 w-6" />
-                                    <span className="sr-only">Toggle menu</span>
-                                </Button>
-                            </SheetTrigger>
-                            <SheetContent side="right">
-                                <SheetHeader>
-                                    <SheetTitle>Menu</SheetTitle>
-                                </SheetHeader>
-                                <div className="flex flex-col gap-4 mt-8">
-                                    <Link href={"/faq"} className="text-lg font-medium hover:underline">よくある質問</Link>
-                                    <Link href={"/pricing"} className="text-lg font-medium hover:underline">価格</Link>
-                                    <Link href={"/terms"} className="text-lg font-medium hover:underline">利用規約</Link>
-                                    <a href="https://forms.gle/UJL643uYbWXV2ZoM7" target="_blank" rel="noopener noreferrer" className="text-lg font-medium hover:underline">お問い合わせ</a>
-                                </div>
-                            </SheetContent>
-                        </Sheet>
-                    </div>
+            <div className="w-full flex justify-center bg-[rgb(51,51,51)] text-[#ddd] border-t border-[#444] shadow-[0_2px_4px_rgba(0,0,0,0.2)]">
+                <div className="w-full max-w-5xl flex items-center gap-3 px-4 py-2">
+                    <Link
+                        href="https://auth.dataviz.jp/"
+                        className="inline-flex items-center rounded border border-[rgb(36,36,36)] bg-[rgb(32,32,32)] px-3 py-1 text-[13px] text-[#ddd] transition-colors hover:border-[rgb(44,44,44)] hover:bg-[rgb(48,48,48)] hover:text-white"
+                    >
+                        保存プロジェクト一覧
+                    </Link>
+                    <Link
+                        href="https://auth.dataviz.jp/account"
+                        className="inline-flex items-center rounded border border-[rgb(36,36,36)] bg-[rgb(32,32,32)] px-3 py-1 text-[13px] text-[#ddd] transition-colors hover:border-[rgb(44,44,44)] hover:bg-[rgb(48,48,48)] hover:text-white"
+                    >
+                        アカウント情報
+                    </Link>
                 </div>
             </div>
-        </nav>
+        </header>
     );
 }

@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Button } from "./ui/button";
 import { createClient } from "@/lib/supabase/server";
 import { AuthedActions } from "./authed-actions";
 
@@ -14,13 +13,19 @@ export async function AuthButton() {
   return user ? (
     <AuthedActions email={user.email ?? "Account"} />
   ) : (
-    <div className="flex gap-2">
-      <Button asChild size="sm" variant={"outline"}>
-        <Link href="/auth/login">ログイン</Link>
-      </Button>
-      <Button asChild size="sm" variant={"default"}>
-        <Link href="/auth/sign-up">新規登録</Link>
-      </Button>
+    <div className="flex items-center gap-2">
+      <Link
+        href="/auth/login"
+        className="inline-flex h-7 items-center rounded border border-[#eee] bg-[#eee] px-[10px] text-xs font-semibold text-[#111] transition-colors hover:bg-white hover:text-black"
+      >
+        Log in
+      </Link>
+      <Link
+        href="/auth/sign-up"
+        className="inline-flex h-7 items-center rounded border border-[#444] px-[10px] text-xs text-[#eee] transition-colors hover:border-[#666] hover:bg-[#333] hover:text-white"
+      >
+        Sign up
+      </Link>
     </div>
   );
 }
