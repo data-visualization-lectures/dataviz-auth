@@ -7,10 +7,13 @@ import { Suspense } from "react";
 export function Header() {
     return (
         <header className="w-full">
-            <nav className="w-full h-12 bg-[#111] text-[#ddd] shadow-[0_1px_3px_rgba(0,0,0,0.3)]">
-                <div className="w-full h-full flex justify-between items-center px-4 text-sm">
+            <nav
+                className="w-full h-12 bg-[#111] text-[#ddd] shadow-[0_1px_3px_rgba(0,0,0,0.3)]"
+                style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif', fontSize: "14px" }}
+            >
+                <div className="w-full h-full flex justify-between items-center px-4">
                     <div className="flex items-center font-semibold">
-                        <Link href="https://www.dataviz.jp/" className="text-white tracking-[0.5px]">dataviz.jp</Link>
+                        <Link href="https://www.dataviz.jp/" className="text-white tracking-[0.5px] font-bold no-underline">dataviz.jp</Link>
                     </div>
 
                     <div className="flex items-center gap-4">

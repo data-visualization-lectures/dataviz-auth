@@ -16,13 +16,13 @@ export async function AuthButton() {
     <div className="flex items-center gap-2">
       <Link
         href="/auth/login"
-        className="inline-flex h-7 items-center rounded border border-[#eee] bg-[#eee] px-[10px] text-xs font-semibold text-[#111] transition-colors hover:bg-white hover:text-black"
+        className="inline-flex items-center rounded-[4px] border border-[#eee] bg-[#eee] px-[10px] py-[4px] text-[12px] font-semibold leading-none text-[#111] no-underline transition-colors hover:bg-white hover:text-black"
       >
         Log in
       </Link>
       <Link
         href="/auth/sign-up"
-        className="inline-flex h-7 items-center rounded border border-[#444] px-[10px] text-xs text-[#eee] transition-colors hover:border-[#666] hover:bg-[#333] hover:text-white"
+        className="inline-flex items-center rounded-[4px] border border-[#444] px-[10px] py-[4px] text-[12px] leading-none text-[#eee] no-underline transition-colors hover:border-[#666] hover:bg-[#333] hover:text-white"
       >
         Sign up
       </Link>

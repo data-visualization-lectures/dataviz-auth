@@ -1,5 +1,4 @@
 import { Hero } from "@/components/hero";
-import { ThemeSwitcher } from "@/components/theme-switcher";
 
 import { SavedProjectsGrid, type SavedProject } from "@/components/saved-projects-grid"; // Import component
 import { hasEnvVars } from "@/lib/utils";
@@ -75,7 +74,6 @@ export default async function Home({
               Visualizing.JP
             </a>
           </p>
-          <ThemeSwitcher />
         </footer>
       </div>
     </main>
