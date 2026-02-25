@@ -29,7 +29,7 @@ export async function applyTrialSubscription(userId: string, inviteCode: string 
             user_id: userId,
             status: "trialing",
             current_period_end: trialEndDate.toISOString(),
-            plan_id: "pro_monthly",
+            plan_id: "trial",
         });
 
         if (insertError) {

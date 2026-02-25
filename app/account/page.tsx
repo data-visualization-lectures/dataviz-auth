@@ -10,7 +10,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { ManageSubscriptionButton } from "@/components/manage-subscription-button";
 import { Button } from "@/components/ui/button";
 
 export const dynamic = "force-dynamic";
@@ -25,17 +24,20 @@ export default async function AccountPage() {
     return redirect("/auth/login");
   }
 
-  // Fetch Subscription Data
-  const { data: subscription } = await supabase
-    .from("subscriptions")
-    .select(`
-      status,
-      current_period_end,
-      plan_id,
-      cancel_at_period_end
-    `)
-    .eq("user_id", user.id)
-    .maybeSingle();
+  // Fetch Subscription Data and Plans
+  const [
+    { data: subscription },
+    { data: plans }
+  ] = await Promise.all([
+    supabase
+      .from("subscriptions")
+      .select("status, current_period_end, plan_id, cancel_at_period_end")
+      .eq("user_id", user.id)
+      .maybeSingle(),
+    supabase
+      .from("plans")
+      .select("id, name"),
+  ]);
 
   // Generate initials for avatar
   const email = user.email || "";
@@ -54,23 +56,12 @@ export default async function AccountPage() {
   const isActive = subscription?.status === "active" || subscription?.status === "trialing";
   const isCanceled = subscription?.cancel_at_period_end;
 
-  // Determine product name from plan_id
-  let productName = "プラン不明";
-  const planId = subscription?.plan_id;
+  const planDisplayName =
+    plans?.find((p) => p.id === subscription?.plan_id)?.name ?? null;
 
-  if (planId === "pro_monthly") {
-    if (subscription?.status === "trialing") {
-      productName = "dataviz.jp利用サブスク (トライアル)";
-    } else {
-      productName = "dataviz.jp利用サブスク (月払い)";
-    }
-  } else if (planId === "pro_yearly") {
-    productName = "dataviz.jp利用サブスク (年払い)";
-  } else if (isActive) {
-    productName = "dataviz.jp利用サブスク";
-  }
-
-  const planName = isActive ? productName : "フリープラン";
+  const planName = isActive
+    ? (planDisplayName ?? "dataviz.jp利用サブスク")
+    : "フリープラン";
 
   let planStatus = "未契約";
   let statusColor = "bg-gray-100 text-gray-700 border-gray-200";
