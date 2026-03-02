@@ -11,6 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { ManageSubscriptionButton } from "@/components/manage-subscription-button";
 
 export const dynamic = "force-dynamic";
 
@@ -137,9 +138,9 @@ export default async function AccountPage() {
                   </p>
                 )}
               </div>
-              {/* {subscription?.status !== "trialing" && (
+              {subscription?.status !== "trialing" && (
                 <ManageSubscriptionButton isActive={isActive} />
-              )} */}
+              )}
             </div>
           </CardContent>
         </Card>
