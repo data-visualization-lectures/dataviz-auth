@@ -34,8 +34,12 @@ export async function fetchMe() {
   return callApi("/api/me");
 }
 
-export async function createCheckoutSession() {
-  return callApi("/api/billing-create-checkout-session", { method: "POST" });
+export async function createCheckoutSession(plan: "monthly" | "yearly" = "monthly") {
+  return callApi("/api/billing-create-checkout-session", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ plan }),
+  });
 }
 
 export async function createPortalSession() {

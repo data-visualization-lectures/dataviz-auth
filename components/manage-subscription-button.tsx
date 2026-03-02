@@ -5,11 +5,9 @@ import { createCheckoutSession, createPortalSession } from "@/lib/apiClient";
 import { toast } from "sonner";
 
 export function ManageSubscriptionButton({ isActive }: { isActive: boolean }) {
-    async function handleAction() {
+    async function handleCheckout(plan: "monthly" | "yearly") {
         try {
-            const data = isActive
-                ? await createPortalSession()
-                : await createCheckoutSession();
+            const data = await createCheckoutSession(plan);
 
             if (data && data.url) {
                 window.location.href = data.url;
@@ -38,9 +36,35 @@ export function ManageSubscriptionButton({ isActive }: { isActive: boolean }) {
         }
     }
 
+    async function handlePortal() {
+        try {
+            const data = await createPortalSession();
+            if (data && data.url) {
+                window.location.href = data.url;
+            } else {
+                toast.error(`レスポンス異常: ${JSON.stringify(data)}`);
+            }
+        } catch (e: any) {
+            toast.error(`操作に失敗しました: ${e.message ?? e}`);
+        }
+    }
+
+    if (isActive) {
+        return (
+            <Button variant="outline" onClick={handlePortal}>
+                契約内容の変更
+            </Button>
+        );
+    }
+
     return (
-        <Button variant="outline" onClick={handleAction}>
-            {isActive ? "契約内容の変更" : "有料プランに登録"}
-        </Button>
+        <div className="flex gap-2">
+            <Button variant="default" onClick={() => handleCheckout("monthly")}>
+                月額プランに登録
+            </Button>
+            <Button variant="outline" onClick={() => handleCheckout("yearly")}>
+                年額プランに登録
+            </Button>
+        </div>
     );
 }
