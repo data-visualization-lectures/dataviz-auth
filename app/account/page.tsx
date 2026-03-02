@@ -78,6 +78,9 @@ export default async function AccountPage() {
       planStatus = "有効";
       statusColor = "bg-green-100 text-green-700 border-green-200";
     }
+  } else if (subscription?.status === "canceled") {
+    planStatus = "契約終了";
+    statusColor = "bg-red-100 text-red-700 border-red-200";
   }
 
   return (
