@@ -13,6 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { ManageSubscriptionButton } from "@/components/manage-subscription-button";
 import { DeleteAccountButton } from "@/components/delete-account-button";
+import { CancelAndRefundButton } from "@/components/cancel-and-refund-button";
 
 export const dynamic = "force-dynamic";
 
@@ -33,7 +34,7 @@ export default async function AccountPage() {
   ] = await Promise.all([
     supabase
       .from("subscriptions")
-      .select("status, current_period_end, plan_id, cancel_at_period_end")
+      .select("status, current_period_end, plan_id, cancel_at_period_end, refunded_at, stripe_subscription_id")
       .eq("user_id", user.id)
       .maybeSingle(),
     supabase
@@ -142,7 +143,14 @@ export default async function AccountPage() {
                   </p>
                 )}
               </div>
-              <ManageSubscriptionButton isActive={isActive && subscription?.status !== "trialing"} />
+              <div className="flex flex-col gap-2 items-end">
+                <ManageSubscriptionButton isActive={isActive && subscription?.status !== "trialing"} />
+                {subscription?.status === "active"
+                  && subscription?.stripe_subscription_id
+                  && !subscription?.refunded_at && (
+                  <CancelAndRefundButton />
+                )}
+              </div>
             </div>
           </CardContent>
         </Card>

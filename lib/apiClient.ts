@@ -51,3 +51,7 @@ export async function createPortalSession() {
 export async function deleteAccount() {
   return callApi("/api/delete-account", { method: "POST" });
 }
+
+export async function cancelAndRefund() {
+  return callApi("/api/billing-cancel-and-refund", { method: "POST" });
+}
