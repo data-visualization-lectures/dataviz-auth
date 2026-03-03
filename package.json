@@ -2,6 +2,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:test": "dotenv -e .env.test -- next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint ."
@@ -31,6 +32,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "autoprefixer": "^10.4.20",
+    "dotenv-cli": "^11.0.0",
     "eslint": "^9",
     "eslint-config-next": "15.3.1",
     "postcss": "^8",
