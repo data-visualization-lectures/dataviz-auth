@@ -68,6 +68,9 @@ export function SignUpForm({
       if (inviteCode) {
         formData.append("inviteCode", inviteCode);
       }
+      if (redirectTo) {
+        formData.append("redirectTo", redirectTo);
+      }
 
       // Server Actionを使用してサインアップ
       const { signUp } = await import("@/app/auth/actions");

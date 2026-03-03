@@ -34,7 +34,9 @@ export async function fetchMe() {
   return callApi("/api/me");
 }
 
-export async function createCheckoutSession(plan: "monthly" | "yearly" = "monthly") {
+export type PlanType = "monthly" | "yearly" | "coaching_monthly" | "coaching_yearly";
+
+export async function createCheckoutSession(plan: PlanType = "monthly") {
   return callApi("/api/billing-create-checkout-session", {
     method: "POST",
     headers: { "Content-Type": "application/json" },

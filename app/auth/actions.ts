@@ -27,17 +27,23 @@ export async function signUp(formData: FormData) {
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
     const inviteCode = formData.get("inviteCode") as string | null;
+    const redirectTo = formData.get("redirectTo") as string | null;
 
-    console.log("[DEBUG] Form data parsed", { hasEmail: !!email, hasPassword: !!password, inviteCode });
+    console.log("[DEBUG] Form data parsed", { hasEmail: !!email, hasPassword: !!password, inviteCode, redirectTo });
 
     const supabase = await createClient();
+
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://auth.dataviz.jp";
+    const emailRedirectTo = redirectTo
+        ? `${siteUrl}${redirectTo}`
+        : `${siteUrl}/account`;
 
     // ユーザー作成
     const { data, error } = await supabase.auth.signUp({
         email,
         password,
         options: {
-            emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL || "https://auth.dataviz.jp"}/account`,
+            emailRedirectTo,
         },
     });
 
