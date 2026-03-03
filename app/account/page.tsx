@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ManageSubscriptionButton } from "@/components/manage-subscription-button";
+import { DeleteAccountButton } from "@/components/delete-account-button";
 
 export const dynamic = "force-dynamic";
 
@@ -163,6 +164,11 @@ export default async function AccountPage() {
             </Button>
           </CardContent>
         </Card>
+
+        {/* Delete Account */}
+        <div className="flex justify-end">
+          <DeleteAccountButton />
+        </div>
 
       </main>
 

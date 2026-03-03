@@ -47,3 +47,7 @@ export async function createCheckoutSession(plan: PlanType = "monthly") {
 export async function createPortalSession() {
   return callApi("/api/billing-create-portal-session", { method: "POST" });
 }
+
+export async function deleteAccount() {
+  return callApi("/api/delete-account", { method: "POST" });
+}
