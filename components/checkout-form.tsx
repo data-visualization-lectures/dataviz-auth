@@ -35,6 +35,7 @@ export function CheckoutForm({
 }) {
   const [displayName, setDisplayName] = useState(defaultDisplayName ?? "");
   const [agreedToTerms, setAgreedToTerms] = useState(false);
+  const [agreedToPrivacy, setAgreedToPrivacy] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -49,8 +50,8 @@ export function CheckoutForm({
       return;
     }
 
-    if (!agreedToTerms) {
-      setError("利用規約に同意してください");
+    if (!agreedToTerms || !agreedToPrivacy) {
+      setError("利用規約とプライバシーポリシーに同意してください");
       return;
     }
 
@@ -120,25 +121,46 @@ export function CheckoutForm({
               </p>
             </div>
 
-            {/* 利用規約 */}
-            <div className="flex items-start gap-2">
-              <Checkbox
-                id="terms"
-                checked={agreedToTerms}
-                onCheckedChange={(checked) =>
-                  setAgreedToTerms(checked === true)
-                }
-              />
-              <Label htmlFor="terms" className="text-sm leading-relaxed cursor-pointer">
-                <Link
-                  href="/terms"
-                  target="_blank"
-                  className="underline underline-offset-4 hover:text-primary"
-                >
-                  利用規約
-                </Link>
-                に同意する
-              </Label>
+            {/* 利用規約・プライバシーポリシー */}
+            <div className="flex flex-col gap-3">
+              <div className="flex items-start gap-2">
+                <Checkbox
+                  id="terms"
+                  checked={agreedToTerms}
+                  onCheckedChange={(checked) =>
+                    setAgreedToTerms(checked === true)
+                  }
+                />
+                <Label htmlFor="terms" className="text-sm leading-relaxed cursor-pointer">
+                  <Link
+                    href="https://www.dataviz.jp/terms/"
+                    target="_blank"
+                    className="underline underline-offset-4 hover:text-primary"
+                  >
+                    利用規約
+                  </Link>
+                  に同意する
+                </Label>
+              </div>
+              <div className="flex items-start gap-2">
+                <Checkbox
+                  id="privacy"
+                  checked={agreedToPrivacy}
+                  onCheckedChange={(checked) =>
+                    setAgreedToPrivacy(checked === true)
+                  }
+                />
+                <Label htmlFor="privacy" className="text-sm leading-relaxed cursor-pointer">
+                  <Link
+                    href="https://www.dataviz.jp/privacy/"
+                    target="_blank"
+                    className="underline underline-offset-4 hover:text-primary"
+                  >
+                    プライバシーポリシー
+                  </Link>
+                  に同意する
+                </Label>
+              </div>
             </div>
 
             {error && <p className="text-sm text-red-500">{error}</p>}
