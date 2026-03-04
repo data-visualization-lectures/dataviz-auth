@@ -23,20 +23,16 @@ export async function login(formData: FormData) {
 }
 
 export async function signUp(formData: FormData) {
-    console.log("[DEBUG] signUp action called");
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
     const inviteCode = formData.get("inviteCode") as string | null;
     const redirectTo = formData.get("redirectTo") as string | null;
 
-    console.log("[DEBUG] Form data parsed", { hasEmail: !!email, hasPassword: !!password, inviteCode, redirectTo });
-
     const supabase = await createClient();
 
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://auth.dataviz.jp";
-    const emailRedirectTo = redirectTo
-        ? `${siteUrl}${redirectTo}`
-        : `${siteUrl}/account`;
+    const nextPath = redirectTo || "/account";
+    const emailRedirectTo = `${siteUrl}/auth/callback?next=${encodeURIComponent(nextPath)}`;
 
     // ユーザー作成
     const { data, error } = await supabase.auth.signUp({
@@ -48,16 +44,18 @@ export async function signUp(formData: FormData) {
     });
 
     if (error) {
-        console.error("[ERROR] Supabase signUp failed:", error.message);
         return { error: error.message };
+    }
+
+    // identities が空 = 既に同じメールアドレスのユーザーが存在する
+    if (data.user && data.user.identities?.length === 0) {
+        return { error: "このメールアドレスは既に登録されています" };
     }
 
     // 招待コードが有効な場合、トライアルサブスクリプションを作成
     if (inviteCode && data.user) {
         const { applyTrialSubscription } = await import("@/lib/auth-utils");
         await applyTrialSubscription(data.user.id, inviteCode);
-    } else {
-        console.log("[DEBUG] Skipping trial creation - inviteCode or user missing");
     }
 
     return { success: true };
