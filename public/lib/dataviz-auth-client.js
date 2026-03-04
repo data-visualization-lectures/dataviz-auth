@@ -398,6 +398,12 @@ async function verifyUserAccess(session) {
           credentials: "include", // Cookie送信
           cache: "no-store",
         });
+        if (res.status === 401) {
+          // トークンが無効（削除済みアカウント等）→ セッションをクリアして未ログイン扱い
+          clearCachedProfile();
+          await supabase.auth.signOut();
+          return null;
+        }
         if (!res.ok) throw new Error(`Status ${res.status}`);
 
         const profile = await res.json();

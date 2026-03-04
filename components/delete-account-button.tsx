@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { deleteAccount } from "@/lib/apiClient";
+import { createClient } from "@/lib/supabase/client";
 import { toast } from "sonner";
 
 export function DeleteAccountButton() {
@@ -17,6 +18,8 @@ export function DeleteAccountButton() {
         setLoading(true);
         try {
             await deleteAccount();
+            const supabase = createClient();
+            await supabase.auth.signOut();
             window.location.href = "/auth/login";
         } catch (e: any) {
             toast.error(`アカウント削除に失敗しました: ${e.message ?? e}`);
