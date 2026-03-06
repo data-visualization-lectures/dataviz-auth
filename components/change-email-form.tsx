@@ -4,7 +4,7 @@ import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Pencil, Check, X } from "lucide-react";
+import { Check, X } from "lucide-react";
 
 export function ChangeEmailForm({ currentEmail }: { currentEmail: string }) {
   const [editing, setEditing] = useState(false);
@@ -25,7 +25,11 @@ export function ChangeEmailForm({ currentEmail }: { currentEmail: string }) {
     const { error: err } = await supabase.auth.updateUser({ email: newEmail });
 
     if (err) {
-      setError(err.message);
+      if (err.message.includes("rate limit")) {
+        setError("メール送信の上限に達しました。しばらく時間をおいて再度お試しください。");
+      } else {
+        setError(err.message);
+      }
     } else {
       setSent(true);
       setEditing(false);

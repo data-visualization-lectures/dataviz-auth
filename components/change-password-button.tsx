@@ -16,7 +16,11 @@ export function ChangePasswordButton({ email }: { email: string }) {
       redirectTo: `${window.location.origin}/auth/update-password`,
     });
     if (err) {
-      setError("送信に失敗しました");
+      if (err.message.includes("rate limit")) {
+        setError("メール送信の上限に達しました。しばらく時間をおいて再度お試しください。");
+      } else {
+        setError("送信に失敗しました");
+      }
     } else {
       setSent(true);
     }
