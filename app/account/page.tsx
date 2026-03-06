@@ -14,6 +14,8 @@ import { Button } from "@/components/ui/button";
 import { ManageSubscriptionButton } from "@/components/manage-subscription-button";
 import { DeleteAccountButton } from "@/components/delete-account-button";
 import { CancelAndRefundButton } from "@/components/cancel-and-refund-button";
+import { EditDisplayName } from "@/components/edit-display-name";
+import { ChangePasswordButton } from "@/components/change-password-button";
 
 export const dynamic = "force-dynamic";
 
@@ -27,10 +29,13 @@ export default async function AccountPage() {
     return redirect("/auth/login");
   }
 
-  // Fetch Subscription Data and Plans
+  // Fetch Subscription, Plans, Profile, and Project Counts
   const [
     { data: subscription },
-    { data: plans }
+    { data: plans },
+    { data: profile },
+    { count: projectCount },
+    { count: orProjectCount },
   ] = await Promise.all([
     supabase
       .from("subscriptions")
@@ -39,7 +44,20 @@ export default async function AccountPage() {
       .maybeSingle(),
     supabase
       .from("plans")
-      .select("id, name"),
+      .select("id, name, amount"),
+    supabase
+      .from("profiles")
+      .select("display_name")
+      .eq("id", user.id)
+      .maybeSingle(),
+    supabase
+      .from("projects")
+      .select("*", { count: "exact", head: true })
+      .eq("user_id", user.id),
+    supabase
+      .from("openrefine_projects")
+      .select("*", { count: "exact", head: true })
+      .eq("user_id", user.id),
   ]);
 
   const email = user.email || "";
@@ -68,12 +86,19 @@ export default async function AccountPage() {
   const isActive = subscription?.status === "active" || subscription?.status === "trialing";
   const isCanceled = subscription?.cancel_at_period_end;
 
-  const planDisplayName =
-    plans?.find((p) => p.id === subscription?.plan_id)?.name ?? null;
+  const currentPlan = plans?.find((p) => p.id === subscription?.plan_id);
+  const planDisplayName = currentPlan?.name ?? null;
 
   const planName = isActive
     ? (planDisplayName ?? "dataviz.jp利用サブスク")
     : "フリープラン";
+
+  const planAmount = isActive && currentPlan?.amount
+    ? `${currentPlan.amount.toLocaleString()}円`
+    : null;
+
+  const hasEmailLogin = user.identities?.some((i) => i.provider === "email");
+  const totalProjects = (projectCount ?? 0) + (orProjectCount ?? 0);
 
   let planStatus = "未契約";
   let statusColor = "bg-gray-100 text-gray-700 border-gray-200";
@@ -116,8 +141,9 @@ export default async function AccountPage() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-2">
               <div className="text-xl font-bold">{email}</div>
+              <EditDisplayName userId={user.id} initialName={profile?.display_name ?? null} />
               <p className="text-sm text-muted-foreground">
                 アカウント作成日: {formatDate(user.created_at)}
               </p>
@@ -127,6 +153,10 @@ export default async function AccountPage() {
               <p className="text-sm text-muted-foreground">
                 ログイン方法: {loginMethods}
               </p>
+              <p className="text-sm text-muted-foreground">
+                保存プロジェクト数: {totalProjects}件
+              </p>
+              {hasEmailLogin && <ChangePasswordButton email={email} />}
             </div>
           </CardContent>
         </Card>
@@ -143,6 +173,11 @@ export default async function AccountPage() {
               <div>
                 <div className="text-2xl font-bold flex items-center gap-2">
                   {planName}
+                  {planAmount && (
+                    <span className="text-base font-normal text-muted-foreground">
+                      ({planAmount} / {subscription?.plan_id?.includes("yearly") ? "年" : "月"})
+                    </span>
+                  )}
                   <span className={`text-xs px-2 py-0.5 rounded-full border ${statusColor}`}>
                     {planStatus}
                   </span>
