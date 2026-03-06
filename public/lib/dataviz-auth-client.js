@@ -322,7 +322,7 @@ class DatavizGlobalHeader extends HTMLElement {
       <style>${this.getStyles()}</style>
       <div class="dv-header">
         <div class="dv-left">
-          <a href="https://www.dataviz.jp/" class="dv-brand" title="データの道具箱トップへ">dataviz.jp</a>
+          <a href="https://www.dataviz.jp/" class="dv-brand" title="データの道具箱トップへ">データの道具箱</a>
         </div>
         <div class="dv-right">
           ${rightContent}
