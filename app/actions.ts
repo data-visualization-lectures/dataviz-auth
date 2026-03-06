@@ -56,3 +56,44 @@ export async function deleteProject(
         return { success: false, error: (error as Error).message };
     }
 }
+
+export async function deleteOpenRefineProject(
+    projectId: string,
+    archivePath: string
+) {
+    const supabase = await createClient();
+
+    try {
+        const {
+            data: { user },
+        } = await supabase.auth.getUser();
+
+        if (!user) {
+            throw new Error("Unauthorized");
+        }
+
+        const { error: dbError } = await supabase
+            .from("openrefine_projects")
+            .delete()
+            .eq("id", projectId)
+            .eq("user_id", user.id);
+
+        if (dbError) {
+            throw new Error(`Database deletion failed: ${dbError.message}`);
+        }
+
+        const { error: storageError } = await supabase.storage
+            .from("openrefine-projects")
+            .remove([archivePath]);
+
+        if (storageError) {
+            console.error("OpenRefine storage deletion failed:", storageError);
+        }
+
+        revalidatePath("/");
+        return { success: true };
+    } catch (error) {
+        console.error("Delete OpenRefine project error:", error);
+        return { success: false, error: (error as Error).message };
+    }
+}

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { Trash2, ExternalLink, Image as ImageIcon, Filter, ChevronDown, Check } from "lucide-react";
 import { toast } from "sonner";
-import { deleteProject } from "@/app/actions";
+import { deleteProject, deleteOpenRefineProject } from "@/app/actions";
 import { APP_CONFIG } from "@/lib/config";
 import {
     DropdownMenu,
@@ -34,6 +34,7 @@ export type SavedProject = {
     storage_path: string;
     thumbnail_path: string | null;
     signedUrl: string | null;
+    source: "projects" | "openrefine";
 };
 
 export function SavedProjectsGrid({
@@ -83,6 +84,7 @@ export function SavedProjectsGrid({
         // @ts-ignore - Indexing strictly typed object with string
         const baseUrl = APP_CONFIG.TOOL_URLS[appName as keyof typeof APP_CONFIG.TOOL_URLS];
         if (!baseUrl) return "#";
+        if (appName === "openrefine") return baseUrl;
         return `${baseUrl}/?project_id=${projectId}`;
     };
 
@@ -97,11 +99,9 @@ export function SavedProjectsGrid({
 
         setIsDeleting(project.id);
         try {
-            const result = await deleteProject(
-                project.id,
-                project.storage_path,
-                project.thumbnail_path
-            );
+            const result = project.source === "openrefine"
+                ? await deleteOpenRefineProject(project.id, project.storage_path)
+                : await deleteProject(project.id, project.storage_path, project.thumbnail_path);
 
             if (result.success) {
                 toast.success("プロジェクトを削除しました");

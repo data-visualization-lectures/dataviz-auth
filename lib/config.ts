@@ -13,7 +13,8 @@ export const APP_CONFIG = {
         "https://data-illustrator.dataviz.jp",
         "https://vega-editor.dataviz.jp",
         "https://word-cloud.dataviz.jp",
-        "https://cytoscape.dataviz.jp"
+        "https://cytoscape.dataviz.jp",
+        "https://open-refine.dataviz.jp"
     ],
     TOOL_URLS: {
         "rawgraphs": "https://rawgraphs.dataviz.jp",
@@ -27,6 +28,7 @@ export const APP_CONFIG = {
         "data-illustrator": "https://data-illustrator.dataviz.jp",
         "vega-editor": "https://vega-editor.dataviz.jp",
         "word-cloud": "https://word-cloud.dataviz.jp",
-        "cytoscape": "https://cytoscape.dataviz.jp"
+        "cytoscape": "https://cytoscape.dataviz.jp",
+        "openrefine": "https://open-refine.dataviz.jp"
     }
 } as const;

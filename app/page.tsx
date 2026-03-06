@@ -17,29 +17,51 @@ export default async function Home({
     data: { user },
   } = await supabase.auth.getUser();
 
-  let projects: SavedProject[] = [];
+  let allProjects: SavedProject[] = [];
 
   if (user && hasEnvVars) {
-    const { data } = await supabase
-      .from("projects")
-      .select("*")
-      .eq("user_id", user.id)
-      .order("updated_at", { ascending: false });
+    const [{ data }, { data: orData }] = await Promise.all([
+      supabase
+        .from("projects")
+        .select("*")
+        .eq("user_id", user.id)
+        .order("updated_at", { ascending: false }),
+      supabase
+        .from("openrefine_projects")
+        .select("id, name, archive_path, updated_at")
+        .eq("user_id", user.id)
+        .order("updated_at", { ascending: false }),
+    ]);
 
-    if (data) {
-      projects = await Promise.all(
-        data.map(async (p) => {
-          let signedUrl = null;
-          if (p.thumbnail_path) {
-            const { data: signedData } = await supabase.storage
-              .from("user_projects")
-              .createSignedUrl(p.thumbnail_path, 3600); // 1 hour validity
-            signedUrl = signedData?.signedUrl || null;
-          }
-          return { ...p, signedUrl } as SavedProject;
-        })
-      );
-    }
+    const projects: SavedProject[] = data
+      ? await Promise.all(
+          data.map(async (p) => {
+            let signedUrl = null;
+            if (p.thumbnail_path) {
+              const { data: signedData } = await supabase.storage
+                .from("user_projects")
+                .createSignedUrl(p.thumbnail_path, 3600);
+              signedUrl = signedData?.signedUrl || null;
+            }
+            return { ...p, signedUrl, source: "projects" as const };
+          })
+        )
+      : [];
+
+    const orProjects: SavedProject[] = (orData ?? []).map((p) => ({
+      id: p.id,
+      name: p.name,
+      app_name: "openrefine",
+      updated_at: p.updated_at,
+      storage_path: p.archive_path,
+      thumbnail_path: null,
+      signedUrl: null,
+      source: "openrefine" as const,
+    }));
+
+    allProjects = [...projects, ...orProjects].sort(
+      (a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
+    );
   }
 
   return (
@@ -53,7 +75,7 @@ export default async function Home({
                 【クローズド・テスト中】さまざまなツールから保存したプロジェクトへアクセスできます。
               </p>
             </div>
-            <SavedProjectsGrid projects={projects} initialFilter={initialTool} />
+            <SavedProjectsGrid projects={allProjects} initialFilter={initialTool} />
           </div>
         ) : (
           <Hero />
