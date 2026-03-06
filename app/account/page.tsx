@@ -11,6 +11,7 @@ import { DeleteAccountButton } from "@/components/delete-account-button";
 import { CancelAndRefundButton } from "@/components/cancel-and-refund-button";
 import { EditDisplayName } from "@/components/edit-display-name";
 import { ChangePasswordButton } from "@/components/change-password-button";
+import { ChangeEmailForm } from "@/components/change-email-form";
 
 export const dynamic = "force-dynamic";
 
@@ -142,6 +143,7 @@ export default async function AccountPage() {
               <p className="text-sm text-muted-foreground">
                 アカウント作成日: {formatDate(user.created_at)}
               </p>
+              <ChangeEmailForm currentEmail={email} />
             </div>
           </CardContent>
         </Card>
