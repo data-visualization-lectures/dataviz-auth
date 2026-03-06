@@ -42,8 +42,17 @@ export default async function AccountPage() {
       .select("id, name"),
   ]);
 
-  // Generate initials for avatar
   const email = user.email || "";
+
+  // ログイン方法の表示名マッピング
+  const providerLabels: Record<string, string> = {
+    email: "メール / パスワード",
+    google: "Google",
+  };
+  const loginMethods = user.identities
+    ?.map((i) => providerLabels[i.provider] ?? i.provider)
+    .filter((v, idx, arr) => arr.indexOf(v) === idx)
+    .join("、") || "不明";
 
   // Format Date
   const formatDate = (dateString?: string) => {
@@ -111,6 +120,12 @@ export default async function AccountPage() {
               <div className="text-xl font-bold">{email}</div>
               <p className="text-sm text-muted-foreground">
                 アカウント作成日: {formatDate(user.created_at)}
+              </p>
+              <p className="text-sm text-muted-foreground">
+                最終ログイン: {formatDate(user.last_sign_in_at ?? undefined)}
+              </p>
+              <p className="text-sm text-muted-foreground">
+                ログイン方法: {loginMethods}
               </p>
             </div>
           </CardContent>
