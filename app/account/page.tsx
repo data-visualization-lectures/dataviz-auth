@@ -1,16 +1,11 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import {
-  LayoutDashboard,
-} from "lucide-react";
-
-import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { ManageSubscriptionButton } from "@/components/manage-subscription-button";
 import { DeleteAccountButton } from "@/components/delete-account-button";
 import { CancelAndRefundButton } from "@/components/cancel-and-refund-button";
@@ -215,24 +210,6 @@ export default async function AccountPage() {
                 )}
               </div>
             </div>
-          </CardContent>
-        </Card>
-
-        {/* Link to Main Site */}
-        <Card className="hover:bg-muted/50 transition-colors cursor-pointer" >
-          <CardContent className="p-6 flex items-center justify-between">
-            <div className="space-y-1">
-              <h3 className="font-semibold text-lg flex items-center gap-2">
-                <LayoutDashboard className="h-5 w-5 text-primary" />
-                ツール一覧へ行く
-              </h3>
-              <p className="text-sm text-muted-foreground">
-                すべてのツールは公式サイトから利用できます。
-              </p>
-            </div>
-            <Button asChild>
-              <a href="https://www.dataviz.jp">ツール一覧</a>
-            </Button>
           </CardContent>
         </Card>
 
