@@ -228,6 +228,27 @@ export default async function AccountPage() {
           </CardContent>
         </Card>
 
+        {/* Contact */}
+        {isActive && (
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground">
+                お問い合わせ
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <a
+                href="https://forms.gle/UDquMjQ3ieqFH9s39"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground"
+              >
+                ご契約中のお問い合わせ
+              </a>
+            </CardContent>
+          </Card>
+        )}
+
         {/* Delete Account */}
         <div className="flex justify-end">
           <DeleteAccountButton />
