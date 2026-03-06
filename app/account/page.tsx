@@ -225,10 +225,8 @@ export default async function AccountPage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="flex flex-col gap-1">
-                <p className="text-sm text-muted-foreground">
-                  保存プロジェクト数: {totalProjects}件
-                </p>
+              <div className="text-xl font-bold">
+                {totalProjects}件
               </div>
             </CardContent>
           </Card>
