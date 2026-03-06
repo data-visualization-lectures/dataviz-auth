@@ -84,7 +84,7 @@ export function SavedProjectsGrid({
         // @ts-ignore - Indexing strictly typed object with string
         const baseUrl = APP_CONFIG.TOOL_URLS[appName as keyof typeof APP_CONFIG.TOOL_URLS];
         if (!baseUrl) return "#";
-        if (appName === "openrefine") return baseUrl;
+        if (appName === "openrefine") return `${baseUrl}/openrefine/#open-project`;
         return `${baseUrl}/?project_id=${projectId}`;
     };
 
