@@ -129,104 +129,110 @@ export default async function AccountPage() {
           </p>
         </div>
 
-        {/* User Info */}
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
-              ユーザー情報
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex flex-col gap-2">
-              <div className="text-xl font-bold">{email}</div>
-              <EditDisplayName userId={user.id} initialName={profile?.display_name ?? null} />
-              <p className="text-sm text-muted-foreground">
-                アカウント作成日: {formatDate(user.created_at)}
-              </p>
-              <ChangeEmailForm currentEmail={email} />
-            </div>
-          </CardContent>
-        </Card>
+        {/* Top 2-column: User Info + Subscription */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+          {/* User Info */}
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground">
+                ユーザー情報
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex flex-col gap-2">
+                <div className="text-xl font-bold">{email}</div>
+                <EditDisplayName userId={user.id} initialName={profile?.display_name ?? null} />
+                <p className="text-sm text-muted-foreground">
+                  アカウント作成日: {formatDate(user.created_at)}
+                </p>
+                <ChangeEmailForm currentEmail={email} />
+              </div>
+            </CardContent>
+          </Card>
 
-        {/* Login Info */}
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
-              ログイン情報
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex flex-col gap-2">
-              <p className="text-sm text-muted-foreground">
-                最終ログイン: {formatDate(user.last_sign_in_at ?? undefined)}
-              </p>
-              <p className="text-sm text-muted-foreground">
-                ログイン方法: {loginMethods}
-              </p>
-              {hasEmailLogin && <ChangePasswordButton email={email} />}
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Project Info */}
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
-              プロジェクト情報
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex flex-col gap-1">
-              <p className="text-sm text-muted-foreground">
-                保存プロジェクト数: {totalProjects}件
-              </p>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Subscription Status */}
-        <Card className="bg-gradient-to-br from-primary/5 to-secondary/5 border-primary/20">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
-              現在のプラン
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <div>
-                <div className="text-2xl font-bold flex items-center gap-2">
-                  {planName}
-                  {planAmount && (
-                    <span className="text-base font-normal text-muted-foreground">
-                      ({planAmount} / {subscription?.plan_id?.includes("yearly") ? "年" : "月"})
+          {/* Subscription Status */}
+          <Card className="bg-gradient-to-br from-primary/5 to-secondary/5 border-primary/20">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground">
+                現在のプラン
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex flex-col gap-4">
+                <div>
+                  <div className="text-2xl font-bold flex items-center gap-2 flex-wrap">
+                    {planName}
+                    <span className={`text-xs px-2 py-0.5 rounded-full border ${statusColor}`}>
+                      {planStatus}
                     </span>
+                  </div>
+                  {planAmount && (
+                    <p className="text-base text-muted-foreground mt-1">
+                      {planAmount} / {subscription?.plan_id?.includes("yearly") ? "年" : "月"}
+                    </p>
                   )}
-                  <span className={`text-xs px-2 py-0.5 rounded-full border ${statusColor}`}>
-                    {planStatus}
-                  </span>
+                  {isActive && (
+                    <p className="text-sm text-muted-foreground mt-1">
+                      {subscription?.status === "trialing"
+                        ? "トライアル終了日"
+                        : isCanceled
+                          ? "有効期限"
+                          : "次回更新日"
+                      }: {formatDate(subscription?.current_period_end)}
+                    </p>
+                  )}
                 </div>
-                {isActive && (
-                  <p className="text-sm text-muted-foreground mt-1">
-                    {subscription?.status === "trialing"
-                      ? "トライアル終了日"
-                      : isCanceled
-                        ? "有効期限"
-                        : "次回更新日"
-                    }: {formatDate(subscription?.current_period_end)}
-                  </p>
-                )}
+                <div className="flex flex-col gap-2">
+                  <ManageSubscriptionButton isActive={isActive && subscription?.status !== "trialing"} />
+                  {subscription?.status === "active"
+                    && subscription?.stripe_subscription_id
+                    && !subscription?.refunded_at && (
+                    <CancelAndRefundButton />
+                  )}
+                </div>
               </div>
-              <div className="flex flex-col gap-2 items-end">
-                <ManageSubscriptionButton isActive={isActive && subscription?.status !== "trialing"} />
-                {subscription?.status === "active"
-                  && subscription?.stripe_subscription_id
-                  && !subscription?.refunded_at && (
-                  <CancelAndRefundButton />
-                )}
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* 2-column: Login Info + Project Info */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+          {/* Login Info */}
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground">
+                ログイン情報
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex flex-col gap-2">
+                <p className="text-sm text-muted-foreground">
+                  最終ログイン: {formatDate(user.last_sign_in_at ?? undefined)}
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  ログイン方法: {loginMethods}
+                </p>
+                {hasEmailLogin && <ChangePasswordButton email={email} />}
               </div>
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+
+          {/* Project Info */}
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground">
+                プロジェクト情報
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex flex-col gap-1">
+                <p className="text-sm text-muted-foreground">
+                  保存プロジェクト数: {totalProjects}件
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
 
         {/* Contact */}
         {isActive && (
