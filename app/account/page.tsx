@@ -142,6 +142,19 @@ export default async function AccountPage() {
               <p className="text-sm text-muted-foreground">
                 アカウント作成日: {formatDate(user.created_at)}
               </p>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Login Info */}
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">
+              ログイン情報
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex flex-col gap-2">
               <p className="text-sm text-muted-foreground">
                 最終ログイン: {formatDate(user.last_sign_in_at ?? undefined)}
               </p>
