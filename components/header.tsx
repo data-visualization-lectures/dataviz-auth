@@ -31,13 +31,13 @@ export function Header() {
             <div className="w-full bg-[rgb(51,51,51)] text-[#ddd] border-t border-[#444] shadow-[0_2px_4px_rgba(0,0,0,0.2)]">
                 <div className="w-full flex items-center gap-3 px-4 py-2">
                     <Link
-                        href="https://auth.dataviz.jp/"
+                        href="/projects"
                         className="inline-flex items-center rounded border border-[rgb(36,36,36)] bg-[rgb(32,32,32)] px-3 py-1 text-[13px] text-[#ddd] transition-colors hover:border-[rgb(44,44,44)] hover:bg-[rgb(48,48,48)] hover:text-white"
                     >
                         保存プロジェクト一覧
                     </Link>
                     <Link
-                        href="https://auth.dataviz.jp/account"
+                        href="/account"
                         className="inline-flex items-center rounded border border-[rgb(36,36,36)] bg-[rgb(32,32,32)] px-3 py-1 text-[13px] text-[#ddd] transition-colors hover:border-[rgb(44,44,44)] hover:bg-[rgb(48,48,48)] hover:text-white"
                     >
                         アカウント情報
