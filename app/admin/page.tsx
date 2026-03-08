@@ -71,7 +71,8 @@ export default async function AdminPage() {
 
   // 累計売上
   const totalRevenue = (subscriptionsWithPlan ?? []).reduce((sum, sub) => {
-    const plan = sub.plans as { amount: number } | null;
+    const plans = sub.plans as unknown as { amount: number } | { amount: number }[] | null;
+    const plan = Array.isArray(plans) ? plans[0] : plans;
     return sum + (plan?.amount ?? 0);
   }, 0);
 
