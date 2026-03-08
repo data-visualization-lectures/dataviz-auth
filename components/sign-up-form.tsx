@@ -93,7 +93,8 @@ export function SignUpForm({
     setIsLoading(true);
     setError(null);
     try {
-      const nextParam = redirectTo || "/account";
+      const mainSiteUrl = process.env.NEXT_PUBLIC_MAIN_SITE_URL || "https://www.dataviz.jp";
+      const nextParam = redirectTo || `${mainSiteUrl}/pricing/`;
       const inviteQuery = inviteCode ? `&invite_code=${encodeURIComponent(inviteCode)}` : "";
 
       const { error } = await supabase.auth.signInWithOAuth({
