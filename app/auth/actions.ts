@@ -31,7 +31,8 @@ export async function signUp(formData: FormData) {
     const supabase = await createClient();
 
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://auth.dataviz.jp";
-    const nextPath = redirectTo || "/account";
+    const mainSiteUrl = process.env.NEXT_PUBLIC_MAIN_SITE_URL || "https://www.dataviz.jp";
+    const nextPath = redirectTo || `${mainSiteUrl}/pricing/`;
     const emailRedirectTo = `${siteUrl}/auth/callback?next=${encodeURIComponent(nextPath)}`;
 
     // ユーザー作成

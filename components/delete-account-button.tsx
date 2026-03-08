@@ -20,7 +20,8 @@ export function DeleteAccountButton() {
             await deleteAccount();
             const supabase = createClient();
             await supabase.auth.signOut();
-            window.location.href = "/auth/login";
+            const mainSiteUrl = process.env.NEXT_PUBLIC_MAIN_SITE_URL || "https://www.dataviz.jp";
+            window.location.href = mainSiteUrl + "/";
         } catch (e: any) {
             toast.error(`アカウント削除に失敗しました: ${e.message ?? e}`);
             setLoading(false);
