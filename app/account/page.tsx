@@ -264,12 +264,12 @@ export default async function AccountPage() {
         <p>
           Powered by{" "}
           <a
-            href="https://visualizing.jp/"
+            href="https://notation.co.jp/"
             target="_blank"
             className="font-bold hover:underline"
             rel="noreferrer"
           >
-            Visualizing.JP
+            notation.co.jp
           </a>
         </p>
       </footer>
