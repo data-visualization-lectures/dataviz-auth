@@ -35,7 +35,7 @@ export default async function AccountPage() {
   ] = await Promise.all([
     supabase
       .from("subscriptions")
-      .select("status, current_period_end, plan_id, cancel_at_period_end, refunded_at, stripe_subscription_id")
+      .select("status, current_period_end, plan_id, cancel_at_period_end, refunded_at, stripe_subscription_id, created_at")
       .eq("user_id", user.id)
       .maybeSingle(),
     supabase
@@ -95,6 +95,15 @@ export default async function AccountPage() {
 
   const hasEmailLogin = user.identities?.some((i) => i.provider === "email");
   const totalProjects = (projectCount ?? 0) + (orProjectCount ?? 0);
+
+  // 契約開始から14日以内かどうか
+  const isWithinRefundPeriod = (() => {
+    if (!subscription?.created_at) return false;
+    const created = new Date(subscription.created_at);
+    const now = new Date();
+    const diffDays = (now.getTime() - created.getTime()) / (1000 * 60 * 60 * 24);
+    return diffDays <= 14;
+  })();
 
   let planStatus = "未契約";
   let statusColor = "bg-gray-100 text-gray-700 border-gray-200";
@@ -199,7 +208,8 @@ export default async function AccountPage() {
                   <ManageSubscriptionButton isActive={isActive && subscription?.status !== "trialing"} />
                   {subscription?.status === "active"
                     && subscription?.stripe_subscription_id
-                    && !subscription?.refunded_at && (
+                    && !subscription?.refunded_at
+                    && isWithinRefundPeriod && (
                     <CancelAndRefundButton />
                   )}
                 </div>
