@@ -132,10 +132,10 @@ export default async function AccountPage() {
 
         {/* Banners */}
         <div className="grid grid-cols-3 gap-4">
-          <a href="https://www.dataviz.jp/overview/" className="block overflow-hidden rounded-xl border bg-card shadow-sm transition-opacity hover:opacity-60">
+          <a href={locale === "en" ? "https://www.dataviz.jp/en/overview/" : "https://www.dataviz.jp/overview/"} className="block overflow-hidden rounded-xl border bg-card shadow-sm transition-opacity hover:opacity-60">
             <img src="/banners/banner_feature.jpg" alt={t(locale, "account.bannerFeature")} className="w-full h-auto object-cover" />
           </a>
-          <a href="https://www.dataviz.jp/catalogue/" className="block overflow-hidden rounded-xl border bg-card shadow-sm transition-opacity hover:opacity-60">
+          <a href={locale === "en" ? "https://www.dataviz.jp/en/catalogue/" : "https://www.dataviz.jp/catalogue/"} className="block overflow-hidden rounded-xl border bg-card shadow-sm transition-opacity hover:opacity-60">
             <img src="/banners/banner_chart-catalogue.jpg" alt={t(locale, "account.bannerCatalogue")} className="w-full h-auto object-cover" />
           </a>
           <a href="https://visualizing.jp/" className="block overflow-hidden rounded-xl border bg-card shadow-sm transition-opacity hover:opacity-60">
