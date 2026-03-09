@@ -31,10 +31,12 @@ export function SavedProjectsGrid({
     projects,
     initialFilter = "all",
     locale,
+    readOnly = false,
 }: {
     projects: SavedProject[];
     initialFilter?: string;
     locale: Locale;
+    readOnly?: boolean;
 }) {
     const router = useRouter();
     const pathname = usePathname();
@@ -190,14 +192,16 @@ export function SavedProjectsGrid({
                                         <ExternalLink className="w-4 h-4" />
                                         {t(locale, "grid.open")}
                                     </a>
-                                    <button
-                                        onClick={() => handleDelete(project)}
-                                        disabled={isDeleting === project.id}
-                                        className="inline-flex items-center justify-center px-3 py-2 text-sm font-medium text-destructive bg-destructive/10 rounded-md hover:bg-destructive/20 transition-colors disabled:opacity-50"
-                                        title={t(locale, "grid.delete")}
-                                    >
-                                        <Trash2 className="w-4 h-4" />
-                                    </button>
+                                    {!readOnly && (
+                                        <button
+                                            onClick={() => handleDelete(project)}
+                                            disabled={isDeleting === project.id}
+                                            className="inline-flex items-center justify-center px-3 py-2 text-sm font-medium text-destructive bg-destructive/10 rounded-md hover:bg-destructive/20 transition-colors disabled:opacity-50"
+                                            title={t(locale, "grid.delete")}
+                                        >
+                                            <Trash2 className="w-4 h-4" />
+                                        </button>
+                                    )}
                                 </div>
                             </div>
                         </div>

@@ -158,6 +158,17 @@ const dict = {
   },
   "grid.deleteError": { ja: "削除に失敗しました", en: "Failed to delete" },
   "grid.error": { ja: "エラーが発生しました", en: "An error occurred" },
+
+  // ── public projects page ──
+  "public.title": { ja: "サンプルプロジェクト", en: "Sample Projects" },
+  "public.description": {
+    ja: "各ツールのサンプルプロジェクトを試すことができます。「開く」で閲覧し、編集後「保存」すると自分のプロジェクトとして保存されます。",
+    en: "Try sample projects for each tool. Open to view, and save after editing to keep as your own project.",
+  },
+  "public.empty": {
+    ja: "公開プロジェクトはまだありません",
+    en: "No public projects available yet",
+  },
 } as const;
 
 export type TranslationKey = keyof typeof dict;
