@@ -204,7 +204,8 @@ class DatavizToolHeader extends HTMLElement {
         padding: 8px 16px; /* px-4 py-2 equivalent */
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         box-shadow: 0 2px 4px rgb(0 0 0 / 0.2); /* shadow-md equivalent */
-        border-top: 1px solid rgb(68 68 68); /* border-t border-gray-600 equivalent */
+        border-top: 1px solid var(--dv-border-top-color, rgb(68 68 68));
+        border-bottom: 1px solid var(--dv-border-top-color, rgb(68 68 68));
         
         /* Fixed positioning below the global header (48px height) */
         position: fixed;
@@ -364,6 +365,7 @@ class DatavizToolHeader extends HTMLElement {
     const buttonBorderColor = this._darkenColor(headerBgColor, 10); // 10% darker for border
     const buttonHoverBgColor = this._lightenColor(headerBgColor, 20); // 20% lighter for hover
     const buttonHoverBorderColor = this._lightenColor(headerBgColor, 10); // 10% lighter for hover border
+    const borderTopColor = this._darkenColor(headerBgColor, 10); // 10% darker for border-top
 
     const dynamicStyles = `
       :host {
@@ -371,6 +373,7 @@ class DatavizToolHeader extends HTMLElement {
         --dv-button-border: ${buttonBorderColor};
         --dv-button-hover-bg: ${buttonHoverBgColor};
         --dv-button-hover-border: ${buttonHoverBorderColor};
+        --dv-border-top-color: ${borderTopColor};
       }
       .dv-dropdown-content {
         background-color: ${buttonBgColor}; /* Dropdown content background same as buttons */
