@@ -5,8 +5,10 @@ import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Check, X } from "lucide-react";
+import type { Locale } from "@/lib/i18n";
+import { t } from "@/lib/i18n";
 
-export function ChangeEmailForm({ currentEmail }: { currentEmail: string }) {
+export function ChangeEmailForm({ currentEmail, locale }: { currentEmail: string; locale: Locale }) {
   const [editing, setEditing] = useState(false);
   const [newEmail, setNewEmail] = useState("");
   const [sending, setSending] = useState(false);
@@ -15,7 +17,7 @@ export function ChangeEmailForm({ currentEmail }: { currentEmail: string }) {
 
   const handleSubmit = async () => {
     if (!newEmail || newEmail === currentEmail) {
-      setError("現在と異なるメールアドレスを入力してください");
+      setError(t(locale, "email.sameError"));
       return;
     }
     setSending(true);
@@ -26,7 +28,7 @@ export function ChangeEmailForm({ currentEmail }: { currentEmail: string }) {
 
     if (err) {
       if (err.message.includes("rate limit")) {
-        setError("メール送信の上限に達しました。しばらく時間をおいて再度お試しください。");
+        setError(t(locale, "email.rateLimited"));
       } else {
         setError(err.message);
       }
@@ -46,7 +48,7 @@ export function ChangeEmailForm({ currentEmail }: { currentEmail: string }) {
   if (sent) {
     return (
       <p className="text-sm text-green-600">
-        {newEmail} に確認メールを送信しました。メール内のリンクをクリックして変更を完了してください。
+        {newEmail}{t(locale, "email.sent")}
       </p>
     );
   }
@@ -58,7 +60,7 @@ export function ChangeEmailForm({ currentEmail }: { currentEmail: string }) {
         onClick={() => setEditing(true)}
         className="text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground w-fit"
       >
-        メールアドレスを変更する
+        {t(locale, "email.button")}
       </button>
     );
   }
@@ -70,7 +72,7 @@ export function ChangeEmailForm({ currentEmail }: { currentEmail: string }) {
           type="email"
           value={newEmail}
           onChange={(e) => setNewEmail(e.target.value)}
-          placeholder="新しいメールアドレス"
+          placeholder={t(locale, "email.placeholder")}
           className="h-8 w-64 text-sm"
           disabled={sending}
           autoFocus

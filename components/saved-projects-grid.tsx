@@ -13,18 +13,8 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-
-// Since we checked package.json and didn't see date-fns, we'll write a simple formatter or just use toLocaleDateString
-const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("ja-JP", {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-        hour: "2-digit",
-        minute: "2-digit",
-        timeZone: "Asia/Tokyo",
-    });
-};
+import type { Locale } from "@/lib/i18n";
+import { t, formatDateLocale } from "@/lib/i18n";
 
 export type SavedProject = {
     id: string;
@@ -39,10 +29,12 @@ export type SavedProject = {
 
 export function SavedProjectsGrid({
     projects,
-    initialFilter = "all"
+    initialFilter = "all",
+    locale,
 }: {
     projects: SavedProject[];
     initialFilter?: string;
+    locale: Locale;
 }) {
     const router = useRouter();
     const pathname = usePathname();
@@ -51,32 +43,23 @@ export function SavedProjectsGrid({
     const [isDeleting, setIsDeleting] = useState<string | null>(null);
     const [filterApp, setFilterApp] = useState<string>(initialFilter);
 
-    // Extract unique app names for the filter dropdown
     const uniqueApps = Array.from(new Set(projects.map((p) => p.app_name))).sort();
 
-    // Filter projects based on selection
     const filteredProjects = projects.filter(
         (p) => filterApp === "all" || p.app_name === filterApp
     );
 
-    // Update filter and URL
     const updateFilter = (newFilter: string) => {
         setFilterApp(newFilter);
-
-        // Create URLSearchParams
         const params = new URLSearchParams(searchParams.toString());
-
         if (newFilter === "all") {
-            params.delete("tool"); // Remove parameter for "all"
+            params.delete("tool");
         } else {
             params.set("tool", newFilter);
         }
-
-        // Update URL without page reload
         const newUrl = params.toString()
             ? `${pathname}?${params.toString()}`
             : pathname;
-
         router.replace(newUrl, { scroll: false });
     };
 
@@ -89,11 +72,10 @@ export function SavedProjectsGrid({
     };
 
     const handleDelete = async (project: SavedProject) => {
-        if (
-            !confirm(
-                `プロジェクト「${project.name}」を削除してもよろしいですか？\nこの操作は取り消せません。`
-            )
-        ) {
+        const confirmMsg = locale === "ja"
+            ? `プロジェクト「${project.name}」${t(locale, "grid.confirmDelete")}`
+            : `Delete "${project.name}"${t(locale, "grid.confirmDelete")}`;
+        if (!confirm(confirmMsg)) {
             return;
         }
 
@@ -104,12 +86,12 @@ export function SavedProjectsGrid({
                 : await deleteProject(project.id, project.storage_path, project.thumbnail_path);
 
             if (result.success) {
-                toast.success("プロジェクトを削除しました");
+                toast.success(t(locale, "grid.deleted"));
             } else {
-                toast.error(`削除に失敗しました: ${result.error}`);
+                toast.error(`${t(locale, "grid.deleteError")}: ${result.error}`);
             }
         } catch (e) {
-            toast.error("エラーが発生しました");
+            toast.error(t(locale, "grid.error"));
         } finally {
             setIsDeleting(null);
         }
@@ -118,27 +100,27 @@ export function SavedProjectsGrid({
     if (projects.length === 0) {
         return (
             <div className="text-center py-12 text-muted-foreground border-2 border-dashed rounded-lg">
-                <p>保存されたプロジェクトはありません</p>
+                <p>{t(locale, "grid.empty")}</p>
             </div>
         );
     }
 
     return (
         <div className="flex flex-col gap-6">
-            {/* Search & Filter Bar */}
+            {/* Filter Bar */}
             <div className="flex justify-end items-center">
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                         <Button variant="outline" className="gap-2">
                             <Filter className="w-4 h-4" />
-                            {filterApp === "all" ? "すべてのツール" : filterApp}
+                            {filterApp === "all" ? t(locale, "grid.allTools") : filterApp}
                             <ChevronDown className="w-4 h-4 opacity-50" />
                         </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
                         <DropdownMenuItem onClick={() => updateFilter("all")}>
                             <div className="flex items-center justify-between w-full gap-4">
-                                <span>すべてのツール</span>
+                                <span>{t(locale, "grid.allTools")}</span>
                                 {filterApp === "all" && <Check className="w-4 h-4" />}
                             </div>
                         </DropdownMenuItem>
@@ -157,7 +139,7 @@ export function SavedProjectsGrid({
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 {filteredProjects.length === 0 ? (
                     <div className="col-span-full text-center py-12 text-muted-foreground bg-muted/30 rounded-lg">
-                        <p>条件に一致するプロジェクトはありません</p>
+                        <p>{t(locale, "grid.noMatch")}</p>
                     </div>
                 ) : (
                     filteredProjects.map((project) => (
@@ -180,8 +162,6 @@ export function SavedProjectsGrid({
                                         <span className="text-xs">No Thumbnail</span>
                                     </div>
                                 )}
-
-                                {/* Overlay Actions */}
                                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
                             </div>
 
@@ -197,7 +177,7 @@ export function SavedProjectsGrid({
                                 </div>
 
                                 <p className="text-xs text-muted-foreground mt-auto" suppressHydrationWarning>
-                                    更新: {formatDate(project.updated_at)}
+                                    {t(locale, "grid.updated")}: {formatDateLocale(locale, project.updated_at, "short")}
                                 </p>
 
                                 <div className="flex gap-2 mt-4">
@@ -208,13 +188,13 @@ export function SavedProjectsGrid({
                                         className="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 text-sm font-medium text-primary-foreground bg-primary rounded-md hover:bg-primary/90 transition-colors"
                                     >
                                         <ExternalLink className="w-4 h-4" />
-                                        開く
+                                        {t(locale, "grid.open")}
                                     </a>
                                     <button
                                         onClick={() => handleDelete(project)}
                                         disabled={isDeleting === project.id}
                                         className="inline-flex items-center justify-center px-3 py-2 text-sm font-medium text-destructive bg-destructive/10 rounded-md hover:bg-destructive/20 transition-colors disabled:opacity-50"
-                                        title="削除"
+                                        title={t(locale, "grid.delete")}
                                     >
                                         <Trash2 className="w-4 h-4" />
                                     </button>

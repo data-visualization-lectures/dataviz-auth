@@ -1,0 +1,193 @@
+export type Locale = "ja" | "en";
+
+const dict = {
+  // ── account page ──
+  "account.title": { ja: "アカウント情報", en: "Account" },
+  "account.description": {
+    ja: "契約プランやプロフィールの管理を行えます。",
+    en: "Manage your subscription and profile.",
+  },
+  "account.userInfo": { ja: "ユーザー情報", en: "User Info" },
+  "account.createdAt": { ja: "アカウント作成日", en: "Account created" },
+  "account.currentPlan": { ja: "現在のプラン", en: "Current Plan" },
+  "account.defaultPlanName": {
+    ja: "dataviz.jp利用サブスク",
+    en: "dataviz.jp Subscription",
+  },
+  "account.freePlan": { ja: "フリープラン", en: "Free Plan" },
+  "account.statusActive": { ja: "有効", en: "Active" },
+  "account.statusTrialing": { ja: "トライアル中", en: "Trialing" },
+  "account.statusCanceled": {
+    ja: "解約済 (期限まで有効)",
+    en: "Canceled (valid until end)",
+  },
+  "account.statusExpired": { ja: "契約終了", en: "Expired" },
+  "account.statusNone": { ja: "未契約", en: "No subscription" },
+  "account.nextRenewal": { ja: "次回更新日", en: "Next renewal" },
+  "account.trialEnd": { ja: "トライアル終了日", en: "Trial ends" },
+  "account.validUntil": { ja: "有効期限", en: "Valid until" },
+  "account.yearly": { ja: "年", en: "year" },
+  "account.monthly": { ja: "月", en: "month" },
+  "account.loginInfo": { ja: "ログイン情報", en: "Login Info" },
+  "account.lastLogin": { ja: "最終ログイン", en: "Last login" },
+  "account.loginMethod": { ja: "ログイン方法", en: "Login method" },
+  "account.providerEmail": { ja: "メール / パスワード", en: "Email / Password" },
+  "account.providerUnknown": { ja: "不明", en: "Unknown" },
+  "account.providerSeparator": { ja: "、", en: ", " },
+  "account.projectInfo": { ja: "プロジェクト情報", en: "Project Info" },
+  "account.projectCount": { ja: "件", en: " projects" },
+  "account.contact": { ja: "お問い合わせ", en: "Contact" },
+  "account.contactLink": {
+    ja: "ご契約中のお問い合わせ",
+    en: "Subscriber contact",
+  },
+  "account.dateUnknown": { ja: "不明", en: "Unknown" },
+  "account.bannerFeature": { ja: "サービス紹介", en: "Service Overview" },
+  "account.bannerCatalogue": { ja: "チャートカタログ", en: "Chart Catalogue" },
+  "account.bannerVisualizing": { ja: "チャート解説", en: "Chart Explanations" },
+
+  // ── projects page ──
+  "projects.title": { ja: "保存プロジェクト一覧", en: "Saved Projects" },
+  "projects.description": {
+    ja: "【クローズド・テスト中】さまざまなツールから保存したプロジェクトへアクセスできます。",
+    en: "Access projects saved from various tools.",
+  },
+
+  // ── ManageSubscriptionButton ──
+  "manage.change": { ja: "契約内容の変更", en: "Manage Subscription" },
+  "manage.viewPlans": { ja: "料金プランを見る", en: "View Plans" },
+  "manage.errorResponse": { ja: "レスポンス異常", en: "Response error" },
+  "manage.errorFailed": { ja: "操作に失敗しました", en: "Operation failed" },
+
+  // ── DeleteAccountButton ──
+  "deleteAccount.confirm": {
+    ja: "この操作は取り消せません。アカウントに紐づくすべてのデータが削除されます。本当に削除しますか？",
+    en: "This action cannot be undone. All data associated with your account will be deleted. Are you sure?",
+  },
+  "deleteAccount.error": {
+    ja: "アカウント削除に失敗しました",
+    en: "Failed to delete account",
+  },
+  "deleteAccount.deleting": { ja: "削除中...", en: "Deleting..." },
+  "deleteAccount.button": { ja: "アカウントを削除", en: "Delete Account" },
+
+  // ── CancelAndRefundButton ──
+  "refund.confirm": {
+    ja: "解約して全額返金します。この操作は取り消せません。本当に実行しますか？",
+    en: "Cancel and receive a full refund. This action cannot be undone. Are you sure?",
+  },
+  "refund.success": {
+    ja: "解約・返金が完了しました",
+    en: "Cancellation and refund completed",
+  },
+  "refund.expired": {
+    ja: "返金期間（14日）を過ぎているか、既に返金済みです",
+    en: "Refund period (14 days) has passed or already refunded",
+  },
+  "refund.error": { ja: "返金処理に失敗しました", en: "Refund failed" },
+  "refund.processing": { ja: "処理中...", en: "Processing..." },
+  "refund.button": {
+    ja: "14日以内なら解約して返金する",
+    en: "Cancel & refund within 14 days",
+  },
+
+  // ── EditDisplayName ──
+  "displayName.label": { ja: "表示名", en: "Display name" },
+  "displayName.notSet": { ja: "未設定", en: "Not set" },
+  "displayName.placeholder": { ja: "表示名を入力", en: "Enter display name" },
+  "displayName.saveError": { ja: "保存に失敗しました", en: "Failed to save" },
+
+  // ── ChangePasswordButton ──
+  "password.rateLimited": {
+    ja: "メール送信の上限に達しました。しばらく時間をおいて再度お試しください。",
+    en: "Rate limit reached. Please try again later.",
+  },
+  "password.sendError": { ja: "送信に失敗しました", en: "Failed to send" },
+  "password.sent": {
+    ja: "パスワード変更メールを送信しました。メールをご確認ください。",
+    en: "Password reset email sent. Please check your inbox.",
+  },
+  "password.sending": { ja: "送信中...", en: "Sending..." },
+  "password.button": {
+    ja: "パスワードを変更する",
+    en: "Change password",
+  },
+
+  // ── ChangeEmailForm ──
+  "email.sameError": {
+    ja: "現在と異なるメールアドレスを入力してください",
+    en: "Please enter a different email address",
+  },
+  "email.rateLimited": {
+    ja: "メール送信の上限に達しました。しばらく時間をおいて再度お試しください。",
+    en: "Rate limit reached. Please try again later.",
+  },
+  "email.sent": {
+    ja: " に確認メールを送信しました。メール内のリンクをクリックして変更を完了してください。",
+    en: ". Confirmation email sent. Click the link in the email to complete the change.",
+  },
+  "email.button": {
+    ja: "メールアドレスを変更する",
+    en: "Change email address",
+  },
+  "email.placeholder": {
+    ja: "新しいメールアドレス",
+    en: "New email address",
+  },
+
+  // ── SavedProjectsGrid ──
+  "grid.empty": {
+    ja: "保存されたプロジェクトはありません",
+    en: "No saved projects",
+  },
+  "grid.allTools": { ja: "すべてのツール", en: "All Tools" },
+  "grid.noMatch": {
+    ja: "条件に一致するプロジェクトはありません",
+    en: "No matching projects",
+  },
+  "grid.updated": { ja: "更新", en: "Updated" },
+  "grid.open": { ja: "開く", en: "Open" },
+  "grid.delete": { ja: "削除", en: "Delete" },
+  "grid.confirmDelete": {
+    ja: "を削除してもよろしいですか？\nこの操作は取り消せません。",
+    en: "?\nThis action cannot be undone.",
+  },
+  "grid.deleted": {
+    ja: "プロジェクトを削除しました",
+    en: "Project deleted",
+  },
+  "grid.deleteError": { ja: "削除に失敗しました", en: "Failed to delete" },
+  "grid.error": { ja: "エラーが発生しました", en: "An error occurred" },
+} as const;
+
+export type TranslationKey = keyof typeof dict;
+
+export function t(locale: Locale, key: TranslationKey): string {
+  return dict[key][locale];
+}
+
+/** 日付フォーマット（ロケール対応） */
+export function formatDateLocale(
+  locale: Locale,
+  dateString?: string,
+  style: "long" | "short" = "long"
+): string {
+  if (!dateString) return t(locale, "account.dateUnknown");
+  const loc = locale === "ja" ? "ja-JP" : "en-US";
+  if (style === "short") {
+    return new Date(dateString).toLocaleDateString(loc, {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      timeZone: "Asia/Tokyo",
+    });
+  }
+  return new Date(dateString).toLocaleDateString(loc, {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "Asia/Tokyo",
+  });
+}

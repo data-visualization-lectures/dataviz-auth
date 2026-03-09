@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import type { Locale } from "@/lib/i18n";
+import { t } from "@/lib/i18n";
 
-export function ChangePasswordButton({ email }: { email: string }) {
+export function ChangePasswordButton({ email, locale }: { email: string; locale: Locale }) {
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -17,9 +19,9 @@ export function ChangePasswordButton({ email }: { email: string }) {
     });
     if (err) {
       if (err.message.includes("rate limit")) {
-        setError("メール送信の上限に達しました。しばらく時間をおいて再度お試しください。");
+        setError(t(locale, "password.rateLimited"));
       } else {
-        setError("送信に失敗しました");
+        setError(t(locale, "password.sendError"));
       }
     } else {
       setSent(true);
@@ -30,7 +32,7 @@ export function ChangePasswordButton({ email }: { email: string }) {
   if (sent) {
     return (
       <p className="text-sm text-green-600">
-        パスワード変更メールを送信しました。メールをご確認ください。
+        {t(locale, "password.sent")}
       </p>
     );
   }
@@ -43,7 +45,7 @@ export function ChangePasswordButton({ email }: { email: string }) {
         disabled={sending}
         className="text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground w-fit"
       >
-        {sending ? "送信中..." : "パスワードを変更する"}
+        {sending ? t(locale, "password.sending") : t(locale, "password.button")}
       </button>
       {error && <p className="text-xs text-red-500">{error}</p>}
     </div>

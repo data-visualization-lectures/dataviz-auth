@@ -9,12 +9,12 @@ export function Hero() {
         </p>
         <br /><br /><br />
         <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-          本サービスは現在、過去にご利用いただいたお客さま向けのクローズドテスト期間です。招待コードをお持ちの方のみご利用いただけます。フィードバックをもとに機能改善を行った後、一般公開を予定しています。
+          Excelよりも多様に、B.I.ツールよりも簡単に、小回りの利くデータ可視化（チャートやデータ地図、ネットワーク図）作成・データ加工ツールをたくさん用意しています。ブラウザですべて完結し、定額で使い放題で利用いただけます。
         </p>
       </div>
       <a href="https://www.dataviz.jp/"><img
         src="/hero-dataviz.png"
-        alt="データ可視化ツールで制作できるもののイメージ"
+        alt="本ツールで出来るチャートのイメージ"
         className="w-full max-w-5xl rounded-lg shadow-sm"
       /></a>
     </div>

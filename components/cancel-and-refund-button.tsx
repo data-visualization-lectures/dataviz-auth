@@ -4,25 +4,25 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cancelAndRefund } from "@/lib/apiClient";
 import { toast } from "sonner";
+import type { Locale } from "@/lib/i18n";
+import { t } from "@/lib/i18n";
 
-export function CancelAndRefundButton() {
+export function CancelAndRefundButton({ locale }: { locale: Locale }) {
     const [loading, setLoading] = useState(false);
 
     async function handleRefund() {
-        const confirmed = window.confirm(
-            "解約して全額返金します。この操作は取り消せません。本当に実行しますか？"
-        );
+        const confirmed = window.confirm(t(locale, "refund.confirm"));
         if (!confirmed) return;
 
         setLoading(true);
         try {
             await cancelAndRefund();
-            toast.success("解約・返金が完了しました");
+            toast.success(t(locale, "refund.success"));
             window.location.reload();
         } catch (e: any) {
             const message = e.message?.includes("403")
-                ? "返金期間（14日）を過ぎているか、既に返金済みです"
-                : `返金処理に失敗しました: ${e.message ?? e}`;
+                ? t(locale, "refund.expired")
+                : `${t(locale, "refund.error")}: ${e.message ?? e}`;
             toast.error(message);
             setLoading(false);
         }
@@ -36,7 +36,7 @@ export function CancelAndRefundButton() {
             disabled={loading}
             className="text-destructive border-destructive/30 hover:bg-destructive/10"
         >
-            {loading ? "処理中..." : "14日以内なら解約して返金する"}
+            {loading ? t(locale, "refund.processing") : t(locale, "refund.button")}
         </Button>
     );
 }

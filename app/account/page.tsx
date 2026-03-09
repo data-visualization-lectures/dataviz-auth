@@ -12,6 +12,7 @@ import { CancelAndRefundButton } from "@/components/cancel-and-refund-button";
 import { EditDisplayName } from "@/components/edit-display-name";
 import { ChangePasswordButton } from "@/components/change-password-button";
 import { ChangeEmailForm } from "@/components/change-email-form";
+import { getLocale, t, formatDateLocale } from "@/lib/i18n.server";
 
 export const dynamic = "force-dynamic";
 
@@ -24,6 +25,8 @@ export default async function AccountPage() {
   if (!user) {
     return redirect("/auth/login");
   }
+
+  const locale = await getLocale();
 
   // Fetch Subscription, Plans, Profile, and Project Counts
   const [
@@ -58,26 +61,14 @@ export default async function AccountPage() {
 
   const email = user.email || "";
 
-  // ログイン方法の表示名マッピング
   const providerLabels: Record<string, string> = {
-    email: "メール / パスワード",
+    email: t(locale, "account.providerEmail"),
     google: "Google",
   };
   const loginMethods = user.identities
     ?.map((i) => providerLabels[i.provider] ?? i.provider)
     .filter((v, idx, arr) => arr.indexOf(v) === idx)
-    .join("、") || "不明";
-
-  // Format Date
-  const formatDate = (dateString?: string) => {
-    if (!dateString) return "不明";
-    return new Date(dateString).toLocaleDateString("ja-JP", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      timeZone: "Asia/Tokyo"
-    });
-  };
+    .join(t(locale, "account.providerSeparator")) || t(locale, "account.providerUnknown");
 
   const isActive = subscription?.status === "active" || subscription?.status === "trialing";
   const isCanceled = subscription?.cancel_at_period_end;
@@ -86,17 +77,18 @@ export default async function AccountPage() {
   const planDisplayName = currentPlan?.name ?? null;
 
   const planName = isActive
-    ? (planDisplayName ?? "dataviz.jp利用サブスク")
-    : "フリープラン";
+    ? (planDisplayName ?? t(locale, "account.defaultPlanName"))
+    : t(locale, "account.freePlan");
 
   const planAmount = isActive && currentPlan?.amount
-    ? `${currentPlan.amount.toLocaleString()}円`
+    ? locale === "ja"
+      ? `${currentPlan.amount.toLocaleString()}円`
+      : `¥${currentPlan.amount.toLocaleString()}`
     : null;
 
   const hasEmailLogin = user.identities?.some((i) => i.provider === "email");
   const totalProjects = (projectCount ?? 0) + (orProjectCount ?? 0);
 
-  // 契約開始から14日以内かどうか
   const isWithinRefundPeriod = (() => {
     if (!subscription?.created_at) return false;
     const created = new Date(subscription.created_at);
@@ -105,22 +97,22 @@ export default async function AccountPage() {
     return diffDays <= 14;
   })();
 
-  let planStatus = "未契約";
+  let planStatus = t(locale, "account.statusNone");
   let statusColor = "bg-gray-100 text-gray-700 border-gray-200";
 
   if (isActive) {
     if (isCanceled) {
-      planStatus = "解約済 (期限まで有効)";
+      planStatus = t(locale, "account.statusCanceled");
       statusColor = "bg-amber-100 text-amber-700 border-amber-200";
     } else if (subscription?.status === "trialing") {
-      planStatus = "トライアル中";
+      planStatus = t(locale, "account.statusTrialing");
       statusColor = "bg-blue-100 text-blue-700 border-blue-200";
     } else {
-      planStatus = "有効";
+      planStatus = t(locale, "account.statusActive");
       statusColor = "bg-green-100 text-green-700 border-green-200";
     }
   } else if (subscription?.status === "canceled") {
-    planStatus = "契約終了";
+    planStatus = t(locale, "account.statusExpired");
     statusColor = "bg-red-100 text-red-700 border-red-200";
   }
 
@@ -132,22 +124,22 @@ export default async function AccountPage() {
 
         {/* Welcome Banner */}
         <div className="flex flex-col gap-2 mb-4">
-          <h2 className="text-3xl font-bold tracking-tight">アカウント情報</h2>
+          <h2 className="text-3xl font-bold tracking-tight">{t(locale, "account.title")}</h2>
           <p className="text-muted-foreground">
-            契約プランやプロフィールの管理を行えます。
+            {t(locale, "account.description")}
           </p>
         </div>
 
         {/* Banners */}
         <div className="grid grid-cols-3 gap-4">
           <a href="https://www.dataviz.jp/overview/" className="block overflow-hidden rounded-xl border bg-card shadow-sm transition-opacity hover:opacity-60">
-            <img src="/banners/banner_feature.jpg" alt="サービス紹介" className="w-full h-auto object-cover" />
+            <img src="/banners/banner_feature.jpg" alt={t(locale, "account.bannerFeature")} className="w-full h-auto object-cover" />
           </a>
           <a href="https://www.dataviz.jp/catalogue/" className="block overflow-hidden rounded-xl border bg-card shadow-sm transition-opacity hover:opacity-60">
-            <img src="/banners/banner_chart-catalogue.jpg" alt="チャートカタログ" className="w-full h-auto object-cover" />
+            <img src="/banners/banner_chart-catalogue.jpg" alt={t(locale, "account.bannerCatalogue")} className="w-full h-auto object-cover" />
           </a>
           <a href="https://visualizing.jp/" className="block overflow-hidden rounded-xl border bg-card shadow-sm transition-opacity hover:opacity-60">
-            <img src="/banners/banner_visualizing.jpg" alt="チャート解説" className="w-full h-auto object-cover" />
+            <img src="/banners/banner_visualizing.jpg" alt={t(locale, "account.bannerVisualizing")} className="w-full h-auto object-cover" />
           </a>
         </div>
 
@@ -157,17 +149,17 @@ export default async function AccountPage() {
           <Card>
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground">
-                ユーザー情報
+                {t(locale, "account.userInfo")}
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex flex-col gap-2">
                 <div className="text-xl font-bold">{email}</div>
-                <EditDisplayName userId={user.id} initialName={profile?.display_name ?? null} />
+                <EditDisplayName userId={user.id} initialName={profile?.display_name ?? null} locale={locale} />
                 <p className="text-sm text-muted-foreground">
-                  アカウント作成日: {formatDate(user.created_at)}
+                  {t(locale, "account.createdAt")}: {formatDateLocale(locale, user.created_at)}
                 </p>
-                <ChangeEmailForm currentEmail={email} />
+                <ChangeEmailForm currentEmail={email} locale={locale} />
               </div>
             </CardContent>
           </Card>
@@ -176,7 +168,7 @@ export default async function AccountPage() {
           <Card className="bg-gradient-to-br from-primary/5 to-secondary/5 border-primary/20">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground">
-                現在のプラン
+                {t(locale, "account.currentPlan")}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -190,27 +182,27 @@ export default async function AccountPage() {
                   </div>
                   {planAmount && (
                     <p className="text-base text-muted-foreground mt-1">
-                      {planAmount} / {subscription?.plan_id?.includes("yearly") ? "年" : "月"}
+                      {planAmount} / {subscription?.plan_id?.includes("yearly") ? t(locale, "account.yearly") : t(locale, "account.monthly")}
                     </p>
                   )}
                   {isActive && (
                     <p className="text-sm text-muted-foreground mt-1">
                       {subscription?.status === "trialing"
-                        ? "トライアル終了日"
+                        ? t(locale, "account.trialEnd")
                         : isCanceled
-                          ? "有効期限"
-                          : "次回更新日"
-                      }: {formatDate(subscription?.current_period_end)}
+                          ? t(locale, "account.validUntil")
+                          : t(locale, "account.nextRenewal")
+                      }: {formatDateLocale(locale, subscription?.current_period_end)}
                     </p>
                   )}
                 </div>
                 <div className="flex flex-col gap-2">
-                  <ManageSubscriptionButton isActive={isActive && subscription?.status !== "trialing"} />
+                  <ManageSubscriptionButton isActive={isActive && subscription?.status !== "trialing"} locale={locale} />
                   {subscription?.status === "active"
                     && subscription?.stripe_subscription_id
                     && !subscription?.refunded_at
                     && isWithinRefundPeriod && (
-                    <CancelAndRefundButton />
+                    <CancelAndRefundButton locale={locale} />
                   )}
                 </div>
               </div>
@@ -224,18 +216,18 @@ export default async function AccountPage() {
           <Card>
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground">
-                ログイン情報
+                {t(locale, "account.loginInfo")}
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex flex-col gap-2">
                 <p className="text-sm text-muted-foreground">
-                  最終ログイン: {formatDate(user.last_sign_in_at ?? undefined)}
+                  {t(locale, "account.lastLogin")}: {formatDateLocale(locale, user.last_sign_in_at ?? undefined)}
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  ログイン方法: {loginMethods}
+                  {t(locale, "account.loginMethod")}: {loginMethods}
                 </p>
-                {hasEmailLogin && <ChangePasswordButton email={email} />}
+                {hasEmailLogin && <ChangePasswordButton email={email} locale={locale} />}
               </div>
             </CardContent>
           </Card>
@@ -244,12 +236,12 @@ export default async function AccountPage() {
           <Card>
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground">
-                プロジェクト情報
+                {t(locale, "account.projectInfo")}
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-xl font-bold">
-                {totalProjects}件
+                {totalProjects}{t(locale, "account.projectCount")}
               </div>
             </CardContent>
           </Card>
@@ -260,17 +252,17 @@ export default async function AccountPage() {
           <Card>
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground">
-                お問い合わせ
+                {t(locale, "account.contact")}
               </CardTitle>
             </CardHeader>
             <CardContent>
               <a
-                href="https://forms.gle/UDquMjQ3ieqFH9s39"
+                href={locale === "en" ? "https://forms.gle/9fbiZKxsfCMmARwk7" : "https://forms.gle/UDquMjQ3ieqFH9s39"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground"
               >
-                ご契約中のお問い合わせ
+                {t(locale, "account.contactLink")}
               </a>
             </CardContent>
           </Card>
@@ -278,7 +270,7 @@ export default async function AccountPage() {
 
         {/* Delete Account */}
         <div className="flex justify-end">
-          <DeleteAccountButton />
+          <DeleteAccountButton locale={locale} />
         </div>
 
       </main>

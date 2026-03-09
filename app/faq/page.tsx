@@ -11,7 +11,7 @@ export default function FaqPage() {
                 <h1 className="text-3xl font-bold">よくある質問</h1>
 
                 <h2 className="text-xl font-bold">dataviz.jpとは何ですか？</h2>
-                <p>ExcelやB.I.ツールではカバーしきれない、小回りの聞くチャート作成・データ地図作成・データ加工ツールをたくさん用意しています。定額で使い放題で利用いただけます。</p>
+                <p>ExcelやB.I.ツールではカバーしきれない、小回りの利くチャート作成・データ地図作成・データ加工ツールをたくさん用意しています。定額で使い放題で利用いただけます。</p>
 
                 <h2 className="text-xl font-bold">今すぐ使えますか？</h2>
                 <p>現在はサービス構築とテスト中です。2026年2月ごろからサービス提供を開始します。</p>

@@ -5,13 +5,17 @@ import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Pencil, Check, X } from "lucide-react";
+import type { Locale } from "@/lib/i18n";
+import { t } from "@/lib/i18n";
 
 export function EditDisplayName({
   userId,
   initialName,
+  locale,
 }: {
   userId: string;
   initialName: string | null;
+  locale: Locale;
 }) {
   const [editing, setEditing] = useState(false);
   const [name, setName] = useState(initialName ?? "");
@@ -29,7 +33,7 @@ export function EditDisplayName({
       .eq("id", userId);
 
     if (err) {
-      setError("保存に失敗しました");
+      setError(t(locale, "displayName.saveError"));
     } else {
       setSaved(name);
       setEditing(false);
@@ -47,7 +51,7 @@ export function EditDisplayName({
     return (
       <div className="flex items-center gap-2">
         <span className="text-sm text-muted-foreground">
-          表示名: {saved || "未設定"}
+          {t(locale, "displayName.label")}: {saved || t(locale, "displayName.notSet")}
         </span>
         <button
           type="button"
@@ -66,7 +70,7 @@ export function EditDisplayName({
         <Input
           value={name}
           onChange={(e) => setName(e.target.value)}
-          placeholder="表示名を入力"
+          placeholder={t(locale, "displayName.placeholder")}
           className="h-8 w-48 text-sm"
           disabled={saving}
           autoFocus

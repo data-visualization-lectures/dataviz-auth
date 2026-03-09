@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { SavedProjectsGrid, type SavedProject } from "@/components/saved-projects-grid";
 import { hasEnvVars } from "@/lib/utils";
 import { createClient } from "@/lib/supabase/server";
+import { getLocale, t } from "@/lib/i18n.server";
 
 export default async function ProjectsPage({
   searchParams,
@@ -19,6 +20,8 @@ export default async function ProjectsPage({
   if (!user) {
     return redirect("/auth/login");
   }
+
+  const locale = await getLocale();
 
   let allProjects: SavedProject[] = [];
 
@@ -72,12 +75,12 @@ export default async function ProjectsPage({
       <main className="grid flex-1 items-start gap-4 p-4 md:gap-8 md:p-0 max-w-5xl mx-auto w-full">
         <div className="flex flex-col gap-8">
           <div className="flex flex-col gap-2">
-            <h2 className="text-3xl font-bold tracking-tight">保存プロジェクト一覧</h2>
+            <h2 className="text-3xl font-bold tracking-tight">{t(locale, "projects.title")}</h2>
             <p className="text-muted-foreground">
-              【クローズド・テスト中】さまざまなツールから保存したプロジェクトへアクセスできます。
+              {t(locale, "projects.description")}
             </p>
           </div>
-          <SavedProjectsGrid projects={allProjects} initialFilter={initialTool} />
+          <SavedProjectsGrid projects={allProjects} initialFilter={initialTool} locale={locale} />
         </div>
       </main>
 
