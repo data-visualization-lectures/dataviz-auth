@@ -49,8 +49,8 @@ const dict = {
   // ── projects page ──
   "projects.title": { ja: "保存プロジェクト一覧", en: "Saved Projects" },
   "projects.description": {
-    ja: "【クローズド・テスト中】さまざまなツールから保存したプロジェクトへアクセスできます。",
-    en: "Access projects saved from various tools.",
+    ja: "さまざまなツールから保存したプロジェクトの一覧です。ワンクリックでアクセスしたり、不要なものを削除できます。",
+    en: "A list of projects saved from various tools. Access them with one click or delete the ones you no longer need.",
   },
 
   // ── ManageSubscriptionButton ──
