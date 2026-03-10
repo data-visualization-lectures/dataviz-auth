@@ -30,7 +30,7 @@ export function ManageSubscriptionButton({ isActive, locale }: { isActive: boole
 
     return (
         <Button variant="default" asChild>
-            <a href="https://www.dataviz.jp/pricing/">{t(locale, "manage.viewPlans")}</a>
+            <a href={locale === "en" ? "https://www.dataviz.jp/en/pricing/" : "https://www.dataviz.jp/pricing/"}>{t(locale, "manage.viewPlans")}</a>
         </Button>
     );
 }
