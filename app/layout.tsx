@@ -4,20 +4,26 @@ import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { Header } from "@/components/header";
-
+import { getLocale } from "@/lib/i18n.server";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
   : "http://localhost:3000";
 
-export const metadata: Metadata = {
-  metadataBase: new URL(defaultUrl),
-  title: {
-    template: "%s | dataviz.jp",
-    default: "データ可視化ツール集 | dataviz.jp",
-  },
-  description: "The fastest way to build apps with Next.js and Supabase",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  const suffix = locale === "ja" ? "データの道具箱" : "Data Toolbox";
+  return {
+    metadataBase: new URL(defaultUrl),
+    title: {
+      template: `%s - ${suffix}`,
+      default: suffix,
+    },
+    description: locale === "ja"
+      ? "データ可視化のためのツール集"
+      : "A collection of data visualization tools",
+  };
+}
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

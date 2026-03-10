@@ -3,6 +3,11 @@ import { SavedProjectsGrid, type SavedProject } from "@/components/saved-project
 import { createClient } from "@/lib/supabase/server";
 import { getLocale, t } from "@/lib/i18n.server";
 
+export async function generateMetadata() {
+  const locale = await getLocale();
+  return { title: t(locale, "public.title") };
+}
+
 const PUBLIC_PROJECT_USER_ID = process.env.PUBLIC_PROJECT_USER_ID ?? "";
 
 export default async function PublicProjectsPage({

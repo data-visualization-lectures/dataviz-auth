@@ -4,6 +4,11 @@ import { hasEnvVars } from "@/lib/utils";
 import { createClient } from "@/lib/supabase/server";
 import { getLocale, t } from "@/lib/i18n.server";
 
+export async function generateMetadata() {
+  const locale = await getLocale();
+  return { title: t(locale, "projects.title") };
+}
+
 export default async function ProjectsPage({
   searchParams,
 }: {

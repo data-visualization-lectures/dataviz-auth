@@ -16,6 +16,11 @@ import { getLocale, t, formatDateLocale } from "@/lib/i18n.server";
 
 export const dynamic = "force-dynamic";
 
+export async function generateMetadata() {
+  const locale = await getLocale();
+  return { title: t(locale, "account.title") };
+}
+
 export default async function AccountPage() {
   const supabase = await createClient();
   const {
