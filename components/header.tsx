@@ -3,8 +3,10 @@ import { AuthButton } from "@/components/auth-button";
 import { hasEnvVars } from "@/lib/utils";
 import Link from "next/link";
 import { Suspense } from "react";
+import { getLocale, t } from "@/lib/i18n.server";
 
-export function Header() {
+export async function Header() {
+    const locale = await getLocale();
     return (
         <header className="w-full">
             <nav
@@ -13,7 +15,7 @@ export function Header() {
             >
                 <div className="w-full h-full flex justify-between items-center px-4">
                     <div className="flex items-center font-semibold">
-                        <Link href="https://www.dataviz.jp/" className="text-white tracking-[0.5px] font-bold no-underline">dataviz.jp</Link>
+                        <Link href="https://www.dataviz.jp/" className="text-white tracking-[0.5px] font-bold no-underline">{t(locale, "header.siteName")}</Link>
                     </div>
 
                     <div className="flex items-center gap-4">
@@ -34,13 +36,13 @@ export function Header() {
                         href="/projects"
                         className="inline-flex items-center rounded border border-[rgb(36,36,36)] bg-[rgb(32,32,32)] px-3 py-1 text-[13px] text-[#ddd] transition-colors hover:border-[rgb(44,44,44)] hover:bg-[rgb(48,48,48)] hover:text-white"
                     >
-                        保存プロジェクト一覧
+                        {t(locale, "header.navProjects")}
                     </Link>
                     <Link
                         href="/account"
                         className="inline-flex items-center rounded border border-[rgb(36,36,36)] bg-[rgb(32,32,32)] px-3 py-1 text-[13px] text-[#ddd] transition-colors hover:border-[rgb(44,44,44)] hover:bg-[rgb(48,48,48)] hover:text-white"
                     >
-                        アカウント情報
+                        {t(locale, "header.navAccount")}
                     </Link>
                 </div>
             </div>
