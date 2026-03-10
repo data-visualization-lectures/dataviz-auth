@@ -69,7 +69,7 @@ export default async function PublicProjectsPage({
               <p>{t(locale, "public.empty")}</p>
             </div>
           ) : (
-            <SavedProjectsGrid projects={allProjects} initialFilter={initialTool} locale={locale} readOnly />
+            <SavedProjectsGrid projects={allProjects} initialFilter={initialTool} locale={locale} readOnly={user.id !== PUBLIC_PROJECT_USER_ID} />
           )}
         </div>
       </main>
