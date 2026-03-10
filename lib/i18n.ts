@@ -311,10 +311,10 @@ const dict = {
   },
 
   // ── public projects page ──
-  "public.title": { ja: "サンプルプロジェクト", en: "Sample Projects" },
+  "public.title": { ja: "パブリック・プロジェクト", en: "Public Projects" },
   "public.description": {
-    ja: "各ツールのサンプルプロジェクトを試すことができます。「開く」で閲覧し、編集後「保存」すると自分のプロジェクトとして保存されます。",
-    en: "Try sample projects for each tool. Open to view, and save after editing to keep as your own project.",
+    ja: "各ツールのパブリック・プロジェクトを試すことができます。「開く」で閲覧し、編集後「保存」すると自分のプロジェクトとして保存されます。",
+    en: "Try public projects for each tool. Open to view, and save after editing to keep as your own project.",
   },
   "public.empty": {
     ja: "公開プロジェクトはまだありません",
