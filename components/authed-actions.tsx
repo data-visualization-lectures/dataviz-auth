@@ -1,12 +1,14 @@
 "use client";
 
 import { LogoutButton } from "./logout-button";
+import type { Locale } from "@/lib/i18n";
 
 type AuthedActionsProps = {
   email: string;
+  locale: Locale;
 };
 
-export function AuthedActions({ email }: AuthedActionsProps) {
+export function AuthedActions({ email, locale }: AuthedActionsProps) {
   return (
     <div className="flex items-center gap-3">
       <a
@@ -16,7 +18,7 @@ export function AuthedActions({ email }: AuthedActionsProps) {
         {email}
       </a>
       <div>
-        <LogoutButton />
+        <LogoutButton locale={locale} />
       </div>
     </div>
   );

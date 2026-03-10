@@ -15,11 +15,14 @@ import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import type { Locale } from "@/lib/i18n";
+import { t } from "@/lib/i18n";
 
 export function SignUpForm({
+  locale,
   className,
   ...props
-}: React.ComponentPropsWithoutRef<"div">) {
+}: React.ComponentPropsWithoutRef<"div"> & { locale: Locale }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
@@ -55,7 +58,7 @@ export function SignUpForm({
     setError(null);
 
     if (password !== repeatPassword) {
-      setError("パスワードが一致しません");
+      setError(t(locale, "signUp.passwordMismatch"));
       setIsLoading(false);
       return;
     }
@@ -82,7 +85,7 @@ export function SignUpForm({
 
       router.push("/auth/sign-up-success");
     } catch (error: unknown) {
-      setError(error instanceof Error ? error.message : "エラーが発生しました");
+      setError(error instanceof Error ? error.message : t(locale, "signUp.error"));
     } finally {
       setIsLoading(false);
     }
@@ -107,7 +110,7 @@ export function SignUpForm({
       });
       if (error) throw error;
     } catch (error: unknown) {
-      setError(error instanceof Error ? error.message : "エラーが発生しました");
+      setError(error instanceof Error ? error.message : t(locale, "signUp.error"));
       setIsLoading(false);
     }
   };
@@ -116,14 +119,14 @@ export function SignUpForm({
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
         <CardHeader>
-          <CardTitle className="text-2xl">新規登録</CardTitle>
-          <CardDescription>新しいアカウントを作成</CardDescription>
+          <CardTitle className="text-2xl">{t(locale, "signUp.title")}</CardTitle>
+          <CardDescription>{t(locale, "signUp.description")}</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSignUp}>
             <div className="flex flex-col gap-6">
               <div className="grid gap-2">
-                <Label htmlFor="email">メールアドレス</Label>
+                <Label htmlFor="email">{t(locale, "signUp.email")}</Label>
                 <Input
                   id="email"
                   type="email"
@@ -135,7 +138,7 @@ export function SignUpForm({
               </div>
               <div className="grid gap-2">
                 <div className="flex items-center">
-                  <Label htmlFor="password">パスワード</Label>
+                  <Label htmlFor="password">{t(locale, "signUp.password")}</Label>
                 </div>
                 <Input
                   id="password"
@@ -147,7 +150,7 @@ export function SignUpForm({
               </div>
               <div className="grid gap-2">
                 <div className="flex items-center">
-                  <Label htmlFor="repeat-password">パスワード（確認）</Label>
+                  <Label htmlFor="repeat-password">{t(locale, "signUp.confirmPassword")}</Label>
                 </div>
                 <Input
                   id="repeat-password"
@@ -159,11 +162,11 @@ export function SignUpForm({
               </div>
               {error && <p className="text-sm text-red-500">{error}</p>}
               <Button type="submit" className="w-full" disabled={isLoading}>
-                {isLoading ? "アカウント作成中..." : "登録する"}
+                {isLoading ? t(locale, "signUp.submitting") : t(locale, "signUp.submit")}
               </Button>
               <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
                 <span className="relative z-10 bg-background px-2 text-muted-foreground">
-                  または
+                  {t(locale, "signUp.or")}
                 </span>
               </div>
               <Button
@@ -188,16 +191,16 @@ export function SignUpForm({
                     d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"
                   ></path>
                 </svg>
-                Googleで登録
+                {t(locale, "signUp.google")}
               </Button>
             </div>
             <div className="mt-4 text-center text-sm">
-              すでにアカウントをお持ちですか？{" "}
+              {t(locale, "signUp.hasAccount")}{" "}
               <Link
                 href={`/auth/login${redirectQuery}`}
                 className="underline underline-offset-4"
               >
-                ログイン
+                {t(locale, "signUp.loginLink")}
               </Link>
             </div>
           </form>

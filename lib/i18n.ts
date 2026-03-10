@@ -164,6 +164,152 @@ const dict = {
   "grid.deleteError": { ja: "削除に失敗しました", en: "Failed to delete" },
   "grid.error": { ja: "エラーが発生しました", en: "An error occurred" },
 
+  // ── login form ──
+  "login.title": { ja: "ログイン", en: "Log in" },
+  "login.description": {
+    ja: "アカウントにログインするにはメールアドレスを入力してください",
+    en: "Enter your email to sign in to your account",
+  },
+  "login.email": { ja: "メールアドレス", en: "Email" },
+  "login.password": { ja: "パスワード", en: "Password" },
+  "login.forgotPassword": {
+    ja: "パスワードをお忘れですか？",
+    en: "Forgot your password?",
+  },
+  "login.submitting": { ja: "ログイン中...", en: "Logging in..." },
+  "login.submit": { ja: "ログイン", en: "Log in" },
+  "login.or": { ja: "または", en: "or" },
+  "login.google": { ja: "Googleでログイン", en: "Log in with Google" },
+  "login.noAccount": {
+    ja: "アカウントをお持ちでないですか？",
+    en: "Don't have an account?",
+  },
+  "login.signUpLink": { ja: "新規登録", en: "Sign up" },
+  "login.error": { ja: "エラーが発生しました", en: "An error occurred" },
+
+  // ── sign-up form ──
+  "signUp.title": { ja: "新規登録", en: "Sign up" },
+  "signUp.description": {
+    ja: "新しいアカウントを作成",
+    en: "Create a new account",
+  },
+  "signUp.email": { ja: "メールアドレス", en: "Email" },
+  "signUp.password": { ja: "パスワード", en: "Password" },
+  "signUp.confirmPassword": {
+    ja: "パスワード（確認）",
+    en: "Confirm password",
+  },
+  "signUp.submitting": {
+    ja: "アカウント作成中...",
+    en: "Creating account...",
+  },
+  "signUp.submit": { ja: "登録する", en: "Sign up" },
+  "signUp.or": { ja: "または", en: "or" },
+  "signUp.google": { ja: "Googleで登録", en: "Sign up with Google" },
+  "signUp.hasAccount": {
+    ja: "すでにアカウントをお持ちですか？",
+    en: "Already have an account?",
+  },
+  "signUp.loginLink": { ja: "ログイン", en: "Log in" },
+  "signUp.error": { ja: "エラーが発生しました", en: "An error occurred" },
+  "signUp.passwordMismatch": {
+    ja: "パスワードが一致しません",
+    en: "Passwords do not match",
+  },
+
+  // ── sign-up success ──
+  "signUp.successTitle": {
+    ja: "サインアップありがとうございます！",
+    en: "Thanks for signing up!",
+  },
+  "signUp.successCheck": {
+    ja: "メールを確認してください",
+    en: "Check your email",
+  },
+  "signUp.successBody": {
+    ja: "サインアップが完了しました。サインインする前に、メールを確認してアカウントを認証してください。",
+    en: "Sign-up complete. Please verify your account by clicking the link in your email before signing in.",
+  },
+
+  // ── forgot password ──
+  "forgotPassword.checkTitle": {
+    ja: "メールを確認してください",
+    en: "Check Your Email",
+  },
+  "forgotPassword.checkDesc": {
+    ja: "パスワードリセットの手順を送信しました",
+    en: "Password reset instructions sent",
+  },
+  "forgotPassword.checkBody": {
+    ja: "メールとパスワードで登録された方には、パスワードリセットメールが届きます。",
+    en: "If you registered using your email and password, you will receive a password reset email.",
+  },
+  "forgotPassword.title": {
+    ja: "パスワードをリセット",
+    en: "Reset Your Password",
+  },
+  "forgotPassword.description": {
+    ja: "メールアドレスを入力してください。リセットリンクを送信します。",
+    en: "Type in your email and we'll send you a link to reset your password",
+  },
+  "forgotPassword.email": { ja: "メールアドレス", en: "Email" },
+  "forgotPassword.submitting": { ja: "送信中...", en: "Sending..." },
+  "forgotPassword.submit": {
+    ja: "リセットメールを送信",
+    en: "Send reset email",
+  },
+  "forgotPassword.hasAccount": {
+    ja: "すでにアカウントをお持ちですか？",
+    en: "Already have an account?",
+  },
+  "forgotPassword.loginLink": { ja: "ログイン", en: "Login" },
+  "forgotPassword.error": {
+    ja: "エラーが発生しました",
+    en: "An error occurred",
+  },
+
+  // ── update password ──
+  "updatePassword.title": {
+    ja: "パスワードをリセット",
+    en: "Reset Your Password",
+  },
+  "updatePassword.description": {
+    ja: "新しいパスワードを入力してください。",
+    en: "Please enter your new password below.",
+  },
+  "updatePassword.label": { ja: "新しいパスワード", en: "New password" },
+  "updatePassword.submitting": { ja: "保存中...", en: "Saving..." },
+  "updatePassword.submit": {
+    ja: "新しいパスワードを保存",
+    en: "Save new password",
+  },
+  "updatePassword.error": {
+    ja: "エラーが発生しました",
+    en: "An error occurred",
+  },
+
+  // ── auth shared ──
+  "auth.logout": { ja: "ログアウト", en: "Log out" },
+  "auth.login": { ja: "ログイン", en: "Log in" },
+  "auth.signUp": { ja: "新規登録", en: "Sign up" },
+
+  // ── auth error pages ──
+  "authError.title": { ja: "認証エラー", en: "Authentication Error" },
+  "authError.body": {
+    ja: "ログイン情報の確認中にエラーが発生しました。再度ログインしてください。",
+    en: "There was an error verifying your login information. Please try logging in again.",
+  },
+  "authError.backToLogin": { ja: "ログインに戻る", en: "Back to Login" },
+  "authError.genericTitle": {
+    ja: "エラーが発生しました",
+    en: "Sorry, something went wrong.",
+  },
+  "authError.codeError": { ja: "エラーコード: ", en: "Code error: " },
+  "authError.unspecified": {
+    ja: "不明なエラーが発生しました。",
+    en: "An unspecified error occurred.",
+  },
+
   // ── public projects page ──
   "public.title": { ja: "サンプルプロジェクト", en: "Sample Projects" },
   "public.description": {

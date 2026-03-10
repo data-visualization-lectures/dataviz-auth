@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Suspense } from "react";
+import { getLocale, t } from "@/lib/i18n.server";
 
 async function ErrorContent({
   searchParams,
@@ -7,27 +8,29 @@ async function ErrorContent({
   searchParams: Promise<{ error: string }>;
 }) {
   const params = await searchParams;
+  const locale = await getLocale();
 
   return (
     <>
       {params?.error ? (
         <p className="text-sm text-muted-foreground">
-          Code error: {params.error}
+          {t(locale, "authError.codeError")}{params.error}
         </p>
       ) : (
         <p className="text-sm text-muted-foreground">
-          An unspecified error occurred.
+          {t(locale, "authError.unspecified")}
         </p>
       )}
     </>
   );
 }
 
-export default function Page({
+export default async function Page({
   searchParams,
 }: {
   searchParams: Promise<{ error: string }>;
 }) {
+  const locale = await getLocale();
   return (
     <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
       <div className="w-full max-w-sm">
@@ -35,7 +38,7 @@ export default function Page({
           <Card>
             <CardHeader>
               <CardTitle className="text-2xl">
-                Sorry, something went wrong.
+                {t(locale, "authError.genericTitle")}
               </CardTitle>
             </CardHeader>
             <CardContent>

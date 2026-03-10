@@ -1,15 +1,18 @@
-export default function AuthCodeError() {
+import { getLocale, t } from "@/lib/i18n.server";
+
+export default async function AuthCodeError() {
+    const locale = await getLocale();
     return (
         <div className="flex flex-col items-center justify-center min-h-screen text-center p-4">
-            <h1 className="text-2xl font-bold mb-4">Authentication Error</h1>
+            <h1 className="text-2xl font-bold mb-4">{t(locale, "authError.title")}</h1>
             <p className="mb-4">
-                There was an error verifying your login information. Please try logging in again.
+                {t(locale, "authError.body")}
             </p>
             <a
                 href="/auth/login"
                 className="text-blue-500 hover:text-blue-700 underline"
             >
-                Back to Login
+                {t(locale, "authError.backToLogin")}
             </a>
         </div>
     );

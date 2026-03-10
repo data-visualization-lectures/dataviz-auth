@@ -5,8 +5,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { getLocale, t } from "@/lib/i18n.server";
 
-export default function Page() {
+export default async function Page() {
+  const locale = await getLocale();
   return (
     <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
       <div className="w-full max-w-sm">
@@ -14,13 +16,13 @@ export default function Page() {
           <Card>
             <CardHeader>
               <CardTitle className="text-2xl">
-                サインアップありがとうございます！
+                {t(locale, "signUp.successTitle")}
               </CardTitle>
-              <CardDescription>メールを確認してください</CardDescription>
+              <CardDescription>{t(locale, "signUp.successCheck")}</CardDescription>
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground">
-                サインアップが完了しました。サインインする前に、メールを確認してアカウントを認証してください。
+                {t(locale, "signUp.successBody")}
               </p>
             </CardContent>
           </Card>
