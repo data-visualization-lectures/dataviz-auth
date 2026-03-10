@@ -6,9 +6,22 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { UserGrowthChart, SubscriptionGrowthChart } from "@/components/admin-charts";
+import {
+  UserGrowthChart,
+  SubscriptionGrowthChart,
+  PlanDistributionChart,
+  TrialBreakdownChart,
+} from "@/components/admin-charts";
 
 export const dynamic = "force-dynamic";
+
+// MRR月額換算テーブル
+const MRR_MONTHLY_AMOUNTS: Record<string, number> = {
+  pro_monthly: 2480,
+  pro_yearly: Math.round(24800 / 12),
+  coaching_monthly: 6980,
+  coaching_yearly: Math.round(69800 / 12),
+};
 
 export default async function AdminPage() {
   const supabase = await createClient();
@@ -37,44 +50,157 @@ export default async function AdminPage() {
     .select("id")
     .eq("is_admin", true);
   const adminIds = (adminProfiles ?? []).map((p) => p.id);
+  const adminFilter = `(${adminIds.join(",")})`;
+
+  // 今月の初日
+  const now = new Date();
+  const firstDayOfMonth = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-01T00:00:00.000Z`;
 
   // 統計データ取得
   const [
     { count: totalUsers },
     { count: activeSubscriptions },
-    { data: subscriptionsWithPlan },
+    { data: activeSubsWithPlan },
     { data: profileRows },
     { data: subscriptionRows },
+    { data: trialSubs },
+    { count: paidActiveCount },
+    { count: canceledThisMonth },
+    { count: refundedCount },
+    { count: projectCount },
+    { count: openrefineProjectCount },
+    { data: planDistributionRows },
   ] = await Promise.all([
+    // 総ユーザー数
     supabase
       .from("profiles")
       .select("*", { count: "exact", head: true })
       .neq("is_admin", true),
+    // 有効サブスク数
     supabase
       .from("subscriptions")
       .select("*", { count: "exact", head: true })
       .in("status", ["active", "trialing"])
-      .not("user_id", "in", `(${adminIds.join(",")})`),
+      .not("user_id", "in", adminFilter),
+    // MRR用: activeな有料サブスクとプランID
     supabase
       .from("subscriptions")
-      .select("plan_id, plans(amount)")
-      .not("user_id", "in", `(${adminIds.join(",")})`),
+      .select("plan_id")
+      .eq("status", "active")
+      .in("plan_id", ["pro_monthly", "pro_yearly", "coaching_monthly", "coaching_yearly"])
+      .not("user_id", "in", adminFilter),
+    // 月別ユーザー推移用
     supabase
       .from("profiles")
       .select("created_at")
       .neq("is_admin", true),
+    // 月別サブスク推移用
     supabase
       .from("subscriptions")
       .select("created_at")
-      .not("user_id", "in", `(${adminIds.join(",")})`),
+      .not("user_id", "in", adminFilter),
+    // トライアル関連（状態内訳用）
+    supabase
+      .from("subscriptions")
+      .select("status, plan_id, current_period_end")
+      .eq("plan_id", "trial")
+      .not("user_id", "in", adminFilter),
+    // 有料プランactive数（転換率の分子）
+    supabase
+      .from("subscriptions")
+      .select("*", { count: "exact", head: true })
+      .in("plan_id", ["pro_monthly", "pro_yearly", "coaching_monthly", "coaching_yearly"])
+      .eq("status", "active")
+      .not("user_id", "in", adminFilter),
+    // 今月の解約数
+    supabase
+      .from("subscriptions")
+      .select("*", { count: "exact", head: true })
+      .eq("status", "canceled")
+      .gte("updated_at", firstDayOfMonth)
+      .not("user_id", "in", adminFilter),
+    // 返金件数
+    supabase
+      .from("subscriptions")
+      .select("*", { count: "exact", head: true })
+      .not("refunded_at", "is", null)
+      .not("user_id", "in", adminFilter),
+    // プロジェクト総数
+    supabase
+      .from("projects")
+      .select("*", { count: "exact", head: true })
+      .not("user_id", "in", adminFilter),
+    // OpenRefineプロジェクト総数
+    supabase
+      .from("openrefine_projects")
+      .select("*", { count: "exact", head: true })
+      .not("user_id", "in", adminFilter),
+    // プラン別内訳（active + trialing）
+    supabase
+      .from("subscriptions")
+      .select("plan_id, plans(name)")
+      .in("status", ["active", "trialing"])
+      .not("user_id", "in", adminFilter),
   ]);
 
-  // 累計売上
-  const totalRevenue = (subscriptionsWithPlan ?? []).reduce((sum, sub) => {
-    const plans = sub.plans as unknown as { amount: number } | { amount: number }[] | null;
-    const plan = Array.isArray(plans) ? plans[0] : plans;
-    return sum + (plan?.amount ?? 0);
+  // MRR計算
+  const mrr = (activeSubsWithPlan ?? []).reduce((sum, sub) => {
+    return sum + (MRR_MONTHLY_AMOUNTS[sub.plan_id] ?? 0);
   }, 0);
+
+  // トライアル→有料転換率
+  const totalTrialEver = (trialSubs ?? []).length + (paidActiveCount ?? 0);
+  const conversionRate = totalTrialEver > 0
+    ? Math.round(((paidActiveCount ?? 0) / totalTrialEver) * 1000) / 10
+    : 0;
+
+  // トライアル状態内訳
+  const trialBreakdown = (() => {
+    const subs = trialSubs ?? [];
+    const now = Date.now();
+    const sevenDaysMs = 7 * 24 * 60 * 60 * 1000;
+    let active = 0;
+    let expiringSoon = 0;
+    let expired = 0;
+    for (const sub of subs) {
+      if (sub.status === "trialing") {
+        const end = new Date(sub.current_period_end).getTime();
+        if (end < now) {
+          expired++;
+        } else if (end - now < sevenDaysMs) {
+          expiringSoon++;
+        } else {
+          active++;
+        }
+      } else if (sub.status === "canceled") {
+        expired++;
+      }
+    }
+    return [
+      { label: "トライアル中", value: active },
+      { label: "7日以内に期限切れ", value: expiringSoon },
+      { label: "期限切れ", value: expired },
+      { label: "有料転換済", value: paidActiveCount ?? 0 },
+    ];
+  })();
+
+  // プラン別内訳集計
+  const planDistribution = (() => {
+    const counts: Record<string, { name: string; count: number }> = {};
+    for (const row of planDistributionRows ?? []) {
+      const plans = row.plans as unknown as { name: string } | { name: string }[] | null;
+      const plan = Array.isArray(plans) ? plans[0] : plans;
+      const name = plan?.name ?? row.plan_id;
+      if (!counts[row.plan_id]) {
+        counts[row.plan_id] = { name, count: 0 };
+      }
+      counts[row.plan_id].count++;
+    }
+    return Object.values(counts).sort((a, b) => b.count - a.count);
+  })();
+
+  // プロジェクト合計
+  const totalProjects = (projectCount ?? 0) + (openrefineProjectCount ?? 0);
 
   // 月別集計ヘルパー
   function aggregateByMonth(rows: { created_at: string }[] | null) {
@@ -103,7 +229,7 @@ export default async function AdminPage() {
           </p>
         </div>
 
-        {/* 統計カード */}
+        {/* 主要指標カード */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <Card>
             <CardHeader className="pb-2">
@@ -130,12 +256,72 @@ export default async function AdminPage() {
           <Card>
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground">
-                累計売上
+                MRR（月間定期収益）
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-3xl font-bold">
-                {totalRevenue.toLocaleString()}円
+                {mrr.toLocaleString()}円
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* 補助指標カード */}
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground">
+                トライアル→有料転換率
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{conversionRate}%</div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground">
+                解約数（今月）
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{canceledThisMonth ?? 0}</div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground">
+                返金件数
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{refundedCount ?? 0}</div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground">
+                プロジェクト総数
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{totalProjects}</div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground">
+                トライアル中
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">
+                {trialBreakdown[0].value + trialBreakdown[1].value}
               </div>
             </CardContent>
           </Card>
@@ -162,6 +348,31 @@ export default async function AdminPage() {
             </CardHeader>
             <CardContent>
               <SubscriptionGrowthChart data={subscriptionGrowth} />
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* 内訳チャート */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground">
+                プラン別内訳
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <PlanDistributionChart data={planDistribution} />
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground">
+                トライアル状態内訳
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <TrialBreakdownChart data={trialBreakdown} />
             </CardContent>
           </Card>
         </div>

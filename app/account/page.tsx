@@ -43,7 +43,7 @@ export default async function AccountPage() {
       .maybeSingle(),
     supabase
       .from("plans")
-      .select("id, name, amount"),
+      .select("id, name, name_en, amount"),
     supabase
       .from("profiles")
       .select("display_name")
@@ -74,7 +74,9 @@ export default async function AccountPage() {
   const isCanceled = subscription?.cancel_at_period_end;
 
   const currentPlan = plans?.find((p) => p.id === subscription?.plan_id);
-  const planDisplayName = currentPlan?.name ?? null;
+  const planDisplayName = currentPlan
+    ? (locale === "en" && currentPlan.name_en ? currentPlan.name_en : currentPlan.name)
+    : null;
 
   const planName = isActive
     ? (planDisplayName ?? t(locale, "account.defaultPlanName"))

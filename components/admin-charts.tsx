@@ -4,11 +4,14 @@ import {
   ResponsiveContainer,
   LineChart,
   Line,
+  BarChart,
+  Bar,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
   Legend,
+  Cell,
 } from "recharts";
 
 type MonthlyData = {
@@ -56,6 +59,63 @@ export function SubscriptionGrowthChart({ data }: { data: MonthlyData[] }) {
           dot={{ r: 3 }}
         />
       </LineChart>
+    </ResponsiveContainer>
+  );
+}
+
+type PlanData = {
+  name: string;
+  count: number;
+};
+
+const PLAN_COLORS = ["#2563eb", "#7c3aed", "#dc2626", "#ea580c", "#16a34a", "#0891b2"];
+
+export function PlanDistributionChart({ data }: { data: PlanData[] }) {
+  if (data.length === 0) {
+    return <p className="text-sm text-muted-foreground py-8 text-center">データなし</p>;
+  }
+  return (
+    <ResponsiveContainer width="100%" height={Math.max(200, data.length * 50)}>
+      <BarChart data={data} layout="vertical" margin={{ left: 20 }}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis type="number" fontSize={12} allowDecimals={false} />
+        <YAxis type="category" dataKey="name" fontSize={12} width={160} />
+        <Tooltip />
+        <Bar dataKey="count" name="件数">
+          {data.map((_, i) => (
+            <Cell key={i} fill={PLAN_COLORS[i % PLAN_COLORS.length]} />
+          ))}
+        </Bar>
+      </BarChart>
+    </ResponsiveContainer>
+  );
+}
+
+type TrialData = {
+  label: string;
+  value: number;
+};
+
+const TRIAL_COLORS = ["#16a34a", "#eab308", "#dc2626", "#2563eb"];
+
+export function TrialBreakdownChart({ data }: { data: TrialData[] }) {
+  const hasData = data.some((d) => d.value > 0);
+  if (!hasData) {
+    return <p className="text-sm text-muted-foreground py-8 text-center">データなし</p>;
+  }
+  return (
+    <ResponsiveContainer width="100%" height={250}>
+      <BarChart data={data} layout="vertical" margin={{ left: 20 }}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis type="number" fontSize={12} allowDecimals={false} />
+        <YAxis type="category" dataKey="label" fontSize={12} width={140} />
+        <Tooltip />
+        <Bar dataKey="value" name="件数">
+          {data.map((_, i) => (
+            <Cell key={i} fill={TRIAL_COLORS[i % TRIAL_COLORS.length]} />
+          ))}
+        </Bar>
+      </BarChart>
     </ResponsiveContainer>
   );
 }
