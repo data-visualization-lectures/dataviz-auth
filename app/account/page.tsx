@@ -137,19 +137,6 @@ export default async function AccountPage() {
           </p>
         </div>
 
-        {/* Banners */}
-        <div className="grid grid-cols-3 gap-4">
-          <a href={locale === "en" ? "https://www.dataviz.jp/en/overview/" : "https://www.dataviz.jp/overview/"} className="block overflow-hidden rounded-xl border bg-card shadow-sm transition-opacity hover:opacity-60">
-            <img src="/banners/banner_feature.jpg" alt={t(locale, "account.bannerFeature")} className="w-full h-auto object-cover" />
-          </a>
-          <a href={locale === "en" ? "https://www.dataviz.jp/en/catalogue/" : "https://www.dataviz.jp/catalogue/"} className="block overflow-hidden rounded-xl border bg-card shadow-sm transition-opacity hover:opacity-60">
-            <img src="/banners/banner_chart-catalogue.jpg" alt={t(locale, "account.bannerCatalogue")} className="w-full h-auto object-cover" />
-          </a>
-          <a href="https://visualizing.jp/" className="block overflow-hidden rounded-xl border bg-card shadow-sm transition-opacity hover:opacity-60">
-            <img src="/banners/banner_visualizing.jpg" alt={t(locale, "account.bannerVisualizing")} className="w-full h-auto object-cover" />
-          </a>
-        </div>
-
         {/* Top 2-column: User Info + Subscription */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
           {/* User Info */}
