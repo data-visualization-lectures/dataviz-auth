@@ -1,6 +1,23 @@
 // Imports removed for browser usage
 
 
+// ── i18n (ブラウザ言語で日英切替) ──
+const _dvLocale = (() => {
+  const lang = (navigator.language || navigator.userLanguage || 'ja').toLowerCase();
+  return lang.startsWith('ja') ? 'ja' : 'en';
+})();
+const _dvI18n = {
+  brand:         { ja: 'データの道具箱', en: 'Data Toolbox' },
+  brandTitle:    { ja: 'データの道具箱トップへ', en: 'Go to Data Toolbox' },
+  loading:       { ja: '読み込み中...', en: 'Loading...' },
+  logOut:        { ja: 'ログアウト', en: 'Log out' },
+  logIn:         { ja: 'ログイン', en: 'Log in' },
+  notLoggedIn:   { ja: '未ログイン', en: 'Not logged in' },
+  confirmLogout: { ja: 'ログアウトしますか？', en: 'Log out?' },
+};
+function _dvT(key) { return (_dvI18n[key] && _dvI18n[key][_dvLocale]) || key; }
+
+
 // ---- 設定 ----
 const SUPABASE_URL = "https://vebhoeiltxspsurqoxvl.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZlYmhvZWlsdHhzcHN1cnFveHZsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzAyMjI2MTIsImV4cCI6MjA0NTc5ODYxMn0.sV-Xf6wP_m46D_q-XN0oZfK9NogDqD9xV5sS-n6J8c4"; // 公開OKなAnon Key
@@ -300,7 +317,7 @@ class DatavizGlobalHeader extends HTMLElement {
     let rightContent = '';
 
     if (isLoading) {
-      rightContent = `<span class="dv-loading">Loading...</span>`;
+      rightContent = `<span class="dv-loading">${_dvT('loading')}</span>`;
     } else if (error) {
       rightContent = `<span class="dv-loading">${error}</span>`;
     } else if (user) {
@@ -309,12 +326,12 @@ class DatavizGlobalHeader extends HTMLElement {
         <div class="dv-user-info">
           <a href="${accountUrl}" class="dv-user-email" title="${email}">${email}</a>
         </div>
-        <button class="dv-btn" id="dv-logout-btn">Log out</button>
+        <button class="dv-btn" id="dv-logout-btn">${_dvT('logOut')}</button>
       `;
     } else {
       rightContent = `
-        <span style="font-size:12px; color:#888;">Not logged in</span>
-        <a href="${loginUrl}" class="dv-btn dv-btn-primary">Log in</a>
+        <span style="font-size:12px; color:#888;">${_dvT('notLoggedIn')}</span>
+        <a href="${loginUrl}" class="dv-btn dv-btn-primary">${_dvT('logIn')}</a>
       `;
     }
 
@@ -322,7 +339,7 @@ class DatavizGlobalHeader extends HTMLElement {
       <style>${this.getStyles()}</style>
       <div class="dv-header">
         <div class="dv-left">
-          <a href="https://www.dataviz.jp/" class="dv-brand" title="データの道具箱トップへ">データの道具箱</a>
+          <a href="https://www.dataviz.jp/" class="dv-brand" title="${_dvT('brandTitle')}">${_dvT('brand')}</a>
         </div>
         <div class="dv-right">
           ${rightContent}
@@ -334,7 +351,7 @@ class DatavizGlobalHeader extends HTMLElement {
     const logoutBtn = this.shadowRoot.getElementById('dv-logout-btn');
     if (logoutBtn) {
       logoutBtn.addEventListener('click', async () => {
-        if (confirm('ログアウトしますか？')) {
+        if (confirm(_dvT('confirmLogout'))) {
           await supabase.auth.signOut();
           clearCachedProfile();
           window.location.reload();
