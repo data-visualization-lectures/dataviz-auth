@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import {
   Card,
   CardContent,
@@ -52,16 +53,31 @@ export default async function AdminPage() {
   const adminIds = (adminProfiles ?? []).map((p) => p.id);
   const adminFilter = `(${adminIds.join(",")})`;
 
+  // auth.users から全ユーザー取得（ページネーション対応）
+  const adminClient = createAdminClient();
+  const allAuthUsers: { id: string; created_at: string }[] = [];
+  let page = 1;
+  const perPage = 1000;
+  while (true) {
+    const { data: { users } } = await adminClient.auth.admin.listUsers({ page, perPage });
+    allAuthUsers.push(...users.map((u) => ({ id: u.id, created_at: u.created_at })));
+    if (users.length < perPage) break;
+    page++;
+  }
+
+  // auth.users ベースの統計（管理者除外）
+  const nonAdminUsers = allAuthUsers.filter((u) => !adminIds.includes(u.id));
+  const totalUsers = nonAdminUsers.length;
+  const profileRows = nonAdminUsers.map((u) => ({ created_at: u.created_at }));
+
   // 今月の初日
   const now = new Date();
   const firstDayOfMonth = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-01T00:00:00.000Z`;
 
   // 統計データ取得
   const [
-    { count: totalUsers },
     { count: activeSubscriptions },
     { data: activeSubsWithPlan },
-    { data: profileRows },
     { data: subscriptionRows },
     { data: trialSubs },
     { count: paidActiveCount },
@@ -71,11 +87,6 @@ export default async function AdminPage() {
     { count: openrefineProjectCount },
     { data: planDistributionRows },
   ] = await Promise.all([
-    // 総ユーザー数
-    supabase
-      .from("profiles")
-      .select("*", { count: "exact", head: true })
-      .neq("is_admin", true),
     // 有効サブスク数
     supabase
       .from("subscriptions")
@@ -89,11 +100,6 @@ export default async function AdminPage() {
       .eq("status", "active")
       .in("plan_id", ["pro_monthly", "pro_yearly", "coaching_monthly", "coaching_yearly"])
       .not("user_id", "in", adminFilter),
-    // 月別ユーザー推移用
-    supabase
-      .from("profiles")
-      .select("created_at")
-      .neq("is_admin", true),
     // 月別サブスク推移用
     supabase
       .from("subscriptions")
@@ -238,7 +244,7 @@ export default async function AdminPage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold">{totalUsers ?? 0}</div>
+              <div className="text-3xl font-bold">{totalUsers}</div>
             </CardContent>
           </Card>
 
