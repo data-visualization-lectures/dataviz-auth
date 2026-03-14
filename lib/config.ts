@@ -16,7 +16,8 @@ export const APP_CONFIG = {
         "https://vega-editor.dataviz.jp",
         "https://word-cloud.dataviz.jp",
         "https://cytoscape.dataviz.jp",
-        "https://open-refine.dataviz.jp"
+        "https://open-refine.dataviz.jp",
+        "https://parallel-coordinates.dataviz.jp/"
     ],
     TOOL_URLS: {
         "rawgraphs": "https://rawgraphs.dataviz.jp",
@@ -33,6 +34,7 @@ export const APP_CONFIG = {
         "vega-editor": "https://vega-editor.dataviz.jp",
         "word-cloud": "https://word-cloud.dataviz.jp",
         "cytoscape": "https://cytoscape.dataviz.jp",
-        "openrefine": "https://open-refine.dataviz.jp"
+        "openrefine": "https://open-refine.dataviz.jp",
+        "parallel-coordinates": "https://parallel-coordinates.dataviz.jp/"
     }
 } as const;
