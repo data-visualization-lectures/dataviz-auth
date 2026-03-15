@@ -433,8 +433,7 @@ async function verifyUserAccess(session) {
         // 「キャンセル済みだが期間内」は cancel_at_period_end で判断
         const isCanceledButValid = sub.cancel_at_period_end;
 
-        const isAdmin = profile.profile && profile.profile.is_admin;
-        const isActive = isAdmin || status === "active" || status === "trialing" || isCanceledButValid;
+        const isActive = status === "active" || status === "trialing" || isCanceledButValid;
 
         if (!isActive) {
           // 公開モードなら期限切れでもスルー（ただしログインユーザーとしては扱うか、あるいはnullにするか）

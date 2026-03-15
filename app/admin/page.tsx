@@ -77,7 +77,7 @@ export default async function AdminPage() {
 
   // 統計データ取得
   const [
-    { count: activeSubscriptions },
+    { count: paidSubscriptions },
     { data: activeSubsWithPlan },
     { data: subscriptionRows },
     { data: trialSubs },
@@ -88,12 +88,13 @@ export default async function AdminPage() {
     { count: openrefineProjectCount },
     { data: planDistributionRows },
   ] = await Promise.all([
-    // 有効サブスク数（期限切れ除外）
+    // 有料サブスク数（active のみ、管理者・期限切れ除外）
     adminDb
       .from("subscriptions")
       .select("*", { count: "exact", head: true })
-      .in("status", ["active", "trialing"])
+      .eq("status", "active")
       .not("user_id", "in", adminFilter)
+      .neq("plan_id", "admin")
       .gte("current_period_end", nowIso),
     // MRR用: activeな有料サブスクとプランID（期限切れ除外）
     adminDb
@@ -256,11 +257,11 @@ export default async function AdminPage() {
           <Card>
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground">
-                有効サブスクリプション数
+                有料サブスクリプション数
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold">{activeSubscriptions ?? 0}</div>
+              <div className="text-3xl font-bold">{paidSubscriptions ?? 0}</div>
             </CardContent>
           </Card>
 
