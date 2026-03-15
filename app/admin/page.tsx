@@ -72,6 +72,7 @@ export default async function AdminPage() {
 
   // 今月の初日
   const now = new Date();
+  const nowIso = now.toISOString();
   const firstDayOfMonth = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-01T00:00:00.000Z`;
 
   // 統計データ取得
@@ -87,19 +88,21 @@ export default async function AdminPage() {
     { count: openrefineProjectCount },
     { data: planDistributionRows },
   ] = await Promise.all([
-    // 有効サブスク数
+    // 有効サブスク数（期限切れ除外）
     adminDb
       .from("subscriptions")
       .select("*", { count: "exact", head: true })
       .in("status", ["active", "trialing"])
-      .not("user_id", "in", adminFilter),
-    // MRR用: activeな有料サブスクとプランID
+      .not("user_id", "in", adminFilter)
+      .gte("current_period_end", nowIso),
+    // MRR用: activeな有料サブスクとプランID（期限切れ除外）
     adminDb
       .from("subscriptions")
       .select("plan_id")
       .eq("status", "active")
       .in("plan_id", ["pro_monthly", "pro_yearly", "coaching_monthly", "coaching_yearly"])
-      .not("user_id", "in", adminFilter),
+      .not("user_id", "in", adminFilter)
+      .gte("current_period_end", nowIso),
     // 月別サブスク推移用
     adminDb
       .from("subscriptions")
@@ -111,13 +114,14 @@ export default async function AdminPage() {
       .select("status, plan_id, current_period_end")
       .eq("plan_id", "trial")
       .not("user_id", "in", adminFilter),
-    // 有料プランactive数（転換率の分子）
+    // 有料プランactive数（転換率の分子、期限切れ除外）
     adminDb
       .from("subscriptions")
       .select("*", { count: "exact", head: true })
       .in("plan_id", ["pro_monthly", "pro_yearly", "coaching_monthly", "coaching_yearly"])
       .eq("status", "active")
-      .not("user_id", "in", adminFilter),
+      .not("user_id", "in", adminFilter)
+      .gte("current_period_end", nowIso),
     // 今月の解約数
     adminDb
       .from("subscriptions")
@@ -141,12 +145,13 @@ export default async function AdminPage() {
       .from("openrefine_projects")
       .select("*", { count: "exact", head: true })
       .not("user_id", "in", adminFilter),
-    // プラン別内訳（active + trialing）
+    // プラン別内訳（active + trialing、期限切れ除外）
     adminDb
       .from("subscriptions")
       .select("plan_id, plans(name)")
       .in("status", ["active", "trialing"])
-      .not("user_id", "in", adminFilter),
+      .not("user_id", "in", adminFilter)
+      .gte("current_period_end", nowIso),
   ]);
 
   // MRR計算
