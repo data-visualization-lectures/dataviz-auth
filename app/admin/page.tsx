@@ -45,21 +45,21 @@ export default async function AdminPage() {
     return redirect("/account");
   }
 
+  // Service Role クライアント（RLSバイパス：統計クエリ + auth.users 取得用）
+  const adminDb = createAdminClient();
+
   // 管理者ユーザーIDを取得（統計から除外用）
-  const { data: adminProfiles } = await supabase
+  const { data: adminProfiles } = await adminDb
     .from("profiles")
     .select("id")
     .eq("is_admin", true);
   const adminIds = (adminProfiles ?? []).map((p) => p.id);
   const adminFilter = `(${adminIds.join(",")})`;
-
-  // auth.users から全ユーザー取得（ページネーション対応）
-  const adminClient = createAdminClient();
   const allAuthUsers: { id: string; created_at: string }[] = [];
   let page = 1;
   const perPage = 1000;
   while (true) {
-    const { data: { users } } = await adminClient.auth.admin.listUsers({ page, perPage });
+    const { data: { users } } = await adminDb.auth.admin.listUsers({ page, perPage });
     allAuthUsers.push(...users.map((u) => ({ id: u.id, created_at: u.created_at })));
     if (users.length < perPage) break;
     page++;
@@ -88,61 +88,61 @@ export default async function AdminPage() {
     { data: planDistributionRows },
   ] = await Promise.all([
     // 有効サブスク数
-    supabase
+    adminDb
       .from("subscriptions")
       .select("*", { count: "exact", head: true })
       .in("status", ["active", "trialing"])
       .not("user_id", "in", adminFilter),
     // MRR用: activeな有料サブスクとプランID
-    supabase
+    adminDb
       .from("subscriptions")
       .select("plan_id")
       .eq("status", "active")
       .in("plan_id", ["pro_monthly", "pro_yearly", "coaching_monthly", "coaching_yearly"])
       .not("user_id", "in", adminFilter),
     // 月別サブスク推移用
-    supabase
+    adminDb
       .from("subscriptions")
       .select("created_at")
       .not("user_id", "in", adminFilter),
     // トライアル関連（状態内訳用）
-    supabase
+    adminDb
       .from("subscriptions")
       .select("status, plan_id, current_period_end")
       .eq("plan_id", "trial")
       .not("user_id", "in", adminFilter),
     // 有料プランactive数（転換率の分子）
-    supabase
+    adminDb
       .from("subscriptions")
       .select("*", { count: "exact", head: true })
       .in("plan_id", ["pro_monthly", "pro_yearly", "coaching_monthly", "coaching_yearly"])
       .eq("status", "active")
       .not("user_id", "in", adminFilter),
     // 今月の解約数
-    supabase
+    adminDb
       .from("subscriptions")
       .select("*", { count: "exact", head: true })
       .eq("status", "canceled")
       .gte("updated_at", firstDayOfMonth)
       .not("user_id", "in", adminFilter),
     // 返金件数
-    supabase
+    adminDb
       .from("subscriptions")
       .select("*", { count: "exact", head: true })
       .not("refunded_at", "is", null)
       .not("user_id", "in", adminFilter),
     // プロジェクト総数
-    supabase
+    adminDb
       .from("projects")
       .select("*", { count: "exact", head: true })
       .not("user_id", "in", adminFilter),
     // OpenRefineプロジェクト総数
-    supabase
+    adminDb
       .from("openrefine_projects")
       .select("*", { count: "exact", head: true })
       .not("user_id", "in", adminFilter),
     // プラン別内訳（active + trialing）
-    supabase
+    adminDb
       .from("subscriptions")
       .select("plan_id, plans(name)")
       .in("status", ["active", "trialing"])
