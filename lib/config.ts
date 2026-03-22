@@ -18,7 +18,8 @@ export const APP_CONFIG = {
         "https://cytoscape.dataviz.jp",
         "https://open-refine.dataviz.jp",
         "https://parallel-coordinates.dataviz.jp",
-        "https://drawing-line-chart.dataviz.jp"
+        "https://drawing-line-chart.dataviz.jp",
+        "https://3d-surface-chart.dataviz.jp"
     ],
     TOOL_URLS: {
         "rawgraphs": "https://rawgraphs.dataviz.jp",
@@ -37,6 +38,7 @@ export const APP_CONFIG = {
         "cytoscape": "https://cytoscape.dataviz.jp",
         "openrefine": "https://open-refine.dataviz.jp",
         "parallel-coordinates": "https://parallel-coordinates.dataviz.jp",
-        "drawing-line-chart": "https://drawing-line-chart.dataviz.jp"
+        "drawing-line-chart": "https://drawing-line-chart.dataviz.jp",
+        "3d-surface-chart": "https://3d-surface-chart.dataviz.jp"
     }
 } as const;
