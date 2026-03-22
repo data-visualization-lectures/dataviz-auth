@@ -17,7 +17,8 @@ export const APP_CONFIG = {
         "https://word-cloud.dataviz.jp",
         "https://cytoscape.dataviz.jp",
         "https://open-refine.dataviz.jp",
-        "https://parallel-coordinates.dataviz.jp/"
+        "https://parallel-coordinates.dataviz.jp",
+        "https://drawing-line-chart.dataviz.jp"
     ],
     TOOL_URLS: {
         "rawgraphs": "https://rawgraphs.dataviz.jp",
@@ -35,6 +36,7 @@ export const APP_CONFIG = {
         "word-cloud": "https://word-cloud.dataviz.jp",
         "cytoscape": "https://cytoscape.dataviz.jp",
         "openrefine": "https://open-refine.dataviz.jp",
-        "parallel-coordinates": "https://parallel-coordinates.dataviz.jp/"
+        "parallel-coordinates": "https://parallel-coordinates.dataviz.jp",
+        "drawing-line-chart": "https://drawing-line-chart.dataviz.jp"
     }
 } as const;
