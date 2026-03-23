@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/card";
 import { ManageSubscriptionButton } from "@/components/manage-subscription-button";
 import { DeleteAccountButton } from "@/components/delete-account-button";
-import { CancelAndRefundButton } from "@/components/cancel-and-refund-button";
+
 import { EditDisplayName } from "@/components/edit-display-name";
 import { ChangePasswordButton } from "@/components/change-password-button";
 import { ChangeEmailForm } from "@/components/change-email-form";
@@ -95,14 +95,6 @@ export default async function AccountPage() {
 
   const hasEmailLogin = user.identities?.some((i) => i.provider === "email");
   const totalProjects = (projectCount ?? 0) + (orProjectCount ?? 0);
-
-  const isWithinRefundPeriod = (() => {
-    if (!subscription?.created_at) return false;
-    const created = new Date(subscription.created_at);
-    const now = new Date();
-    const diffDays = (now.getTime() - created.getTime()) / (1000 * 60 * 60 * 24);
-    return diffDays <= 14;
-  })();
 
   let planStatus = t(locale, "account.statusNone");
   let statusColor = "bg-gray-100 text-gray-700 border-gray-200";
@@ -192,12 +184,6 @@ export default async function AccountPage() {
                 </div>
                 <div className="flex flex-col gap-2">
                   <ManageSubscriptionButton isActive={isActive && subscription?.status !== "trialing"} locale={locale} />
-                  {subscription?.status === "active"
-                    && subscription?.stripe_subscription_id
-                    && !subscription?.refunded_at
-                    && isWithinRefundPeriod && (
-                    <CancelAndRefundButton locale={locale} />
-                  )}
                 </div>
               </div>
             </CardContent>
