@@ -14,11 +14,9 @@ export async function GET(request: Request) {
         const supabase = await createClient();
         const { data, error } = await supabase.auth.exchangeCodeForSession(code);
         if (!error && data?.user) {
-            // Apply trial subscription if invite code is present
-            if (inviteCode) {
-                const { applyTrialSubscription } = await import("@/lib/auth-utils");
-                await applyTrialSubscription(data.user.id, inviteCode);
-            }
+            // Apply trial subscription to all new users
+            const { applyTrialSubscription } = await import("@/lib/auth-utils");
+            await applyTrialSubscription(data.user.id);
 
             // Check if next is an absolute URL
             if (next.startsWith('http')) {

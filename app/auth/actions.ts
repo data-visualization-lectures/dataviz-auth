@@ -53,10 +53,10 @@ export async function signUp(formData: FormData) {
         return { error: "このメールアドレスは既に登録されています" };
     }
 
-    // 招待コードが有効な場合、トライアルサブスクリプションを作成
-    if (inviteCode && data.user) {
+    // 全新規ユーザーにトライアルサブスクリプションを作成
+    if (data.user) {
         const { applyTrialSubscription } = await import("@/lib/auth-utils");
-        await applyTrialSubscription(data.user.id, inviteCode);
+        await applyTrialSubscription(data.user.id);
     }
 
     return { success: true };
