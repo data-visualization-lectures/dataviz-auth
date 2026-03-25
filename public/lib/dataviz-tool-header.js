@@ -92,31 +92,26 @@ class DatavizToolHeader extends HTMLElement {
       clearTimeout(this.toastTimeout);
       this.toastTimeout = null;
     }
-    toastContainer.innerHTML = ''; // Clear previous message
-    toastContainer.classList.add('hidden');
+    toastContainer.innerHTML = '';
+    toastContainer.classList.remove('dv-toast-visible');
 
-    let bgColorClass = 'bg-gray-700';
-    let textColorClass = 'text-white';
-    if (type === 'success') {
-      bgColorClass = 'bg-green-600';
-    } else if (type === 'error') {
-      bgColorClass = 'bg-red-600';
-    } else if (type === 'info') {
-      bgColorClass = 'bg-blue-600';
-    }
+    const bgColors = { success: '#38a169', error: '#e53e3e', info: '#3182ce' };
+    const bgColor = bgColors[type] || '#4a5568';
 
     toastContainer.innerHTML = `
-      <div class="px-3 py-2 rounded-md shadow-lg flex items-center space-x-2 ${bgColorClass} ${textColorClass}">
+      <div class="dv-toast-message" style="background-color: ${bgColor};">
         <span>${message}</span>
       </div>
     `;
-    toastContainer.classList.remove('hidden');
-    toastContainer.classList.add('flex'); // Show with flex to center content
+
+    // Force reflow then fade in
+    toastContainer.offsetHeight;
+    toastContainer.classList.add('dv-toast-visible');
 
     this.toastTimeout = setTimeout(() => {
-      toastContainer.classList.remove('flex');
-      toastContainer.classList.add('hidden');
-      toastContainer.innerHTML = '';
+      toastContainer.classList.remove('dv-toast-visible');
+      // Clear content after fade-out transition
+      setTimeout(() => { toastContainer.innerHTML = ''; }, 300);
       this.toastTimeout = null;
     }, duration);
   }
@@ -218,10 +213,11 @@ class DatavizToolHeader extends HTMLElement {
         z-index: 9998;
       }
       .dv-tool-header-inner {
+        position: relative;
         display: flex;
         align-items: center;
-        justify-content: space-between; /* Added for left/right alignment */
-        padding: 8px 16px; /* px-4 py-2 equivalent */
+        justify-content: space-between;
+        padding: 8px 16px;
       }
       .dv-left-group, .dv-right-group {
         display: flex;
@@ -303,34 +299,28 @@ class DatavizToolHeader extends HTMLElement {
       /* Toast styles */
       #dv-toast-container {
         position: absolute;
-        bottom: 8px; /* Position at the bottom of the header */
+        top: 50%;
         left: 50%;
-        transform: translateX(-50%);
+        transform: translate(-50%, -50%);
         z-index: 10000;
-        pointer-events: none; /* Allow clicks through to elements behind */
-        display: flex; /* Centered content */
-        justify-content: center; /* Centered content */
+        pointer-events: none;
         opacity: 0;
         transition: opacity 0.3s ease-in-out;
       }
-      #dv-toast-container.flex {
+      #dv-toast-container.dv-toast-visible {
         opacity: 1;
       }
-      #dv-toast-container.hidden {
-        display: none;
+      .dv-toast-message {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 14px;
+        border-radius: 4px;
+        font-size: 13px;
+        color: #fff;
+        white-space: nowrap;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
       }
-      .bg-gray-700 { background-color: #4a5568; }
-      .bg-green-600 { background-color: #38a169; }
-      .bg-red-600   { background-color: #e53e3e; }
-      .bg-blue-600  { background-color: #3182ce; }
-      .text-white   { color: #fff; }
-      .px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
-      .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
-      .rounded-md { border-radius: 0.375rem; }
-      .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
-      .flex { display: flex; }
-      .items-center { align-items: center; }
-      .space-x-2 > :not([hidden]) ~ :not([hidden]) { margin-right: calc(0.5rem * var(--tw-space-x-reverse)); margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse))); }
     `;
   }
 
@@ -441,7 +431,7 @@ class DatavizToolHeader extends HTMLElement {
         <div class="dv-right-group">
           ${rightButtonsHtml}
         </div>
-        <div id="dv-toast-container" class="absolute bottom-2 left-1/2 -translate-x-1/2 hidden opacity-0 transition-opacity duration-300"></div>
+        <div id="dv-toast-container"></div>
       </div>
     `;
 
