@@ -1186,6 +1186,12 @@ class DatavizToolHeader extends HTMLElement {
   // =========================================================================
 
   render() {
+    // Preserve active toast state before re-rendering (React may trigger setConfig → render
+    // while a toast is visible, which would destroy the toast DOM)
+    const existingToast = this.shadowRoot.getElementById('dv-toast-container');
+    const activeToastHtml = existingToast && existingToast.classList.contains('dv-toast-visible')
+      ? existingToast.innerHTML : null;
+
     const { logo, buttons, backgroundColor } = this.config;
 
     let logoHtml = '';
@@ -1220,6 +1226,7 @@ class DatavizToolHeader extends HTMLElement {
 
     const dynamicStyles = `
       :host {
+        background-color: ${headerBgColor};
         --dv-button-bg: ${buttonBgColor};
         --dv-button-border: ${buttonBorderColor};
         --dv-button-hover-bg: ${buttonHoverBgColor};
@@ -1295,6 +1302,15 @@ class DatavizToolHeader extends HTMLElement {
         <div id="dv-toast-container"></div>
       </div>
     `;
+
+    // Restore active toast if one was visible before re-render
+    if (activeToastHtml) {
+      const newToast = this.shadowRoot.getElementById('dv-toast-container');
+      if (newToast) {
+        newToast.innerHTML = activeToastHtml;
+        newToast.classList.add('dv-toast-visible');
+      }
+    }
 
     // Re-attach event listeners for regular buttons
     buttons.forEach((btn, index) => {
