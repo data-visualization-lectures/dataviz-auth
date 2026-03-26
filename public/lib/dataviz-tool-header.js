@@ -777,7 +777,7 @@ class DatavizToolHeader extends HTMLElement {
       :host {
         display: block;
         --tw-bg-opacity: 1;
-        padding: 8px 16px;
+        padding: 0;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         box-shadow: 0 2px 4px rgb(0 0 0 / 0.2);
         border-top: 1px solid var(--dv-border-top-color, rgb(68 68 68));
