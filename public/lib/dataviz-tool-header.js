@@ -218,6 +218,7 @@ class DatavizToolHeader extends HTMLElement {
 
   /**
    * Programmatic save without showing a modal.
+   * Returns the saved project metadata directly — does NOT invoke onProjectSave callback.
    * @param {object} payload
    * @param {string} payload.name - Project name
    * @param {object} payload.data - Project data
@@ -246,7 +247,6 @@ class DatavizToolHeader extends HTMLElement {
         });
       }
       this.showMessage(_dvToolT('toast.saved'), 'success');
-      if (this._projectConfig.onProjectSave) this._projectConfig.onProjectSave(result);
       return result;
     } catch (err) {
       this.showMessage(_dvToolT('toast.saveFailed'), 'error');
@@ -256,6 +256,8 @@ class DatavizToolHeader extends HTMLElement {
 
   /**
    * Programmatic load without showing a modal.
+   * Returns the project data directly — does NOT invoke onProjectLoad callback.
+   * (The caller is responsible for handling the returned data.)
    * @param {string} projectId
    * @returns {Promise<object>} - The full project data
    */
@@ -263,7 +265,6 @@ class DatavizToolHeader extends HTMLElement {
     try {
       const data = await this._getProject(projectId);
       this.showMessage(_dvToolT('toast.loaded'), 'success');
-      if (this._projectConfig && this._projectConfig.onProjectLoad) this._projectConfig.onProjectLoad(data);
       return data;
     } catch (err) {
       this.showMessage(_dvToolT('toast.loadFailed'), 'error');
@@ -273,6 +274,7 @@ class DatavizToolHeader extends HTMLElement {
 
   /**
    * Programmatic delete without showing a modal.
+   * Does NOT invoke onProjectDelete callback.
    * @param {string} projectId
    * @returns {Promise<void>}
    */
@@ -280,7 +282,6 @@ class DatavizToolHeader extends HTMLElement {
     try {
       await this._deleteProjectApi(projectId);
       this.showMessage(_dvToolT('toast.deleted'), 'success');
-      if (this._projectConfig && this._projectConfig.onProjectDelete) this._projectConfig.onProjectDelete(projectId);
     } catch (err) {
       this.showMessage(_dvToolT('toast.deleteFailed'), 'error');
       throw err;
