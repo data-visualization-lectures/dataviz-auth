@@ -1305,10 +1305,21 @@ class DatavizToolHeader extends HTMLElement {
 
     // Restore active toast if one was visible before re-render
     if (activeToastHtml) {
+      // Cancel the old timer (it references the now-destroyed DOM node)
+      if (this.toastTimeout) {
+        clearTimeout(this.toastTimeout);
+        this.toastTimeout = null;
+      }
       const newToast = this.shadowRoot.getElementById('dv-toast-container');
       if (newToast) {
         newToast.innerHTML = activeToastHtml;
         newToast.classList.add('dv-toast-visible');
+        // Set a new auto-dismiss timer for the restored toast
+        this.toastTimeout = setTimeout(() => {
+          newToast.classList.remove('dv-toast-visible');
+          setTimeout(() => { newToast.innerHTML = ''; }, 300);
+          this.toastTimeout = null;
+        }, 2000);
       }
     }
 
