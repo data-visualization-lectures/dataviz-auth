@@ -12,7 +12,7 @@ export function AuthedActions({ email, locale }: AuthedActionsProps) {
   return (
     <div className="flex items-center gap-3">
       <a
-        href="https://auth.dataviz.jp/account"
+        href="https://app.dataviz.jp/account"
         className="hidden sm:inline whitespace-nowrap text-[#aaa] no-underline hover:text-white hover:underline"
       >
         {email}

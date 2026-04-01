@@ -1,4 +1,4 @@
-# auth.dataviz.jp
+# app.dataviz.jp
 
 npm run dev
 

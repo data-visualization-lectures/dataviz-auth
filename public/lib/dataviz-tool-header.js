@@ -3,7 +3,7 @@
 //
 // HOW TO USE:
 // 1. Include this script in your tool's HTML file:
-//    <script src="https://auth.dataviz.jp/lib/dataviz-tool-header.js"></script>
+//    <script src="https://app.dataviz.jp/lib/dataviz-tool-header.js"></script>
 //
 // 2. Place the component tag where you want the sub-header to appear:
 //    <dataviz-tool-header></dataviz-tool-header>
