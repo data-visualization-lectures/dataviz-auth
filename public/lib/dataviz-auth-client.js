@@ -311,7 +311,7 @@ class DatavizGlobalHeader extends HTMLElement {
     const { isLoading, user, error } = this.state;
 
     // アカウントページのURL
-    const accountUrl = `${AUTH_APP_URL}/`;
+    const accountUrl = `${AUTH_APP_URL}/account`;
     const loginUrl = `${AUTH_APP_URL}/auth/login?redirect_to=${encodeURIComponent(window.location.href)}`;
 
     let rightContent = '';
