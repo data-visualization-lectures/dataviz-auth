@@ -1,10 +1,11 @@
 "use client";
 
-import { FileSpreadsheet, Globe, Share2, Code } from "lucide-react";
+import { FileSpreadsheet, Globe, Share2, Code, Wrench } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import type { CatalogEntry } from "@/types/catalog";
 import type { Locale } from "@/lib/i18n";
 import { t } from "@/lib/i18n";
+import { APP_CONFIG } from "@/lib/config";
 
 const CATEGORY_ICONS: Record<string, React.ElementType> = {
   tabular: FileSpreadsheet,
@@ -69,6 +70,24 @@ export function CatalogCard({ entry, locale, onSelect, onTagClick }: CatalogCard
               <> / {entry.columns.length} {t(locale, "dataLibrary.columns")}</>
             )}
           </p>
+        )}
+
+        {entry.compatibleTools.length > 0 && (
+          <div className="flex flex-wrap items-center gap-1 mt-1">
+            <Wrench className="h-3 w-3 text-muted-foreground shrink-0" />
+            {entry.compatibleTools.map((toolKey) => {
+              const url = APP_CONFIG.TOOL_URLS[toolKey as keyof typeof APP_CONFIG.TOOL_URLS];
+              const label = url ? new URL(url).hostname.replace(".dataviz.jp", "") : toolKey;
+              return (
+                <span
+                  key={toolKey}
+                  className="text-xs px-1.5 py-0.5 rounded bg-primary/10 text-primary"
+                >
+                  {label}
+                </span>
+              );
+            })}
+          </div>
         )}
 
         <div className="flex flex-wrap gap-1 mt-1">
