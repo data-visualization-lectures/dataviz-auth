@@ -12,9 +12,10 @@ const nextConfig: NextConfig = {
         source: "/catalog.json",
         headers: [
           { key: "Access-Control-Allow-Origin", value: "*" },
+          { key: "Vary", value: "Origin" },
           {
             key: "Cache-Control",
-            value: "public, max-age=0, must-revalidate",
+            value: "no-cache, no-store, must-revalidate",
           },
         ],
       },
@@ -22,12 +23,14 @@ const nextConfig: NextConfig = {
         source: "/data/:path*",
         headers: [
           { key: "Access-Control-Allow-Origin", value: "*" },
+          { key: "Vary", value: "Origin" },
         ],
       },
       {
         source: "/lib/:path*",
         headers: [
           { key: "Access-Control-Allow-Origin", value: "*" },
+          { key: "Vary", value: "Origin" },
         ],
       },
     ];
