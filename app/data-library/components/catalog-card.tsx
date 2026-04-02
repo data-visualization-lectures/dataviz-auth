@@ -14,6 +14,18 @@ const CATEGORY_ICONS: Record<string, React.ElementType> = {
   spec: Code,
 };
 
+// d3.schemeTableau10 — フォーマット別に定性的カラーを割り当て
+const FORMAT_COLORS: Record<string, string> = {
+  csv: "#4e79a7",
+  tsv: "#f28e2b",
+  json: "#e15759",
+  geojson: "#76b7b2",
+  topojson: "#59a14f",
+  gexf: "#edc948",
+  graphml: "#b07aa1",
+  "vega-spec": "#ff9da7",
+};
+
 const CATEGORY_LABEL_KEYS: Record<string, "dataLibrary.catTabular" | "dataLibrary.catGeographic" | "dataLibrary.catNetwork" | "dataLibrary.catSpec"> = {
   tabular: "dataLibrary.catTabular",
   geographic: "dataLibrary.catGeographic",
@@ -38,7 +50,10 @@ export function CatalogCard({ entry, locale, onSelect, onTagClick }: CatalogCard
       className="group relative flex flex-col border rounded-lg overflow-hidden bg-card text-card-foreground shadow-sm transition-all hover:shadow-md cursor-pointer"
       onClick={() => onSelect(entry)}
     >
-      <div className="relative aspect-video w-full bg-muted overflow-hidden flex items-center justify-center">
+      <div
+        className="relative aspect-video w-full overflow-hidden flex items-center justify-center"
+        style={{ backgroundColor: FORMAT_COLORS[entry.format] ?? "#888" }}
+      >
         {entry.thumbnailUrl ? (
           <img
             src={entry.thumbnailUrl}
@@ -46,7 +61,12 @@ export function CatalogCard({ entry, locale, onSelect, onTagClick }: CatalogCard
             className="w-full h-full object-cover"
           />
         ) : (
-          <Icon className="h-12 w-12 text-muted-foreground/40" />
+          <div className="flex flex-col items-center gap-2">
+            <Icon className="h-10 w-10 text-white/80" />
+            <span className="text-xs font-bold tracking-wider text-white/70 uppercase">
+              {entry.format}
+            </span>
+          </div>
         )}
       </div>
 
