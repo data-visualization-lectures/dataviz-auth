@@ -3,6 +3,7 @@ export type Locale = "ja" | "en";
 const dict = {
   // ── header ──
   "header.siteName": { ja: "データの道具箱", en: "Data Toolbox" },
+  "header.navTools": { ja: "ツール一覧", en: "Tools" },
   "header.navProjects": { ja: "保存プロジェクト一覧", en: "Saved Projects" },
   "header.navAccount": { ja: "アカウント情報", en: "Account" },
 
