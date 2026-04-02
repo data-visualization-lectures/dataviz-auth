@@ -311,6 +311,44 @@ const dict = {
     en: "An unspecified error occurred.",
   },
 
+  // ── data library page ──
+  "header.navDataLibrary": { ja: "データライブラリ", en: "Data Library" },
+  "dataLibrary.title": { ja: "データライブラリ", en: "Data Library" },
+  "dataLibrary.description": {
+    ja: "サンプルデータを検索して、対応するツールで開くことができます。",
+    en: "Search sample datasets and open them with compatible tools.",
+  },
+  "dataLibrary.searchPlaceholder": {
+    ja: "データセットを検索...",
+    en: "Search datasets...",
+  },
+  "dataLibrary.allCategories": {
+    ja: "すべてのカテゴリ",
+    en: "All Categories",
+  },
+  "dataLibrary.allFormats": { ja: "すべてのフォーマット", en: "All Formats" },
+  "dataLibrary.allTools": { ja: "すべてのツール", en: "All Tools" },
+  "dataLibrary.rows": { ja: "行", en: "rows" },
+  "dataLibrary.columns": { ja: "列", en: "columns" },
+  "dataLibrary.openWith": { ja: "このデータを開く", en: "Open with" },
+  "dataLibrary.preview": { ja: "データプレビュー", en: "Data Preview" },
+  "dataLibrary.noResults": {
+    ja: "条件に一致するデータが見つかりません。",
+    en: "No datasets match your filters.",
+  },
+  "dataLibrary.clearFilters": {
+    ja: "フィルターをクリア",
+    en: "Clear filters",
+  },
+  "dataLibrary.catTabular": { ja: "表形式", en: "Tabular" },
+  "dataLibrary.catGeographic": { ja: "地理", en: "Geographic" },
+  "dataLibrary.catNetwork": { ja: "ネットワーク", en: "Network" },
+  "dataLibrary.catSpec": { ja: "宣言的仕様", en: "Spec" },
+  "dataLibrary.subscriptionRequired": {
+    ja: "データライブラリは有料プランの機能です。",
+    en: "Data Library is a paid plan feature.",
+  },
+
   // ── public projects page ──
   "public.title": { ja: "パブリック・プロジェクト", en: "Public Projects" },
   "public.description": {

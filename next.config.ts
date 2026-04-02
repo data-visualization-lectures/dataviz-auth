@@ -6,6 +6,20 @@ const TARGET_CATEGORIES =
   "data-visualization|data-visualization-map|data-visualization-parts|data-visualization-color|data-wrangling|data-wrangling-map";
 
 const nextConfig: NextConfig = {
+  async headers() {
+    return [
+      {
+        source: "/catalog.json",
+        headers: [
+          { key: "Access-Control-Allow-Origin", value: "*" },
+          {
+            key: "Cache-Control",
+            value: "public, max-age=3600, stale-while-revalidate=86400",
+          },
+        ],
+      },
+    ];
+  },
   async rewrites() {
     return {
       afterFiles: [
