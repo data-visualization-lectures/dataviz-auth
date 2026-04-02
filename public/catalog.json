@@ -22,13 +22,13 @@
         "Bias-Motivation"
       ],
       "rowCount": 93,
-      "fileUrl": "/data/rawgraphs/Alluvial diagram - Hate crimes in New York.tsv",
+      "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Alluvial diagram - Hate crimes in New York.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
         "rawgraphs"
       ],
       "category": "tabular",
-      "fileUrlEn": "/data/rawgraphs-en/Alluvial diagram - Hate crimes in New York.tsv"
+      "fileUrlEn": "https://app.dataviz.jp/data/rawgraphs-en/Alluvial diagram - Hate crimes in New York.tsv"
     },
     {
       "id": "rg-lannister-starck",
@@ -49,13 +49,13 @@
         "weight"
       ],
       "rowCount": 24,
-      "fileUrl": "/data/rawgraphs/Arc diagrams - Lannister vs Starck relationships.tsv",
+      "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Arc diagrams - Lannister vs Starck relationships.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
         "rawgraphs"
       ],
       "category": "tabular",
-      "fileUrlEn": "/data/rawgraphs-en/Arc diagrams - Lannister vs Starck relationships.tsv"
+      "fileUrlEn": "https://app.dataviz.jp/data/rawgraphs-en/Arc diagrams - Lannister vs Starck relationships.tsv"
     },
     {
       "id": "rg-netflix-series",
@@ -81,13 +81,13 @@
         "IMDB_Rating"
       ],
       "rowCount": 109,
-      "fileUrl": "/data/rawgraphs/Bar chart - Netflix Original Series.tsv",
+      "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Bar chart - Netflix Original Series.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
         "rawgraphs"
       ],
       "category": "tabular",
-      "fileUrlEn": "/data/rawgraphs-en/Bar chart - Netflix Original Series.tsv"
+      "fileUrlEn": "https://app.dataviz.jp/data/rawgraphs-en/Bar chart - Netflix Original Series.tsv"
     },
     {
       "id": "rg-ny-wages",
@@ -108,13 +108,13 @@
         "category"
       ],
       "rowCount": 781,
-      "fileUrl": "/data/rawgraphs/Beeswarm plot - NY mean wages.tsv",
+      "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Beeswarm plot - NY mean wages.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
         "rawgraphs"
       ],
       "category": "tabular",
-      "fileUrlEn": "/data/rawgraphs-en/Beeswarm plot - NY mean wages.tsv"
+      "fileUrlEn": "https://app.dataviz.jp/data/rawgraphs-en/Beeswarm plot - NY mean wages.tsv"
     },
     {
       "id": "rg-top50-movies",
@@ -137,13 +137,13 @@
         "Title"
       ],
       "rowCount": 49,
-      "fileUrl": "/data/rawgraphs/Bubble Chart - TOP 50 Groossing Movies.tsv",
+      "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Bubble Chart - TOP 50 Groossing Movies.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
         "rawgraphs"
       ],
       "category": "tabular",
-      "fileUrlEn": "/data/rawgraphs-en/Bubble Chart - TOP 50 Groossing Movies.tsv"
+      "fileUrlEn": "https://app.dataviz.jp/data/rawgraphs-en/Bubble Chart - TOP 50 Groossing Movies.tsv"
     },
     {
       "id": "rg-milan-foreigners",
@@ -164,13 +164,13 @@
         "Residents"
       ],
       "rowCount": 591,
-      "fileUrl": "/data/rawgraphs/Bump chart - Foreign residents in Milan.tsv",
+      "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Bump chart - Foreign residents in Milan.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
         "rawgraphs"
       ],
       "category": "tabular",
-      "fileUrlEn": "/data/rawgraphs-en/Bump chart - Foreign residents in Milan.tsv"
+      "fileUrlEn": "https://app.dataviz.jp/data/rawgraphs-en/Bump chart - Foreign residents in Milan.tsv"
     },
     {
       "id": "rg-populated-cities",
@@ -192,13 +192,13 @@
         "Population"
       ],
       "rowCount": 49,
-      "fileUrl": "/data/rawgraphs/Circle Packing - Most populated cities.tsv",
+      "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Circle Packing - Most populated cities.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
         "rawgraphs"
       ],
       "category": "tabular",
-      "fileUrlEn": "/data/rawgraphs-en/Circle Packing - Most populated cities.tsv"
+      "fileUrlEn": "https://app.dataviz.jp/data/rawgraphs-en/Circle Packing - Most populated cities.tsv"
     },
     {
       "id": "rg-paris-temperature",
@@ -218,13 +218,13 @@
         "Mean temerature (°C)"
       ],
       "rowCount": 429,
-      "fileUrl": "/data/rawgraphs/Contour plot - Mean temperature in Paris 1944-1945.tsv",
+      "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Contour plot - Mean temperature in Paris 1944-1945.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
         "rawgraphs"
       ],
       "category": "tabular",
-      "fileUrlEn": "/data/rawgraphs-en/Contour plot - Mean temperature in Paris 1944-1945.tsv"
+      "fileUrlEn": "https://app.dataviz.jp/data/rawgraphs-en/Contour plot - Mean temperature in Paris 1944-1945.tsv"
     },
     {
       "id": "rg-iris-flowers",
@@ -248,13 +248,13 @@
         "Species"
       ],
       "rowCount": 150,
-      "fileUrl": "/data/rawgraphs/Convex hull - Iris flowers.tsv",
+      "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Convex hull - Iris flowers.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
         "rawgraphs"
       ],
       "category": "tabular",
-      "fileUrlEn": "/data/rawgraphs-en/Convex hull - Iris flowers.tsv"
+      "fileUrlEn": "https://app.dataviz.jp/data/rawgraphs-en/Convex hull - Iris flowers.tsv"
     },
     {
       "id": "rg-felidae",
@@ -278,13 +278,13 @@
         "Risk of Extinction"
       ],
       "rowCount": 38,
-      "fileUrl": "/data/rawgraphs/Dendrogram - Felidae classification.tsv",
+      "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Dendrogram - Felidae classification.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
         "rawgraphs"
       ],
       "category": "tabular",
-      "fileUrlEn": "/data/rawgraphs-en/Dendrogram - Felidae classification.tsv"
+      "fileUrlEn": "https://app.dataviz.jp/data/rawgraphs-en/Dendrogram - Felidae classification.tsv"
     },
     {
       "id": "rg-italian-pms",
@@ -306,13 +306,13 @@
         "Role"
       ],
       "rowCount": 76,
-      "fileUrl": "/data/rawgraphs/Gantt chart - Italian PMs and presidents.tsv",
+      "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Gantt chart - Italian PMs and presidents.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
         "rawgraphs"
       ],
       "category": "tabular",
-      "fileUrlEn": "/data/rawgraphs-en/Gantt chart - Italian PMs and presidents.tsv"
+      "fileUrlEn": "https://app.dataviz.jp/data/rawgraphs-en/Gantt chart - Italian PMs and presidents.tsv"
     },
     {
       "id": "rg-basketball-shots",
@@ -337,13 +337,13 @@
         "SHOT_MADE_FLAG"
       ],
       "rowCount": 1094,
-      "fileUrl": "/data/rawgraphs/Hexbin - basketball shots.tsv",
+      "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Hexbin - basketball shots.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
         "rawgraphs"
       ],
       "category": "tabular",
-      "fileUrlEn": "/data/rawgraphs-en/Hexbin - basketball shots.tsv"
+      "fileUrlEn": "https://app.dataviz.jp/data/rawgraphs-en/Hexbin - basketball shots.tsv"
     },
     {
       "id": "rg-eu-consumer-prices",
@@ -364,13 +364,13 @@
         "HICP (Harmonised Index of Consumer Prices)"
       ],
       "rowCount": 143,
-      "fileUrl": "/data/rawgraphs/Horizon Graph - EU Index of consumer prices.tsv",
+      "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Horizon Graph - EU Index of consumer prices.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
         "rawgraphs"
       ],
       "category": "tabular",
-      "fileUrlEn": "/data/rawgraphs-en/Horizon Graph - EU Index of consumer prices.tsv"
+      "fileUrlEn": "https://app.dataviz.jp/data/rawgraphs-en/Horizon Graph - EU Index of consumer prices.tsv"
     },
     {
       "id": "rg-riaa-music",
@@ -395,13 +395,13 @@
         "Revenues in millions (Adjusted for inflation)"
       ],
       "rowCount": 431,
-      "fileUrl": "/data/rawgraphs/Line chart - RIAA Music format revenues.tsv",
+      "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Line chart - RIAA Music format revenues.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
         "rawgraphs"
       ],
       "category": "tabular",
-      "fileUrlEn": "/data/rawgraphs-en/Line chart - RIAA Music format revenues.tsv"
+      "fileUrlEn": "https://app.dataviz.jp/data/rawgraphs-en/Line chart - RIAA Music format revenues.tsv"
     },
     {
       "id": "rg-letter-frequencies",
@@ -422,13 +422,13 @@
         "Frequency (%)"
       ],
       "rowCount": 389,
-      "fileUrl": "/data/rawgraphs/Matrix Plot - Letters frequencies by language.tsv",
+      "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Matrix Plot - Letters frequencies by language.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
         "rawgraphs"
       ],
       "category": "tabular",
-      "fileUrlEn": "/data/rawgraphs-en/Matrix Plot - Letters frequencies by language.tsv"
+      "fileUrlEn": "https://app.dataviz.jp/data/rawgraphs-en/Matrix Plot - Letters frequencies by language.tsv"
     },
     {
       "id": "rg-happiness-index",
@@ -452,13 +452,13 @@
         "Negative affect"
       ],
       "rowCount": 1949,
-      "fileUrl": "/data/rawgraphs/Multiset Barchart - Happiness Index.tsv",
+      "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Multiset Barchart - Happiness Index.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
         "rawgraphs"
       ],
       "category": "tabular",
-      "fileUrlEn": "/data/rawgraphs-en/Multiset Barchart - Happiness Index.tsv"
+      "fileUrlEn": "https://app.dataviz.jp/data/rawgraphs-en/Multiset Barchart - Happiness Index.tsv"
     },
     {
       "id": "rg-fifa-players",
@@ -497,13 +497,13 @@
         "SlidingTackle"
       ],
       "rowCount": 10,
-      "fileUrl": "/data/rawgraphs/Radar Chart - Fifa players.tsv",
+      "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Radar Chart - Fifa players.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
         "rawgraphs"
       ],
       "category": "tabular",
-      "fileUrlEn": "/data/rawgraphs-en/Radar Chart - Fifa players.tsv"
+      "fileUrlEn": "https://app.dataviz.jp/data/rawgraphs-en/Radar Chart - Fifa players.tsv"
     },
     {
       "id": "rg-energy-flows",
@@ -523,13 +523,13 @@
         "TWh"
       ],
       "rowCount": 51,
-      "fileUrl": "/data/rawgraphs/Sankey diagram - Energy flows.tsv",
+      "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Sankey diagram - Energy flows.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
         "rawgraphs"
       ],
       "category": "tabular",
-      "fileUrlEn": "/data/rawgraphs-en/Sankey diagram - Energy flows.tsv"
+      "fileUrlEn": "https://app.dataviz.jp/data/rawgraphs-en/Sankey diagram - Energy flows.tsv"
     },
     {
       "id": "rg-gdp-composition",
@@ -551,13 +551,13 @@
         "Service (US$MM)"
       ],
       "rowCount": 30,
-      "fileUrl": "/data/rawgraphs/Stacked barchart - GDP sector composition.tsv",
+      "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Stacked barchart - GDP sector composition.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
         "rawgraphs"
       ],
       "category": "tabular",
-      "fileUrlEn": "/data/rawgraphs-en/Stacked barchart - GDP sector composition.tsv"
+      "fileUrlEn": "https://app.dataviz.jp/data/rawgraphs-en/Stacked barchart - GDP sector composition.tsv"
     },
     {
       "id": "rg-olympics-medals",
@@ -579,13 +579,13 @@
         "Medals"
       ],
       "rowCount": 1153,
-      "fileUrl": "/data/rawgraphs/Streamgraph - Olympics Medals.tsv",
+      "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Streamgraph - Olympics Medals.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
         "rawgraphs"
       ],
       "category": "tabular",
-      "fileUrlEn": "/data/rawgraphs-en/Streamgraph - Olympics Medals.tsv"
+      "fileUrlEn": "https://app.dataviz.jp/data/rawgraphs-en/Streamgraph - Olympics Medals.tsv"
     },
     {
       "id": "rg-wine-aromas",
@@ -608,13 +608,13 @@
         "Results"
       ],
       "rowCount": 72,
-      "fileUrl": "/data/rawgraphs/Sunburst - Wine Aromas.tsv",
+      "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Sunburst - Wine Aromas.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
         "rawgraphs"
       ],
       "category": "tabular",
-      "fileUrlEn": "/data/rawgraphs-en/Sunburst - Wine Aromas.tsv"
+      "fileUrlEn": "https://app.dataviz.jp/data/rawgraphs-en/Sunburst - Wine Aromas.tsv"
     },
     {
       "id": "rg-orchestra",
@@ -636,13 +636,13 @@
         "Number"
       ],
       "rowCount": 100,
-      "fileUrl": "/data/rawgraphs/Treemap - Orchestra.tsv",
+      "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Treemap - Orchestra.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
         "rawgraphs"
       ],
       "category": "tabular",
-      "fileUrlEn": "/data/rawgraphs-en/Treemap - Orchestra.tsv"
+      "fileUrlEn": "https://app.dataviz.jp/data/rawgraphs-en/Treemap - Orchestra.tsv"
     },
     {
       "id": "rg-ny-weather",
@@ -667,13 +667,13 @@
         "weather"
       ],
       "rowCount": 1461,
-      "fileUrl": "/data/rawgraphs/Violin plot - Weather in New York.tsv",
+      "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Violin plot - Weather in New York.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
         "rawgraphs"
       ],
       "category": "tabular",
-      "fileUrlEn": "/data/rawgraphs-en/Violin plot - Weather in New York.tsv"
+      "fileUrlEn": "https://app.dataviz.jp/data/rawgraphs-en/Violin plot - Weather in New York.tsv"
     },
     {
       "id": "rg-us-presidential-elections",
@@ -698,7 +698,7 @@
         "得票率 (%)"
       ],
       "rowCount": 4286,
-      "fileUrl": "/data/rawgraphs/Line Graph - US Presidential Elections.tsv",
+      "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Line Graph - US Presidential Elections.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
         "rawgraphs"
@@ -730,7 +730,7 @@
         "総得票数"
       ],
       "rowCount": 3739,
-      "fileUrl": "/data/rawgraphs/Line graph - US presidential election full.tsv",
+      "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Line graph - US presidential election full.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
         "rawgraphs"
@@ -760,7 +760,7 @@
         "リーグ"
       ],
       "rowCount": 33,
-      "fileUrl": "/data/rawgraphs/Slope graph - Premier SerieA ranking.tsv",
+      "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Slope graph - Premier SerieA ranking.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
         "rawgraphs"
@@ -801,7 +801,7 @@
         "オルチニン(mg)"
       ],
       "rowCount": 70,
-      "fileUrl": "/data/yogurt-nutrition.csv",
+      "fileUrl": "https://app.dataviz.jp/data/yogurt-nutrition.csv",
       "thumbnailUrl": null,
       "compatibleTools": [
         "parallel-coordinates",
@@ -844,7 +844,7 @@
         "果物加工品"
       ],
       "rowCount": 47,
-      "fileUrl": "/data/japan-fruit-production.csv",
+      "fileUrl": "https://app.dataviz.jp/data/japan-fruit-production.csv",
       "thumbnailUrl": null,
       "compatibleTools": [
         "rawgraphs",
@@ -873,7 +873,7 @@
       ],
       "columns": [],
       "rowCount": 78,
-      "fileUrl": "/data/les-miserables.gexf",
+      "fileUrl": "https://app.dataviz.jp/data/les-miserables.gexf",
       "thumbnailUrl": null,
       "compatibleTools": [
         "gephi-lite",
@@ -896,7 +896,7 @@
       ],
       "columns": [],
       "rowCount": 307,
-      "fileUrl": "/data/celegans.gexf",
+      "fileUrl": "https://app.dataviz.jp/data/celegans.gexf",
       "thumbnailUrl": null,
       "compatibleTools": [
         "cytoscape",
@@ -920,7 +920,7 @@
       ],
       "columns": [],
       "rowCount": 1420,
-      "fileUrl": "/data/diseasome.gexf",
+      "fileUrl": "https://app.dataviz.jp/data/diseasome.gexf",
       "thumbnailUrl": null,
       "compatibleTools": [
         "cytoscape",
@@ -944,7 +944,7 @@
       ],
       "columns": [],
       "rowCount": 1286,
-      "fileUrl": "/data/eurosis.gexf",
+      "fileUrl": "https://app.dataviz.jp/data/eurosis.gexf",
       "thumbnailUrl": null,
       "compatibleTools": [
         "cytoscape",
@@ -968,7 +968,7 @@
       ],
       "columns": [],
       "rowCount": 107,
-      "fileUrl": "/data/game-of-thrones.graphml",
+      "fileUrl": "https://app.dataviz.jp/data/game-of-thrones.graphml",
       "thumbnailUrl": null,
       "compatibleTools": [
         "cytoscape",
@@ -992,7 +992,7 @@
       ],
       "columns": [],
       "rowCount": 1539,
-      "fileUrl": "/data/java.gexf",
+      "fileUrl": "https://app.dataviz.jp/data/java.gexf",
       "thumbnailUrl": null,
       "compatibleTools": [
         "cytoscape",
@@ -1016,7 +1016,7 @@
       ],
       "columns": [],
       "rowCount": 327,
-      "fileUrl": "/data/marvel.graphml",
+      "fileUrl": "https://app.dataviz.jp/data/marvel.graphml",
       "thumbnailUrl": null,
       "compatibleTools": [
         "cytoscape",
@@ -1040,7 +1040,7 @@
       ],
       "columns": [],
       "rowCount": 4942,
-      "fileUrl": "/data/power-grid.gexf",
+      "fileUrl": "https://app.dataviz.jp/data/power-grid.gexf",
       "thumbnailUrl": null,
       "compatibleTools": [
         "cytoscape",
@@ -1064,7 +1064,7 @@
       ],
       "columns": [],
       "rowCount": 96,
-      "fileUrl": "/data/quakers.graphml",
+      "fileUrl": "https://app.dataviz.jp/data/quakers.graphml",
       "thumbnailUrl": null,
       "compatibleTools": [
         "cytoscape",
@@ -1091,7 +1091,7 @@
         "総数"
       ],
       "rowCount": 21,
-      "fileUrl": "/data/japan-visitors-all.csv",
+      "fileUrl": "https://app.dataviz.jp/data/japan-visitors-all.csv",
       "thumbnailUrl": null,
       "compatibleTools": [
         "drawing-line-chart",
@@ -1118,7 +1118,7 @@
         "value"
       ],
       "rowCount": 7,
-      "fileUrl": "/data/japan-population-trend.csv",
+      "fileUrl": "https://app.dataviz.jp/data/japan-population-trend.csv",
       "thumbnailUrl": null,
       "compatibleTools": [
         "drawing-line-chart",
@@ -1146,7 +1146,7 @@
         "value"
       ],
       "rowCount": 27,
-      "fileUrl": "/data/yen-dollar-exchange_year.csv",
+      "fileUrl": "https://app.dataviz.jp/data/yen-dollar-exchange_year.csv",
       "thumbnailUrl": null,
       "compatibleTools": [
         "drawing-line-chart",
@@ -1188,7 +1188,7 @@
         "40Y"
       ],
       "rowCount": 13166,
-      "fileUrl": "/data/jgbcm-all.csv",
+      "fileUrl": "https://app.dataviz.jp/data/jgbcm-all.csv",
       "thumbnailUrl": null,
       "compatibleTools": [
         "3d-surface-chart"
@@ -1224,7 +1224,7 @@
         "30Y"
       ],
       "rowCount": 72,
-      "fileUrl": "/data/us-treasury.csv",
+      "fileUrl": "https://app.dataviz.jp/data/us-treasury.csv",
       "thumbnailUrl": null,
       "compatibleTools": [
         "3d-surface-chart"
@@ -1297,7 +1297,7 @@
         "沖縄県"
       ],
       "rowCount": 12,
-      "fileUrl": "/data/number-of-births.csv",
+      "fileUrl": "https://app.dataviz.jp/data/number-of-births.csv",
       "thumbnailUrl": null,
       "compatibleTools": [
         "3d-surface-chart",
@@ -1327,7 +1327,7 @@
         "site"
       ],
       "rowCount": 120,
-      "fileUrl": "/data/barley.json",
+      "fileUrl": "https://app.dataviz.jp/data/barley.json",
       "thumbnailUrl": null,
       "compatibleTools": [
         "voyager2",
@@ -1361,7 +1361,7 @@
         "Origin"
       ],
       "rowCount": 406,
-      "fileUrl": "/data/cars.json",
+      "fileUrl": "https://app.dataviz.jp/data/cars.json",
       "thumbnailUrl": null,
       "compatibleTools": [
         "voyager2",
@@ -1391,7 +1391,7 @@
         "disease"
       ],
       "rowCount": 24,
-      "fileUrl": "/data/crimea.json",
+      "fileUrl": "https://app.dataviz.jp/data/crimea.json",
       "thumbnailUrl": null,
       "compatibleTools": [
         "voyager2",
@@ -1420,7 +1420,7 @@
         "gas"
       ],
       "rowCount": 55,
-      "fileUrl": "/data/driving.json",
+      "fileUrl": "https://app.dataviz.jp/data/driving.json",
       "thumbnailUrl": null,
       "compatibleTools": [
         "voyager2",
@@ -1450,7 +1450,7 @@
         "species"
       ],
       "rowCount": 150,
-      "fileUrl": "/data/iris.json",
+      "fileUrl": "https://app.dataviz.jp/data/iris.json",
       "thumbnailUrl": null,
       "compatibleTools": [
         "voyager2",
@@ -1481,7 +1481,7 @@
         "perc"
       ],
       "rowCount": 7650,
-      "fileUrl": "/data/jobs.json",
+      "fileUrl": "https://app.dataviz.jp/data/jobs.json",
       "thumbnailUrl": null,
       "compatibleTools": [
         "voyager2",
@@ -1510,7 +1510,7 @@
         "people"
       ],
       "rowCount": 570,
-      "fileUrl": "/data/population.json",
+      "fileUrl": "https://app.dataviz.jp/data/population.json",
       "thumbnailUrl": null,
       "compatibleTools": [
         "voyager2",
@@ -1544,7 +1544,7 @@
         "IMDB_Rating"
       ],
       "rowCount": 3201,
-      "fileUrl": "/data/movies.json",
+      "fileUrl": "https://app.dataviz.jp/data/movies.json",
       "thumbnailUrl": null,
       "compatibleTools": [
         "voyager2",
@@ -1577,7 +1577,7 @@
         "Speed_IAS_in_knots"
       ],
       "rowCount": 10000,
-      "fileUrl": "/data/birdstrikes.json",
+      "fileUrl": "https://app.dataviz.jp/data/birdstrikes.json",
       "thumbnailUrl": null,
       "compatibleTools": [
         "voyager2",
@@ -1608,7 +1608,7 @@
         "Genus"
       ],
       "rowCount": 16,
-      "fileUrl": "/data/burtin.json",
+      "fileUrl": "https://app.dataviz.jp/data/burtin.json",
       "thumbnailUrl": null,
       "compatibleTools": [
         "voyager2",
@@ -1639,7 +1639,7 @@
         "Candidate_State"
       ],
       "rowCount": 58,
-      "fileUrl": "/data/weball26.json",
+      "fileUrl": "https://app.dataviz.jp/data/weball26.json",
       "thumbnailUrl": null,
       "compatibleTools": [
         "voyager2",
@@ -1663,7 +1663,7 @@
       ],
       "columns": [],
       "rowCount": 235,
-      "fileUrl": "/data/airlines.graphml",
+      "fileUrl": "https://app.dataviz.jp/data/airlines.graphml",
       "thumbnailUrl": null,
       "compatibleTools": [
         "gephi-lite",
@@ -1696,7 +1696,7 @@
         "Direction"
       ],
       "rowCount": 928,
-      "fileUrl": "/data/G7_Hiroshima_Zelensky_outbound.csv",
+      "fileUrl": "https://app.dataviz.jp/data/G7_Hiroshima_Zelensky_outbound.csv",
       "thumbnailUrl": null,
       "compatibleTools": [
         "broadcast-based-tracking-systems",
@@ -1729,7 +1729,7 @@
         "Direction"
       ],
       "rowCount": 707,
-      "fileUrl": "/data/G7_Hiroshima_Zelensky_return.csv",
+      "fileUrl": "https://app.dataviz.jp/data/G7_Hiroshima_Zelensky_return.csv",
       "thumbnailUrl": null,
       "compatibleTools": [
         "broadcast-based-tracking-systems",
@@ -1760,7 +1760,7 @@
         "time"
       ],
       "rowCount": 87,
-      "fileUrl": "/data/kepler-hex-data.csv",
+      "fileUrl": "https://app.dataviz.jp/data/kepler-hex-data.csv",
       "fileUrlEn": null,
       "thumbnailUrl": null,
       "compatibleTools": [
@@ -1783,7 +1783,7 @@
       ],
       "columns": [],
       "rowCount": 0,
-      "fileUrl": "/data/sf-zip-geo.json",
+      "fileUrl": "https://app.dataviz.jp/data/sf-zip-geo.json",
       "fileUrlEn": null,
       "thumbnailUrl": null,
       "compatibleTools": [
@@ -1813,7 +1813,7 @@
         "species"
       ],
       "rowCount": 149,
-      "fileUrl": "/data/data-illustrator/iris.csv",
+      "fileUrl": "https://app.dataviz.jp/data/data-illustrator/iris.csv",
       "fileUrlEn": null,
       "thumbnailUrl": null,
       "compatibleTools": [
@@ -1846,7 +1846,7 @@
         "year"
       ],
       "rowCount": 405,
-      "fileUrl": "/data/data-illustrator/cars.csv",
+      "fileUrl": "https://app.dataviz.jp/data/data-illustrator/cars.csv",
       "fileUrlEn": null,
       "thumbnailUrl": null,
       "compatibleTools": [
@@ -1874,7 +1874,7 @@
         "value"
       ],
       "rowCount": 1821,
-      "fileUrl": "/data/data-illustrator/bitcoin-price.csv",
+      "fileUrl": "https://app.dataviz.jp/data/data-illustrator/bitcoin-price.csv",
       "fileUrlEn": null,
       "thumbnailUrl": null,
       "compatibleTools": [
@@ -1908,7 +1908,7 @@
         "maxWind"
       ],
       "rowCount": 364,
-      "fileUrl": "/data/data-illustrator/bostonWeather.csv",
+      "fileUrl": "https://app.dataviz.jp/data/data-illustrator/bostonWeather.csv",
       "fileUrlEn": null,
       "thumbnailUrl": null,
       "compatibleTools": [
@@ -1936,7 +1936,7 @@
         "% Change"
       ],
       "rowCount": 15,
-      "fileUrl": "/data/data-illustrator/GDP Change.csv",
+      "fileUrl": "https://app.dataviz.jp/data/data-illustrator/GDP Change.csv",
       "fileUrlEn": null,
       "thumbnailUrl": null,
       "compatibleTools": [
@@ -1965,7 +1965,7 @@
         "Count"
       ],
       "rowCount": 61,
-      "fileUrl": "/data/data-illustrator/olympic-medals.csv",
+      "fileUrl": "https://app.dataviz.jp/data/data-illustrator/olympic-medals.csv",
       "fileUrlEn": null,
       "thumbnailUrl": null,
       "compatibleTools": [
@@ -1993,7 +1993,7 @@
         "Death"
       ],
       "rowCount": 35,
-      "fileUrl": "/data/data-illustrator/nightingale.csv",
+      "fileUrl": "https://app.dataviz.jp/data/data-illustrator/nightingale.csv",
       "fileUrlEn": null,
       "thumbnailUrl": null,
       "compatibleTools": [
@@ -2022,7 +2022,7 @@
         "Percentage"
       ],
       "rowCount": 19,
-      "fileUrl": "/data/data-illustrator/household_spending.csv",
+      "fileUrl": "https://app.dataviz.jp/data/data-illustrator/household_spending.csv",
       "fileUrlEn": null,
       "thumbnailUrl": null,
       "compatibleTools": [
@@ -2055,7 +2055,7 @@
         "Trump_margin"
       ],
       "rowCount": 50,
-      "fileUrl": "/data/data-illustrator/elections-2020.csv",
+      "fileUrl": "https://app.dataviz.jp/data/data-illustrator/elections-2020.csv",
       "fileUrlEn": null,
       "thumbnailUrl": null,
       "compatibleTools": [
@@ -2087,7 +2087,7 @@
         "Min"
       ],
       "rowCount": 9,
-      "fileUrl": "/data/data-illustrator/genderPayGap.csv",
+      "fileUrl": "https://app.dataviz.jp/data/data-illustrator/genderPayGap.csv",
       "fileUrlEn": null,
       "thumbnailUrl": null,
       "compatibleTools": [
