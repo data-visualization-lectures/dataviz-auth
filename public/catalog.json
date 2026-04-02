@@ -772,8 +772,8 @@
       "id": "yogurt-nutrition",
       "name": "ヨーグルト栄養成分",
       "nameEn": "Yogurt Nutrition",
-      "description": "市販ヨーグルト製品の栄養成分比較データ（16項目）",
-      "descriptionEn": "Nutritional comparison data for commercial yogurt products (16 items)",
+      "description": "市販ヨーグルト製品の栄養成分比較データ（70品目、17項目）",
+      "descriptionEn": "Nutritional comparison of 70 commercial yogurt products (17 attributes)",
       "format": "csv",
       "tags": [
         "食品",
@@ -782,17 +782,25 @@
         "多変量"
       ],
       "columns": [
-        "brand",
-        "product",
-        "capacity",
-        "energy",
-        "protein",
-        "fat",
-        "carbohydrate",
-        "sodium",
-        "calcium"
+        "商品名",
+        "メーカー",
+        "容量(g)",
+        "エネルギー(kcal)",
+        "たんぱく質(g)",
+        "脂質(g)",
+        "炭水化物(g)",
+        "ナトリウム(mg)",
+        "カルシウム(mg)",
+        "糖類(g)",
+        "ラクトフェリン(mg)",
+        "食物繊維(g)",
+        "ガラクトオリゴ糖(g)",
+        "鉄(mg)",
+        "葉酸(μg)",
+        "カルシウム2(mg)",
+        "オルチニン(mg)"
       ],
-      "rowCount": 50,
+      "rowCount": 70,
       "fileUrl": "/data/yogurt-nutrition.csv",
       "thumbnailUrl": null,
       "compatibleTools": [
@@ -804,33 +812,44 @@
       "fileUrlEn": null
     },
     {
-      "id": "japan-population",
-      "name": "都道府県別人口",
-      "nameEn": "Japan Population by Prefecture",
-      "description": "日本の47都道府県の人口・面積・人口密度データ",
-      "descriptionEn": "Population, area and density data for Japan's 47 prefectures",
+      "id": "japan-fruit-production",
+      "name": "都道府県別果物生産量",
+      "nameEn": "Fruit Production by Prefecture",
+      "description": "日本の47都道府県の果物生産量データ（りんご・みかん・ぶどう等16品目）",
+      "descriptionEn": "Fruit production data for 47 Japanese prefectures (16 categories)",
       "format": "csv",
       "tags": [
         "日本",
-        "人口",
-        "地理",
+        "農業",
+        "果物",
         "都道府県"
       ],
       "columns": [
-        "prefecture",
-        "population",
-        "area",
-        "density",
-        "region"
+        "都道府県",
+        "果物（合計）",
+        "りんご",
+        "みかん",
+        "オレンジ",
+        "他の柑きつ類",
+        "梨",
+        "ぶどう",
+        "柿",
+        "桃",
+        "すいか",
+        "メロン",
+        "いちご",
+        "バナナ",
+        "キウイフルーツ",
+        "他の果物",
+        "果物加工品"
       ],
       "rowCount": 47,
-      "fileUrl": "/data/japan-population.csv",
+      "fileUrl": "/data/japan-fruit-production.csv",
       "thumbnailUrl": null,
       "compatibleTools": [
         "rawgraphs",
         "parallel-coordinates",
         "voyager2",
-        "kepler-gl",
         "cartogram-japan",
         "cartogram-prefectures",
         "choropleth-japan",
@@ -1052,70 +1071,6 @@
         "gephi-lite"
       ],
       "category": "network",
-      "fileUrlEn": null
-    },
-    {
-      "id": "world-airports",
-      "name": "世界の空港",
-      "nameEn": "World Airports",
-      "description": "世界の主要空港の位置・乗客数データ",
-      "descriptionEn": "Location and passenger data for major world airports",
-      "format": "csv",
-      "tags": [
-        "地理",
-        "交通",
-        "空港",
-        "世界"
-      ],
-      "columns": [
-        "name",
-        "city",
-        "country",
-        "iata",
-        "latitude",
-        "longitude",
-        "passengers"
-      ],
-      "rowCount": 891,
-      "fileUrl": "/data/world-airports.csv",
-      "thumbnailUrl": null,
-      "compatibleTools": [
-        "kepler-gl",
-        "rawgraphs",
-        "voyager2"
-      ],
-      "category": "geographic",
-      "fileUrlEn": null
-    },
-    {
-      "id": "tokyo-temperature",
-      "name": "東京の気温推移",
-      "nameEn": "Tokyo Temperature Trends",
-      "description": "東京の月別平均気温・最高気温・最低気温の年次推移データ",
-      "descriptionEn": "Monthly average, max and min temperature trends in Tokyo",
-      "format": "csv",
-      "tags": [
-        "気象",
-        "時系列",
-        "東京",
-        "気温"
-      ],
-      "columns": [
-        "year",
-        "month",
-        "avg_temp",
-        "max_temp",
-        "min_temp"
-      ],
-      "rowCount": 360,
-      "fileUrl": "/data/tokyo-temperature.csv",
-      "thumbnailUrl": null,
-      "compatibleTools": [
-        "rawgraphs",
-        "voyager2",
-        "drawing-line-chart"
-      ],
-      "category": "tabular",
       "fileUrlEn": null
     },
     {
@@ -1782,6 +1737,364 @@
       ],
       "category": "geographic",
       "fileUrlEn": null
+    },
+    {
+      "id": "kepler-hex-data",
+      "name": "六角形グリッドデータ",
+      "nameEn": "Hex Grid Data",
+      "description": "H3六角形グリッドIDとその値・時間データ（kepler.glデモ用）",
+      "descriptionEn": "H3 hex grid IDs with values and timestamps for kepler.gl demo",
+      "format": "csv",
+      "tags": [
+        "地理",
+        "グリッド",
+        "H3",
+        "時系列"
+      ],
+      "columns": [
+        "hex_id",
+        "value",
+        "is_true",
+        "float_value",
+        "empty",
+        "time"
+      ],
+      "rowCount": 87,
+      "fileUrl": "/data/kepler-hex-data.csv",
+      "fileUrlEn": null,
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "kepler-gl"
+      ],
+      "category": "geographic"
+    },
+    {
+      "id": "kepler-sf-zip-geo",
+      "name": "サンフランシスコ郵便番号エリア",
+      "nameEn": "San Francisco Zip Code Areas",
+      "description": "サンフランシスコの郵便番号区域GeoJSONデータ",
+      "descriptionEn": "GeoJSON boundaries for San Francisco zip code areas",
+      "format": "geojson",
+      "tags": [
+        "地理",
+        "サンフランシスコ",
+        "郵便番号",
+        "境界"
+      ],
+      "columns": [],
+      "rowCount": 0,
+      "fileUrl": "/data/sf-zip-geo.json",
+      "fileUrlEn": null,
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "kepler-gl"
+      ],
+      "category": "geographic"
+    },
+    {
+      "id": "di-iris",
+      "name": "アヤメのデータセット",
+      "nameEn": "Iris Dataset",
+      "description": "フィッシャーのアヤメ — 3品種の花弁・萼片の計測データ",
+      "descriptionEn": "Fisher's Iris — sepal and petal measurements for 3 species",
+      "format": "csv",
+      "tags": [
+        "植物",
+        "分類",
+        "多変量",
+        "統計"
+      ],
+      "columns": [
+        "id",
+        "sepal length",
+        "sepal width",
+        "petal length",
+        "petal width",
+        "species"
+      ],
+      "rowCount": 149,
+      "fileUrl": "/data/data-illustrator/iris.csv",
+      "fileUrlEn": null,
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "data-illustrator",
+        "rawgraphs",
+        "parallel-coordinates"
+      ],
+      "category": "tabular"
+    },
+    {
+      "id": "di-cars",
+      "name": "自動車スペック",
+      "nameEn": "Cars Dataset",
+      "description": "自動車モデル別スペックデータ（燃費、馬力、重量など）",
+      "descriptionEn": "Automotive specs — economy, cylinders, displacement, power, weight, etc.",
+      "format": "csv",
+      "tags": [
+        "自動車",
+        "統計",
+        "多変量"
+      ],
+      "columns": [
+        "name",
+        "economy(mpg)",
+        "cylinders",
+        "displacement(cc)",
+        "power(hp)",
+        "weight(lb)",
+        "0-60mph(s)",
+        "year"
+      ],
+      "rowCount": 405,
+      "fileUrl": "/data/data-illustrator/cars.csv",
+      "fileUrlEn": null,
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "data-illustrator",
+        "rawgraphs",
+        "parallel-coordinates"
+      ],
+      "category": "tabular"
+    },
+    {
+      "id": "di-bitcoin-price",
+      "name": "ビットコイン価格推移",
+      "nameEn": "Bitcoin Price",
+      "description": "ビットコインの日別価格推移データ（約5年分）",
+      "descriptionEn": "Daily Bitcoin price over approximately 5 years",
+      "format": "csv",
+      "tags": [
+        "金融",
+        "暗号通貨",
+        "時系列",
+        "価格"
+      ],
+      "columns": [
+        "date",
+        "value"
+      ],
+      "rowCount": 1821,
+      "fileUrl": "/data/data-illustrator/bitcoin-price.csv",
+      "fileUrlEn": null,
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "data-illustrator",
+        "rawgraphs",
+        "drawing-line-chart"
+      ],
+      "category": "tabular"
+    },
+    {
+      "id": "di-boston-weather",
+      "name": "ボストンの天気",
+      "nameEn": "Boston Weather",
+      "description": "ボストンの日別気象データ（平均・最高・最低気温、降水量、風速）",
+      "descriptionEn": "Daily weather in Boston — mean/max/min temp, precipitation, wind",
+      "format": "csv",
+      "tags": [
+        "気象",
+        "時系列",
+        "ボストン",
+        "気温"
+      ],
+      "columns": [
+        "date",
+        "meanTemp",
+        "maxTemp",
+        "minTemp",
+        "precip",
+        "avgPrecip",
+        "meanWind",
+        "maxWind"
+      ],
+      "rowCount": 364,
+      "fileUrl": "/data/data-illustrator/bostonWeather.csv",
+      "fileUrlEn": null,
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "data-illustrator",
+        "rawgraphs"
+      ],
+      "category": "tabular"
+    },
+    {
+      "id": "di-gdp-change",
+      "name": "米国GDP変化率",
+      "nameEn": "US GDP Change",
+      "description": "米国の四半期別GDP変化率データ",
+      "descriptionEn": "US quarterly GDP percentage change",
+      "format": "csv",
+      "tags": [
+        "経済",
+        "GDP",
+        "時系列",
+        "米国"
+      ],
+      "columns": [
+        "Year",
+        "Quarter",
+        "% Change"
+      ],
+      "rowCount": 15,
+      "fileUrl": "/data/data-illustrator/GDP Change.csv",
+      "fileUrlEn": null,
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "data-illustrator",
+        "rawgraphs"
+      ],
+      "category": "tabular"
+    },
+    {
+      "id": "di-olympic-medals",
+      "name": "オリンピックメダル（国別）",
+      "nameEn": "Olympic Medals by Country",
+      "description": "国別・メダル種別のオリンピックメダル獲得数",
+      "descriptionEn": "Olympic medal counts by country and medal type",
+      "format": "csv",
+      "tags": [
+        "スポーツ",
+        "オリンピック",
+        "メダル",
+        "国別"
+      ],
+      "columns": [
+        "Country_Code",
+        "Country_Name",
+        "Medal_Type",
+        "Count"
+      ],
+      "rowCount": 61,
+      "fileUrl": "/data/data-illustrator/olympic-medals.csv",
+      "fileUrlEn": null,
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "data-illustrator",
+        "rawgraphs"
+      ],
+      "category": "tabular"
+    },
+    {
+      "id": "di-nightingale",
+      "name": "ナイチンゲールの死因統計",
+      "nameEn": "Nightingale Causes of Death",
+      "description": "フローレンス・ナイチンゲールの有名な月別死因データ",
+      "descriptionEn": "Florence Nightingale's famous monthly causes of death data",
+      "format": "csv",
+      "tags": [
+        "医学",
+        "歴史",
+        "死因",
+        "統計"
+      ],
+      "columns": [
+        "Month",
+        "Type",
+        "Death"
+      ],
+      "rowCount": 35,
+      "fileUrl": "/data/data-illustrator/nightingale.csv",
+      "fileUrlEn": null,
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "data-illustrator",
+        "rawgraphs"
+      ],
+      "category": "tabular"
+    },
+    {
+      "id": "di-household-spending",
+      "name": "家計支出（国別）",
+      "nameEn": "Household Spending by Country",
+      "description": "各国の年別カテゴリ別家計支出の割合データ",
+      "descriptionEn": "Household spending percentage by country, year, and category",
+      "format": "csv",
+      "tags": [
+        "経済",
+        "家計",
+        "支出",
+        "世界"
+      ],
+      "columns": [
+        "Country",
+        "Year",
+        "Category",
+        "Percentage"
+      ],
+      "rowCount": 19,
+      "fileUrl": "/data/data-illustrator/household_spending.csv",
+      "fileUrlEn": null,
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "data-illustrator",
+        "rawgraphs"
+      ],
+      "category": "tabular"
+    },
+    {
+      "id": "di-elections-2020",
+      "name": "2020年米国大統領選挙",
+      "nameEn": "US 2020 Presidential Election",
+      "description": "2020年米国大統領選挙の州別得票結果",
+      "descriptionEn": "US 2020 presidential election results by state",
+      "format": "csv",
+      "tags": [
+        "政治",
+        "選挙",
+        "米国",
+        "2020"
+      ],
+      "columns": [
+        "State",
+        "Biden",
+        "Trump",
+        "EV",
+        "Biden_pct",
+        "Trump_pct",
+        "Biden_margin",
+        "Trump_margin"
+      ],
+      "rowCount": 50,
+      "fileUrl": "/data/data-illustrator/elections-2020.csv",
+      "fileUrlEn": null,
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "data-illustrator",
+        "rawgraphs"
+      ],
+      "category": "tabular"
+    },
+    {
+      "id": "di-gender-pay-gap",
+      "name": "男女賃金格差",
+      "nameEn": "Gender Pay Gap",
+      "description": "職位別の男女賃金中央値・四分位データ",
+      "descriptionEn": "Gender pay gap data by pay grade — median, percentiles",
+      "format": "csv",
+      "tags": [
+        "社会",
+        "賃金",
+        "ジェンダー",
+        "格差"
+      ],
+      "columns": [
+        "Gender",
+        "Pay Grade",
+        "Median",
+        "75-Percentile",
+        "25-Percentile",
+        "Max",
+        "Min"
+      ],
+      "rowCount": 9,
+      "fileUrl": "/data/data-illustrator/genderPayGap.csv",
+      "fileUrlEn": null,
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "data-illustrator",
+        "rawgraphs"
+      ],
+      "category": "tabular"
     }
   ]
 }
