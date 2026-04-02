@@ -1365,8 +1365,7 @@
       "thumbnailUrl": null,
       "compatibleTools": [
         "voyager2",
-        "rawgraphs",
-        "parallel-coordinates"
+        "rawgraphs"
       ],
       "category": "tabular",
       "fileUrlEn": null
@@ -1454,8 +1453,7 @@
       "thumbnailUrl": null,
       "compatibleTools": [
         "voyager2",
-        "rawgraphs",
-        "parallel-coordinates"
+        "rawgraphs"
       ],
       "category": "tabular",
       "fileUrlEn": null
