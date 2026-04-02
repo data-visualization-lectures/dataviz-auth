@@ -20,20 +20,21 @@ export default async function DataLibraryPage() {
     return redirect("/auth/login");
   }
 
-  const { data: subscription } = await supabase
-    .from("subscriptions")
-    .select("status, current_period_end")
-    .eq("user_id", user.id)
-    .maybeSingle();
-
-  const isActive =
-    subscription &&
-    (subscription.status === "active" || subscription.status === "trialing") &&
-    new Date(subscription.current_period_end) > new Date();
-
-  if (!isActive) {
-    return redirect("/pricing");
-  }
+  // TODO: 本番公開時にサブスクリプションチェックを有効化
+  // const { data: subscription } = await supabase
+  //   .from("subscriptions")
+  //   .select("status, current_period_end")
+  //   .eq("user_id", user.id)
+  //   .maybeSingle();
+  //
+  // const isActive =
+  //   subscription &&
+  //   (subscription.status === "active" || subscription.status === "trialing") &&
+  //   new Date(subscription.current_period_end) > new Date();
+  //
+  // if (!isActive) {
+  //   return redirect("/account");
+  // }
 
   const locale = await getLocale();
 
