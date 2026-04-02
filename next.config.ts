@@ -18,6 +18,18 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      {
+        source: "/data/:path*",
+        headers: [
+          { key: "Access-Control-Allow-Origin", value: "*" },
+        ],
+      },
+      {
+        source: "/lib/:path*",
+        headers: [
+          { key: "Access-Control-Allow-Origin", value: "*" },
+        ],
+      },
     ];
   },
   async rewrites() {

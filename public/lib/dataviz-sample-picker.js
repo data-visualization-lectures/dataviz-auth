@@ -107,7 +107,7 @@ class DatavizSamplePicker extends HTMLElement {
     this.dispatchEvent(new CustomEvent('sample-data-selected', {
       bubbles: true,
       composed: true,
-      detail: { url: fileUrl, format: entry.format, name: entry.name, nameEn: entry.nameEn }
+      detail: { url: fileUrl, format: entry.format, name: entry.name, nameEn: entry.nameEn, extra: entry.extra || null }
     }));
     this.close();
   }

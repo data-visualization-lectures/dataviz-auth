@@ -1157,11 +1157,97 @@
       "fileUrlEn": null
     },
     {
-      "id": "jgbcm-yield-curve",
-      "name": "日本国債イールドカーブ",
-      "nameEn": "Japan Government Bond Yield Curve",
-      "description": "日本国債の年限別利回り推移（1974〜現在、約13,000日分）",
-      "descriptionEn": "Japanese government bond yields by maturity (1974-present, ~13,000 days)",
+      "id": "jgbcm-recent5",
+      "name": "日本国債イールドカーブ（直近5年）",
+      "nameEn": "Japan Govt Bond Yield Curve (Recent 5 Years)",
+      "description": "日本国債の年限別利回り推移（直近5年分）",
+      "descriptionEn": "Japanese government bond yields by maturity (recent 5 years)",
+      "format": "csv",
+      "tags": [
+        "金融",
+        "国債",
+        "時系列",
+        "日本"
+      ],
+      "columns": [
+        "date",
+        "1Y",
+        "2Y",
+        "3Y",
+        "4Y",
+        "5Y",
+        "6Y",
+        "7Y",
+        "8Y",
+        "9Y",
+        "10Y",
+        "15Y",
+        "20Y",
+        "25Y",
+        "30Y",
+        "40Y"
+      ],
+      "rowCount": 1200,
+      "fileUrl": "https://app.dataviz.jp/data/jgbcm-all.csv",
+      "fileUrlEn": null,
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "3d-surface-chart"
+      ],
+      "category": "tabular",
+      "extra": {
+        "mofPeriod": "mof-recent5"
+      }
+    },
+    {
+      "id": "jgbcm-recent10",
+      "name": "日本国債イールドカーブ（直近10年）",
+      "nameEn": "Japan Govt Bond Yield Curve (Recent 10 Years)",
+      "description": "日本国債の年限別利回り推移（直近10年分）",
+      "descriptionEn": "Japanese government bond yields by maturity (recent 10 years)",
+      "format": "csv",
+      "tags": [
+        "金融",
+        "国債",
+        "時系列",
+        "日本"
+      ],
+      "columns": [
+        "date",
+        "1Y",
+        "2Y",
+        "3Y",
+        "4Y",
+        "5Y",
+        "6Y",
+        "7Y",
+        "8Y",
+        "9Y",
+        "10Y",
+        "15Y",
+        "20Y",
+        "25Y",
+        "30Y",
+        "40Y"
+      ],
+      "rowCount": 2400,
+      "fileUrl": "https://app.dataviz.jp/data/jgbcm-all.csv",
+      "fileUrlEn": null,
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "3d-surface-chart"
+      ],
+      "category": "tabular",
+      "extra": {
+        "mofPeriod": "mof-recent10"
+      }
+    },
+    {
+      "id": "jgbcm-all",
+      "name": "日本国債イールドカーブ（全期間）",
+      "nameEn": "Japan Govt Bond Yield Curve (All Periods)",
+      "description": "日本国債の年限別利回り推移（1974年〜現在、全期間）",
+      "descriptionEn": "Japanese government bond yields by maturity (1974-present, all periods)",
       "format": "csv",
       "tags": [
         "金融",
@@ -1189,12 +1275,15 @@
       ],
       "rowCount": 13166,
       "fileUrl": "https://app.dataviz.jp/data/jgbcm-all.csv",
+      "fileUrlEn": null,
       "thumbnailUrl": null,
       "compatibleTools": [
         "3d-surface-chart"
       ],
       "category": "tabular",
-      "fileUrlEn": null
+      "extra": {
+        "mofPeriod": "mof-all"
+      }
     },
     {
       "id": "us-treasury-yield",
