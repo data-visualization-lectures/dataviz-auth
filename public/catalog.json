@@ -1094,7 +1094,6 @@
       "fileUrl": "https://app.dataviz.jp/data/japan-visitors-all.csv",
       "thumbnailUrl": null,
       "compatibleTools": [
-        "drawing-line-chart",
         "rawgraphs",
         "voyager2"
       ],
@@ -1966,8 +1965,7 @@
       "thumbnailUrl": null,
       "compatibleTools": [
         "data-illustrator",
-        "rawgraphs",
-        "drawing-line-chart"
+        "rawgraphs"
       ],
       "category": "tabular"
     },
