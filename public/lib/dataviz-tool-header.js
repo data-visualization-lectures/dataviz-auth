@@ -77,6 +77,7 @@ const _dvToolI18n = {
   'toast.loadFailed':      { ja: '読み込みに失敗しました', en: 'Load failed' },
   'toast.deleteFailed':    { ja: '削除に失敗しました', en: 'Delete failed' },
   'auth.required':         { ja: 'ログインが必要です', en: 'Login required' },
+  'sample.button':         { ja: 'サンプルデータ', en: 'Sample Data' },
 };
 function _dvToolT(key) { return (_dvToolI18n[key] && _dvToolI18n[key][_dvToolLocale]) || key; }
 
@@ -166,6 +167,86 @@ class DatavizToolHeader extends HTMLElement {
       setTimeout(() => { toastContainer.innerHTML = ''; }, 300);
       this.toastTimeout = null;
     }, duration);
+  }
+
+  // =========================================================================
+  // Public API: Sample data picker
+  // =========================================================================
+
+  /**
+   * Configures the sample data picker for this tool.
+   * Adds a "サンプルデータ" button to the left side of the header bar.
+   * When a user selects a dataset, calls the onSampleSelect callback.
+   *
+   * @param {object} sampleConfig
+   * @param {string} sampleConfig.toolId - Tool identifier matching catalog's compatibleTools
+   * @param {function} sampleConfig.onSampleSelect - Called with { url, format, name, nameEn }
+   */
+  setSampleConfig(sampleConfig) {
+    this._sampleConfig = sampleConfig;
+
+    // Dynamically load the sample-picker script if not already loaded
+    if (!window.customElements.get('dataviz-sample-picker')) {
+      const script = document.createElement('script');
+      script.src = (window.datavizAuthUrl || 'https://app.dataviz.jp') + '/lib/dataviz-sample-picker.js';
+      document.head.appendChild(script);
+    }
+
+    // Inject the button into the left group after render
+    this._injectSampleButton();
+  }
+
+  /** @private */
+  _injectSampleButton() {
+    const leftGroup = this.shadowRoot.querySelector('.dv-left-group');
+    if (!leftGroup) return;
+
+    // Avoid duplicate
+    if (this.shadowRoot.getElementById('dv-sample-btn')) return;
+
+    const btn = document.createElement('button');
+    btn.id = 'dv-sample-btn';
+    btn.className = 'dv-btn';
+    btn.textContent = _dvToolT('sample.button');
+    btn.addEventListener('click', () => this._openSamplePicker());
+
+    // Insert after logo, before other buttons
+    const firstBtn = leftGroup.querySelector('.dv-btn, .dv-dropdown');
+    if (firstBtn) {
+      leftGroup.insertBefore(btn, firstBtn);
+    } else {
+      leftGroup.appendChild(btn);
+    }
+  }
+
+  /** @private */
+  _openSamplePicker() {
+    if (!this._sampleConfig) return;
+
+    // Wait for custom element to be defined
+    const tryOpen = () => {
+      let picker = document.querySelector('dataviz-sample-picker');
+      if (!picker) {
+        picker = document.createElement('dataviz-sample-picker');
+        document.body.appendChild(picker);
+
+        picker.addEventListener('sample-data-selected', (e) => {
+          if (this._sampleConfig && this._sampleConfig.onSampleSelect) {
+            this._sampleConfig.onSampleSelect(e.detail);
+          }
+        });
+      }
+
+      picker.setToolId(this._sampleConfig.toolId);
+      picker.open();
+    };
+
+    if (window.customElements.get('dataviz-sample-picker')) {
+      tryOpen();
+    } else {
+      // Wait for the script to load
+      customElements.whenDefined('dataviz-sample-picker').then(tryOpen);
+    }
   }
 
   // =========================================================================
@@ -1370,6 +1451,11 @@ class DatavizToolHeader extends HTMLElement {
         }
       });
     });
+
+    // Re-inject sample data button if setSampleConfig was called
+    if (this._sampleConfig) {
+      this._injectSampleButton();
+    }
   }
 }
 
