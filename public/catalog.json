@@ -3,19 +3,805 @@
   "updatedAt": "2026-04-02T00:00:00Z",
   "entries": [
     {
+      "id": "rg-hate-crimes-ny",
+      "name": "NYヘイトクライム（アリュービアル図）",
+      "nameEn": "Hate Crimes in New York (Alluvial)",
+      "description": "ニューヨークのヘイトクライムを性別・人種・年齢・動機別に分類",
+      "descriptionEn": "Hate crimes in New York by gender, race, age group, and bias motivation",
+      "format": "tsv",
+      "tags": [
+        "社会",
+        "犯罪",
+        "ニューヨーク",
+        "分類"
+      ],
+      "columns": [
+        "Gender",
+        "Race",
+        "Age group",
+        "Bias-Motivation"
+      ],
+      "rowCount": 93,
+      "fileUrl": "/data/rawgraphs/Alluvial diagram - Hate crimes in New York.tsv",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "rawgraphs"
+      ],
+      "category": "tabular",
+      "fileUrlEn": "/data/rawgraphs-en/Alluvial diagram - Hate crimes in New York.tsv"
+    },
+    {
+      "id": "rg-lannister-starck",
+      "name": "ラニスター vs スターク 人物関係（アーク図）",
+      "nameEn": "Lannister vs Stark Relationships (Arc)",
+      "description": "ゲーム・オブ・スローンズのラニスター家とスターク家の人物関係",
+      "descriptionEn": "Relationships between Lannister and Stark characters from Game of Thrones",
+      "format": "tsv",
+      "tags": [
+        "フィクション",
+        "人物",
+        "関係",
+        "ドラマ"
+      ],
+      "columns": [
+        "Source",
+        "Target",
+        "weight"
+      ],
+      "rowCount": 24,
+      "fileUrl": "/data/rawgraphs/Arc diagrams - Lannister vs Starck relationships.tsv",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "rawgraphs"
+      ],
+      "category": "tabular",
+      "fileUrlEn": "/data/rawgraphs-en/Arc diagrams - Lannister vs Starck relationships.tsv"
+    },
+    {
+      "id": "rg-netflix-series",
+      "name": "Netflixオリジナルシリーズ（棒グラフ）",
+      "nameEn": "Netflix Original Series (Bar Chart)",
+      "description": "Netflixオリジナルシリーズのジャンル・シーズン数・IMDB評価など",
+      "descriptionEn": "Netflix original series with genre, seasons, episodes, and IMDB rating",
+      "format": "tsv",
+      "tags": [
+        "エンタメ",
+        "Netflix",
+        "映像",
+        "評価"
+      ],
+      "columns": [
+        "Genere",
+        "Title",
+        "Subgenre",
+        "Premiere_Year",
+        "Status",
+        "Seasons",
+        "Episodes",
+        "IMDB_Rating"
+      ],
+      "rowCount": 109,
+      "fileUrl": "/data/rawgraphs/Bar chart - Netflix Original Series.tsv",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "rawgraphs"
+      ],
+      "category": "tabular",
+      "fileUrlEn": "/data/rawgraphs-en/Bar chart - Netflix Original Series.tsv"
+    },
+    {
+      "id": "rg-ny-wages",
+      "name": "NY職業別平均賃金（ビースウォーム図）",
+      "nameEn": "NY Mean Wages (Beeswarm)",
+      "description": "ニューヨークの職業別平均賃金データ",
+      "descriptionEn": "Mean wages by occupation in New York",
+      "format": "tsv",
+      "tags": [
+        "雇用",
+        "賃金",
+        "職業",
+        "ニューヨーク"
+      ],
+      "columns": [
+        "Occupation",
+        "Mean wage",
+        "category"
+      ],
+      "rowCount": 781,
+      "fileUrl": "/data/rawgraphs/Beeswarm plot - NY mean wages.tsv",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "rawgraphs"
+      ],
+      "category": "tabular",
+      "fileUrlEn": "/data/rawgraphs-en/Beeswarm plot - NY mean wages.tsv"
+    },
+    {
+      "id": "rg-top50-movies",
+      "name": "映画興行収入TOP50（バブルチャート）",
+      "nameEn": "Top 50 Grossing Movies (Bubble Chart)",
+      "description": "興行収入上位50映画の予算・収益・ROI・ジャンル",
+      "descriptionEn": "Budget, box office, ROI, and genre for top 50 grossing movies",
+      "format": "tsv",
+      "tags": [
+        "映画",
+        "エンタメ",
+        "興行収入",
+        "比較"
+      ],
+      "columns": [
+        "Budget (mln)",
+        "Real Worldwide Box Office (mln)",
+        "ROI",
+        "Genre",
+        "Title"
+      ],
+      "rowCount": 49,
+      "fileUrl": "/data/rawgraphs/Bubble Chart - TOP 50 Groossing Movies.tsv",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "rawgraphs"
+      ],
+      "category": "tabular",
+      "fileUrlEn": "/data/rawgraphs-en/Bubble Chart - TOP 50 Groossing Movies.tsv"
+    },
+    {
+      "id": "rg-milan-foreigners",
+      "name": "ミラノの外国人居住者（バンプチャート）",
+      "nameEn": "Foreign Residents in Milan (Bump Chart)",
+      "description": "ミラノにおける国別外国人居住者数の推移",
+      "descriptionEn": "Foreign residents in Milan by country over time",
+      "format": "tsv",
+      "tags": [
+        "人口",
+        "移民",
+        "時系列",
+        "イタリア"
+      ],
+      "columns": [
+        "Country",
+        "Date",
+        "Residents"
+      ],
+      "rowCount": 591,
+      "fileUrl": "/data/rawgraphs/Bump chart - Foreign residents in Milan.tsv",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "rawgraphs"
+      ],
+      "category": "tabular",
+      "fileUrlEn": "/data/rawgraphs-en/Bump chart - Foreign residents in Milan.tsv"
+    },
+    {
+      "id": "rg-populated-cities",
+      "name": "人口の多い都市（サークルパッキング）",
+      "nameEn": "Most Populated Cities (Circle Packing)",
+      "description": "世界の人口上位都市を大陸・国・都市の階層で分類",
+      "descriptionEn": "Most populated cities by continent, country, and city",
+      "format": "tsv",
+      "tags": [
+        "人口",
+        "都市",
+        "世界",
+        "階層"
+      ],
+      "columns": [
+        "Continent",
+        "Country",
+        "City",
+        "Population"
+      ],
+      "rowCount": 49,
+      "fileUrl": "/data/rawgraphs/Circle Packing - Most populated cities.tsv",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "rawgraphs"
+      ],
+      "category": "tabular",
+      "fileUrlEn": "/data/rawgraphs-en/Circle Packing - Most populated cities.tsv"
+    },
+    {
+      "id": "rg-paris-temperature",
+      "name": "パリの平均気温 1944-1945（等高線図）",
+      "nameEn": "Mean Temperature in Paris 1944-1945 (Contour)",
+      "description": "1944〜1945年のパリの日別平均気温データ",
+      "descriptionEn": "Daily mean temperature in Paris from 1944 to 1945",
+      "format": "tsv",
+      "tags": [
+        "気象",
+        "時系列",
+        "パリ",
+        "気温"
+      ],
+      "columns": [
+        "Date",
+        "Mean temerature (°C)"
+      ],
+      "rowCount": 429,
+      "fileUrl": "/data/rawgraphs/Contour plot - Mean temperature in Paris 1944-1945.tsv",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "rawgraphs"
+      ],
+      "category": "tabular",
+      "fileUrlEn": "/data/rawgraphs-en/Contour plot - Mean temperature in Paris 1944-1945.tsv"
+    },
+    {
+      "id": "rg-iris-flowers",
+      "name": "アヤメの花（凸包図）",
+      "nameEn": "Iris Flowers (Convex Hull)",
+      "description": "アヤメ3品種の花弁・萼片の計測データ",
+      "descriptionEn": "Iris flower measurements — sepal and petal dimensions for 3 species",
+      "format": "tsv",
+      "tags": [
+        "植物",
+        "分類",
+        "多変量",
+        "統計"
+      ],
+      "columns": [
+        "Id",
+        "Sepal Length (cm)",
+        "Sepal Width (cm)",
+        "Petal Length (cm)",
+        "Petal Width (cm)",
+        "Species"
+      ],
+      "rowCount": 150,
+      "fileUrl": "/data/rawgraphs/Convex hull - Iris flowers.tsv",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "rawgraphs"
+      ],
+      "category": "tabular",
+      "fileUrlEn": "/data/rawgraphs-en/Convex hull - Iris flowers.tsv"
+    },
+    {
+      "id": "rg-felidae",
+      "name": "ネコ科の分類（デンドログラム）",
+      "nameEn": "Felidae Classification (Dendrogram)",
+      "description": "ネコ科動物の分類体系（科・亜科・属・亜種・絶滅危惧度）",
+      "descriptionEn": "Felidae taxonomy with family, subfamily, genus, subspecies, and extinction risk",
+      "format": "tsv",
+      "tags": [
+        "生物学",
+        "分類",
+        "動物",
+        "階層"
+      ],
+      "columns": [
+        "Family",
+        "Subfamily",
+        "Genus",
+        "Subspecies",
+        "Name",
+        "Risk of Extinction"
+      ],
+      "rowCount": 38,
+      "fileUrl": "/data/rawgraphs/Dendrogram - Felidae classification.tsv",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "rawgraphs"
+      ],
+      "category": "tabular",
+      "fileUrlEn": "/data/rawgraphs-en/Dendrogram - Felidae classification.tsv"
+    },
+    {
+      "id": "rg-italian-pms",
+      "name": "イタリアの首相・大統領（ガントチャート）",
+      "nameEn": "Italian PMs and Presidents (Gantt Chart)",
+      "description": "イタリアの首相と大統領の在任期間データ",
+      "descriptionEn": "Italian prime ministers and presidents with their terms in office",
+      "format": "tsv",
+      "tags": [
+        "政治",
+        "歴史",
+        "イタリア",
+        "時系列"
+      ],
+      "columns": [
+        "Politician",
+        "Start date",
+        "End date",
+        "Role"
+      ],
+      "rowCount": 76,
+      "fileUrl": "/data/rawgraphs/Gantt chart - Italian PMs and presidents.tsv",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "rawgraphs"
+      ],
+      "category": "tabular",
+      "fileUrlEn": "/data/rawgraphs-en/Gantt chart - Italian PMs and presidents.tsv"
+    },
+    {
+      "id": "rg-basketball-shots",
+      "name": "バスケットボールのシュート（ヘックスビン）",
+      "nameEn": "Basketball Shots (Hexbin)",
+      "description": "バスケットボールのシュート位置・種類・距離・成否データ",
+      "descriptionEn": "Basketball shot positions, types, distances, and outcomes",
+      "format": "tsv",
+      "tags": [
+        "スポーツ",
+        "バスケ",
+        "位置データ",
+        "統計"
+      ],
+      "columns": [
+        "Action type",
+        "Shot type",
+        "Shot zone",
+        "Shot distance",
+        "X",
+        "Y",
+        "SHOT_MADE_FLAG"
+      ],
+      "rowCount": 1094,
+      "fileUrl": "/data/rawgraphs/Hexbin - basketball shots.tsv",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "rawgraphs"
+      ],
+      "category": "tabular",
+      "fileUrlEn": "/data/rawgraphs-en/Hexbin - basketball shots.tsv"
+    },
+    {
+      "id": "rg-eu-consumer-prices",
+      "name": "EU消費者物価指数（ホライズングラフ）",
+      "nameEn": "EU Consumer Prices (Horizon Graph)",
+      "description": "EUの消費者物価指数（HICP）のカテゴリ別推移",
+      "descriptionEn": "EU Harmonised Index of Consumer Prices by category over time",
+      "format": "tsv",
+      "tags": [
+        "経済",
+        "物価",
+        "時系列",
+        "EU"
+      ],
+      "columns": [
+        "Category",
+        "Date",
+        "HICP (Harmonised Index of Consumer Prices)"
+      ],
+      "rowCount": 143,
+      "fileUrl": "/data/rawgraphs/Horizon Graph - EU Index of consumer prices.tsv",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "rawgraphs"
+      ],
+      "category": "tabular",
+      "fileUrlEn": "/data/rawgraphs-en/Horizon Graph - EU Index of consumer prices.tsv"
+    },
+    {
+      "id": "rg-riaa-music",
+      "name": "音楽フォーマット別収益（折れ線グラフ）",
+      "nameEn": "RIAA Music Format Revenues (Line Chart)",
+      "description": "米国の音楽フォーマット別収益の推移（RIAA）",
+      "descriptionEn": "RIAA music format revenues over time in the US",
+      "format": "tsv",
+      "tags": [
+        "音楽",
+        "収益",
+        "時系列",
+        "メディア"
+      ],
+      "columns": [
+        "Category",
+        "Format",
+        "Year",
+        "year-date",
+        "Units",
+        "Revenues in millions",
+        "Revenues in millions (Adjusted for inflation)"
+      ],
+      "rowCount": 431,
+      "fileUrl": "/data/rawgraphs/Line chart - RIAA Music format revenues.tsv",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "rawgraphs"
+      ],
+      "category": "tabular",
+      "fileUrlEn": "/data/rawgraphs-en/Line chart - RIAA Music format revenues.tsv"
+    },
+    {
+      "id": "rg-letter-frequencies",
+      "name": "言語別文字頻度（マトリックス図）",
+      "nameEn": "Letter Frequencies by Language (Matrix Plot)",
+      "description": "各言語におけるアルファベット文字の出現頻度",
+      "descriptionEn": "Frequency of letters across different languages",
+      "format": "tsv",
+      "tags": [
+        "言語",
+        "統計",
+        "文字",
+        "比較"
+      ],
+      "columns": [
+        "Letter",
+        "Language",
+        "Frequency (%)"
+      ],
+      "rowCount": 389,
+      "fileUrl": "/data/rawgraphs/Matrix Plot - Letters frequencies by language.tsv",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "rawgraphs"
+      ],
+      "category": "tabular",
+      "fileUrlEn": "/data/rawgraphs-en/Matrix Plot - Letters frequencies by language.tsv"
+    },
+    {
+      "id": "rg-happiness-index",
+      "name": "世界幸福度指数（マルチセット棒グラフ）",
+      "nameEn": "Happiness Index (Multiset Barchart)",
+      "description": "各国の寛容さ・腐敗認知度・ポジティブ/ネガティブ感情の推移",
+      "descriptionEn": "Generosity, corruption perceptions, and affect scores by country over years",
+      "format": "tsv",
+      "tags": [
+        "社会",
+        "幸福度",
+        "世界",
+        "時系列"
+      ],
+      "columns": [
+        "Country",
+        "Year",
+        "Generosity",
+        "Perceptions of corruption",
+        "Positive affect",
+        "Negative affect"
+      ],
+      "rowCount": 1949,
+      "fileUrl": "/data/rawgraphs/Multiset Barchart - Happiness Index.tsv",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "rawgraphs"
+      ],
+      "category": "tabular",
+      "fileUrlEn": "/data/rawgraphs-en/Multiset Barchart - Happiness Index.tsv"
+    },
+    {
+      "id": "rg-fifa-players",
+      "name": "FIFAサッカー選手（レーダーチャート）",
+      "nameEn": "FIFA Players (Radar Chart)",
+      "description": "FIFAゲームのトップ選手のスキル値データ",
+      "descriptionEn": "FIFA game top player skill attributes",
+      "format": "tsv",
+      "tags": [
+        "スポーツ",
+        "サッカー",
+        "選手",
+        "多変量"
+      ],
+      "columns": [
+        "Name",
+        "Nationality",
+        "Club",
+        "SprintSpeed",
+        "Agility",
+        "Reactions",
+        "Balance",
+        "ShotPower",
+        "Jumping",
+        "Stamina",
+        "Strength",
+        "LongShots",
+        "Aggression",
+        "Interceptions",
+        "Positioning",
+        "Vision",
+        "Penalties",
+        "Composure",
+        "Marking",
+        "StandingTackle",
+        "SlidingTackle"
+      ],
+      "rowCount": 10,
+      "fileUrl": "/data/rawgraphs/Radar Chart - Fifa players.tsv",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "rawgraphs"
+      ],
+      "category": "tabular",
+      "fileUrlEn": "/data/rawgraphs-en/Radar Chart - Fifa players.tsv"
+    },
+    {
+      "id": "rg-energy-flows",
+      "name": "エネルギーフロー（サンキー図）",
+      "nameEn": "Energy Flows (Sankey Diagram)",
+      "description": "エネルギー源から消費先へのフロー（TWh単位）",
+      "descriptionEn": "Energy flows from source to destination in TWh",
+      "format": "tsv",
+      "tags": [
+        "エネルギー",
+        "フロー",
+        "環境"
+      ],
+      "columns": [
+        "From",
+        "To",
+        "TWh"
+      ],
+      "rowCount": 51,
+      "fileUrl": "/data/rawgraphs/Sankey diagram - Energy flows.tsv",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "rawgraphs"
+      ],
+      "category": "tabular",
+      "fileUrlEn": "/data/rawgraphs-en/Sankey diagram - Energy flows.tsv"
+    },
+    {
+      "id": "rg-gdp-composition",
+      "name": "GDP産業構成（積み上げ棒グラフ）",
+      "nameEn": "GDP Sector Composition (Stacked Barchart)",
+      "description": "各国のGDP産業別構成（農業・工業・サービス業）",
+      "descriptionEn": "GDP composition by sector (agricultural, industrial, service) for various countries",
+      "format": "tsv",
+      "tags": [
+        "経済",
+        "GDP",
+        "産業",
+        "世界"
+      ],
+      "columns": [
+        "Country",
+        "Agricultural (US$MM)",
+        "Industrial (US$MM)",
+        "Service (US$MM)"
+      ],
+      "rowCount": 30,
+      "fileUrl": "/data/rawgraphs/Stacked barchart - GDP sector composition.tsv",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "rawgraphs"
+      ],
+      "category": "tabular",
+      "fileUrlEn": "/data/rawgraphs-en/Stacked barchart - GDP sector composition.tsv"
+    },
+    {
+      "id": "rg-olympics-medals",
+      "name": "オリンピックメダル（ストリームグラフ）",
+      "nameEn": "Olympics Medals (Streamgraph)",
+      "description": "オリンピックの地域・国別メダル獲得数の推移",
+      "descriptionEn": "Olympic medals by macroarea and country over time",
+      "format": "tsv",
+      "tags": [
+        "スポーツ",
+        "オリンピック",
+        "メダル",
+        "時系列"
+      ],
+      "columns": [
+        "Year",
+        "Macroarea",
+        "Country",
+        "Medals"
+      ],
+      "rowCount": 1153,
+      "fileUrl": "/data/rawgraphs/Streamgraph - Olympics Medals.tsv",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "rawgraphs"
+      ],
+      "category": "tabular",
+      "fileUrlEn": "/data/rawgraphs-en/Streamgraph - Olympics Medals.tsv"
+    },
+    {
+      "id": "rg-wine-aromas",
+      "name": "ワインのアロマ（サンバースト図）",
+      "nameEn": "Wine Aromas (Sunburst)",
+      "description": "ワインのアロマを階層的に分類したデータ",
+      "descriptionEn": "Hierarchical classification of wine aromas",
+      "format": "tsv",
+      "tags": [
+        "食品",
+        "ワイン",
+        "分類",
+        "階層"
+      ],
+      "columns": [
+        "Root",
+        "Category",
+        "Type",
+        "Aroma",
+        "Results"
+      ],
+      "rowCount": 72,
+      "fileUrl": "/data/rawgraphs/Sunburst - Wine Aromas.tsv",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "rawgraphs"
+      ],
+      "category": "tabular",
+      "fileUrlEn": "/data/rawgraphs-en/Sunburst - Wine Aromas.tsv"
+    },
+    {
+      "id": "rg-orchestra",
+      "name": "オーケストラの編成（ツリーマップ）",
+      "nameEn": "Orchestra (Treemap)",
+      "description": "オーケストラの楽器編成を種類・グループ別に分類",
+      "descriptionEn": "Orchestra instrument composition by type and group",
+      "format": "tsv",
+      "tags": [
+        "音楽",
+        "楽器",
+        "分類",
+        "階層"
+      ],
+      "columns": [
+        "Orchestra type",
+        "Group",
+        "Instrument",
+        "Number"
+      ],
+      "rowCount": 100,
+      "fileUrl": "/data/rawgraphs/Treemap - Orchestra.tsv",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "rawgraphs"
+      ],
+      "category": "tabular",
+      "fileUrlEn": "/data/rawgraphs-en/Treemap - Orchestra.tsv"
+    },
+    {
+      "id": "rg-ny-weather",
+      "name": "ニューヨークの天気（バイオリン図）",
+      "nameEn": "Weather in New York (Violin Plot)",
+      "description": "ニューヨークの日別気象データ（気温・降水量・風速）",
+      "descriptionEn": "Daily weather data in New York — temperature, precipitation, wind",
+      "format": "tsv",
+      "tags": [
+        "気象",
+        "時系列",
+        "ニューヨーク",
+        "気温"
+      ],
+      "columns": [
+        "location",
+        "date",
+        "precipitation",
+        "temp_max",
+        "temp_min",
+        "wind",
+        "weather"
+      ],
+      "rowCount": 1461,
+      "fileUrl": "/data/rawgraphs/Violin plot - Weather in New York.tsv",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "rawgraphs"
+      ],
+      "category": "tabular",
+      "fileUrlEn": "/data/rawgraphs-en/Violin plot - Weather in New York.tsv"
+    },
+    {
+      "id": "rg-us-presidential-elections",
+      "name": "米国大統領選挙（折れ線グラフ）",
+      "nameEn": "US Presidential Elections (Line Graph)",
+      "description": "米国大統領選挙の州別・政党別得票データ",
+      "descriptionEn": "US presidential election results by state and party",
+      "format": "tsv",
+      "tags": [
+        "政治",
+        "選挙",
+        "米国",
+        "時系列"
+      ],
+      "columns": [
+        "年",
+        "州",
+        "州略称",
+        "政党 (簡略)",
+        "政党 (詳細)",
+        "得票数",
+        "得票率 (%)"
+      ],
+      "rowCount": 4286,
+      "fileUrl": "/data/rawgraphs/Line Graph - US Presidential Elections.tsv",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "rawgraphs"
+      ],
+      "category": "tabular",
+      "fileUrlEn": null
+    },
+    {
+      "id": "rg-us-presidential-elections-full",
+      "name": "米国大統領選挙 詳細版（折れ線グラフ）",
+      "nameEn": "US Presidential Elections Full (Line Graph)",
+      "description": "米国大統領選挙の候補者別詳細得票データ",
+      "descriptionEn": "Detailed US presidential election results by candidate",
+      "format": "tsv",
+      "tags": [
+        "政治",
+        "選挙",
+        "米国",
+        "詳細"
+      ],
+      "columns": [
+        "年",
+        "州",
+        "州略称",
+        "FIPSコード",
+        "候補者",
+        "政党",
+        "得票数",
+        "総得票数"
+      ],
+      "rowCount": 3739,
+      "fileUrl": "/data/rawgraphs/Line graph - US presidential election full.tsv",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "rawgraphs"
+      ],
+      "category": "tabular",
+      "fileUrlEn": null
+    },
+    {
+      "id": "rg-seriea-ranking",
+      "name": "セリエAランキング（スロープグラフ）",
+      "nameEn": "Premier Serie A Ranking (Slope Graph)",
+      "description": "イタリア・セリエAのチーム順位変動データ",
+      "descriptionEn": "Italian Serie A team ranking changes between seasons",
+      "format": "tsv",
+      "tags": [
+        "スポーツ",
+        "サッカー",
+        "順位",
+        "イタリア"
+      ],
+      "columns": [
+        "チーム",
+        "2018-2020",
+        "2019-2020",
+        "差分",
+        "ステータス",
+        "リーグ"
+      ],
+      "rowCount": 33,
+      "fileUrl": "/data/rawgraphs/Slope graph - Premier SerieA ranking.tsv",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "rawgraphs"
+      ],
+      "category": "tabular",
+      "fileUrlEn": null
+    },
+    {
       "id": "yogurt-nutrition",
       "name": "ヨーグルト栄養成分",
       "nameEn": "Yogurt Nutrition",
       "description": "市販ヨーグルト製品の栄養成分比較データ（16項目）",
       "descriptionEn": "Nutritional comparison data for commercial yogurt products (16 items)",
       "format": "csv",
-      "tags": ["食品", "栄養", "比較", "多変量"],
-      "columns": ["brand", "product", "capacity", "energy", "protein", "fat", "carbohydrate", "sodium", "calcium"],
+      "tags": [
+        "食品",
+        "栄養",
+        "比較",
+        "多変量"
+      ],
+      "columns": [
+        "brand",
+        "product",
+        "capacity",
+        "energy",
+        "protein",
+        "fat",
+        "carbohydrate",
+        "sodium",
+        "calcium"
+      ],
       "rowCount": 50,
       "fileUrl": "/data/yogurt-nutrition.csv",
       "thumbnailUrl": null,
-      "compatibleTools": ["parallel-coordinates", "rawgraphs", "vega-editor", "voyager2"],
-      "category": "tabular"
+      "compatibleTools": [
+        "parallel-coordinates",
+        "rawgraphs",
+        "voyager2"
+      ],
+      "category": "tabular",
+      "fileUrlEn": null
     },
     {
       "id": "japan-population",
@@ -24,28 +810,249 @@
       "description": "日本の47都道府県の人口・面積・人口密度データ",
       "descriptionEn": "Population, area and density data for Japan's 47 prefectures",
       "format": "csv",
-      "tags": ["日本", "人口", "地理", "都道府県"],
-      "columns": ["prefecture", "population", "area", "density", "region"],
+      "tags": [
+        "日本",
+        "人口",
+        "地理",
+        "都道府県"
+      ],
+      "columns": [
+        "prefecture",
+        "population",
+        "area",
+        "density",
+        "region"
+      ],
       "rowCount": 47,
       "fileUrl": "/data/japan-population.csv",
       "thumbnailUrl": null,
-      "compatibleTools": ["rawgraphs", "parallel-coordinates", "vega-editor", "voyager2", "kepler-gl", "cartogram-japan", "choropleth-japan"],
-      "category": "tabular"
+      "compatibleTools": [
+        "rawgraphs",
+        "parallel-coordinates",
+        "voyager2",
+        "kepler-gl",
+        "cartogram-japan",
+        "cartogram-prefectures",
+        "choropleth-japan",
+        "choropleth-prefectures"
+      ],
+      "category": "tabular",
+      "fileUrlEn": null
     },
     {
       "id": "les-miserables",
       "name": "レ・ミゼラブル人物相関",
       "nameEn": "Les Miserables Character Network",
-      "description": "ヴィクトル・ユゴー『レ・ミゼラブル』の登場人物の共起ネットワーク",
-      "descriptionEn": "Co-occurrence network of characters in Victor Hugo's Les Miserables",
+      "description": "ヴィクトル・ユゴー『レ・ミゼラブル』の登場人物の共起ネットワーク（78ノード、255エッジ）",
+      "descriptionEn": "Co-occurrence network of characters in Victor Hugo's Les Miserables (78 nodes, 255 edges)",
       "format": "gexf",
-      "tags": ["ネットワーク", "文学", "人物", "共起"],
+      "tags": [
+        "ネットワーク",
+        "文学",
+        "人物",
+        "共起"
+      ],
       "columns": [],
-      "rowCount": 77,
+      "rowCount": 78,
       "fileUrl": "/data/les-miserables.gexf",
       "thumbnailUrl": null,
-      "compatibleTools": ["gephi-lite", "cytoscape"],
-      "category": "network"
+      "compatibleTools": [
+        "gephi-lite",
+        "cytoscape"
+      ],
+      "category": "network",
+      "fileUrlEn": null
+    },
+    {
+      "id": "celegans",
+      "name": "線虫 C. elegans 神経回路",
+      "nameEn": "C. elegans Neural Network",
+      "description": "線虫の神経接続ネットワーク（307ノード、2,360エッジ）",
+      "descriptionEn": "Neural connectivity network of C. elegans (307 nodes, 2,360 edges)",
+      "format": "gexf",
+      "tags": [
+        "ネットワーク",
+        "生物学",
+        "神経科学"
+      ],
+      "columns": [],
+      "rowCount": 307,
+      "fileUrl": "/data/celegans.gexf",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "cytoscape",
+        "gephi-lite"
+      ],
+      "category": "network",
+      "fileUrlEn": null
+    },
+    {
+      "id": "diseasome",
+      "name": "疾患-タンパク質ネットワーク",
+      "nameEn": "Diseasome Network",
+      "description": "疾患とタンパク質の相互作用ネットワーク（1,420ノード、3,927エッジ）",
+      "descriptionEn": "Disease-protein interaction network (1,420 nodes, 3,927 edges)",
+      "format": "gexf",
+      "tags": [
+        "ネットワーク",
+        "医学",
+        "疾患",
+        "タンパク質"
+      ],
+      "columns": [],
+      "rowCount": 1420,
+      "fileUrl": "/data/diseasome.gexf",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "cytoscape",
+        "gephi-lite"
+      ],
+      "category": "network",
+      "fileUrlEn": null
+    },
+    {
+      "id": "eurosis",
+      "name": "欧州社会経済ネットワーク",
+      "nameEn": "EuroSiS Actor Network",
+      "description": "欧州の社会経済アクター間の関係ネットワーク（1,286ノード、7,587エッジ）",
+      "descriptionEn": "European socio-economic actor network (1,286 nodes, 7,587 edges)",
+      "format": "gexf",
+      "tags": [
+        "ネットワーク",
+        "社会",
+        "経済",
+        "欧州"
+      ],
+      "columns": [],
+      "rowCount": 1286,
+      "fileUrl": "/data/eurosis.gexf",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "cytoscape",
+        "gephi-lite"
+      ],
+      "category": "network",
+      "fileUrlEn": null
+    },
+    {
+      "id": "game-of-thrones",
+      "name": "ゲーム・オブ・スローンズ人物相関",
+      "nameEn": "Game of Thrones Character Network",
+      "description": "ゲーム・オブ・スローンズの登場人物の相互作用ネットワーク（107ノード、352エッジ）",
+      "descriptionEn": "Game of Thrones character interaction network (107 nodes, 352 edges)",
+      "format": "graphml",
+      "tags": [
+        "ネットワーク",
+        "フィクション",
+        "人物",
+        "ドラマ"
+      ],
+      "columns": [],
+      "rowCount": 107,
+      "fileUrl": "/data/game-of-thrones.graphml",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "cytoscape",
+        "gephi-lite"
+      ],
+      "category": "network",
+      "fileUrlEn": null
+    },
+    {
+      "id": "java-class-hierarchy",
+      "name": "Javaクラス階層",
+      "nameEn": "Java Class Hierarchy",
+      "description": "Javaクラスの継承・依存関係ネットワーク（1,539ノード、8,033エッジ）",
+      "descriptionEn": "Java class hierarchy and dependency network (1,539 nodes, 8,033 edges)",
+      "format": "gexf",
+      "tags": [
+        "ネットワーク",
+        "プログラミング",
+        "Java",
+        "クラス階層"
+      ],
+      "columns": [],
+      "rowCount": 1539,
+      "fileUrl": "/data/java.gexf",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "cytoscape",
+        "gephi-lite"
+      ],
+      "category": "network",
+      "fileUrlEn": null
+    },
+    {
+      "id": "marvel-universe",
+      "name": "マーベル・ユニバース",
+      "nameEn": "Marvel Universe Character Network",
+      "description": "マーベルのキャラクター共演ネットワーク（327ノード、9,891エッジ）",
+      "descriptionEn": "Marvel universe character co-appearance network (327 nodes, 9,891 edges)",
+      "format": "graphml",
+      "tags": [
+        "ネットワーク",
+        "フィクション",
+        "マーベル",
+        "コミック"
+      ],
+      "columns": [],
+      "rowCount": 327,
+      "fileUrl": "/data/marvel.graphml",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "cytoscape",
+        "gephi-lite"
+      ],
+      "category": "network",
+      "fileUrlEn": null
+    },
+    {
+      "id": "power-grid",
+      "name": "西部州電力網",
+      "nameEn": "Western States Power Grid",
+      "description": "米国西部の電力網トポロジー（4,942ノード、6,595エッジ）",
+      "descriptionEn": "Western States power grid network topology (4,942 nodes, 6,595 edges)",
+      "format": "gexf",
+      "tags": [
+        "ネットワーク",
+        "インフラ",
+        "電力",
+        "米国"
+      ],
+      "columns": [],
+      "rowCount": 4942,
+      "fileUrl": "/data/power-grid.gexf",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "cytoscape",
+        "gephi-lite"
+      ],
+      "category": "network",
+      "fileUrlEn": null
+    },
+    {
+      "id": "quakers",
+      "name": "クエーカー教徒の社会的ネットワーク",
+      "nameEn": "Quaker Social Network",
+      "description": "歴史上のクエーカー教徒の人物関係ネットワーク（96ノード、162エッジ）",
+      "descriptionEn": "Historical Quaker personalities social network (96 nodes, 162 edges)",
+      "format": "graphml",
+      "tags": [
+        "ネットワーク",
+        "歴史",
+        "宗教",
+        "社会"
+      ],
+      "columns": [],
+      "rowCount": 96,
+      "fileUrl": "/data/quakers.graphml",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "cytoscape",
+        "gephi-lite"
+      ],
+      "category": "network",
+      "fileUrlEn": null
     },
     {
       "id": "world-airports",
@@ -54,13 +1061,31 @@
       "description": "世界の主要空港の位置・乗客数データ",
       "descriptionEn": "Location and passenger data for major world airports",
       "format": "csv",
-      "tags": ["地理", "交通", "空港", "世界"],
-      "columns": ["name", "city", "country", "iata", "latitude", "longitude", "passengers"],
+      "tags": [
+        "地理",
+        "交通",
+        "空港",
+        "世界"
+      ],
+      "columns": [
+        "name",
+        "city",
+        "country",
+        "iata",
+        "latitude",
+        "longitude",
+        "passengers"
+      ],
       "rowCount": 891,
       "fileUrl": "/data/world-airports.csv",
       "thumbnailUrl": null,
-      "compatibleTools": ["kepler-gl", "rawgraphs", "vega-editor", "voyager2"],
-      "category": "geographic"
+      "compatibleTools": [
+        "kepler-gl",
+        "rawgraphs",
+        "voyager2"
+      ],
+      "category": "geographic",
+      "fileUrlEn": null
     },
     {
       "id": "tokyo-temperature",
@@ -69,28 +1094,694 @@
       "description": "東京の月別平均気温・最高気温・最低気温の年次推移データ",
       "descriptionEn": "Monthly average, max and min temperature trends in Tokyo",
       "format": "csv",
-      "tags": ["気象", "時系列", "東京", "気温"],
-      "columns": ["year", "month", "avg_temp", "max_temp", "min_temp"],
+      "tags": [
+        "気象",
+        "時系列",
+        "東京",
+        "気温"
+      ],
+      "columns": [
+        "year",
+        "month",
+        "avg_temp",
+        "max_temp",
+        "min_temp"
+      ],
       "rowCount": 360,
       "fileUrl": "/data/tokyo-temperature.csv",
       "thumbnailUrl": null,
-      "compatibleTools": ["rawgraphs", "parallel-coordinates", "vega-editor", "voyager2", "drawing-line-chart"],
-      "category": "tabular"
+      "compatibleTools": [
+        "rawgraphs",
+        "voyager2",
+        "drawing-line-chart"
+      ],
+      "category": "tabular",
+      "fileUrlEn": null
     },
     {
-      "id": "vega-bar-chart-spec",
-      "name": "棒グラフ仕様サンプル",
-      "nameEn": "Bar Chart Spec Example",
-      "description": "Vega-Lite形式の棒グラフ仕様サンプル（カテゴリ別売上）",
-      "descriptionEn": "A Vega-Lite bar chart specification example (sales by category)",
-      "format": "vega-spec",
-      "tags": ["仕様", "棒グラフ", "Vega-Lite"],
-      "columns": [],
-      "rowCount": 0,
-      "fileUrl": "/data/bar-chart-spec.json",
+      "id": "japan-visitors",
+      "name": "訪日外国人旅行者数",
+      "nameEn": "Japan Foreign Visitors",
+      "description": "訪日外国人旅行者の年別総数推移（2003〜2024年）",
+      "descriptionEn": "Annual foreign visitor arrivals to Japan (2003-2024)",
+      "format": "csv",
+      "tags": [
+        "日本",
+        "観光",
+        "時系列",
+        "旅行者"
+      ],
+      "columns": [
+        "国名",
+        "総数"
+      ],
+      "rowCount": 21,
+      "fileUrl": "/data/japan-visitors-all.csv",
       "thumbnailUrl": null,
-      "compatibleTools": ["vega-editor"],
-      "category": "spec"
+      "compatibleTools": [
+        "drawing-line-chart",
+        "rawgraphs",
+        "voyager2"
+      ],
+      "category": "tabular",
+      "fileUrlEn": null
+    },
+    {
+      "id": "japan-population-trend",
+      "name": "日本の総人口推移",
+      "nameEn": "Japan Population Trend",
+      "description": "日本の総人口の推移データ（1990〜2025年、5年間隔）",
+      "descriptionEn": "Japan total population trend (1990-2025, 5-year intervals)",
+      "format": "csv",
+      "tags": [
+        "日本",
+        "人口",
+        "時系列"
+      ],
+      "columns": [
+        "date",
+        "value"
+      ],
+      "rowCount": 7,
+      "fileUrl": "/data/japan-population-trend.csv",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "drawing-line-chart",
+        "rawgraphs",
+        "voyager2"
+      ],
+      "category": "tabular",
+      "fileUrlEn": null
+    },
+    {
+      "id": "yen-dollar-exchange",
+      "name": "円ドル為替レート（年次）",
+      "nameEn": "Yen-Dollar Exchange Rate (Yearly)",
+      "description": "円ドル為替レートの年次推移（2000〜2027年）",
+      "descriptionEn": "Yearly yen-dollar exchange rate trend (2000-2027)",
+      "format": "csv",
+      "tags": [
+        "金融",
+        "為替",
+        "時系列",
+        "経済"
+      ],
+      "columns": [
+        "date",
+        "value"
+      ],
+      "rowCount": 27,
+      "fileUrl": "/data/yen-dollar-exchange_year.csv",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "drawing-line-chart",
+        "rawgraphs",
+        "voyager2"
+      ],
+      "category": "tabular",
+      "fileUrlEn": null
+    },
+    {
+      "id": "jgbcm-yield-curve",
+      "name": "日本国債イールドカーブ",
+      "nameEn": "Japan Government Bond Yield Curve",
+      "description": "日本国債の年限別利回り推移（1974〜現在、約13,000日分）",
+      "descriptionEn": "Japanese government bond yields by maturity (1974-present, ~13,000 days)",
+      "format": "csv",
+      "tags": [
+        "金融",
+        "国債",
+        "時系列",
+        "日本"
+      ],
+      "columns": [
+        "date",
+        "1Y",
+        "2Y",
+        "3Y",
+        "4Y",
+        "5Y",
+        "6Y",
+        "7Y",
+        "8Y",
+        "9Y",
+        "10Y",
+        "15Y",
+        "20Y",
+        "25Y",
+        "30Y",
+        "40Y"
+      ],
+      "rowCount": 13166,
+      "fileUrl": "/data/jgbcm-all.csv",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "3d-surface-chart"
+      ],
+      "category": "tabular",
+      "fileUrlEn": null
+    },
+    {
+      "id": "us-treasury-yield",
+      "name": "米国債イールドカーブ",
+      "nameEn": "US Treasury Yield Curve",
+      "description": "米国債の年限別利回り推移（2019〜現在、月次）",
+      "descriptionEn": "US Treasury yields by maturity (2019-present, monthly)",
+      "format": "csv",
+      "tags": [
+        "金融",
+        "国債",
+        "時系列",
+        "米国"
+      ],
+      "columns": [
+        "date",
+        "1M",
+        "3M",
+        "6M",
+        "1Y",
+        "2Y",
+        "3Y",
+        "5Y",
+        "7Y",
+        "10Y",
+        "20Y",
+        "30Y"
+      ],
+      "rowCount": 72,
+      "fileUrl": "/data/us-treasury.csv",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "3d-surface-chart"
+      ],
+      "category": "tabular",
+      "fileUrlEn": null
+    },
+    {
+      "id": "japan-births-by-prefecture",
+      "name": "都道府県別出生数",
+      "nameEn": "Number of Births by Prefecture",
+      "description": "日本の都道府県別出生数の年次推移（2011〜2022年）",
+      "descriptionEn": "Annual number of births by prefecture in Japan (2011-2022)",
+      "format": "csv",
+      "tags": [
+        "日本",
+        "人口",
+        "出生",
+        "都道府県",
+        "時系列"
+      ],
+      "columns": [
+        "年度",
+        "北海道",
+        "青森県",
+        "岩手県",
+        "宮城県",
+        "秋田県",
+        "山形県",
+        "福島県",
+        "茨城県",
+        "栃木県",
+        "群馬県",
+        "埼玉県",
+        "千葉県",
+        "東京都",
+        "神奈川県",
+        "新潟県",
+        "富山県",
+        "石川県",
+        "福井県",
+        "山梨県",
+        "長野県",
+        "岐阜県",
+        "静岡県",
+        "愛知県",
+        "三重県",
+        "滋賀県",
+        "京都府",
+        "大阪府",
+        "兵庫県",
+        "奈良県",
+        "和歌山県",
+        "鳥取県",
+        "島根県",
+        "岡山県",
+        "広島県",
+        "山口県",
+        "徳島県",
+        "香川県",
+        "愛媛県",
+        "高知県",
+        "福岡県",
+        "佐賀県",
+        "長崎県",
+        "熊本県",
+        "大分県",
+        "宮崎県",
+        "鹿児島県",
+        "沖縄県"
+      ],
+      "rowCount": 12,
+      "fileUrl": "/data/number-of-births.csv",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "3d-surface-chart",
+        "cartogram-prefectures",
+        "choropleth-prefectures"
+      ],
+      "category": "tabular",
+      "fileUrlEn": null
+    },
+    {
+      "id": "voyager-barley",
+      "name": "大麦の収穫量",
+      "nameEn": "Barley Yield",
+      "description": "1931〜1932年の米国中西部における品種別・地域別大麦収穫量",
+      "descriptionEn": "Barley yield by variety across the upper midwest in 1931 and 1932",
+      "format": "json",
+      "tags": [
+        "農業",
+        "収穫",
+        "品種",
+        "比較"
+      ],
+      "columns": [
+        "yield",
+        "variety",
+        "year",
+        "site"
+      ],
+      "rowCount": 120,
+      "fileUrl": "/data/barley.json",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "voyager2",
+        "rawgraphs"
+      ],
+      "category": "tabular",
+      "fileUrlEn": null
+    },
+    {
+      "id": "voyager-cars",
+      "name": "自動車統計",
+      "nameEn": "Cars",
+      "description": "1970〜1982年の自動車モデル別スペックデータ（燃費、馬力、重量など）",
+      "descriptionEn": "Automotive statistics for a variety of car models between 1970 & 1982",
+      "format": "json",
+      "tags": [
+        "自動車",
+        "統計",
+        "多変量",
+        "比較"
+      ],
+      "columns": [
+        "Name",
+        "Miles_per_Gallon",
+        "Cylinders",
+        "Displacement",
+        "Horsepower",
+        "Weight_in_lbs",
+        "Acceleration",
+        "Year",
+        "Origin"
+      ],
+      "rowCount": 406,
+      "fileUrl": "/data/cars.json",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "voyager2",
+        "rawgraphs",
+        "parallel-coordinates"
+      ],
+      "category": "tabular",
+      "fileUrlEn": null
+    },
+    {
+      "id": "voyager-crimea",
+      "name": "クリミア戦争の死因",
+      "nameEn": "Crimea",
+      "description": "クリミア戦争における月別死因データ（負傷・病気・その他）",
+      "descriptionEn": "Monthly causes of death during the Crimean War (wounds, disease, other)",
+      "format": "json",
+      "tags": [
+        "歴史",
+        "戦争",
+        "死因",
+        "時系列"
+      ],
+      "columns": [
+        "date",
+        "wounds",
+        "other",
+        "disease"
+      ],
+      "rowCount": 24,
+      "fileUrl": "/data/crimea.json",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "voyager2",
+        "rawgraphs"
+      ],
+      "category": "tabular",
+      "fileUrlEn": null
+    },
+    {
+      "id": "voyager-driving",
+      "name": "米国のドライブと燃料消費",
+      "nameEn": "Driving",
+      "description": "米国の年間走行マイル数とガソリン価格の推移",
+      "descriptionEn": "US annual miles driven and gas prices over time",
+      "format": "json",
+      "tags": [
+        "交通",
+        "燃料",
+        "時系列",
+        "米国"
+      ],
+      "columns": [
+        "side",
+        "year",
+        "miles",
+        "gas"
+      ],
+      "rowCount": 55,
+      "fileUrl": "/data/driving.json",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "voyager2",
+        "rawgraphs"
+      ],
+      "category": "tabular",
+      "fileUrlEn": null
+    },
+    {
+      "id": "voyager-iris",
+      "name": "アヤメのデータセット",
+      "nameEn": "Iris",
+      "description": "アヤメ3品種の花弁・萼片の計測データ（フィッシャーのアヤメ）",
+      "descriptionEn": "Fisher's Iris dataset — sepal and petal measurements for 3 species",
+      "format": "json",
+      "tags": [
+        "植物",
+        "分類",
+        "多変量",
+        "統計"
+      ],
+      "columns": [
+        "sepalLength",
+        "sepalWidth",
+        "petalLength",
+        "petalWidth",
+        "species"
+      ],
+      "rowCount": 150,
+      "fileUrl": "/data/iris.json",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "voyager2",
+        "rawgraphs",
+        "parallel-coordinates"
+      ],
+      "category": "tabular",
+      "fileUrlEn": null
+    },
+    {
+      "id": "voyager-jobs",
+      "name": "米国の職業別雇用",
+      "nameEn": "Jobs",
+      "description": "米国の職業別・性別・年代別雇用者数データ",
+      "descriptionEn": "US employment data by job type, sex, and year",
+      "format": "json",
+      "tags": [
+        "雇用",
+        "職業",
+        "時系列",
+        "米国"
+      ],
+      "columns": [
+        "job",
+        "sex",
+        "year",
+        "count",
+        "perc"
+      ],
+      "rowCount": 7650,
+      "fileUrl": "/data/jobs.json",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "voyager2",
+        "rawgraphs"
+      ],
+      "category": "tabular",
+      "fileUrlEn": null
+    },
+    {
+      "id": "voyager-population",
+      "name": "米国の年齢別人口",
+      "nameEn": "Population",
+      "description": "米国の年齢・性別・年代別人口推移データ",
+      "descriptionEn": "US population data by year, age, and sex",
+      "format": "json",
+      "tags": [
+        "人口",
+        "年齢",
+        "時系列",
+        "米国"
+      ],
+      "columns": [
+        "year",
+        "age",
+        "sex",
+        "people"
+      ],
+      "rowCount": 570,
+      "fileUrl": "/data/population.json",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "voyager2",
+        "rawgraphs"
+      ],
+      "category": "tabular",
+      "fileUrlEn": null
+    },
+    {
+      "id": "voyager-movies",
+      "name": "映画データ",
+      "nameEn": "Movies",
+      "description": "映画の興行収入・予算・評価・ジャンルなどの包括的データセット",
+      "descriptionEn": "Comprehensive movie dataset with gross revenue, budget, ratings, genre, etc.",
+      "format": "json",
+      "tags": [
+        "映画",
+        "エンタメ",
+        "評価",
+        "多変量"
+      ],
+      "columns": [
+        "Title",
+        "US_Gross",
+        "Worldwide_Gross",
+        "Production_Budget",
+        "Release_Date",
+        "MPAA_Rating",
+        "Running_Time_min",
+        "Major_Genre",
+        "IMDB_Rating"
+      ],
+      "rowCount": 3201,
+      "fileUrl": "/data/movies.json",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "voyager2",
+        "rawgraphs"
+      ],
+      "category": "tabular",
+      "fileUrlEn": null
+    },
+    {
+      "id": "voyager-birdstrikes",
+      "name": "航空機バードストライク",
+      "nameEn": "Birdstrikes",
+      "description": "航空機と鳥の衝突事故データ（空港、損害額、飛行フェーズなど）",
+      "descriptionEn": "Aircraft birdstrike incidents with airport, damage, flight phase, cost, etc.",
+      "format": "json",
+      "tags": [
+        "航空",
+        "事故",
+        "統計",
+        "安全"
+      ],
+      "columns": [
+        "Airport__Name",
+        "Aircraft__Make_Model",
+        "Effect__Amount_of_damage",
+        "Flight_Date",
+        "Origin_State",
+        "When__Phase_of_flight",
+        "Cost__Total_$",
+        "Speed_IAS_in_knots"
+      ],
+      "rowCount": 10000,
+      "fileUrl": "/data/birdstrikes.json",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "voyager2",
+        "rawgraphs"
+      ],
+      "category": "tabular",
+      "fileUrlEn": null
+    },
+    {
+      "id": "voyager-burtin",
+      "name": "抗生物質の効果",
+      "nameEn": "Burtin Antibiotics",
+      "description": "3種の抗生物質の細菌に対する最小阻止濃度データ",
+      "descriptionEn": "Minimum inhibitory concentration of 3 antibiotics against 16 bacteria",
+      "format": "json",
+      "tags": [
+        "医学",
+        "抗生物質",
+        "細菌",
+        "比較"
+      ],
+      "columns": [
+        "Bacteria",
+        "Penicillin",
+        "Streptomycin",
+        "Neomycin",
+        "Gram_Staining",
+        "Genus"
+      ],
+      "rowCount": 16,
+      "fileUrl": "/data/burtin.json",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "voyager2",
+        "rawgraphs"
+      ],
+      "category": "tabular",
+      "fileUrlEn": null
+    },
+    {
+      "id": "voyager-campaigns",
+      "name": "米国選挙キャンペーン資金",
+      "nameEn": "Campaigns (weball26)",
+      "description": "米国の選挙キャンペーンにおける候補者別の資金収支データ",
+      "descriptionEn": "US election campaign finance data by candidate",
+      "format": "json",
+      "tags": [
+        "政治",
+        "選挙",
+        "資金",
+        "米国"
+      ],
+      "columns": [
+        "Candidate_Name",
+        "Party_Affiliation",
+        "Total_Receipts",
+        "Total_Disbursements",
+        "Total_Individual_Contributions",
+        "Candidate_State"
+      ],
+      "rowCount": 58,
+      "fileUrl": "/data/weball26.json",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "voyager2",
+        "rawgraphs"
+      ],
+      "category": "tabular",
+      "fileUrlEn": null
+    },
+    {
+      "id": "airlines-network",
+      "name": "航空路線ネットワーク",
+      "nameEn": "Airlines Route Network",
+      "description": "米国を中心とした航空路線の接続ネットワーク（235ノード、2,101エッジ）",
+      "descriptionEn": "Airline route connection network centered on the US (235 nodes, 2,101 edges)",
+      "format": "graphml",
+      "tags": [
+        "ネットワーク",
+        "航空",
+        "交通",
+        "路線"
+      ],
+      "columns": [],
+      "rowCount": 235,
+      "fileUrl": "/data/airlines.graphml",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "gephi-lite",
+        "cytoscape"
+      ],
+      "category": "network",
+      "fileUrlEn": null
+    },
+    {
+      "id": "g7-zelensky-outbound",
+      "name": "G7広島 ゼレンスキー大統領フライト（行き）",
+      "nameEn": "G7 Hiroshima Zelensky Flight (Outbound)",
+      "description": "2023年G7広島サミットへ向かうゼレンスキー大統領搭乗機の飛行追跡データ（929地点）",
+      "descriptionEn": "Flight tracking data of President Zelensky's aircraft heading to the 2023 G7 Hiroshima Summit (929 points)",
+      "format": "csv",
+      "tags": [
+        "地理",
+        "航空",
+        "追跡",
+        "G7",
+        "フライト"
+      ],
+      "columns": [
+        "Timestamp",
+        "UTC",
+        "Callsign",
+        "Position",
+        "Altitude",
+        "Speed",
+        "Direction"
+      ],
+      "rowCount": 928,
+      "fileUrl": "/data/G7_Hiroshima_Zelensky_outbound.csv",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "broadcast-based-tracking-systems",
+        "kepler-gl"
+      ],
+      "category": "geographic",
+      "fileUrlEn": null
+    },
+    {
+      "id": "g7-zelensky-return",
+      "name": "G7広島 ゼレンスキー大統領フライト（帰り）",
+      "nameEn": "G7 Hiroshima Zelensky Flight (Return)",
+      "description": "2023年G7広島サミットから帰路のゼレンスキー大統領搭乗機の飛行追跡データ（708地点）",
+      "descriptionEn": "Flight tracking data of President Zelensky's aircraft returning from the 2023 G7 Hiroshima Summit (708 points)",
+      "format": "csv",
+      "tags": [
+        "地理",
+        "航空",
+        "追跡",
+        "G7",
+        "フライト"
+      ],
+      "columns": [
+        "Timestamp",
+        "UTC",
+        "Callsign",
+        "Position",
+        "Altitude",
+        "Speed",
+        "Direction"
+      ],
+      "rowCount": 707,
+      "fileUrl": "/data/G7_Hiroshima_Zelensky_return.csv",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "broadcast-based-tracking-systems",
+        "kepler-gl"
+      ],
+      "category": "geographic",
+      "fileUrlEn": null
     }
   ]
 }

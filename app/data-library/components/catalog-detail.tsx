@@ -57,6 +57,8 @@ export function CatalogDetail({
 
   const name = locale === "ja" ? entry.name : entry.nameEn;
   const description = locale === "ja" ? entry.description : entry.descriptionEn;
+  const fileUrl =
+    locale === "en" && fileUrlEn ? fileUrlEn : fileUrl;
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
@@ -119,7 +121,7 @@ export function CatalogDetail({
               {t(locale, "dataLibrary.preview")}
             </h4>
             <DataPreviewTable
-              fileUrl={entry.fileUrl}
+              fileUrl={fileUrl}
               format={entry.format}
               locale={locale}
             />
@@ -139,7 +141,7 @@ export function CatalogDetail({
                   asChild
                 >
                   <a
-                    href={buildToolUrl(toolKey, entry.fileUrl)}
+                    href={buildToolUrl(toolKey, fileUrl)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="gap-1.5"
