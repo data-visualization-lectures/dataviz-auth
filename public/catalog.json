@@ -851,9 +851,7 @@
         "parallel-coordinates",
         "voyager2",
         "cartogram-japan",
-        "cartogram-prefectures",
-        "choropleth-japan",
-        "choropleth-prefectures"
+        "choropleth-japan"
       ],
       "category": "tabular",
       "fileUrlEn": null
@@ -1388,9 +1386,7 @@
       "fileUrl": "https://app.dataviz.jp/data/number-of-births.csv",
       "thumbnailUrl": null,
       "compatibleTools": [
-        "3d-surface-chart",
-        "cartogram-prefectures",
-        "choropleth-prefectures"
+        "3d-surface-chart"
       ],
       "category": "tabular",
       "fileUrlEn": null
@@ -2180,6 +2176,331 @@
         "rawgraphs"
       ],
       "category": "tabular"
+    },
+    {
+      "id": "prefectures-municipal-population",
+      "name": "都道府県別 市区町村人口データ",
+      "nameEn": "Municipal Population by Prefecture",
+      "description": "各都道府県の市区町村別人口データ（総人口、年齢区分別、男女別、外国人人口）",
+      "descriptionEn": "Municipal population data by prefecture (total, age groups, gender, foreign residents)",
+      "format": "csv",
+      "tags": [
+        "日本",
+        "人口",
+        "都道府県",
+        "市区町村"
+      ],
+      "columns": [
+        "市区町村",
+        "総人口",
+        "総人口（男）",
+        "総人口（女）",
+        "日本人人口",
+        "15歳未満人口",
+        "15〜64歳人口",
+        "65歳以上人口",
+        "75歳以上人口",
+        "外国人人口"
+      ],
+      "rowCount": 0,
+      "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/13a.csv",
+      "fileUrlEn": null,
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "cartogram-prefectures",
+        "choropleth-prefectures"
+      ],
+      "category": "tabular",
+      "variants": [
+        {
+          "label": "北海道",
+          "labelEn": "Hokkaido",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/01.csv",
+          "rowCount": 193
+        },
+        {
+          "label": "青森県",
+          "labelEn": "Aomori",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/02.csv",
+          "rowCount": 39
+        },
+        {
+          "label": "岩手県",
+          "labelEn": "Iwate",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/03.csv",
+          "rowCount": 32
+        },
+        {
+          "label": "宮城県",
+          "labelEn": "Miyagi",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/04.csv",
+          "rowCount": 34
+        },
+        {
+          "label": "秋田県",
+          "labelEn": "Akita",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/05.csv",
+          "rowCount": 24
+        },
+        {
+          "label": "山形県",
+          "labelEn": "Yamagata",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/06.csv",
+          "rowCount": 34
+        },
+        {
+          "label": "福島県",
+          "labelEn": "Fukushima",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/07.csv",
+          "rowCount": 58
+        },
+        {
+          "label": "茨城県",
+          "labelEn": "Ibaraki",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/08.csv",
+          "rowCount": 43
+        },
+        {
+          "label": "栃木県",
+          "labelEn": "Tochigi",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/09.csv",
+          "rowCount": 24
+        },
+        {
+          "label": "群馬県",
+          "labelEn": "Gunma",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/10.csv",
+          "rowCount": 34
+        },
+        {
+          "label": "埼玉県",
+          "labelEn": "Saitama",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/11.csv",
+          "rowCount": 62
+        },
+        {
+          "label": "千葉県",
+          "labelEn": "Chiba",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/12.csv",
+          "rowCount": 54
+        },
+        {
+          "label": "東京都（区部）",
+          "labelEn": "Tokyo (Wards)",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/13a.csv",
+          "rowCount": 52
+        },
+        {
+          "label": "東京都（市部）",
+          "labelEn": "Tokyo (Cities)",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/13b.csv",
+          "rowCount": 9
+        },
+        {
+          "label": "神奈川県",
+          "labelEn": "Kanagawa",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/14.csv",
+          "rowCount": 32
+        },
+        {
+          "label": "新潟県",
+          "labelEn": "Niigata",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/15.csv",
+          "rowCount": 29
+        },
+        {
+          "label": "富山県",
+          "labelEn": "Toyama",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/16.csv",
+          "rowCount": 14
+        },
+        {
+          "label": "石川県",
+          "labelEn": "Ishikawa",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/17.csv",
+          "rowCount": 18
+        },
+        {
+          "label": "福井県",
+          "labelEn": "Fukui",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/18.csv",
+          "rowCount": 16
+        },
+        {
+          "label": "山梨県",
+          "labelEn": "Yamanashi",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/19.csv",
+          "rowCount": 26
+        },
+        {
+          "label": "長野県",
+          "labelEn": "Nagano",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/20.csv",
+          "rowCount": 76
+        },
+        {
+          "label": "岐阜県",
+          "labelEn": "Gifu",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/21.csv",
+          "rowCount": 41
+        },
+        {
+          "label": "静岡県",
+          "labelEn": "Shizuoka",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/22.csv",
+          "rowCount": 34
+        },
+        {
+          "label": "愛知県",
+          "labelEn": "Aichi",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/23.csv",
+          "rowCount": 54
+        },
+        {
+          "label": "三重県",
+          "labelEn": "Mie",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/24.csv",
+          "rowCount": 28
+        },
+        {
+          "label": "滋賀県",
+          "labelEn": "Shiga",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/25.csv",
+          "rowCount": 18
+        },
+        {
+          "label": "京都府",
+          "labelEn": "Kyoto",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/26.csv",
+          "rowCount": 25
+        },
+        {
+          "label": "大阪府",
+          "labelEn": "Osaka",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/27.csv",
+          "rowCount": 42
+        },
+        {
+          "label": "兵庫県",
+          "labelEn": "Hyogo",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/28.csv",
+          "rowCount": 40
+        },
+        {
+          "label": "奈良県",
+          "labelEn": "Nara",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/29.csv",
+          "rowCount": 38
+        },
+        {
+          "label": "和歌山県",
+          "labelEn": "Wakayama",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/30.csv",
+          "rowCount": 29
+        },
+        {
+          "label": "鳥取県",
+          "labelEn": "Tottori",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/31.csv",
+          "rowCount": 18
+        },
+        {
+          "label": "島根県",
+          "labelEn": "Shimane",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/32.csv",
+          "rowCount": 18
+        },
+        {
+          "label": "岡山県",
+          "labelEn": "Okayama",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/33.csv",
+          "rowCount": 26
+        },
+        {
+          "label": "広島県",
+          "labelEn": "Hiroshima",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/34.csv",
+          "rowCount": 22
+        },
+        {
+          "label": "山口県",
+          "labelEn": "Yamaguchi",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/35.csv",
+          "rowCount": 18
+        },
+        {
+          "label": "徳島県",
+          "labelEn": "Tokushima",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/36.csv",
+          "rowCount": 23
+        },
+        {
+          "label": "香川県",
+          "labelEn": "Kagawa",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/37.csv",
+          "rowCount": 16
+        },
+        {
+          "label": "愛媛県",
+          "labelEn": "Ehime",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/38.csv",
+          "rowCount": 19
+        },
+        {
+          "label": "高知県",
+          "labelEn": "Kochi",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/39.csv",
+          "rowCount": 33
+        },
+        {
+          "label": "福岡県",
+          "labelEn": "Fukuoka",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/40.csv",
+          "rowCount": 60
+        },
+        {
+          "label": "佐賀県",
+          "labelEn": "Saga",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/41.csv",
+          "rowCount": 19
+        },
+        {
+          "label": "長崎県",
+          "labelEn": "Nagasaki",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/42.csv",
+          "rowCount": 20
+        },
+        {
+          "label": "熊本県",
+          "labelEn": "Kumamoto",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/43.csv",
+          "rowCount": 44
+        },
+        {
+          "label": "大分県",
+          "labelEn": "Oita",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/44.csv",
+          "rowCount": 17
+        },
+        {
+          "label": "宮崎県",
+          "labelEn": "Miyazaki",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/45.csv",
+          "rowCount": 25
+        },
+        {
+          "label": "鹿児島県",
+          "labelEn": "Kagoshima",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/46.csv",
+          "rowCount": 43
+        },
+        {
+          "label": "沖縄県",
+          "labelEn": "Okinawa",
+          "fileUrl": "https://app.dataviz.jp/data/prefectures-theme/47.csv",
+          "rowCount": 41
+        }
+      ]
     }
   ]
 }

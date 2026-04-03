@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { ExternalLink } from "lucide-react";
 import {
   Sheet,
@@ -53,12 +54,31 @@ export function CatalogDetail({
   onOpenChange,
   locale,
 }: CatalogDetailProps) {
+  const [selectedVariantIdx, setSelectedVariantIdx] = useState<number>(-1);
+
+  // Reset variant selection when entry changes
+  useEffect(() => {
+    setSelectedVariantIdx(-1);
+  }, [entry?.id]);
+
   if (!entry) return null;
 
   const name = locale === "ja" ? entry.name : entry.nameEn;
   const description = locale === "ja" ? entry.description : entry.descriptionEn;
-  const resolvedFileUrl =
-    locale === "en" && entry.fileUrlEn ? entry.fileUrlEn : entry.fileUrl;
+  const hasVariants = entry.variants && entry.variants.length > 0;
+
+  // Resolve file URL: variant selection takes priority
+  let resolvedFileUrl: string;
+  let displayRowCount = entry.rowCount;
+  if (hasVariants && selectedVariantIdx >= 0) {
+    const v = entry.variants![selectedVariantIdx];
+    resolvedFileUrl =
+      locale === "en" && v.fileUrlEn ? v.fileUrlEn : v.fileUrl;
+    if (v.rowCount) displayRowCount = v.rowCount;
+  } else {
+    resolvedFileUrl =
+      locale === "en" && entry.fileUrlEn ? entry.fileUrlEn : entry.fileUrl;
+  }
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
@@ -77,10 +97,34 @@ export function CatalogDetail({
             </Badge>
           </div>
 
+          {/* Variant selector */}
+          {hasVariants && (
+            <div>
+              <h4 className="text-sm font-medium mb-2">
+                {locale === "ja" ? "データを選択" : "Select data"}
+              </h4>
+              <select
+                value={selectedVariantIdx}
+                onChange={(e) => setSelectedVariantIdx(parseInt(e.target.value, 10))}
+                className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring"
+              >
+                <option value={-1}>
+                  {locale === "ja" ? "-- 選択してください --" : "-- Select --"}
+                </option>
+                {entry.variants!.map((v, i) => (
+                  <option key={i} value={i}>
+                    {locale === "ja" ? v.label : v.labelEn}
+                    {v.rowCount ? ` (${v.rowCount}${locale === "ja" ? "行" : " rows"})` : ""}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
+
           {/* Meta */}
-          {entry.rowCount > 0 && (
+          {displayRowCount > 0 && (
             <div className="text-sm text-muted-foreground">
-              {entry.rowCount.toLocaleString()} {t(locale, "dataLibrary.rows")}
+              {displayRowCount.toLocaleString()} {t(locale, "dataLibrary.rows")}
               {entry.columns.length > 0 && (
                 <> / {entry.columns.length} {t(locale, "dataLibrary.columns")}</>
               )}
@@ -115,43 +159,53 @@ export function CatalogDetail({
             ))}
           </div>
 
-          {/* Data Preview */}
-          <div>
-            <h4 className="text-sm font-medium mb-2">
-              {t(locale, "dataLibrary.preview")}
-            </h4>
-            <DataPreviewTable
-              fileUrl={resolvedFileUrl}
-              format={entry.format}
-              locale={locale}
-            />
-          </div>
+          {/* Data Preview — only show when variant is selected (or no variants) */}
+          {(!hasVariants || selectedVariantIdx >= 0) && (
+            <div>
+              <h4 className="text-sm font-medium mb-2">
+                {t(locale, "dataLibrary.preview")}
+              </h4>
+              <DataPreviewTable
+                fileUrl={resolvedFileUrl}
+                format={entry.format}
+                locale={locale}
+              />
+            </div>
+          )}
 
           {/* Open With (1-to-many) */}
           <div>
             <h4 className="text-sm font-medium mb-3">
               {t(locale, "dataLibrary.openWith")}
             </h4>
-            <div className="flex flex-wrap gap-2">
-              {entry.compatibleTools.map((toolKey) => (
-                <Button
-                  key={toolKey}
-                  variant="outline"
-                  size="sm"
-                  asChild
-                >
-                  <a
-                    href={buildToolUrl(toolKey, resolvedFileUrl)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="gap-1.5"
+            {hasVariants && selectedVariantIdx < 0 ? (
+              <p className="text-sm text-muted-foreground">
+                {locale === "ja"
+                  ? "上のドロップダウンからデータを選択してください"
+                  : "Please select data from the dropdown above"}
+              </p>
+            ) : (
+              <div className="flex flex-wrap gap-2">
+                {entry.compatibleTools.map((toolKey) => (
+                  <Button
+                    key={toolKey}
+                    variant="outline"
+                    size="sm"
+                    asChild
                   >
-                    {toolDisplayName(toolKey)}
-                    <ExternalLink className="h-3 w-3" />
-                  </a>
-                </Button>
-              ))}
-            </div>
+                    <a
+                      href={buildToolUrl(toolKey, resolvedFileUrl)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="gap-1.5"
+                    >
+                      {toolDisplayName(toolKey)}
+                      <ExternalLink className="h-3 w-3" />
+                    </a>
+                  </Button>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </SheetContent>

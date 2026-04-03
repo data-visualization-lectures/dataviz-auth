@@ -1,3 +1,11 @@
+export type CatalogVariant = {
+  label: string;
+  labelEn: string;
+  fileUrl: string;
+  fileUrlEn?: string | null;
+  rowCount?: number;
+};
+
 export type CatalogEntry = {
   id: string;
   name: string;
@@ -13,6 +21,7 @@ export type CatalogEntry = {
   thumbnailUrl: string | null;
   compatibleTools: string[];
   category: "tabular" | "geographic" | "network" | "spec";
+  variants?: CatalogVariant[];
 };
 
 export type Catalog = {
