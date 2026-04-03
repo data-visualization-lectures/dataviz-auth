@@ -38,14 +38,12 @@ export async function Header() {
                     >
                         {t(locale, "header.navTools")}
                     </Link>
-                    {/* TODO: 本番公開時にコメント解除 — データライブラリのナビリンク
                     <Link
                         href="/data-library"
                         className="inline-flex items-center rounded border border-[rgb(36,36,36)] bg-[rgb(32,32,32)] px-3 py-1 text-[13px] text-[#ddd] transition-colors hover:border-[rgb(44,44,44)] hover:bg-[rgb(48,48,48)] hover:text-white"
                     >
                         {t(locale, "header.navDataLibrary")}
                     </Link>
-                    */}
                     <Link
                         href="/projects"
                         className="inline-flex items-center rounded border border-[rgb(36,36,36)] bg-[rgb(32,32,32)] px-3 py-1 text-[13px] text-[#ddd] transition-colors hover:border-[rgb(44,44,44)] hover:bg-[rgb(48,48,48)] hover:text-white"
