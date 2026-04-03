@@ -33,7 +33,7 @@ export const APP_CONFIG = {
         "voyager2": "https://voyager2.dataviz.jp",
         "tilegrams": "https://tilegrams.dataviz.jp",
         "gephi-lite": "https://gephi-lite.dataviz.jp",
-        "data-illustrator": "https://data-illustrator.dataviz.jp",
+        "data-illustrator": "https://data-illustrator.dataviz.jp/app",
         "vega-editor": "https://vega-editor.dataviz.jp",
         "word-cloud": "https://word-cloud.dataviz.jp",
         "cytoscape": "https://cytoscape.dataviz.jp",
