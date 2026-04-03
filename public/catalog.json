@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-02T00:00:00Z",
+  "updatedAt": "2026-04-03T00:00:00Z",
   "entries": [
     {
       "id": "rg-hate-crimes-ny",
@@ -2496,6 +2496,212 @@
           "rowCount": 41
         }
       ]
+    },
+    {
+      "id": "gapminder",
+      "name": "Gapminder 世界開発指標",
+      "nameEn": "Gapminder World Development Indicators",
+      "description": "戦後以降の長期間における国力（GDP・平均寿命・人口）の国際比較データ",
+      "descriptionEn": "International comparison of national power (GDP, life expectancy, population) over the long term since the postwar era",
+      "format": "csv",
+      "tags": [
+        "人口",
+        "経済",
+        "世界",
+        "時系列"
+      ],
+      "columns": [
+        "country",
+        "continent",
+        "year",
+        "lifeExp",
+        "pop",
+        "gdpPercap"
+      ],
+      "rowCount": 3313,
+      "fileUrl": "https://app.dataviz.jp/data/gapminder.csv",
+      "fileUrlEn": null,
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "rawgraphs",
+        "voyager2",
+        "parallel-coordinates"
+      ],
+      "category": "tabular"
+    },
+    {
+      "id": "ssdse",
+      "name": "SSDSE（教育用標準データセット）",
+      "nameEn": "SSDSE (Standard Statistical Dataset for Education)",
+      "description": "データ分析のための汎用素材として、独立行政法人統計センターが作成・公開している統計データ",
+      "descriptionEn": "Statistical data created and published by the National Statistics Center as general-purpose material for data analysis",
+      "format": "csv",
+      "tags": [
+        "統計",
+        "家計",
+        "社会",
+        "気候"
+      ],
+      "columns": [
+        "都道府県",
+        "食料（合計）",
+        "穀類",
+        "魚介類",
+        "肉類",
+        "乳卵類",
+        "野菜・海藻",
+        "果物",
+        "油脂・調味料",
+        "菓子類",
+        "調理食品",
+        "飲料",
+        "酒類",
+        "外食"
+      ],
+      "rowCount": 46,
+      "fileUrl": "https://app.dataviz.jp/data/ssdse-c.csv",
+      "fileUrlEn": null,
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "rawgraphs",
+        "voyager2",
+        "parallel-coordinates"
+      ],
+      "category": "tabular",
+      "variants": [
+        {
+          "label": "SSDSE-C（家計調査）",
+          "labelEn": "SSDSE-C (Household Survey)",
+          "fileUrl": "https://app.dataviz.jp/data/ssdse-c.csv",
+          "rowCount": 46
+        },
+        {
+          "label": "SSDSE-E（都道府県・基本指標）",
+          "labelEn": "SSDSE-E (Prefectures / Basic Indicators)",
+          "fileUrl": "https://app.dataviz.jp/data/ssdse-e.csv",
+          "rowCount": 46
+        }
+      ]
+    },
+    {
+      "id": "starbucks-stores",
+      "name": "スターバックス店舗リスト",
+      "nameEn": "Starbucks Store Locations",
+      "description": "公式サイトで公開されている東京都における店舗情報（緯度経度は含みません）",
+      "descriptionEn": "Store information in Tokyo published on the official website (coordinates not included)",
+      "format": "csv",
+      "tags": [
+        "飲食",
+        "店舗",
+        "東京"
+      ],
+      "columns": [
+        "市区町村",
+        "店舗名",
+        "住所"
+      ],
+      "rowCount": 347,
+      "fileUrl": "https://app.dataviz.jp/data/starbucks-23ku.csv",
+      "fileUrlEn": null,
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "rawgraphs",
+        "voyager2"
+      ],
+      "category": "tabular",
+      "variants": [
+        {
+          "label": "特別区23区",
+          "labelEn": "23 Special Wards",
+          "fileUrl": "https://app.dataviz.jp/data/starbucks-23ku.csv",
+          "rowCount": 347
+        },
+        {
+          "label": "多摩地域",
+          "labelEn": "Tama Area",
+          "fileUrl": "https://app.dataviz.jp/data/starbucks-tama.csv",
+          "rowCount": 71
+        }
+      ]
+    },
+    {
+      "id": "koshien-birthplaces",
+      "name": "甲子園出場者の出身地",
+      "nameEn": "Koshien Players' Birthplaces",
+      "description": "甲子園出場校のベンチ入り20名がどの都道府県出身なのかを示すデータ",
+      "descriptionEn": "Birthplace data showing which prefecture the 20 bench players of Koshien tournament teams come from",
+      "format": "csv",
+      "tags": [
+        "スポーツ",
+        "野球",
+        "ネットワーク"
+      ],
+      "columns": [
+        "school",
+        "value",
+        "pref",
+        "region"
+      ],
+      "rowCount": 259,
+      "fileUrl": "https://app.dataviz.jp/data/koshien-birthplaces.csv",
+      "fileUrlEn": null,
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "rawgraphs",
+        "sankeymatic"
+      ],
+      "category": "tabular"
+    },
+    {
+      "id": "ibm-employee-attrition",
+      "name": "IBM 従業員の離職率とパフォーマンス",
+      "nameEn": "IBM Employee Attrition and Performance",
+      "description": "IBMのデータサイエンティストが作成した架空のデータセット。従業員の様々な属性を一つの表データにしています",
+      "descriptionEn": "A fictional dataset created by IBM data scientists. Various employee attributes consolidated in a single table",
+      "format": "csv",
+      "tags": [
+        "人事",
+        "離職",
+        "分析"
+      ],
+      "columns": [
+        "年齢",
+        "性別",
+        "婚姻ステータス",
+        "部署",
+        "職種",
+        "給料",
+        "職位",
+        "勤続年数",
+        "勤務企業数",
+        "ストックオプション",
+        "昇給率",
+        "人事評価",
+        "残業",
+        "出張頻度",
+        "家からの距離",
+        "教育レベル",
+        "教育分野",
+        "昨年の研修受講回数",
+        "仕事への関与度",
+        "仕事満足度",
+        "職場環境満足度",
+        "人関関係満足度",
+        "ワークライフバランス",
+        "離職",
+        "入社日",
+        "退社日"
+      ],
+      "rowCount": 1470,
+      "fileUrl": "https://app.dataviz.jp/data/ibm-employee.csv",
+      "fileUrlEn": null,
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "rawgraphs",
+        "voyager2",
+        "parallel-coordinates"
+      ],
+      "category": "tabular"
     }
   ]
 }
