@@ -101,13 +101,17 @@ class DatavizSamplePicker extends HTMLElement {
     this._renderList();
   }
 
-  _onSelect(entry) {
-    const fileUrl = (_dvPickerLocale === 'en' && entry.fileUrlEn)
-      ? entry.fileUrlEn : entry.fileUrl;
+  _onSelect(entry, variant) {
+    const fileUrl = variant
+      ? ((_dvPickerLocale === 'en' && variant.fileUrlEn) ? variant.fileUrlEn : variant.fileUrl)
+      : ((_dvPickerLocale === 'en' && entry.fileUrlEn) ? entry.fileUrlEn : entry.fileUrl);
+    const name = variant
+      ? (_dvPickerLocale === 'ja' ? variant.label : variant.labelEn)
+      : entry.name;
     this.dispatchEvent(new CustomEvent('sample-data-selected', {
       bubbles: true,
       composed: true,
-      detail: { url: fileUrl, format: entry.format, name: entry.name, nameEn: entry.nameEn, extra: entry.extra || null }
+      detail: { url: fileUrl, format: entry.format, name: name, nameEn: variant ? variant.labelEn : entry.nameEn, extra: entry.extra || null }
     }));
     this.close();
   }
@@ -175,6 +179,30 @@ class DatavizSamplePicker extends HTMLElement {
       const rowInfo = entry.rowCount > 0
         ? `${entry.rowCount.toLocaleString()} ${_dvPickerT('picker.rows')}`
         : '';
+      const hasVariants = entry.variants && entry.variants.length > 0;
+
+      if (hasVariants) {
+        const placeholder = _dvPickerLocale === 'ja' ? '-- 選択 --' : '-- Select --';
+        const options = entry.variants.map((v, vi) => {
+          const vLabel = _dvPickerLocale === 'ja' ? v.label : v.labelEn;
+          const vRows = v.rowCount ? ` (${v.rowCount}${_dvPickerLocale === 'ja' ? '行' : ' rows'})` : '';
+          return `<option value="${vi}">${vLabel}${vRows}</option>`;
+        }).join('');
+
+        return `
+          <div class="dv-picker-item dv-picker-item-variant" data-index="${i}">
+            <div class="dv-picker-item-color" style="background:${color}"></div>
+            <div class="dv-picker-item-body">
+              <div class="dv-picker-item-title">${name}</div>
+              <div class="dv-picker-item-desc">${desc}</div>
+              <select class="dv-picker-variant-select" data-entry-index="${i}">
+                <option value="">${placeholder}</option>
+                ${options}
+              </select>
+            </div>
+          </div>
+        `;
+      }
 
       return `
         <button class="dv-picker-item" data-index="${i}">
@@ -193,11 +221,25 @@ class DatavizSamplePicker extends HTMLElement {
   }
 
   _attachItemListeners() {
-    this.shadowRoot.querySelectorAll('.dv-picker-item').forEach(el => {
+    // Normal items (no variants)
+    this.shadowRoot.querySelectorAll('.dv-picker-item:not(.dv-picker-item-variant)').forEach(el => {
       el.addEventListener('click', () => {
         const idx = parseInt(el.dataset.index, 10);
         if (this._filteredEntries[idx]) this._onSelect(this._filteredEntries[idx]);
       });
+    });
+    // Variant selects
+    this.shadowRoot.querySelectorAll('.dv-picker-variant-select').forEach(sel => {
+      sel.addEventListener('change', (e) => {
+        const entryIdx = parseInt(sel.dataset.entryIndex, 10);
+        const variantIdx = parseInt(e.target.value, 10);
+        const entry = this._filteredEntries[entryIdx];
+        if (entry && entry.variants && entry.variants[variantIdx]) {
+          this._onSelect(entry, entry.variants[variantIdx]);
+        }
+      });
+      // Prevent click from bubbling to parent item
+      sel.addEventListener('click', (e) => e.stopPropagation());
     });
   }
 
@@ -286,6 +328,14 @@ class DatavizSamplePicker extends HTMLElement {
         font-weight: 700; text-transform: uppercase;
       }
       .dv-picker-item-rows { color: #777; }
+      .dv-picker-item-variant { cursor: default; }
+      .dv-picker-variant-select {
+        width: 100%; box-sizing: border-box; margin-top: 6px;
+        background: rgb(50,50,50); border: 1px solid rgb(70,70,70);
+        border-radius: 4px; padding: 5px 8px;
+        color: #ddd; font-size: 13px; cursor: pointer;
+      }
+      .dv-picker-variant-select:focus { border-color: #4e79a7; outline: none; }
       .dv-picker-list::-webkit-scrollbar { width: 6px; }
       .dv-picker-list::-webkit-scrollbar-track { background: transparent; }
       .dv-picker-list::-webkit-scrollbar-thumb { background: rgb(60,60,60); border-radius: 3px; }
