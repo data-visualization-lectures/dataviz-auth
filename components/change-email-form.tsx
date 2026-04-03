@@ -58,7 +58,7 @@ export function ChangeEmailForm({ currentEmail, locale }: { currentEmail: string
       <button
         type="button"
         onClick={() => setEditing(true)}
-        className="text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground w-fit"
+        className="text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground hover:no-underline w-fit"
       >
         {t(locale, "email.button")}
       </button>

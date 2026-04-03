@@ -43,7 +43,7 @@ export function ChangePasswordButton({ email, locale }: { email: string; locale:
         type="button"
         onClick={handleClick}
         disabled={sending}
-        className="text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground w-fit"
+        className="text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground hover:no-underline w-fit"
       >
         {sending ? t(locale, "password.sending") : t(locale, "password.button")}
       </button>

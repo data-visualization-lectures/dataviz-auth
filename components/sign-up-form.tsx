@@ -198,7 +198,7 @@ export function SignUpForm({
               {t(locale, "signUp.hasAccount")}{" "}
               <Link
                 href={`/auth/login${redirectQuery}`}
-                className="underline underline-offset-4"
+                className="underline underline-offset-4 hover:no-underline"
               >
                 {t(locale, "signUp.loginLink")}
               </Link>

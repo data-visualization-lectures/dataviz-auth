@@ -15,7 +15,7 @@ export async function Header() {
             >
                 <div className="w-full h-full flex justify-between items-center px-4">
                     <div className="flex items-center font-semibold">
-                        <Link href="https://www.dataviz.jp/" className="text-white tracking-[0.5px] font-bold no-underline">{t(locale, "header.siteName")}</Link>
+                        <Link href="https://www.dataviz.jp/" className="text-white tracking-[0.5px] font-bold no-underline hover:underline">{t(locale, "header.siteName")}</Link>
                     </div>
 
                     <div className="flex items-center gap-4">
@@ -34,25 +34,25 @@ export async function Header() {
                 <div className="w-full flex items-center gap-3 px-4 py-2">
                     <Link
                         href="/"
-                        className="inline-flex items-center rounded border border-[rgb(36,36,36)] bg-[rgb(32,32,32)] px-3 py-1 text-[13px] text-[#ddd] transition-colors hover:border-[rgb(44,44,44)] hover:bg-[rgb(48,48,48)] hover:text-white"
+                        className="inline-flex items-center rounded border border-[rgb(36,36,36)] bg-[rgb(32,32,32)] px-3 py-1 text-[13px] text-[#ddd] transition-[filter] hover:[filter:brightness(1.3)]"
                     >
                         {t(locale, "header.navTools")}
                     </Link>
                     <Link
                         href="/data-library"
-                        className="inline-flex items-center rounded border border-[rgb(36,36,36)] bg-[rgb(32,32,32)] px-3 py-1 text-[13px] text-[#ddd] transition-colors hover:border-[rgb(44,44,44)] hover:bg-[rgb(48,48,48)] hover:text-white"
+                        className="inline-flex items-center rounded border border-[rgb(36,36,36)] bg-[rgb(32,32,32)] px-3 py-1 text-[13px] text-[#ddd] transition-[filter] hover:[filter:brightness(1.3)]"
                     >
                         {t(locale, "header.navDataLibrary")}
                     </Link>
                     <Link
                         href="/projects"
-                        className="inline-flex items-center rounded border border-[rgb(36,36,36)] bg-[rgb(32,32,32)] px-3 py-1 text-[13px] text-[#ddd] transition-colors hover:border-[rgb(44,44,44)] hover:bg-[rgb(48,48,48)] hover:text-white"
+                        className="inline-flex items-center rounded border border-[rgb(36,36,36)] bg-[rgb(32,32,32)] px-3 py-1 text-[13px] text-[#ddd] transition-[filter] hover:[filter:brightness(1.3)]"
                     >
                         {t(locale, "header.navProjects")}
                     </Link>
                     <Link
                         href="/account"
-                        className="inline-flex items-center rounded border border-[rgb(36,36,36)] bg-[rgb(32,32,32)] px-3 py-1 text-[13px] text-[#ddd] transition-colors hover:border-[rgb(44,44,44)] hover:bg-[rgb(48,48,48)] hover:text-white"
+                        className="inline-flex items-center rounded border border-[rgb(36,36,36)] bg-[rgb(32,32,32)] px-3 py-1 text-[13px] text-[#ddd] transition-[filter] hover:[filter:brightness(1.3)]"
                     >
                         {t(locale, "header.navAccount")}
                     </Link>

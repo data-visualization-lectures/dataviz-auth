@@ -10,7 +10,7 @@ export default async function AuthCodeError() {
             </p>
             <a
                 href="/auth/login"
-                className="text-blue-500 hover:text-blue-700 underline"
+                className="text-blue-500 hover:text-blue-700 underline hover:no-underline"
             >
                 {t(locale, "authError.backToLogin")}
             </a>

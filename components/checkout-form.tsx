@@ -135,7 +135,7 @@ export function CheckoutForm({
                   <Link
                     href="https://www.dataviz.jp/terms/"
                     target="_blank"
-                    className="underline underline-offset-4 hover:text-primary"
+                    className="underline underline-offset-4 hover:text-primary hover:no-underline"
                   >
                     利用規約
                   </Link>
@@ -154,7 +154,7 @@ export function CheckoutForm({
                   <Link
                     href="https://www.dataviz.jp/privacy/"
                     target="_blank"
-                    className="underline underline-offset-4 hover:text-primary"
+                    className="underline underline-offset-4 hover:text-primary hover:no-underline"
                   >
                     プライバシーポリシー
                   </Link>

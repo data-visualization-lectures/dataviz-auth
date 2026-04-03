@@ -240,7 +240,7 @@ export default async function AccountPage() {
                 href={locale === "en" ? "https://forms.gle/9fbiZKxsfCMmARwk7" : "https://forms.gle/UDquMjQ3ieqFH9s39"}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground"
+                className="text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground hover:no-underline"
               >
                 {t(locale, "account.contactLink")}
               </a>

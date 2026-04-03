@@ -92,7 +92,7 @@ export function ForgotPasswordForm({
                 {t(locale, "forgotPassword.hasAccount")}{" "}
                 <Link
                   href="/auth/login"
-                  className="underline underline-offset-4"
+                  className="underline underline-offset-4 hover:no-underline"
                 >
                   {t(locale, "forgotPassword.loginLink")}
                 </Link>
