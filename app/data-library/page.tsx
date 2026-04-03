@@ -20,18 +20,26 @@ export default async function DataLibraryPage() {
     return redirect("/auth/login");
   }
 
-  const { data: subscription } = await supabase
-    .from("subscriptions")
-    .select("status, current_period_end")
-    .eq("user_id", user.id)
-    .maybeSingle();
+  const [{ data: subscription }, { data: profile }] = await Promise.all([
+    supabase
+      .from("subscriptions")
+      .select("status, current_period_end")
+      .eq("user_id", user.id)
+      .maybeSingle(),
+    supabase
+      .from("profiles")
+      .select("is_admin")
+      .eq("id", user.id)
+      .maybeSingle(),
+  ]);
 
-  const isActive =
+  const isAdmin = !!profile?.is_admin;
+  const isSubscribed =
     subscription &&
     (subscription.status === "active" || subscription.status === "trialing") &&
     new Date(subscription.current_period_end) > new Date();
 
-  if (!isActive) {
+  if (!isAdmin && !isSubscribed) {
     return redirect("/account");
   }
 
