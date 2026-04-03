@@ -24,6 +24,7 @@ const nextConfig: NextConfig = {
         headers: [
           { key: "Access-Control-Allow-Origin", value: "*" },
           { key: "Vary", value: "Origin" },
+          { key: "Cache-Control", value: "no-cache, no-store, must-revalidate" },
         ],
       },
       {
