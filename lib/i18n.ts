@@ -312,8 +312,8 @@ const dict = {
   },
 
   // ── data library page ──
-  "header.navDataLibrary": { ja: "データライブラリ", en: "Data Library" },
-  "dataLibrary.title": { ja: "データライブラリ", en: "Data Library" },
+  "header.navDataLibrary": { ja: "データ一覧", en: "Data Library" },
+  "dataLibrary.title": { ja: "データ一覧", en: "Data Library" },
   "dataLibrary.description": {
     ja: "サンプルデータを検索して、対応するツールで開くことができます。",
     en: "Search sample datasets and open them with compatible tools.",
