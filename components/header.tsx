@@ -4,9 +4,26 @@ import { hasEnvVars } from "@/lib/utils";
 import Link from "next/link";
 import { Suspense } from "react";
 import { getLocale, t } from "@/lib/i18n.server";
+import { createClient } from "@/lib/supabase/server";
 
 export async function Header() {
     const locale = await getLocale();
+
+    let isAdmin = false;
+    try {
+        const supabase = await createClient();
+        const { data: { user } } = await supabase.auth.getUser();
+        if (user) {
+            const { data: profile } = await supabase
+                .from("profiles")
+                .select("is_admin")
+                .eq("id", user.id)
+                .maybeSingle();
+            isAdmin = !!profile?.is_admin;
+        }
+    } catch {
+        // ignore auth errors
+    }
     return (
         <header className="w-full">
             <nav
@@ -56,6 +73,14 @@ export async function Header() {
                     >
                         {t(locale, "header.navAccount")}
                     </Link>
+                    {isAdmin && (
+                        <Link
+                            href="/admin"
+                            className="inline-flex items-center rounded border border-[rgb(36,36,36)] bg-[rgb(32,32,32)] px-3 py-1 text-[13px] text-[#ddd] transition-[filter] hover:[filter:brightness(1.3)]"
+                        >
+                            管理者ダッシュボード
+                        </Link>
+                    )}
                 </div>
             </div>
         </header>
