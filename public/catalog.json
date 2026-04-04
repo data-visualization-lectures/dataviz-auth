@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-03T00:00:00Z",
+  "updatedAt": "2026-04-04T00:00:00Z",
   "entries": [
     {
       "id": "rg-hate-crimes-ny",
@@ -2760,6 +2760,144 @@
         "rawgraphs",
         "voyager",
         "data-illustrator"
+      ],
+      "category": "tabular"
+    },
+    {
+      "id": "airbnb-listings",
+      "name": "Airbnb東京リスティング",
+      "nameEn": "Airbnb Tokyo Listings",
+      "description": "東京都内のAirbnb物件データ。地区・部屋タイプ・価格・レビュー数・稼働日数などを含む",
+      "descriptionEn": "Airbnb listings in Tokyo with neighbourhood, room type, price, reviews, and availability data",
+      "format": "csv",
+      "tags": [
+        "不動産",
+        "宿泊",
+        "東京",
+        "Airbnb",
+        "観光"
+      ],
+      "columns": [
+        "id",
+        "name",
+        "neighbourhood",
+        "latitude",
+        "longitude",
+        "room_type",
+        "price",
+        "minimum_nights",
+        "number_of_reviews",
+        "last_review",
+        "reviews_per_month",
+        "calculated_host_listings_count",
+        "availability_365",
+        "number_of_reviews_ltm"
+      ],
+      "rowCount": 189,
+      "fileUrl": "https://app.dataviz.jp/data/airbnb_listings.csv",
+      "fileUrlEn": null,
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "rawgraphs",
+        "voyager",
+        "kepler-gl",
+        "data-illustrator"
+      ],
+      "category": "tabular"
+    },
+    {
+      "id": "spotify-j-pop",
+      "name": "Spotify J-Popトラック特徴量",
+      "nameEn": "Spotify J-Pop Track Features",
+      "description": "SpotifyのJ-Popジャンルの楽曲データ。テンポ・ダンス性・エネルギー・人気度などの音響特徴量を含む",
+      "descriptionEn": "Spotify J-Pop genre tracks with audio features including tempo, danceability, energy, and popularity",
+      "format": "csv",
+      "tags": [
+        "音楽",
+        "Spotify",
+        "J-Pop",
+        "エンタメ"
+      ],
+      "columns": [
+        "Id",
+        "track_id",
+        "artists",
+        "album_name",
+        "track_name",
+        "track_genre",
+        "duration_ms",
+        "mode",
+        "tempo",
+        "popularity",
+        "key",
+        "loudness",
+        "explicit",
+        "time_signature",
+        "danceability",
+        "energy",
+        "valence",
+        "acousticness",
+        "instrumentalness",
+        "speechiness",
+        "liveness"
+      ],
+      "rowCount": 1000,
+      "fileUrl": "https://app.dataviz.jp/data/spotify_j-pop.csv",
+      "fileUrlEn": null,
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "rawgraphs",
+        "voyager",
+        "data-illustrator",
+        "parallel-coordinates"
+      ],
+      "category": "tabular"
+    },
+    {
+      "id": "spotify-k-pop",
+      "name": "Spotify K-Popトラック特徴量",
+      "nameEn": "Spotify K-Pop Track Features",
+      "description": "SpotifyのK-Popジャンルの楽曲データ。テンポ・ダンス性・エネルギー・人気度などの音響特徴量を含む",
+      "descriptionEn": "Spotify K-Pop genre tracks with audio features including tempo, danceability, energy, and popularity",
+      "format": "csv",
+      "tags": [
+        "音楽",
+        "Spotify",
+        "K-Pop",
+        "エンタメ"
+      ],
+      "columns": [
+        "Id",
+        "track_id",
+        "artists",
+        "album_name",
+        "track_name",
+        "track_genre",
+        "duration_ms",
+        "mode",
+        "tempo",
+        "popularity",
+        "key",
+        "loudness",
+        "explicit",
+        "time_signature",
+        "danceability",
+        "energy",
+        "valence",
+        "acousticness",
+        "instrumentalness",
+        "speechiness",
+        "liveness"
+      ],
+      "rowCount": 1000,
+      "fileUrl": "https://app.dataviz.jp/data/spotify_k-pop.csv",
+      "fileUrlEn": null,
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "rawgraphs",
+        "voyager",
+        "data-illustrator",
+        "parallel-coordinates"
       ],
       "category": "tabular"
     }
