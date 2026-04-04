@@ -13,6 +13,8 @@ import {
   PlanDistributionChart,
   TrialBreakdownChart,
 } from "@/components/admin-charts";
+import { AdminUserList } from "@/components/admin-user-list";
+import type { AdminUserRow } from "@/types/user";
 
 export const dynamic = "force-dynamic";
 
@@ -55,12 +57,17 @@ export default async function AdminPage() {
     .eq("is_admin", true);
   const adminIds = (adminProfiles ?? []).map((p) => p.id);
   const adminFilter = `(${adminIds.join(",")})`;
-  const allAuthUsers: { id: string; created_at: string }[] = [];
+  const allAuthUsers: { id: string; email: string; created_at: string; last_sign_in_at: string | null }[] = [];
   let page = 1;
   const perPage = 1000;
   while (true) {
     const { data: { users } } = await adminDb.auth.admin.listUsers({ page, perPage });
-    allAuthUsers.push(...users.map((u) => ({ id: u.id, created_at: u.created_at })));
+    allAuthUsers.push(...users.map((u) => ({
+      id: u.id,
+      email: u.email ?? "",
+      created_at: u.created_at,
+      last_sign_in_at: u.last_sign_in_at ?? null,
+    })));
     if (users.length < perPage) break;
     page++;
   }
@@ -154,6 +161,43 @@ export default async function AdminPage() {
       .not("user_id", "in", adminFilter)
       .gte("current_period_end", nowIso),
   ]);
+
+  // ユー���ー一覧用データ取得
+  const [
+    { data: allProfiles },
+    { data: allSubscriptions },
+  ] = await Promise.all([
+    adminDb
+      .from("profiles")
+      .select("id, display_name")
+      .not("id", "in", adminFilter),
+    adminDb
+      .from("subscriptions")
+      .select("user_id, status, plan_id, current_period_end, cancel_at_period_end, created_at, plans(name)")
+      .not("user_id", "in", adminFilter),
+  ]);
+
+  const profileMap = new Map((allProfiles ?? []).map((p) => [p.id, p]));
+  const subMap = new Map((allSubscriptions ?? []).map((s) => [s.user_id, s]));
+
+  const userList: AdminUserRow[] = nonAdminUsers.map((u) => {
+    const prof = profileMap.get(u.id);
+    const sub = subMap.get(u.id);
+    const plans = sub?.plans as unknown as { name: string } | { name: string }[] | null;
+    const plan = Array.isArray(plans) ? plans[0] : plans;
+    return {
+      id: u.id,
+      email: u.email,
+      displayName: prof?.display_name ?? null,
+      createdAt: u.created_at,
+      lastSignInAt: u.last_sign_in_at,
+      subscriptionStatus: sub?.status ?? null,
+      planName: plan?.name ?? null,
+      cancelAtPeriodEnd: sub?.cancel_at_period_end ?? false,
+      currentPeriodEnd: sub?.current_period_end ?? null,
+      subscriptionCreatedAt: sub?.created_at ?? null,
+    };
+  });
 
   // MRR計算
   const mrr = (activeSubsWithPlan ?? []).reduce((sum, sub) => {
@@ -388,6 +432,9 @@ export default async function AdminPage() {
             </CardContent>
           </Card>
         </div>
+
+        {/* ユーザー一覧 */}
+        <AdminUserList data={userList} />
 
       </main>
     </div>

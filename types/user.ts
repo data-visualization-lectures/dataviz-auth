@@ -1,5 +1,18 @@
 export type SubscriptionStatus = "none" | "active" | "past_due" | "canceled" | "incomplete" | "trialing";
 
+export type AdminUserRow = {
+  id: string;
+  email: string;
+  displayName: string | null;
+  createdAt: string;
+  lastSignInAt: string | null;
+  subscriptionStatus: SubscriptionStatus | null;
+  planName: string | null;
+  cancelAtPeriodEnd: boolean;
+  currentPeriodEnd: string | null;
+  subscriptionCreatedAt: string | null;
+};
+
 export type MeResponse = {
     user: {
         id: string;
