@@ -4,10 +4,10 @@
   "entries": [
     {
       "id": "rg-hate-crimes-ny",
-      "name": "NYヘイトクライム（アリュービアル図）",
-      "nameEn": "Hate Crimes in New York (Alluvial)",
-      "description": "ニューヨークのヘイトクライムを性別・人種・年齢・動機別に分類",
-      "descriptionEn": "Hate crimes in New York by gender, race, age group, and bias motivation",
+      "name": "NYヘイトクライム",
+      "nameEn": "Hate Crimes in New York",
+      "description": "ニューヨークのヘイトクライムを性別・人種・年齢・動機別に分類。想定チャート: アリュービアル図",
+      "descriptionEn": "Hate crimes in New York by gender, race, age group, and bias motivation. Suggested chart: Alluvial",
       "format": "tsv",
       "tags": [
         "社会",
@@ -32,10 +32,10 @@
     },
     {
       "id": "rg-lannister-starck",
-      "name": "ラニスター vs スターク 人物関係（アーク図）",
-      "nameEn": "Lannister vs Stark Relationships (Arc)",
-      "description": "ゲーム・オブ・スローンズのラニスター家とスターク家の人物関係",
-      "descriptionEn": "Relationships between Lannister and Stark characters from Game of Thrones",
+      "name": "ラニスター vs スターク 人物関係",
+      "nameEn": "Lannister vs Stark Relationships",
+      "description": "ゲーム・オブ・スローンズのラニスター家とスターク家の人物関係。想定チャート: アーク図",
+      "descriptionEn": "Relationships between Lannister and Stark characters from Game of Thrones. Suggested chart: Arc",
       "format": "tsv",
       "tags": [
         "フィクション",
@@ -59,10 +59,10 @@
     },
     {
       "id": "rg-netflix-series",
-      "name": "Netflixオリジナルシリーズ（棒グラフ）",
-      "nameEn": "Netflix Original Series (Bar Chart)",
-      "description": "Netflixオリジナルシリーズのジャンル・シーズン数・IMDB評価など",
-      "descriptionEn": "Netflix original series with genre, seasons, episodes, and IMDB rating",
+      "name": "Netflixオリジナルシリーズ",
+      "nameEn": "Netflix Original Series",
+      "description": "Netflixオリジナルシリーズのジャンル・シーズン数・IMDB評価など。想定チャート: 棒グラフ",
+      "descriptionEn": "Netflix original series with genre, seasons, episodes, and IMDB rating. Suggested chart: Bar Chart",
       "format": "tsv",
       "tags": [
         "エンタメ",
@@ -91,10 +91,10 @@
     },
     {
       "id": "rg-ny-wages",
-      "name": "NY職業別平均賃金（ビースウォーム図）",
-      "nameEn": "NY Mean Wages (Beeswarm)",
-      "description": "ニューヨークの職業別平均賃金データ",
-      "descriptionEn": "Mean wages by occupation in New York",
+      "name": "NY職業別平均賃金",
+      "nameEn": "NY Mean Wages",
+      "description": "ニューヨークの職業別平均賃金データ。想定チャート: ビースウォーム図",
+      "descriptionEn": "Mean wages by occupation in New York. Suggested chart: Beeswarm",
       "format": "tsv",
       "tags": [
         "雇用",
@@ -118,10 +118,10 @@
     },
     {
       "id": "rg-top50-movies",
-      "name": "映画興行収入TOP50（バブルチャート）",
-      "nameEn": "Top 50 Grossing Movies (Bubble Chart)",
-      "description": "興行収入上位50映画の予算・収益・ROI・ジャンル",
-      "descriptionEn": "Budget, box office, ROI, and genre for top 50 grossing movies",
+      "name": "映画興行収入TOP50",
+      "nameEn": "Top 50 Grossing Movies",
+      "description": "興行収入上位50映画の予算・収益・ROI・ジャンル。想定チャート: バブルチャート",
+      "descriptionEn": "Budget, box office, ROI, and genre for top 50 grossing movies. Suggested chart: Bubble Chart",
       "format": "tsv",
       "tags": [
         "映画",
@@ -147,10 +147,10 @@
     },
     {
       "id": "rg-milan-foreigners",
-      "name": "ミラノの外国人居住者（バンプチャート）",
-      "nameEn": "Foreign Residents in Milan (Bump Chart)",
-      "description": "ミラノにおける国別外国人居住者数の推移",
-      "descriptionEn": "Foreign residents in Milan by country over time",
+      "name": "ミラノの外国人居住者",
+      "nameEn": "Foreign Residents in Milan",
+      "description": "ミラノにおける国別外国人居住者数の推移。想定チャート: バンプチャート",
+      "descriptionEn": "Foreign residents in Milan by country over time. Suggested chart: Bump Chart",
       "format": "tsv",
       "tags": [
         "人口",
@@ -174,10 +174,10 @@
     },
     {
       "id": "rg-populated-cities",
-      "name": "人口の多い都市（サークルパッキング）",
-      "nameEn": "Most Populated Cities (Circle Packing)",
-      "description": "世界の人口上位都市を大陸・国・都市の階層で分類",
-      "descriptionEn": "Most populated cities by continent, country, and city",
+      "name": "人口の多い都市",
+      "nameEn": "Most Populated Cities",
+      "description": "世界の人口上位都市を大陸・国・都市の階層で分類。想定チャート: サークルパッキング",
+      "descriptionEn": "Most populated cities by continent, country, and city. Suggested chart: Circle Packing",
       "format": "tsv",
       "tags": [
         "人口",
@@ -202,10 +202,10 @@
     },
     {
       "id": "rg-paris-temperature",
-      "name": "パリの平均気温 1944-1945（等高線図）",
-      "nameEn": "Mean Temperature in Paris 1944-1945 (Contour)",
-      "description": "1944〜1945年のパリの日別平均気温データ",
-      "descriptionEn": "Daily mean temperature in Paris from 1944 to 1945",
+      "name": "パリの平均気温 1944-1945",
+      "nameEn": "Mean Temperature in Paris 1944-1945",
+      "description": "1944〜1945年のパリの日別平均気温データ。想定チャート: 等高線図",
+      "descriptionEn": "Daily mean temperature in Paris from 1944 to 1945. Suggested chart: Contour",
       "format": "tsv",
       "tags": [
         "気象",
@@ -228,10 +228,10 @@
     },
     {
       "id": "rg-iris-flowers",
-      "name": "アヤメの花（凸包図）",
-      "nameEn": "Iris Flowers (Convex Hull)",
-      "description": "アヤメ3品種の花弁・萼片の計測データ",
-      "descriptionEn": "Iris flower measurements — sepal and petal dimensions for 3 species",
+      "name": "アヤメの花",
+      "nameEn": "Iris Flowers",
+      "description": "アヤメ3品種の花弁・萼片の計測データ。想定チャート: 凸包図",
+      "descriptionEn": "Iris flower measurements — sepal and petal dimensions for 3 species. Suggested chart: Convex Hull",
       "format": "tsv",
       "tags": [
         "植物",
@@ -258,10 +258,10 @@
     },
     {
       "id": "rg-felidae",
-      "name": "ネコ科の分類（デンドログラム）",
-      "nameEn": "Felidae Classification (Dendrogram)",
-      "description": "ネコ科動物の分類体系（科・亜科・属・亜種・絶滅危惧度）",
-      "descriptionEn": "Felidae taxonomy with family, subfamily, genus, subspecies, and extinction risk",
+      "name": "ネコ科の分類",
+      "nameEn": "Felidae Classification",
+      "description": "ネコ科動物の分類体系（科・亜科・属・亜種・絶滅危惧度）。想定チャート: デンドログラム",
+      "descriptionEn": "Felidae taxonomy with family, subfamily, genus, subspecies, and extinction risk. Suggested chart: Dendrogram",
       "format": "tsv",
       "tags": [
         "生物学",
@@ -288,10 +288,10 @@
     },
     {
       "id": "rg-italian-pms",
-      "name": "イタリアの首相・大統領（ガントチャート）",
-      "nameEn": "Italian PMs and Presidents (Gantt Chart)",
-      "description": "イタリアの首相と大統領の在任期間データ",
-      "descriptionEn": "Italian prime ministers and presidents with their terms in office",
+      "name": "イタリアの首相・大統領",
+      "nameEn": "Italian PMs and Presidents",
+      "description": "イタリアの首相と大統領の在任期間データ。想定チャート: ガントチャート",
+      "descriptionEn": "Italian prime ministers and presidents with their terms in office. Suggested chart: Gantt Chart",
       "format": "tsv",
       "tags": [
         "政治",
@@ -316,10 +316,10 @@
     },
     {
       "id": "rg-basketball-shots",
-      "name": "バスケットボールのシュート（ヘックスビン）",
-      "nameEn": "Basketball Shots (Hexbin)",
-      "description": "バスケットボールのシュート位置・種類・距離・成否データ",
-      "descriptionEn": "Basketball shot positions, types, distances, and outcomes",
+      "name": "バスケットボールのシュート",
+      "nameEn": "Basketball Shots",
+      "description": "バスケットボールのシュート位置・種類・距離・成否データ。想定チャート: ヘックスビン",
+      "descriptionEn": "Basketball shot positions, types, distances, and outcomes. Suggested chart: Hexbin",
       "format": "tsv",
       "tags": [
         "スポーツ",
@@ -347,10 +347,10 @@
     },
     {
       "id": "rg-eu-consumer-prices",
-      "name": "EU消費者物価指数（ホライズングラフ）",
-      "nameEn": "EU Consumer Prices (Horizon Graph)",
-      "description": "EUの消費者物価指数（HICP）のカテゴリ別推移",
-      "descriptionEn": "EU Harmonised Index of Consumer Prices by category over time",
+      "name": "EU消費者物価指数",
+      "nameEn": "EU Consumer Prices",
+      "description": "EUの消費者物価指数（HICP）のカテゴリ別推移。想定チャート: ホライズングラフ",
+      "descriptionEn": "EU Harmonised Index of Consumer Prices by category over time. Suggested chart: Horizon Graph",
       "format": "tsv",
       "tags": [
         "経済",
@@ -374,10 +374,10 @@
     },
     {
       "id": "rg-riaa-music",
-      "name": "音楽フォーマット別収益（折れ線グラフ）",
-      "nameEn": "RIAA Music Format Revenues (Line Chart)",
-      "description": "米国の音楽フォーマット別収益の推移（RIAA）",
-      "descriptionEn": "RIAA music format revenues over time in the US",
+      "name": "音楽フォーマット別収益",
+      "nameEn": "RIAA Music Format Revenues",
+      "description": "米国の音楽フォーマット別収益の推移（RIAA）。想定チャート: 折れ線グラフ",
+      "descriptionEn": "RIAA music format revenues over time in the US. Suggested chart: Line Chart",
       "format": "tsv",
       "tags": [
         "音楽",
@@ -405,10 +405,10 @@
     },
     {
       "id": "rg-letter-frequencies",
-      "name": "言語別文字頻度（マトリックス図）",
-      "nameEn": "Letter Frequencies by Language (Matrix Plot)",
-      "description": "各言語におけるアルファベット文字の出現頻度",
-      "descriptionEn": "Frequency of letters across different languages",
+      "name": "言語別文字頻度",
+      "nameEn": "Letter Frequencies by Language",
+      "description": "各言語におけるアルファベット文字の出現頻度。想定チャート: マトリックス図",
+      "descriptionEn": "Frequency of letters across different languages. Suggested chart: Matrix Plot",
       "format": "tsv",
       "tags": [
         "言語",
@@ -432,10 +432,10 @@
     },
     {
       "id": "rg-happiness-index",
-      "name": "世界幸福度指数（マルチセット棒グラフ）",
-      "nameEn": "Happiness Index (Multiset Barchart)",
-      "description": "各国の寛容さ・腐敗認知度・ポジティブ/ネガティブ感情の推移",
-      "descriptionEn": "Generosity, corruption perceptions, and affect scores by country over years",
+      "name": "世界幸福度指数",
+      "nameEn": "Happiness Index",
+      "description": "各国の寛容さ・腐敗認知度・ポジティブ/ネガティブ感情の推移。想定チャート: マルチセット棒グラフ",
+      "descriptionEn": "Generosity, corruption perceptions, and affect scores by country over years. Suggested chart: Multiset Barchart",
       "format": "tsv",
       "tags": [
         "社会",
@@ -462,10 +462,10 @@
     },
     {
       "id": "rg-fifa-players",
-      "name": "FIFAサッカー選手（レーダーチャート）",
-      "nameEn": "FIFA Players (Radar Chart)",
-      "description": "FIFAゲームのトップ選手のスキル値データ",
-      "descriptionEn": "FIFA game top player skill attributes",
+      "name": "FIFAサッカー選手",
+      "nameEn": "FIFA Players",
+      "description": "FIFAゲームのトップ選手のスキル値データ。想定チャート: レーダーチャート",
+      "descriptionEn": "FIFA game top player skill attributes. Suggested chart: Radar Chart",
       "format": "tsv",
       "tags": [
         "スポーツ",
@@ -507,10 +507,10 @@
     },
     {
       "id": "rg-energy-flows",
-      "name": "エネルギーフロー（サンキー図）",
-      "nameEn": "Energy Flows (Sankey Diagram)",
-      "description": "エネルギー源から消費先へのフロー（TWh単位）",
-      "descriptionEn": "Energy flows from source to destination in TWh",
+      "name": "エネルギーフロー",
+      "nameEn": "Energy Flows",
+      "description": "エネルギー源から消費先へのフロー（TWh単位）。想定チャート: サンキー図",
+      "descriptionEn": "Energy flows from source to destination in TWh. Suggested chart: Sankey Diagram",
       "format": "tsv",
       "tags": [
         "エネルギー",
@@ -533,10 +533,10 @@
     },
     {
       "id": "rg-gdp-composition",
-      "name": "GDP産業構成（積み上げ棒グラフ）",
-      "nameEn": "GDP Sector Composition (Stacked Barchart)",
-      "description": "各国のGDP産業別構成（農業・工業・サービス業）",
-      "descriptionEn": "GDP composition by sector (agricultural, industrial, service) for various countries",
+      "name": "GDP産業構成",
+      "nameEn": "GDP Sector Composition",
+      "description": "各国のGDP産業別構成（農業・工業・サービス業）。想定チャート: 積み上げ棒グラフ",
+      "descriptionEn": "GDP composition by sector (agricultural, industrial, service) for various countries. Suggested chart: Stacked Barchart",
       "format": "tsv",
       "tags": [
         "経済",
@@ -561,10 +561,10 @@
     },
     {
       "id": "rg-olympics-medals",
-      "name": "オリンピックメダル（ストリームグラフ）",
-      "nameEn": "Olympics Medals (Streamgraph)",
-      "description": "オリンピックの地域・国別メダル獲得数の推移",
-      "descriptionEn": "Olympic medals by macroarea and country over time",
+      "name": "オリンピックメダル",
+      "nameEn": "Olympics Medals",
+      "description": "オリンピックの地域・国別メダル獲得数の推移。想定チャート: ストリームグラフ",
+      "descriptionEn": "Olympic medals by macroarea and country over time. Suggested chart: Streamgraph",
       "format": "tsv",
       "tags": [
         "スポーツ",
@@ -589,10 +589,10 @@
     },
     {
       "id": "rg-wine-aromas",
-      "name": "ワインのアロマ（サンバースト図）",
-      "nameEn": "Wine Aromas (Sunburst)",
-      "description": "ワインのアロマを階層的に分類したデータ",
-      "descriptionEn": "Hierarchical classification of wine aromas",
+      "name": "ワインのアロマ",
+      "nameEn": "Wine Aromas",
+      "description": "ワインのアロマを階層的に分類したデータ。想定チャート: サンバースト図",
+      "descriptionEn": "Hierarchical classification of wine aromas. Suggested chart: Sunburst",
       "format": "tsv",
       "tags": [
         "食品",
@@ -618,10 +618,10 @@
     },
     {
       "id": "rg-orchestra",
-      "name": "オーケストラの編成（ツリーマップ）",
-      "nameEn": "Orchestra (Treemap)",
-      "description": "オーケストラの楽器編成を種類・グループ別に分類",
-      "descriptionEn": "Orchestra instrument composition by type and group",
+      "name": "オーケストラの編成",
+      "nameEn": "Orchestra",
+      "description": "オーケストラの楽器編成を種類・グループ別に分類。想定チャート: ツリーマップ",
+      "descriptionEn": "Orchestra instrument composition by type and group. Suggested chart: Treemap",
       "format": "tsv",
       "tags": [
         "音楽",
@@ -646,10 +646,10 @@
     },
     {
       "id": "rg-ny-weather",
-      "name": "ニューヨークの天気（バイオリン図）",
-      "nameEn": "Weather in New York (Violin Plot)",
-      "description": "ニューヨークの日別気象データ（気温・降水量・風速）",
-      "descriptionEn": "Daily weather data in New York — temperature, precipitation, wind",
+      "name": "ニューヨークの天気",
+      "nameEn": "Weather in New York",
+      "description": "ニューヨークの日別気象データ（気温・降水量・風速）。想定チャート: バイオリン図",
+      "descriptionEn": "Daily weather data in New York — temperature, precipitation, wind. Suggested chart: Violin Plot",
       "format": "tsv",
       "tags": [
         "気象",
@@ -677,10 +677,10 @@
     },
     {
       "id": "rg-us-presidential-elections",
-      "name": "米国大統領選挙（折れ線グラフ）",
-      "nameEn": "US Presidential Elections (Line Graph)",
-      "description": "米国大統領選挙の州別・政党別得票データ",
-      "descriptionEn": "US presidential election results by state and party",
+      "name": "米国大統領選挙",
+      "nameEn": "US Presidential Elections",
+      "description": "米国大統領選挙の州別・政党別得票データ。想定チャート: 折れ線グラフ",
+      "descriptionEn": "US presidential election results by state and party. Suggested chart: Line Graph",
       "format": "tsv",
       "tags": [
         "政治",
@@ -708,10 +708,10 @@
     },
     {
       "id": "rg-us-presidential-elections-full",
-      "name": "米国大統領選挙 詳細版（折れ線グラフ）",
-      "nameEn": "US Presidential Elections Full (Line Graph)",
-      "description": "米国大統領選挙の候補者別詳細得票データ",
-      "descriptionEn": "Detailed US presidential election results by candidate",
+      "name": "米国大統領選挙 詳細版",
+      "nameEn": "US Presidential Elections Full",
+      "description": "米国大統領選挙の候補者別詳細得票データ。想定チャート: 折れ線グラフ",
+      "descriptionEn": "Detailed US presidential election results by candidate. Suggested chart: Line Graph",
       "format": "tsv",
       "tags": [
         "政治",
@@ -740,10 +740,10 @@
     },
     {
       "id": "rg-seriea-ranking",
-      "name": "セリエAランキング（スロープグラフ）",
-      "nameEn": "Premier Serie A Ranking (Slope Graph)",
-      "description": "イタリア・セリエAのチーム順位変動データ",
-      "descriptionEn": "Italian Serie A team ranking changes between seasons",
+      "name": "セリエAランキング",
+      "nameEn": "Premier Serie A Ranking",
+      "description": "イタリア・セリエAのチーム順位変動データ。想定チャート: スロープグラフ",
+      "descriptionEn": "Italian Serie A team ranking changes between seasons. Suggested chart: Slope Graph",
       "format": "tsv",
       "tags": [
         "スポーツ",
