@@ -94,6 +94,7 @@ export default async function AdminPage() {
     { count: projectCount },
     { count: openrefineProjectCount },
     { data: planDistributionRows },
+    { data: allPlans },
   ] = await Promise.all([
     // 有料サブスク数（active のみ、管理者・期限切れ除外）
     adminDb
@@ -156,16 +157,23 @@ export default async function AdminPage() {
     // プラン別内訳（active + trialing、期限切れ除外）
     adminDb
       .from("subscriptions")
-      .select("plan_id, plans(name)")
+      .select("plan_id")
       .in("status", ["active", "trialing"])
       .not("user_id", "in", adminFilter)
       .gte("current_period_end", nowIso),
+    // プラン名マスタ
+    adminDb
+      .from("plans")
+      .select("id, name"),
   ]);
 
-  // ユー���ー一覧用データ取得
+  const planMap = new Map((allPlans ?? []).map((p) => [p.id, p]));
+
+  // ユーザー一覧用データ取得
   const [
     { data: allProfiles },
     { data: allSubscriptions },
+    { data: academiaDomains },
   ] = await Promise.all([
     adminDb
       .from("profiles")
@@ -173,28 +181,37 @@ export default async function AdminPage() {
       .not("id", "in", adminFilter),
     adminDb
       .from("subscriptions")
-      .select("user_id, status, plan_id, current_period_end, cancel_at_period_end, created_at, plans(name)")
+      .select("user_id, status, plan_id, current_period_end, cancel_at_period_end, created_at")
       .not("user_id", "in", adminFilter),
+    adminDb
+      .from("academia_domains")
+      .select("domain")
+      .eq("is_active", true),
   ]);
 
   const profileMap = new Map((allProfiles ?? []).map((p) => [p.id, p]));
   const subMap = new Map((allSubscriptions ?? []).map((s) => [s.user_id, s]));
+  const activeDomains = (academiaDomains ?? []).map((d) => d.domain);
 
   const userList: AdminUserRow[] = nonAdminUsers.map((u) => {
     const prof = profileMap.get(u.id);
     const sub = subMap.get(u.id);
-    const plans = sub?.plans as unknown as { name: string } | { name: string }[] | null;
-    const plan = Array.isArray(plans) ? plans[0] : plans;
+    const planName = sub?.plan_id ? (planMap.get(sub.plan_id)?.name ?? sub.plan_id) : null;
+
+    const isAcademia =
+      (!sub || (sub.status !== "active" && sub.status !== "trialing")) &&
+      activeDomains.some((domain) => u.email.endsWith(domain));
+
     return {
       id: u.id,
       email: u.email,
       displayName: prof?.display_name ?? null,
       createdAt: u.created_at,
       lastSignInAt: u.last_sign_in_at,
-      subscriptionStatus: sub?.status ?? null,
-      planName: plan?.name ?? null,
+      subscriptionStatus: isAcademia ? "active" : (sub?.status ?? null),
+      planName: isAcademia ? "アカデミア" : planName,
       cancelAtPeriodEnd: sub?.cancel_at_period_end ?? false,
-      currentPeriodEnd: sub?.current_period_end ?? null,
+      currentPeriodEnd: isAcademia ? null : (sub?.current_period_end ?? null),
       subscriptionCreatedAt: sub?.created_at ?? null,
     };
   });
@@ -244,9 +261,7 @@ export default async function AdminPage() {
   const planDistribution = (() => {
     const counts: Record<string, { name: string; count: number }> = {};
     for (const row of planDistributionRows ?? []) {
-      const plans = row.plans as unknown as { name: string } | { name: string }[] | null;
-      const plan = Array.isArray(plans) ? plans[0] : plans;
-      const name = plan?.name ?? row.plan_id;
+      const name = planMap.get(row.plan_id)?.name ?? row.plan_id;
       if (!counts[row.plan_id]) {
         counts[row.plan_id] = { name, count: 0 };
       }
