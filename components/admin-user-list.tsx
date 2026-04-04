@@ -20,6 +20,7 @@ const STATUS_LABELS: Record<string, string> = {
   canceled: "解約済",
   past_due: "支払い遅延",
   incomplete: "未完了",
+  academia: "アカデミア",
   none: "なし",
 };
 
@@ -29,6 +30,7 @@ const STATUS_COLORS: Record<string, string> = {
   canceled: "bg-red-100 text-red-700 border-red-200",
   past_due: "bg-amber-100 text-amber-700 border-amber-200",
   incomplete: "bg-gray-100 text-gray-600 border-gray-200",
+  academia: "bg-purple-100 text-purple-700 border-purple-200",
   none: "bg-gray-100 text-gray-500 border-gray-200",
 };
 
@@ -146,6 +148,7 @@ export function AdminUserList({ data }: { data: AdminUserRow[] }) {
             <option value="all">すべてのステータス</option>
             <option value="active">有料</option>
             <option value="trialing">トライアル</option>
+            <option value="academia">アカデミア</option>
             <option value="canceled">解約済</option>
             <option value="past_due">支払い遅延</option>
             <option value="incomplete">未完了</option>

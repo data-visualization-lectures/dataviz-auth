@@ -208,7 +208,7 @@ export default async function AdminPage() {
       displayName: prof?.display_name ?? null,
       createdAt: u.created_at,
       lastSignInAt: u.last_sign_in_at,
-      subscriptionStatus: isAcademia ? "active" : (sub?.status ?? null),
+      subscriptionStatus: isAcademia ? "academia" : (sub?.status ?? null),
       planName: isAcademia ? "アカデミア" : planName,
       cancelAtPeriodEnd: sub?.cancel_at_period_end ?? false,
       currentPeriodEnd: isAcademia ? null : (sub?.current_period_end ?? null),

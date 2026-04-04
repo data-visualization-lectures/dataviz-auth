@@ -6,7 +6,7 @@ export type AdminUserRow = {
   displayName: string | null;
   createdAt: string;
   lastSignInAt: string | null;
-  subscriptionStatus: SubscriptionStatus | null;
+  subscriptionStatus: SubscriptionStatus | "academia" | null;
   planName: string | null;
   cancelAtPeriodEnd: boolean;
   currentPeriodEnd: string | null;
