@@ -2702,6 +2702,66 @@
         "parallel-coordinates"
       ],
       "category": "tabular"
+    },
+    {
+      "id": "popular-pet-cat",
+      "name": "人気ペット猫 品種別登録頭数",
+      "nameEn": "Popular Pet Cats by Breed",
+      "description": "日本の飼い猫の品種別・カテゴリー別の登録頭数データ",
+      "descriptionEn": "Registered pet cat counts by breed and category in Japan",
+      "format": "csv",
+      "tags": [
+        "動物",
+        "ペット",
+        "猫",
+        "日本"
+      ],
+      "columns": [
+        "種",
+        "カテゴリー",
+        "品種名",
+        "頭数"
+      ],
+      "rowCount": 20,
+      "fileUrl": "https://app.dataviz.jp/data/popular-pet-cat.csv",
+      "fileUrlEn": null,
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "rawgraphs",
+        "voyager",
+        "data-illustrator"
+      ],
+      "category": "tabular"
+    },
+    {
+      "id": "popular-pet-dog",
+      "name": "人気ペット犬 品種別登録頭数",
+      "nameEn": "Popular Pet Dogs by Breed",
+      "description": "日本の飼い犬の品種別・カテゴリー別の登録頭数データ",
+      "descriptionEn": "Registered pet dog counts by breed and category in Japan",
+      "format": "csv",
+      "tags": [
+        "動物",
+        "ペット",
+        "犬",
+        "日本"
+      ],
+      "columns": [
+        "種",
+        "カテゴリー",
+        "品種名",
+        "頭数"
+      ],
+      "rowCount": 20,
+      "fileUrl": "https://app.dataviz.jp/data/popular-pet-dog.csv",
+      "fileUrlEn": null,
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "rawgraphs",
+        "voyager",
+        "data-illustrator"
+      ],
+      "category": "tabular"
     }
   ]
 }
