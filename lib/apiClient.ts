@@ -34,7 +34,12 @@ export async function fetchMe() {
   return callApi("/api/me");
 }
 
-export type PlanType = "monthly" | "yearly" | "coaching_monthly" | "coaching_yearly";
+export type PlanType =
+  | "monthly" | "yearly"
+  | "coaching_monthly" | "coaching_yearly"
+  | "team_small_monthly" | "team_small_yearly"
+  | "team_standard_monthly" | "team_standard_yearly"
+  | "team_enterprise_monthly" | "team_enterprise_yearly";
 
 export async function createCheckoutSession(plan: PlanType = "monthly") {
   return callApi("/api/billing-create-checkout-session", {

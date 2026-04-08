@@ -22,6 +22,12 @@ const PLAN_DISPLAY: Record<PlanType, { name: string; price: string }> = {
   yearly: { name: "通常プラン（年額）", price: "¥24,800/年" },
   coaching_monthly: { name: "コーチングプラン（月額）", price: "¥6,980/月" },
   coaching_yearly: { name: "コーチングプラン（年額）", price: "¥69,800/年" },
+  team_small_monthly: { name: "チーム・スモール（月額）", price: "¥10,800/月" },
+  team_small_yearly: { name: "チーム・スモール（年額）", price: "¥108,000/年" },
+  team_standard_monthly: { name: "チーム・スタンダード（月額）", price: "¥19,800/月" },
+  team_standard_yearly: { name: "チーム・スタンダード（年額）", price: "¥198,000/年" },
+  team_enterprise_monthly: { name: "チーム・エンタープライズ（月額）", price: "¥52,000/月" },
+  team_enterprise_yearly: { name: "チーム・エンタープライズ（年額）", price: "¥520,000/年" },
 };
 
 export function CheckoutForm({
