@@ -454,6 +454,7 @@ async function verifyUserAccess(session) {
         // ユーザー情報にemailが含まれていない場合があるので、Sessionからマージ
         const result = { ...profile, email: session.user.email };
         setCachedProfile(result);
+        window.datavizProfile = result;  // ヘッダー(dataviz-tool-header.js)からアクセス可能にする
         return result;
       } catch (err) {
         lastError = err;

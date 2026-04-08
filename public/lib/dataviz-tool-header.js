@@ -78,6 +78,12 @@ const _dvToolI18n = {
   'toast.deleteFailed':    { ja: '削除に失敗しました', en: 'Delete failed' },
   'auth.required':         { ja: 'ログインが必要です', en: 'Login required' },
   'sample.button':         { ja: 'サンプルデータ', en: 'Sample Data' },
+  'modal.saveTarget':      { ja: '保存先', en: 'Save to' },
+  'modal.personal':        { ja: '個人プロジェクト', en: 'Personal' },
+  'modal.groupProject':    { ja: 'チーム共有', en: 'Team Shared' },
+  'modal.groupProjects':   { ja: 'チームプロジェクト', en: 'Team Projects' },
+  'modal.myProjects':      { ja: 'マイプロジェクト', en: 'My Projects' },
+  'modal.groupEmpty':      { ja: 'チームプロジェクトはありません', en: 'No team projects' },
 };
 function _dvToolT(key) { return (_dvToolI18n[key] && _dvToolI18n[key][_dvToolLocale]) || key; }
 
@@ -491,37 +497,84 @@ class DatavizToolHeader extends HTMLElement {
   // =========================================================================
 
   _openLoadModal() {
+    const groups = (window.datavizProfile && window.datavizProfile.groups) || [];
+    const hasGroups = groups.length > 0;
+
     const overlay = document.createElement('div');
     overlay.className = 'dv-modal-overlay';
+
+    const tabsHtml = hasGroups ? `
+      <div class="dv-load-tabs">
+        <button class="dv-load-tab dv-load-tab--active" data-tab="personal">${_dvToolT('modal.myProjects')}</button>
+        <button class="dv-load-tab" data-tab="group">${_dvToolT('modal.groupProjects')}</button>
+      </div>
+    ` : '';
+
     overlay.innerHTML = `
       <div class="dv-modal dv-modal-load">
         <div class="dv-modal-header">
           <h2 class="dv-modal-title">${_dvToolT('modal.loadTitle')}</h2>
           <button class="dv-modal-close" aria-label="Close">&times;</button>
         </div>
-        <div class="dv-modal-body">
+        ${tabsHtml}
+        <div class="dv-modal-body" data-tab-content="personal">
           <div class="dv-modal-loading">${_dvToolT('modal.loading')}</div>
         </div>
+        ${hasGroups ? `<div class="dv-modal-body dv-hidden" data-tab-content="group">
+          <div class="dv-modal-loading">${_dvToolT('modal.loading')}</div>
+        </div>` : ''}
       </div>
     `;
 
     this.shadowRoot.appendChild(overlay);
-    // Force reflow then fade in
     overlay.offsetHeight;
     overlay.classList.add('dv-modal-visible');
 
     this._setupModalClose(overlay);
-    this._fetchAndRenderProjects(overlay);
+
+    // Tab switching
+    if (hasGroups) {
+      const tabs = overlay.querySelectorAll('.dv-load-tab');
+      const bodies = overlay.querySelectorAll('.dv-modal-body');
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const target = tab.dataset.tab;
+          tabs.forEach(t => t.classList.remove('dv-load-tab--active'));
+          tab.classList.add('dv-load-tab--active');
+          bodies.forEach(b => {
+            b.classList.toggle('dv-hidden', b.dataset.tabContent !== target);
+          });
+        });
+      });
+    }
+
+    // Fetch personal projects
+    this._fetchAndRenderProjects(overlay, 'personal', true);
+
+    // Fetch group projects
+    if (hasGroups) {
+      this._fetchAndRenderProjects(overlay, 'group', false);
+    }
   }
 
-  async _fetchAndRenderProjects(overlay) {
-    const body = overlay.querySelector('.dv-modal-body');
+  async _fetchAndRenderProjects(overlay, tab = 'personal', canDelete = true) {
+    const body = overlay.querySelector(`[data-tab-content="${tab}"]`);
+    if (!body) return;
+
     try {
-      const projects = await this._listProjects(this._projectConfig.appName);
+      let projects;
+      if (tab === 'group') {
+        const res = await this._apiRequest(`/api/projects?source=group&app=${encodeURIComponent(this._projectConfig.appName)}`);
+        projects = res.projects || [];
+      } else {
+        projects = await this._listProjects(this._projectConfig.appName);
+      }
+
       body.innerHTML = '';
 
       if (projects.length === 0) {
-        body.innerHTML = `<div class="dv-modal-empty">${_dvToolT('modal.empty')}</div>`;
+        const emptyMsg = tab === 'group' ? _dvToolT('modal.groupEmpty') : _dvToolT('modal.empty');
+        body.innerHTML = `<div class="dv-modal-empty">${emptyMsg}</div>`;
         return;
       }
 
@@ -538,6 +591,11 @@ class DatavizToolHeader extends HTMLElement {
           _dvToolLocale === 'ja' ? 'ja-JP' : 'en-US'
         );
 
+        // グループプロジェクトは削除ボタンを非表示
+        const deleteHtml = canDelete
+          ? `<button class="dv-project-delete-btn" title="${_dvToolT('modal.delete')}">&#x1F5D1;</button>`
+          : '';
+
         card.innerHTML = `
           <div class="dv-project-thumb">
             <div class="dv-thumb-placeholder"></div>
@@ -546,25 +604,25 @@ class DatavizToolHeader extends HTMLElement {
             <div class="dv-project-name" title="${this._escapeHtml(project.name)}">${this._escapeHtml(project.name)}</div>
             <time class="dv-project-date">${dateStr}</time>
           </div>
-          <button class="dv-project-delete-btn" title="${_dvToolT('modal.delete')}">&#x1F5D1;</button>
+          ${deleteHtml}
         `;
 
-        // Click card to load project
+        // Click card to load project (group projects clear existingProjectId)
         card.addEventListener('click', (e) => {
           if (e.target.closest('.dv-project-delete-btn')) return;
-          this._handleProjectSelect(project.id, overlay);
+          this._handleProjectSelect(project.id, overlay, tab === 'group');
         });
 
-        // Delete button
-        const deleteBtn = card.querySelector('.dv-project-delete-btn');
-        deleteBtn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          this._handleDeleteClick(project.id, deleteBtn, card, grid);
-        });
+        // Delete button (personal only)
+        if (canDelete) {
+          const deleteBtn = card.querySelector('.dv-project-delete-btn');
+          deleteBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            this._handleDeleteClick(project.id, deleteBtn, card, grid);
+          });
+        }
 
         grid.appendChild(card);
-
-        // Lazy-load thumbnail
         this._loadThumbnail(project.id, card.querySelector('.dv-project-thumb'));
       });
     } catch (err) {
@@ -577,12 +635,12 @@ class DatavizToolHeader extends HTMLElement {
       `;
       body.querySelector('.dv-btn-retry').addEventListener('click', () => {
         body.innerHTML = `<div class="dv-modal-loading">${_dvToolT('modal.loading')}</div>`;
-        this._fetchAndRenderProjects(overlay);
+        this._fetchAndRenderProjects(overlay, tab, canDelete);
       });
     }
   }
 
-  async _handleProjectSelect(projectId, overlay) {
+  async _handleProjectSelect(projectId, overlay, isGroupProject = false) {
     // Show loading state on the card
     const card = overlay.querySelector(`[data-project-id="${projectId}"]`);
     if (card) card.classList.add('dv-card-loading');
@@ -591,7 +649,11 @@ class DatavizToolHeader extends HTMLElement {
       const projectData = await this._getProject(projectId);
       this._closeAnyModal();
       this.showMessage(_dvToolT('toast.loaded'), 'success');
-      if (this._projectConfig.onProjectLoad) this._projectConfig.onProjectLoad(projectData);
+      // グループプロジェクトの場合、onProjectLoadに isGroupProject フラグを渡す
+      // ツール側がexistingProjectIdをセットしないよう促す
+      if (this._projectConfig.onProjectLoad) {
+        this._projectConfig.onProjectLoad(projectData, { isGroupProject, projectId });
+      }
     } catch (err) {
       console.error('[dataviz-tool-header] Failed to load project', err);
       if (card) card.classList.remove('dv-card-loading');
@@ -659,10 +721,31 @@ class DatavizToolHeader extends HTMLElement {
   _openSaveModal(options) {
     const { name = '', data, thumbnailDataUri = null, existingProjectId = null } = options;
 
+    // グループ情報を取得（ownerのグループのみ保存先として表示）
+    const groups = (window.datavizProfile && window.datavizProfile.groups) || [];
+    const ownerGroups = groups.filter(g => g.role === 'owner');
+
     const hasExisting = !!existingProjectId;
     const thumbnailHtml = thumbnailDataUri
       ? `<div class="dv-save-thumbnail"><img src="${thumbnailDataUri}" alt="Preview"></div>`
       : '';
+
+    // 保存先選択（ownerの場合のみ表示）
+    let saveTargetHtml = '';
+    if (ownerGroups.length > 0) {
+      const optionsHtml = ownerGroups.map(g =>
+        `<option value="${g.group_id}">${this._escapeHtml(g.group_name)} (${_dvToolT('modal.groupProject')})</option>`
+      ).join('');
+      saveTargetHtml = `
+        <div class="dv-save-field">
+          <label for="dv-save-target">${_dvToolT('modal.saveTarget')}</label>
+          <select id="dv-save-target">
+            <option value="">${_dvToolT('modal.personal')}</option>
+            ${optionsHtml}
+          </select>
+        </div>
+      `;
+    }
 
     const actionsHtml = hasExisting
       ? `<button type="button" class="dv-btn-modal dv-btn-secondary dv-save-cancel">${_dvToolT('modal.cancel')}</button>
@@ -687,6 +770,7 @@ class DatavizToolHeader extends HTMLElement {
               <input type="text" id="dv-project-name-input" value="${this._escapeHtml(name)}"
                      placeholder="${_dvToolT('modal.namePlaceholder')}" required />
             </div>
+            ${saveTargetHtml}
             <div class="dv-modal-error-inline dv-hidden"></div>
             <div class="dv-save-actions">${actionsHtml}</div>
           </form>
@@ -713,7 +797,9 @@ class DatavizToolHeader extends HTMLElement {
       e.preventDefault();
       const projectName = input.value.trim();
       if (!projectName) return;
-      this._performSave(overlay, projectName, data, thumbnailDataUri, existingProjectId);
+      const targetSelect = overlay.querySelector('#dv-save-target');
+      const groupId = targetSelect ? targetSelect.value || null : null;
+      this._performSave(overlay, projectName, data, thumbnailDataUri, existingProjectId, groupId);
     });
 
     // Save as new button (when updating existing)
@@ -722,12 +808,14 @@ class DatavizToolHeader extends HTMLElement {
       saveAsNewBtn.addEventListener('click', () => {
         const projectName = input.value.trim();
         if (!projectName) { input.focus(); return; }
-        this._performSave(overlay, projectName, data, thumbnailDataUri, null);
+        const targetSelect = overlay.querySelector('#dv-save-target');
+        const groupId = targetSelect ? targetSelect.value || null : null;
+        this._performSave(overlay, projectName, data, thumbnailDataUri, null, groupId);
       });
     }
   }
 
-  async _performSave(overlay, projectName, data, thumbnailDataUri, existingProjectId) {
+  async _performSave(overlay, projectName, data, thumbnailDataUri, existingProjectId, groupId = null) {
     const submitBtn = overlay.querySelector('.dv-save-submit');
     const saveAsNewBtn = overlay.querySelector('.dv-save-as-new');
     const errorEl = overlay.querySelector('.dv-modal-error-inline');
@@ -748,12 +836,14 @@ class DatavizToolHeader extends HTMLElement {
           thumbnail: thumbnailDataUri || undefined,
         });
       } else {
-        result = await this._createProject({
+        const payload = {
           name: projectName,
           app_name: this._projectConfig.appName,
           data: data,
           thumbnail: thumbnailDataUri || undefined,
-        });
+        };
+        if (groupId) payload.group_id = groupId;
+        result = await this._createProject(payload);
       }
       this._closeAnyModal();
       this.showMessage(_dvToolT('toast.saved'), 'success');
@@ -1244,6 +1334,32 @@ class DatavizToolHeader extends HTMLElement {
       }
       .dv-hidden {
         display: none;
+      }
+
+      /* Load modal tabs */
+      .dv-load-tabs {
+        display: flex;
+        gap: 0;
+        padding: 0 24px;
+        border-bottom: 1px solid #e2e8f0;
+      }
+      .dv-load-tab {
+        padding: 8px 16px;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        border: none;
+        background: transparent;
+        color: #718096;
+        border-bottom: 2px solid transparent;
+        transition: color 0.15s, border-color 0.15s;
+      }
+      .dv-load-tab:hover {
+        color: #2d3748;
+      }
+      .dv-load-tab--active {
+        color: #2d3748;
+        border-bottom-color: #3182ce;
       }
 
       /* Responsive */
