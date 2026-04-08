@@ -4,7 +4,13 @@ import { CheckoutForm } from "@/components/checkout-form";
 
 export const dynamic = "force-dynamic";
 
-const VALID_PLANS = ["monthly", "yearly", "coaching_monthly", "coaching_yearly"] as const;
+const VALID_PLANS = [
+  "monthly", "yearly",
+  "coaching_monthly", "coaching_yearly",
+  "team_small_monthly", "team_small_yearly",
+  "team_standard_monthly", "team_standard_yearly",
+  "team_enterprise_monthly", "team_enterprise_yearly",
+] as const;
 type PlanType = (typeof VALID_PLANS)[number];
 
 function isValidPlan(plan: string | null): plan is PlanType {
