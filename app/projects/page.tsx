@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { SavedProjectsGrid, type SavedProject } from "@/components/saved-projects-grid";
 import { hasEnvVars } from "@/lib/utils";
 import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { getLocale, t } from "@/lib/i18n.server";
 
 export async function generateMetadata() {
@@ -54,7 +55,7 @@ export default async function ProjectsPage({
                 .createSignedUrl(p.thumbnail_path, 3600);
               signedUrl = signedData?.signedUrl || null;
             }
-            return { ...p, signedUrl, source: "projects" as const };
+            return { ...p, signedUrl, source: "projects" as const, canDelete: true };
           })
         )
       : [];
@@ -68,11 +69,50 @@ export default async function ProjectsPage({
       thumbnail_path: null,
       signedUrl: null,
       source: "openrefine" as const,
+      canDelete: true,
     }));
 
     allProjects = [...projects, ...orProjects].sort(
       (a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
     );
+  }
+
+  // チームプロジェクト取得
+  let groupProjects: SavedProject[] = [];
+  const adminDb = createAdminClient();
+  const { data: membership } = await adminDb
+    .from("group_members")
+    .select("group_id")
+    .eq("user_id", user.id);
+
+  if (membership && membership.length > 0) {
+    const groupIds = membership.map((m: any) => m.group_id);
+    const { data: gProjects } = await adminDb
+      .from("projects")
+      .select("*")
+      .in("group_id", groupIds)
+      .not("group_id", "is", null)
+      .order("updated_at", { ascending: false });
+
+    if (gProjects) {
+      groupProjects = await Promise.all(
+        gProjects.map(async (p: any) => {
+          let signedUrl = null;
+          if (p.thumbnail_path) {
+            const { data: signedData } = await adminDb.storage
+              .from("user_projects")
+              .createSignedUrl(p.thumbnail_path, 3600);
+            signedUrl = signedData?.signedUrl || null;
+          }
+          return {
+            ...p,
+            signedUrl,
+            source: "projects" as const,
+            canDelete: p.user_id === user.id,
+          };
+        })
+      );
+    }
   }
 
   return (
@@ -86,6 +126,18 @@ export default async function ProjectsPage({
             </p>
           </div>
           <SavedProjectsGrid projects={allProjects} initialFilter={initialTool} locale={locale} />
+
+          {groupProjects.length > 0 && (
+            <>
+              <div className="flex flex-col gap-2 mt-4">
+                <h2 className="text-2xl font-bold tracking-tight">{t(locale, "projects.groupTitle")}</h2>
+                <p className="text-muted-foreground">
+                  {t(locale, "projects.groupDescription")}
+                </p>
+              </div>
+              <SavedProjectsGrid projects={groupProjects} initialFilter={initialTool} locale={locale} />
+            </>
+          )}
         </div>
       </main>
 

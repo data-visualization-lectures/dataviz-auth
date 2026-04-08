@@ -14,6 +14,8 @@ import {
   TrialBreakdownChart,
 } from "@/components/admin-charts";
 import { AdminUserList } from "@/components/admin-user-list";
+import { AdminGroupManagement } from "@/components/admin-group-management";
+import { getGroups } from "@/app/admin/group-actions";
 import type { AdminUserRow } from "@/types/user";
 
 export const dynamic = "force-dynamic";
@@ -24,6 +26,12 @@ const MRR_MONTHLY_AMOUNTS: Record<string, number> = {
   pro_yearly: Math.round(24800 / 12),
   coaching_monthly: 6980,
   coaching_yearly: Math.round(69800 / 12),
+  team_small_monthly: 10800,
+  team_small_yearly: Math.round(108000 / 12),
+  team_standard_monthly: 19800,
+  team_standard_yearly: Math.round(198000 / 12),
+  team_enterprise_monthly: 52000,
+  team_enterprise_yearly: Math.round(520000 / 12),
 };
 
 export default async function AdminPage() {
@@ -451,7 +459,15 @@ export default async function AdminPage() {
         {/* ユーザー一覧 */}
         <AdminUserList data={userList} />
 
+        {/* グループ管理 */}
+        <GroupManagementSection />
+
       </main>
     </div>
   );
+}
+
+async function GroupManagementSection() {
+  const groups = await getGroups();
+  return <AdminGroupManagement groups={groups} />;
 }

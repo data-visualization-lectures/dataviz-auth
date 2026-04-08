@@ -18,6 +18,36 @@ export async function GET(request: Request) {
             const { applyTrialSubscription } = await import("@/lib/auth-utils");
             await applyTrialSubscription(data.user.id);
 
+            // グループ招待の受諾処理（招待メールからの登録時）
+            if (data.user.email) {
+                try {
+                    const { createAdminClient } = await import("@/lib/supabase/admin");
+                    const adminDb = createAdminClient();
+                    const { data: pendingInvites } = await adminDb
+                        .from("group_invitations")
+                        .select("id, group_id, role")
+                        .eq("email", data.user.email)
+                        .eq("status", "pending");
+
+                    if (pendingInvites && pendingInvites.length > 0) {
+                        for (const invite of pendingInvites) {
+                            const { error: rpcError } = await adminDb
+                                .rpc("accept_group_invitation", {
+                                    p_group_id: invite.group_id,
+                                    p_user_id: data.user.id,
+                                    p_role: invite.role,
+                                    p_invitation_id: invite.id,
+                                });
+                            if (rpcError) {
+                                console.error("accept_group_invitation failed", rpcError);
+                            }
+                        }
+                    }
+                } catch (err) {
+                    console.error("Group invitation acceptance failed", err);
+                }
+            }
+
             // Check if next is an absolute URL
             if (next.startsWith('http')) {
                 return NextResponse.redirect(next);

@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import {
   Card,
   CardContent,
@@ -248,6 +249,9 @@ export default async function AccountPage() {
           </Card>
         )}
 
+        {/* Group Info */}
+        <GroupInfoCard userId={user.id} locale={locale} />
+
         {/* Delete Account */}
         <div className="flex justify-end">
           <DeleteAccountButton locale={locale} />
@@ -269,5 +273,40 @@ export default async function AccountPage() {
         </p>
       </footer>
     </div>
+  );
+}
+
+async function GroupInfoCard({ userId, locale }: { userId: string; locale: import("@/lib/i18n").Locale }) {
+  const adminDb = createAdminClient();
+  const { data: memberships } = await adminDb
+    .from("group_members")
+    .select("group_id, role, groups(name)")
+    .eq("user_id", userId);
+
+  if (!memberships || memberships.length === 0) return null;
+
+  return (
+    <>
+      {memberships.map((m: any) => {
+        const group = m.groups;
+        return (
+          <Card key={m.group_id}>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground">
+                {t(locale, "account.groupInfo")}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex flex-col gap-2">
+                <div className="text-xl font-bold">{group?.name}</div>
+                <p className="text-sm text-muted-foreground">
+                  {t(locale, "account.groupRole")}: {m.role === "owner" ? t(locale, "account.groupRoleOwner") : t(locale, "account.groupRoleMember")}
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        );
+      })}
+    </>
   );
 }

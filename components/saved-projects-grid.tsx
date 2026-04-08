@@ -25,18 +25,17 @@ export type SavedProject = {
     thumbnail_path: string | null;
     signedUrl: string | null;
     source: "projects" | "openrefine";
+    canDelete: boolean;
 };
 
 export function SavedProjectsGrid({
     projects,
     initialFilter = "all",
     locale,
-    readOnly = false,
 }: {
     projects: SavedProject[];
     initialFilter?: string;
     locale: Locale;
-    readOnly?: boolean;
 }) {
     const router = useRouter();
     const pathname = usePathname();
@@ -192,7 +191,7 @@ export function SavedProjectsGrid({
                                         <ExternalLink className="w-4 h-4" />
                                         {t(locale, "grid.open")}
                                     </a>
-                                    {!readOnly && (
+                                    {project.canDelete && (
                                         <button
                                             onClick={() => handleDelete(project)}
                                             disabled={isDeleting === project.id}

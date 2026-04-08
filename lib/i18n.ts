@@ -59,6 +59,21 @@ const dict = {
     en: "A list of projects saved from various tools. Access them with one click or delete the ones you no longer need.",
   },
 
+  // ── team projects ──
+  "projects.groupTitle": { ja: "チームプロジェクト", en: "Team Projects" },
+  "projects.groupDescription": {
+    ja: "チームリーダーが共有したプロジェクトの一覧です。「開く」で閲覧し、編集後「保存」すると自分のプロジェクトとして保存されます。",
+    en: "Projects shared by your team leader. Open to view, and save after editing to keep as your own project.",
+  },
+
+  // ── account: group info ──
+  "account.groupInfo": { ja: "チーム情報", en: "Team Info" },
+  "account.groupName": { ja: "チーム名", en: "Team Name" },
+  "account.groupRole": { ja: "役割", en: "Role" },
+  "account.groupRoleOwner": { ja: "リーダー", en: "Leader" },
+  "account.groupRoleMember": { ja: "メンバー", en: "Member" },
+  "account.groupMembers": { ja: "メンバー数", en: "Members" },
+
   // ── ManageSubscriptionButton ──
   "manage.change": { ja: "契約内容の変更", en: "Manage Subscription" },
   "manage.viewPlans": { ja: "料金プランを見る", en: "View Plans" },

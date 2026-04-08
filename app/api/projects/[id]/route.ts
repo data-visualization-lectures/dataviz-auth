@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { NextResponse } from "next/server";
 
 // Removed Manual CORS headers. Middleware handles it now.
@@ -37,20 +38,31 @@ export async function GET(
         );
     }
 
-    // 4. Fetch Project Metadata
-    const { data: project, error: dbError } = await supabase
-        .from("projects")
-        .select("*")
-        .eq("id", id)
-        .eq("user_id", user.id)
-        .single();
+    // 4. Fetch Project Metadata (自分のプロジェクト or グループプロジェクト)
+    const adminDb = createAdminClient();
+
+    // ユーザーの所属グループIDを取得
+    const { data: memberships } = await adminDb
+        .from("group_members")
+        .select("group_id")
+        .eq("user_id", user.id);
+    const userGroupIds = (memberships ?? []).map((m: any) => m.group_id);
+
+    let query = adminDb.from("projects").select("*").eq("id", id);
+    if (userGroupIds.length > 0) {
+        query = query.or(`user_id.eq.${user.id},group_id.in.(${userGroupIds.join(",")})`);
+    } else {
+        query = query.eq("user_id", user.id);
+    }
+
+    const { data: project, error: dbError } = await query.single();
 
     if (dbError || !project) {
         return NextResponse.json({ error: "Project not found" }, { status: 404 });
     }
 
-    // 5. Download File from Storage
-    const { data: fileData, error: storageError } = await supabase.storage
+    // 5. Download File from Storage (adminクライアントで他ユーザーのパスにもアクセス可能)
+    const { data: fileData, error: storageError } = await adminDb.storage
         .from("user_projects")
         .download(project.storage_path);
 

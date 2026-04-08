@@ -48,7 +48,7 @@ export default async function PublicProjectsPage({
                 .createSignedUrl(p.thumbnail_path, 3600);
               signedUrl = signedData?.signedUrl || null;
             }
-            return { ...p, signedUrl, source: "projects" as const };
+            return { ...p, signedUrl, source: "projects" as const, canDelete: user.id === PUBLIC_PROJECT_USER_ID };
           })
         )
       : [];
@@ -69,7 +69,7 @@ export default async function PublicProjectsPage({
               <p>{t(locale, "public.empty")}</p>
             </div>
           ) : (
-            <SavedProjectsGrid projects={allProjects} initialFilter={initialTool} locale={locale} readOnly={user.id !== PUBLIC_PROJECT_USER_ID} />
+            <SavedProjectsGrid projects={allProjects} initialFilter={initialTool} locale={locale} />
           )}
         </div>
       </main>

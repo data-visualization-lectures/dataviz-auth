@@ -43,8 +43,8 @@ export default async function CheckoutPage({
     .eq("user_id", user.id)
     .maybeSingle();
 
-  // 有料契約中 → アカウントページにリダイレクト
-  if (subscription?.status === "active") {
+  // 有料契約中 → アカウントページにリダイレクト（チームプランへのアップグレードは許可）
+  if (subscription?.status === "active" && !plan.startsWith("team_")) {
     return redirect("/account");
   }
 
