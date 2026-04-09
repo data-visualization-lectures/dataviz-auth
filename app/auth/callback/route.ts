@@ -9,6 +9,7 @@ export async function GET(request: Request) {
     const next = searchParams.get("next") ?? "/";
 
     const inviteCode = searchParams.get("invite_code");
+    const signupLocale = searchParams.get("signup_locale");
 
     if (code) {
         const supabase = await createClient();
@@ -17,6 +18,13 @@ export async function GET(request: Request) {
             // Apply trial subscription to all new users
             const { applyTrialSubscription } = await import("@/lib/auth-utils");
             await applyTrialSubscription(data.user.id);
+
+            // OAuth新規ユーザーにsignup_localeを保存（既存ユーザーは上書きしない）
+            if (signupLocale && !data.user.user_metadata?.signup_locale) {
+                await supabase.auth.updateUser({
+                    data: { signup_locale: signupLocale },
+                });
+            }
 
             // グループ招待の受諾処理（招待メールからの登録時）
             if (data.user.email) {

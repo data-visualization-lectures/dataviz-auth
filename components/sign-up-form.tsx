@@ -74,6 +74,7 @@ export function SignUpForm({
       if (redirectTo) {
         formData.append("redirectTo", redirectTo);
       }
+      formData.append("locale", locale);
 
       // Server Actionを使用してサインアップ
       const { signUp } = await import("@/app/auth/actions");
@@ -100,12 +101,13 @@ export function SignUpForm({
       const nextParam = redirectTo || `${mainSiteUrl}/pricing/`;
       const inviteQuery = inviteCode ? `&invite_code=${encodeURIComponent(inviteCode)}` : "";
 
+      const localeQuery = `&signup_locale=${encodeURIComponent(locale)}`;
       const { error } = await supabase.auth.signInWithOAuth({
         provider: "google",
         options: {
           redirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(
             nextParam,
-          )}${inviteQuery}`,
+          )}${inviteQuery}${localeQuery}`,
         },
       });
       if (error) throw error;

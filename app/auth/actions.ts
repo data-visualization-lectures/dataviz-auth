@@ -27,6 +27,7 @@ export async function signUp(formData: FormData) {
     const password = formData.get("password") as string;
     const inviteCode = formData.get("inviteCode") as string | null;
     const redirectTo = formData.get("redirectTo") as string | null;
+    const locale = (formData.get("locale") as string) || "en";
 
     const supabase = await createClient();
 
@@ -41,6 +42,9 @@ export async function signUp(formData: FormData) {
         password,
         options: {
             emailRedirectTo,
+            data: {
+                signup_locale: locale,
+            },
         },
     });
 
