@@ -85,6 +85,9 @@ export default async function AdminPage() {
   const totalUsers = nonAdminUsers.length;
   const profileRows = nonAdminUsers.map((u) => ({ created_at: u.created_at }));
 
+  // チャート用カットオフ日付（これ以前のデータをチャートに含めない）
+  const CHART_CUTOFF_DATE = "2026-03-10T00:00:00.000Z";
+
   // 今月の初日
   const now = new Date();
   const nowIso = now.toISOString();
@@ -120,17 +123,19 @@ export default async function AdminPage() {
       .in("plan_id", ["pro_monthly", "pro_yearly", "coaching_monthly", "coaching_yearly"])
       .not("user_id", "in", adminFilter)
       .gte("current_period_end", nowIso),
-    // 月別サブスク推移用
+    // 月別サブスク推移用（カットオフ日以降のみ）
     adminDb
       .from("subscriptions")
       .select("created_at")
-      .not("user_id", "in", adminFilter),
-    // トライアル関連（状態内訳用）
+      .not("user_id", "in", adminFilter)
+      .gte("created_at", CHART_CUTOFF_DATE),
+    // トライアル関連（状態内訳用、カットオフ日以降のみ）
     adminDb
       .from("subscriptions")
       .select("status, plan_id, current_period_end")
       .eq("plan_id", "trial")
-      .not("user_id", "in", adminFilter),
+      .not("user_id", "in", adminFilter)
+      .gte("created_at", CHART_CUTOFF_DATE),
     // 有料プランactive数（転換率の分子、期限切れ除外）
     adminDb
       .from("subscriptions")
@@ -162,13 +167,14 @@ export default async function AdminPage() {
       .from("openrefine_projects")
       .select("*", { count: "exact", head: true })
       .not("user_id", "in", adminFilter),
-    // プラン別内訳（active + trialing、期限切れ除外）
+    // プラン別内訳（active + trialing、期限切れ除外、カットオフ日以降のみ）
     adminDb
       .from("subscriptions")
       .select("plan_id")
       .in("status", ["active", "trialing"])
       .not("user_id", "in", adminFilter)
-      .gte("current_period_end", nowIso),
+      .gte("current_period_end", nowIso)
+      .gte("created_at", CHART_CUTOFF_DATE),
     // プラン名マスタ
     adminDb
       .from("plans")
@@ -294,7 +300,9 @@ export default async function AdminPage() {
       .map(([month, count]) => ({ month, count }));
   }
 
-  const userGrowth = aggregateByMonth(profileRows);
+  const userGrowth = aggregateByMonth(
+    profileRows.filter((r) => r.created_at >= CHART_CUTOFF_DATE)
+  );
   const subscriptionGrowth = aggregateByMonth(subscriptionRows);
 
   return (
