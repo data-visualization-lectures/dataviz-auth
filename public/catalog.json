@@ -1180,7 +1180,7 @@
         "40Y"
       ],
       "rowCount": 1200,
-      "fileUrl": "https://app.dataviz.jp/data/jgbcm-all.csv",
+      "fileUrl": "https://app.dataviz.jp/data/jgbcm-5y.csv",
       "fileUrlEn": null,
       "thumbnailUrl": null,
       "compatibleTools": [
@@ -1223,7 +1223,7 @@
         "40Y"
       ],
       "rowCount": 2400,
-      "fileUrl": "https://app.dataviz.jp/data/jgbcm-all.csv",
+      "fileUrl": "https://app.dataviz.jp/data/jgbcm-10y.csv",
       "fileUrlEn": null,
       "thumbnailUrl": null,
       "compatibleTools": [
@@ -2801,7 +2801,8 @@
         "rawgraphs",
         "voyager",
         "kepler-gl",
-        "data-illustrator"
+        "data-illustrator",
+        "bee-swarm-plot"
       ],
       "category": "tabular"
     },
