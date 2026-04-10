@@ -76,10 +76,10 @@ export function PlanDistributionChart({ data }: { data: PlanData[] }) {
   }
   return (
     <ResponsiveContainer width="100%" height={Math.max(200, data.length * 50)}>
-      <BarChart data={data} layout="vertical" margin={{ left: 20 }}>
+      <BarChart data={data} layout="vertical" margin={{ left: 0 }}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis type="number" fontSize={12} allowDecimals={false} />
-        <YAxis type="category" dataKey="name" fontSize={12} width={160} />
+        <YAxis type="category" dataKey="name" fontSize={11} width={100} />
         <Tooltip />
         <Bar dataKey="count" name="件数">
           {data.map((_, i) => (
@@ -105,10 +105,10 @@ export function TrialBreakdownChart({ data }: { data: TrialData[] }) {
   }
   return (
     <ResponsiveContainer width="100%" height={250}>
-      <BarChart data={data} layout="vertical" margin={{ left: 20 }}>
+      <BarChart data={data} layout="vertical" margin={{ left: 0 }}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis type="number" fontSize={12} allowDecimals={false} />
-        <YAxis type="category" dataKey="label" fontSize={12} width={140} />
+        <YAxis type="category" dataKey="label" fontSize={11} width={110} />
         <Tooltip />
         <Bar dataKey="value" name="件数">
           {data.map((_, i) => (

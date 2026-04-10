@@ -306,8 +306,8 @@ export default async function AdminPage() {
   const subscriptionGrowth = aggregateByMonth(subscriptionRows);
 
   return (
-    <div className="flex min-h-screen w-full flex-col bg-muted/40 p-4 md:p-10 gap-8">
-      <main className="grid flex-1 items-start gap-4 p-4 md:gap-8 md:p-0 max-w-5xl mx-auto w-full">
+    <div className="flex min-h-screen w-full flex-col bg-muted/40 p-4 md:p-10 gap-8 overflow-x-hidden">
+      <main className="grid flex-1 items-start gap-4 md:gap-8 max-w-5xl mx-auto w-full">
 
         <div className="flex flex-col gap-2 mb-4">
           <h2 className="text-3xl font-bold tracking-tight">管理者ダッシュボード</h2>
