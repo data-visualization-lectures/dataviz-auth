@@ -364,6 +364,13 @@ const dict = {
     en: "Data Library is a paid plan feature.",
   },
 
+  // ── public projects section on /projects page ──
+  "projects.publicTitle": { ja: "パブリック・プロジェクト", en: "Public Projects" },
+  "projects.publicDescription": {
+    ja: "各ツールのパブリック・プロジェクトを試すことができます。「開く」で閲覧し、編集後「保存」すると自分のプロジェクトとして保存されます。",
+    en: "Try public projects for each tool. Open to view, and save after editing to keep as your own project.",
+  },
+
   // ── public projects page ──
   "public.title": { ja: "パブリック・プロジェクト", en: "Public Projects" },
   "public.description": {

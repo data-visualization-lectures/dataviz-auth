@@ -10,6 +10,8 @@ export async function generateMetadata() {
   return { title: t(locale, "projects.title") };
 }
 
+const PUBLIC_PROJECT_USER_ID = process.env.PUBLIC_PROJECT_USER_ID ?? "";
+
 export default async function ProjectsPage({
   searchParams,
 }: {
@@ -28,6 +30,31 @@ export default async function ProjectsPage({
   }
 
   const locale = await getLocale();
+
+  // サブスクリプション＋管理者チェック（パブリックプロジェクト表示判定用）
+  const [{ data: subscription }, { data: profile }] = await Promise.all([
+    supabase
+      .from("subscriptions")
+      .select("status, current_period_end")
+      .eq("user_id", user.id)
+      .maybeSingle(),
+    supabase
+      .from("profiles")
+      .select("is_admin")
+      .eq("id", user.id)
+      .maybeSingle(),
+  ]);
+
+  const isAdmin = !!profile?.is_admin;
+  const isSubscribed =
+    subscription &&
+    (subscription.status === "active" || subscription.status === "trialing") &&
+    new Date(subscription.current_period_end) > new Date();
+
+  const showPublicProjects =
+    (isAdmin || isSubscribed) &&
+    !!PUBLIC_PROJECT_USER_ID &&
+    user.id !== PUBLIC_PROJECT_USER_ID;
 
   let allProjects: SavedProject[] = [];
 
@@ -79,39 +106,78 @@ export default async function ProjectsPage({
 
   // チームプロジェクト取得
   let groupProjects: SavedProject[] = [];
-  const adminDb = createAdminClient();
-  const { data: membership } = await adminDb
-    .from("group_members")
-    .select("group_id")
-    .eq("user_id", user.id);
+  try {
+    const adminDb = createAdminClient();
+    const { data: membership } = await adminDb
+      .from("group_members")
+      .select("group_id")
+      .eq("user_id", user.id);
 
-  if (membership && membership.length > 0) {
-    const groupIds = membership.map((m: any) => m.group_id);
-    const { data: gProjects } = await adminDb
-      .from("projects")
-      .select("*")
-      .in("group_id", groupIds)
-      .not("group_id", "is", null)
-      .order("updated_at", { ascending: false });
+    if (membership && membership.length > 0) {
+      const groupIds = membership.map((m: any) => m.group_id);
+      const { data: gProjects } = await adminDb
+        .from("projects")
+        .select("*")
+        .in("group_id", groupIds)
+        .not("group_id", "is", null)
+        .order("updated_at", { ascending: false });
 
-    if (gProjects) {
-      groupProjects = await Promise.all(
-        gProjects.map(async (p: any) => {
-          let signedUrl = null;
-          if (p.thumbnail_path) {
-            const { data: signedData } = await adminDb.storage
-              .from("user_projects")
-              .createSignedUrl(p.thumbnail_path, 3600);
-            signedUrl = signedData?.signedUrl || null;
-          }
-          return {
-            ...p,
-            signedUrl,
-            source: "projects" as const,
-            canDelete: p.user_id === user.id,
-          };
-        })
-      );
+      if (gProjects) {
+        groupProjects = await Promise.all(
+          gProjects.map(async (p: any) => {
+            let signedUrl = null;
+            if (p.thumbnail_path) {
+              const { data: signedData } = await adminDb.storage
+                .from("user_projects")
+                .createSignedUrl(p.thumbnail_path, 3600);
+              signedUrl = signedData?.signedUrl || null;
+            }
+            return {
+              ...p,
+              signedUrl,
+              source: "projects" as const,
+              canDelete: p.user_id === user.id,
+            };
+          })
+        );
+      }
+    }
+  } catch (err) {
+    console.error("Failed to fetch group projects:", err);
+  }
+
+  // パブリック・プロジェクト取得
+  let publicProjects: SavedProject[] = [];
+  if (showPublicProjects) {
+    try {
+      const adminDb = createAdminClient();
+      const { data: pubData } = await adminDb
+        .from("projects")
+        .select("*")
+        .eq("user_id", PUBLIC_PROJECT_USER_ID)
+        .order("updated_at", { ascending: false });
+
+      if (pubData) {
+        publicProjects = await Promise.all(
+          pubData.map(async (p: any) => {
+            let signedUrl = null;
+            if (p.thumbnail_path) {
+              const { data: signedData } = await adminDb.storage
+                .from("user_projects")
+                .createSignedUrl(p.thumbnail_path, 3600);
+              signedUrl = signedData?.signedUrl || null;
+            }
+            return {
+              ...p,
+              signedUrl,
+              source: "projects" as const,
+              canDelete: false,
+            };
+          })
+        );
+      }
+    } catch (err) {
+      console.error("Failed to fetch public projects:", err);
     }
   }
 
@@ -136,6 +202,18 @@ export default async function ProjectsPage({
                 </p>
               </div>
               <SavedProjectsGrid projects={groupProjects} initialFilter={initialTool} locale={locale} />
+            </>
+          )}
+
+          {publicProjects.length > 0 && (
+            <>
+              <div className="flex flex-col gap-2 mt-4">
+                <h2 className="text-2xl font-bold tracking-tight">{t(locale, "projects.publicTitle")}</h2>
+                <p className="text-muted-foreground">
+                  {t(locale, "projects.publicDescription")}
+                </p>
+              </div>
+              <SavedProjectsGrid projects={publicProjects} initialFilter={initialTool} locale={locale} />
             </>
           )}
         </div>
