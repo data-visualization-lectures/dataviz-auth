@@ -306,8 +306,8 @@ export default async function AdminPage() {
   const subscriptionGrowth = aggregateByMonth(subscriptionRows);
 
   return (
-    <div className="flex min-h-screen w-full flex-col bg-muted/40 p-4 md:p-10 gap-8 overflow-x-hidden">
-      <main className="grid flex-1 items-start gap-4 md:gap-8 max-w-5xl mx-auto w-full">
+    <div className="flex min-h-screen w-full flex-col bg-muted/40 p-4 md:p-10 gap-8">
+      <main className="grid flex-1 items-start gap-4 md:gap-8 max-w-5xl mx-auto w-full min-w-0">
 
         <div className="flex flex-col gap-2 mb-4">
           <h2 className="text-3xl font-bold tracking-tight">管理者ダッシュボード</h2>
@@ -415,8 +415,8 @@ export default async function AdminPage() {
         </div>
 
         {/* 推移グラフ */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
-          <Card>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 min-w-0">
+          <Card className="min-w-0">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground">
                 ユーザー登録推移（月別）
@@ -427,7 +427,7 @@ export default async function AdminPage() {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="min-w-0">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground">
                 サブスクリプション推移（月別）
@@ -440,8 +440,8 @@ export default async function AdminPage() {
         </div>
 
         {/* 内訳チャート */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
-          <Card>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 min-w-0">
+          <Card className="min-w-0">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground">
                 プラン別内訳
@@ -452,7 +452,7 @@ export default async function AdminPage() {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="min-w-0">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground">
                 トライアル状態内訳
