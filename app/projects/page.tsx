@@ -52,9 +52,10 @@ export default async function ProjectsPage({
     new Date(subscription.current_period_end) > new Date();
 
   const showPublicProjects =
-    (isAdmin || isSubscribed) &&
     !!PUBLIC_PROJECT_USER_ID &&
     user.id !== PUBLIC_PROJECT_USER_ID;
+
+  const canUseTool = !!isSubscribed || isAdmin;
 
   let allProjects: SavedProject[] = [];
 
@@ -191,7 +192,7 @@ export default async function ProjectsPage({
               {t(locale, "projects.description")}
             </p>
           </div>
-          <SavedProjectsGrid projects={allProjects} initialFilter={initialTool} locale={locale} />
+          <SavedProjectsGrid projects={allProjects} initialFilter={initialTool} locale={locale} isSubscribed={canUseTool} />
 
           {groupProjects.length > 0 && (
             <>
@@ -201,7 +202,7 @@ export default async function ProjectsPage({
                   {t(locale, "projects.groupDescription")}
                 </p>
               </div>
-              <SavedProjectsGrid projects={groupProjects} initialFilter={initialTool} locale={locale} />
+              <SavedProjectsGrid projects={groupProjects} initialFilter={initialTool} locale={locale} isSubscribed={canUseTool} />
             </>
           )}
 
@@ -213,7 +214,7 @@ export default async function ProjectsPage({
                   {t(locale, "projects.publicDescription")}
                 </p>
               </div>
-              <SavedProjectsGrid projects={publicProjects} initialFilter={initialTool} locale={locale} />
+              <SavedProjectsGrid projects={publicProjects} initialFilter={initialTool} locale={locale} isSubscribed={canUseTool} />
             </>
           )}
         </div>

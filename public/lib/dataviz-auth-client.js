@@ -372,11 +372,22 @@ function isAuthDebugMode() {
   return params.has("auth_debug");
 }
 
+function showBlockingOverlay() {
+  const overlay = document.createElement('div');
+  overlay.id = 'dataviz-auth-block';
+  overlay.style.cssText = 'position:fixed;inset:0;z-index:999999;background:rgba(255,255,255,0.95);display:flex;align-items:center;justify-content:center;font-family:sans-serif;font-size:16px;color:#333;';
+  overlay.textContent = _dvLocale === 'ja'
+    ? 'サブスクリプションが必要です。リダイレクトしています...'
+    : 'Subscription required. Redirecting...';
+  document.body.appendChild(overlay);
+}
+
 function performRedirect(url, reason) {
   if (isAuthDebugMode()) {
     console.warn(`[dataviz-auth-client] Redirect suppressed. Reason: ${reason} -> ${url}`);
     return;
   }
+  showBlockingOverlay();
   window.location.href = url;
 }
 
@@ -447,6 +458,7 @@ async function verifyUserAccess(session) {
             return { ...profile, email: session.user.email, _inactive: true };
           }
 
+          clearCachedProfile();
           performRedirect(AUTH_APP_URL, `Inactive Subscription (${status})`);
           return null;
         }

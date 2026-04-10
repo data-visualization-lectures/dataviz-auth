@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
-import { Trash2, ExternalLink, Image as ImageIcon, Filter, ChevronDown, Check } from "lucide-react";
+import { Trash2, ExternalLink, Lock, Image as ImageIcon, Filter, ChevronDown, Check } from "lucide-react";
 import { toast } from "sonner";
 import { deleteProject, deleteOpenRefineProject } from "@/app/actions";
 import { APP_CONFIG } from "@/lib/config";
@@ -32,10 +32,12 @@ export function SavedProjectsGrid({
     projects,
     initialFilter = "all",
     locale,
+    isSubscribed = true,
 }: {
     projects: SavedProject[];
     initialFilter?: string;
     locale: Locale;
+    isSubscribed?: boolean;
 }) {
     const router = useRouter();
     const pathname = usePathname();
@@ -182,15 +184,25 @@ export function SavedProjectsGrid({
                                 </p>
 
                                 <div className="flex gap-2 mt-4">
-                                    <a
-                                        href={getToolUrl(project.app_name, project.id)}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 text-sm font-medium text-primary-foreground bg-primary rounded-md hover:bg-primary/90 transition-colors"
-                                    >
-                                        <ExternalLink className="w-4 h-4" />
-                                        {t(locale, "grid.open")}
-                                    </a>
+                                    {isSubscribed ? (
+                                        <a
+                                            href={getToolUrl(project.app_name, project.id)}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 text-sm font-medium text-primary-foreground bg-primary rounded-md hover:bg-primary/90 transition-colors"
+                                        >
+                                            <ExternalLink className="w-4 h-4" />
+                                            {t(locale, "grid.open")}
+                                        </a>
+                                    ) : (
+                                        <a
+                                            href="/account"
+                                            className="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 text-sm font-medium text-amber-900 bg-amber-100 rounded-md hover:bg-amber-200 transition-colors"
+                                        >
+                                            <Lock className="w-4 h-4" />
+                                            {t(locale, "grid.subscriptionRequired")}
+                                        </a>
+                                    )}
                                     {project.canDelete && (
                                         <button
                                             onClick={() => handleDelete(project)}

@@ -364,6 +364,11 @@ const dict = {
     en: "Data Library is a paid plan feature.",
   },
 
+  "grid.subscriptionRequired": {
+    ja: "有料プランが必要です",
+    en: "Subscription required",
+  },
+
   // ── public projects section on /projects page ──
   "projects.publicTitle": { ja: "パブリック・プロジェクト", en: "Public Projects" },
   "projects.publicDescription": {
