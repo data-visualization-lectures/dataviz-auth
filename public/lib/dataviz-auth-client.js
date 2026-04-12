@@ -467,6 +467,12 @@ async function verifyUserAccess(session) {
             return { ...profile, email: session.user.email, _inactive: true };
           }
 
+          // 自己リダイレクトループ防止: 既に AUTH_APP_URL にいる場合は
+          // 期限切れでもリダイレクトせず閲覧させる（ツール一覧/詳細ページの閲覧を許可）
+          if (window.location.origin === AUTH_APP_URL) {
+            return { ...profile, email: session.user.email, _inactive: true };
+          }
+
           clearCachedProfile();
           performRedirect(AUTH_APP_URL, `Inactive Subscription (${status})`);
           return null;
