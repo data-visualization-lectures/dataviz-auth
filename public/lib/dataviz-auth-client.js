@@ -1,11 +1,20 @@
 // Imports removed for browser usage
 
 
-// ── i18n (ブラウザ言語で日英切替) ──
-const _dvLocale = (() => {
-  const lang = (navigator.language || navigator.userLanguage || 'ja').toLowerCase();
-  return lang.startsWith('ja') ? 'ja' : 'en';
-})();
+// ── i18n (HTML lang属性優先、ブラウザ言語はフォールバック) ──
+// 優先順位: <dataviz-header lang="xx"> 属性 > document.documentElement.lang > navigator.language
+function _dvGetLocale() {
+  const headerEl = typeof document !== 'undefined' ? document.querySelector('dataviz-header') : null;
+  if (headerEl) {
+    const attr = (headerEl.getAttribute('lang') || '').toLowerCase();
+    if (attr === 'ja' || attr === 'en') return attr;
+  }
+  const htmlLang = (typeof document !== 'undefined' && document.documentElement.lang || '').toLowerCase();
+  if (htmlLang.startsWith('ja')) return 'ja';
+  if (htmlLang.startsWith('en')) return 'en';
+  const navLang = (navigator.language || navigator.userLanguage || 'ja').toLowerCase();
+  return navLang.startsWith('ja') ? 'ja' : 'en';
+}
 const _dvI18n = {
   brand:         { ja: 'データの道具箱', en: 'Data Toolbox' },
   brandTitle:    { ja: 'データの道具箱トップへ', en: 'Go to Data Toolbox' },
@@ -15,7 +24,7 @@ const _dvI18n = {
   notLoggedIn:   { ja: '未ログイン', en: 'Not logged in' },
   confirmLogout: { ja: 'ログアウトしますか？', en: 'Log out?' },
 };
-function _dvT(key) { return (_dvI18n[key] && _dvI18n[key][_dvLocale]) || key; }
+function _dvT(key) { return (_dvI18n[key] && _dvI18n[key][_dvGetLocale()]) || key; }
 
 
 // ---- 設定 ----
@@ -376,7 +385,7 @@ function showBlockingOverlay() {
   const overlay = document.createElement('div');
   overlay.id = 'dataviz-auth-block';
   overlay.style.cssText = 'position:fixed;inset:0;z-index:999999;background:rgba(255,255,255,0.95);display:flex;align-items:center;justify-content:center;font-family:sans-serif;font-size:16px;color:#333;';
-  overlay.textContent = _dvLocale === 'ja'
+  overlay.textContent = _dvGetLocale() === 'ja'
     ? 'サブスクリプションが必要です。リダイレクトしています...'
     : 'Subscription required. Redirecting...';
   document.body.appendChild(overlay);
