@@ -41,11 +41,16 @@ export type PlanType =
   | "team_standard_monthly" | "team_standard_yearly"
   | "team_enterprise_monthly" | "team_enterprise_yearly";
 
-export async function createCheckoutSession(plan: PlanType = "monthly") {
+export type CurrencyType = "jpy" | "usd";
+
+export async function createCheckoutSession(
+  plan: PlanType = "monthly",
+  currency: CurrencyType = "jpy"
+) {
   return callApi("/api/billing-create-checkout-session", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ plan }),
+    body: JSON.stringify({ plan, currency }),
   });
 }
 

@@ -37,6 +37,17 @@ export async function middleware(request: NextRequest) {
         response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Client-Info, apikey, content-type');
     }
 
+    // lang query param を検知したら locale cookie に永続化（30日）
+    const langParam = request.nextUrl.searchParams.get('lang');
+    if (langParam === 'ja' || langParam === 'en') {
+        response.cookies.set('locale', langParam, {
+            path: '/',
+            maxAge: 60 * 60 * 24 * 30,
+            sameSite: 'lax',
+            secure: true,
+        });
+    }
+
     return response;
 }
 

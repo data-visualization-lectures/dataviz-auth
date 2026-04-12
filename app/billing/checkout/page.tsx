@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { CheckoutForm } from "@/components/checkout-form";
+import { getLocale } from "@/lib/i18n.server";
 
 export const dynamic = "force-dynamic";
 
@@ -17,13 +18,21 @@ function isValidPlan(plan: string | null): plan is PlanType {
   return plan !== null && (VALID_PLANS as readonly string[]).includes(plan);
 }
 
+type CurrencyType = "jpy" | "usd";
+function isValidCurrency(c: string | null): c is CurrencyType {
+  return c === "jpy" || c === "usd";
+}
+
 export default async function CheckoutPage({
   searchParams,
 }: {
-  searchParams: Promise<{ plan?: string }>;
+  searchParams: Promise<{ plan?: string; currency?: string }>;
 }) {
   const params = await searchParams;
   const plan: PlanType = isValidPlan(params.plan ?? null) ? params.plan! as PlanType : "monthly";
+  const currency: CurrencyType = isValidCurrency(params.currency ?? null) ? (params.currency as CurrencyType) : "jpy";
+  // USD決済は英語UI、それ以外はAccept-Languageベース
+  const locale = currency === "usd" ? "en" : await getLocale();
 
   const supabase = await createClient();
   const {
@@ -60,6 +69,8 @@ export default async function CheckoutPage({
       <div className="w-full max-w-md">
         <CheckoutForm
           plan={plan}
+          currency={currency}
+          locale={locale}
           defaultDisplayName={profile?.display_name ?? null}
           userId={user.id}
         />

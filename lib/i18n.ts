@@ -386,6 +386,58 @@ const dict = {
     ja: "公開プロジェクトはまだありません",
     en: "No public projects available yet",
   },
+
+  // ── checkout form ──
+  "checkout.title": { ja: "お申し込み", en: "Checkout" },
+  "checkout.description": {
+    ja: "プラン情報を確認し、必要事項を入力してください",
+    en: "Review your plan and fill in the required information",
+  },
+  "checkout.selectedPlan": { ja: "選択中のプラン", en: "Selected plan" },
+  "checkout.displayNameLabel": { ja: "表示名", en: "Display name" },
+  "checkout.displayNamePlaceholder": {
+    ja: "例: 田中太郎",
+    en: "e.g. Jane Doe",
+  },
+  "checkout.displayNameHelp": {
+    ja: "サービス内で表示される名前です",
+    en: "This name will be shown within the service",
+  },
+  "checkout.termsLink": { ja: "利用規約", en: "Terms of Service" },
+  "checkout.privacyLink": {
+    ja: "プライバシーポリシー",
+    en: "Privacy Policy",
+  },
+  "checkout.agreeToTermsBefore": { ja: "", en: "I agree to the " },
+  "checkout.agreeToTermsAfter": { ja: "に同意する", en: "" },
+  "checkout.agreeToPrivacyBefore": { ja: "", en: "I agree to the " },
+  "checkout.agreeToPrivacyAfter": { ja: "に同意する", en: "" },
+  "checkout.errorNoName": {
+    ja: "表示名を入力してください",
+    en: "Please enter your display name",
+  },
+  "checkout.errorNoAgreement": {
+    ja: "利用規約とプライバシーポリシーに同意してください",
+    en: "Please agree to the Terms of Service and Privacy Policy",
+  },
+  "checkout.errorProfileSave": {
+    ja: "プロフィールの保存に失敗しました",
+    en: "Failed to save profile",
+  },
+  "checkout.errorSession": {
+    ja: "チェックアウトセッションの作成に失敗しました",
+    en: "Failed to create checkout session",
+  },
+  "checkout.errorGeneric": {
+    ja: "エラーが発生しました",
+    en: "An error occurred",
+  },
+  "checkout.submit": { ja: "決済に進む", en: "Proceed to payment" },
+  "checkout.submitting": { ja: "処理中...", en: "Processing..." },
+  "checkout.alreadySubscribed": {
+    ja: "既に契約済みです。アカウントページへ移動します。",
+    en: "You are already subscribed. Redirecting to your account page.",
+  },
 } as const;
 
 export type TranslationKey = keyof typeof dict;
