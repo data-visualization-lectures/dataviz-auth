@@ -5,6 +5,12 @@ import { APP_CONFIG } from '@/lib/config';
 
 const allowedOrigins: readonly string[] = APP_CONFIG.ALLOWED_ORIGINS;
 
+// Next.jsネイティブルート（Hugoにrewriteされない、localeリダイレクトの対象外）
+const NEXT_JS_ROUTES = [
+    '/auth', '/account', '/admin', '/api', '/billing', '/campaign',
+    '/data-library', '/faq', '/pricing', '/projects', '/public', '/terms',
+];
+
 
 export async function middleware(request: NextRequest) {
     const origin = request.headers.get('origin') ?? '';
@@ -24,6 +30,36 @@ export async function middleware(request: NextRequest) {
         return NextResponse.json({}, { headers: preflightHeaders });
     }
 
+    // Hugoサイト（/以下のツール一覧/詳細ページ）で locale=en の場合は /en へリダイレクト
+    // Next.jsネイティブルートは対象外
+    const langParam = request.nextUrl.searchParams.get('lang');
+    const pathname = request.nextUrl.pathname;
+    const isNextJsRoute = NEXT_JS_ROUTES.some(
+        (r) => pathname === r || pathname.startsWith(r + '/'),
+    );
+    const isAlreadyEn = pathname === '/en' || pathname.startsWith('/en/');
+    const effectiveLocale =
+        langParam === 'en' || langParam === 'ja'
+            ? langParam
+            : request.cookies.get('locale')?.value;
+
+    if (effectiveLocale === 'en' && !isNextJsRoute && !isAlreadyEn) {
+        const newUrl = request.nextUrl.clone();
+        newUrl.pathname = '/en' + pathname;
+        newUrl.searchParams.delete('lang');
+        const redirectResponse = NextResponse.redirect(newUrl);
+        // 初回訪問（query param 経由）の場合は Cookie も設定しておく
+        if (langParam === 'ja' || langParam === 'en') {
+            redirectResponse.cookies.set('locale', langParam, {
+                path: '/',
+                maxAge: 60 * 60 * 24 * 30,
+                sameSite: 'lax',
+                secure: true,
+            });
+        }
+        return redirectResponse;
+    }
+
     // Call updateSession (Supabase session handling)
     const response = await updateSession(request);
 
@@ -38,7 +74,7 @@ export async function middleware(request: NextRequest) {
     }
 
     // lang query param を検知したら locale cookie に永続化（30日）
-    const langParam = request.nextUrl.searchParams.get('lang');
+    // （Hugoへのリダイレクト分岐で捕捉されなかったケース、Next.jsネイティブルート向け）
     if (langParam === 'ja' || langParam === 'en') {
         response.cookies.set('locale', langParam, {
             path: '/',
