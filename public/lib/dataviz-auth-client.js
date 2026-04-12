@@ -473,8 +473,12 @@ async function verifyUserAccess(session) {
             return { ...profile, email: session.user.email, _inactive: true };
           }
 
+          // ツールサブドメインから期限切れで来たユーザーは pricing ページへ誘導（再契約導線）
           clearCachedProfile();
-          performRedirect(AUTH_APP_URL, `Inactive Subscription (${status})`);
+          const pricingUrl = _dvGetLocale() === 'en'
+            ? 'https://www.dataviz.jp/en/pricing/'
+            : 'https://www.dataviz.jp/pricing/';
+          performRedirect(pricingUrl, `Inactive Subscription (${status})`);
           return null;
         }
 

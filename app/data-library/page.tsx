@@ -39,11 +39,15 @@ export default async function DataLibraryPage() {
     (subscription.status === "active" || subscription.status === "trialing") &&
     new Date(subscription.current_period_end) > new Date();
 
-  if (!isAdmin && !isSubscribed) {
-    return redirect("/account");
-  }
-
   const locale = await getLocale();
+
+  if (!isAdmin && !isSubscribed) {
+    const pricingUrl =
+      locale === "en"
+        ? "https://www.dataviz.jp/en/pricing/"
+        : "https://www.dataviz.jp/pricing/";
+    return redirect(pricingUrl);
+  }
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40 p-4 md:p-10 gap-8">
