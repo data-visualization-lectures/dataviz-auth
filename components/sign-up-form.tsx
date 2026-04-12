@@ -98,7 +98,8 @@ export function SignUpForm({
     setError(null);
     try {
       const mainSiteUrl = process.env.NEXT_PUBLIC_MAIN_SITE_URL || "https://www.dataviz.jp";
-      const nextParam = redirectTo || `${mainSiteUrl}/pricing/`;
+      const pricingPath = locale === "en" ? "/en/pricing/" : "/pricing/";
+      const nextParam = redirectTo || `${mainSiteUrl}${pricingPath}`;
       const inviteQuery = inviteCode ? `&invite_code=${encodeURIComponent(inviteCode)}` : "";
 
       const localeQuery = `&signup_locale=${encodeURIComponent(locale)}`;

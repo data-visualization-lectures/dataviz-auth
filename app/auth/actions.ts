@@ -33,7 +33,8 @@ export async function signUp(formData: FormData) {
 
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://app.dataviz.jp";
     const mainSiteUrl = process.env.NEXT_PUBLIC_MAIN_SITE_URL || "https://www.dataviz.jp";
-    const nextPath = redirectTo || `${mainSiteUrl}/pricing/`;
+    const pricingPath = locale === "en" ? "/en/pricing/" : "/pricing/";
+    const nextPath = redirectTo || `${mainSiteUrl}${pricingPath}`;
     const emailRedirectTo = `${siteUrl}/auth/callback?next=${encodeURIComponent(nextPath)}`;
 
     // ユーザー作成
