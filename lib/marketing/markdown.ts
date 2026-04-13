@@ -33,6 +33,20 @@ function extractFirstSrcFromSrcset(srcset: string): string | null {
   return firstCandidate.split(/\s+/)[0] ?? null;
 }
 
+function imageTagToMarkdown(imgTag: string, baseUrl?: string): string {
+  const srcAttr = extractAttribute(imgTag, "src");
+  const srcsetAttr = extractAttribute(imgTag, "srcset");
+  const source = srcAttr ?? (srcsetAttr ? extractFirstSrcFromSrcset(srcsetAttr) : null);
+  if (!source) return "";
+
+  const resolvedUrl = resolveToAbsoluteUrl(decodeHtmlEntities(source), baseUrl);
+  const altText = normalizeWhitespace(
+    decodeHtmlEntities(extractAttribute(imgTag, "alt") ?? "")
+  );
+
+  return `![${escapeMarkdownText(altText)}](${resolvedUrl})`;
+}
+
 function resolveToAbsoluteUrl(rawUrl: string, baseUrl?: string): string {
   const trimmed = rawUrl.trim();
   if (!trimmed) return trimmed;
@@ -164,23 +178,32 @@ export function htmlToMarkdown(html: string, baseUrl?: string): string {
     .replace(/<h1[^>]*>([\s\S]*?)<\/h1>/gi, "\n# $1\n\n")
     .replace(/<h2[^>]*>([\s\S]*?)<\/h2>/gi, "\n## $1\n\n")
     .replace(/<h3[^>]*>([\s\S]*?)<\/h3>/gi, "\n### $1\n\n")
-    .replace(/<img\b[^>]*>/gi, (imgTag) => {
-      const srcAttr = extractAttribute(imgTag, "src");
-      const srcsetAttr = extractAttribute(imgTag, "srcset");
-      const source = srcAttr ?? (srcsetAttr ? extractFirstSrcFromSrcset(srcsetAttr) : null);
-      if (!source) return "";
+    .replace(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi, (_, attrs, body) => {
+      const hrefRaw = extractAttribute(attrs, "href");
+      if (!hrefRaw) {
+        return normalizeWhitespace(decodeHtmlEntities(stripTags(body)));
+      }
 
-      const resolvedUrl = resolveToAbsoluteUrl(decodeHtmlEntities(source), baseUrl);
-      const altText = normalizeWhitespace(
-        decodeHtmlEntities(extractAttribute(imgTag, "alt") ?? "")
+      const resolvedHref = resolveToAbsoluteUrl(decodeHtmlEntities(hrefRaw), baseUrl);
+      const imageMarkdown = (body.match(/<img\b[^>]*>/gi) ?? [])
+        .map((imgTag: string) => imageTagToMarkdown(imgTag, baseUrl))
+        .filter(Boolean);
+
+      const textOnly = normalizeWhitespace(
+        decodeHtmlEntities(stripTags(body.replace(/<img\b[^>]*>/gi, "")))
       );
 
-      return `\n\n![${escapeMarkdownText(altText)}](${resolvedUrl})\n\n`;
+      if (imageMarkdown.length > 0 && textOnly) {
+        return `${imageMarkdown.join("\n\n")}\n\n[${escapeMarkdownText(textOnly)}](${resolvedHref})`;
+      }
+      if (imageMarkdown.length > 0) {
+        return imageMarkdown.join("\n\n");
+      }
+      return textOnly ? `[${escapeMarkdownText(textOnly)}](${resolvedHref})` : resolvedHref;
     })
-    .replace(/<a[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi, (_, href, body) => {
-      const resolvedHref = resolveToAbsoluteUrl(decodeHtmlEntities(href), baseUrl);
-      const linkText = normalizeWhitespace(decodeHtmlEntities(stripTags(body)));
-      return linkText ? `[${escapeMarkdownText(linkText)}](${resolvedHref})` : resolvedHref;
+    .replace(/<img\b[^>]*>/gi, (imgTag) => {
+      const image = imageTagToMarkdown(imgTag, baseUrl);
+      return image ? `\n\n${image}\n\n` : "";
     })
     .replace(/<li[^>]*>([\s\S]*?)<\/li>/gi, "- $1\n")
     .replace(/<br\s*\/?>/gi, "\n")
