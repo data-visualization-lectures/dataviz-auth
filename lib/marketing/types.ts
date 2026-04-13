@@ -27,6 +27,10 @@ export type CampaignInput = {
   subjectEn: string;
   bodyMdJa: string;
   bodyMdEn: string;
+  newsletterLabelJa: string;
+  newsletterLabelEn: string;
+  helperTextJa: string;
+  helperTextEn: string;
 };
 
 export type CampaignRecord = {
@@ -38,6 +42,10 @@ export type CampaignRecord = {
   subject_en: string;
   body_md_ja: string;
   body_md_en: string;
+  newsletter_label_ja: string;
+  newsletter_label_en: string;
+  helper_text_ja: string;
+  helper_text_en: string;
   created_by: string | null;
   test_sent_at: string | null;
   queued_at: string | null;

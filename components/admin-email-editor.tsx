@@ -34,6 +34,10 @@ export function AdminEmailEditor({ campaignId, initial }: EditorProps) {
 
   const [title, setTitle] = useState(initial.title);
   const [segmentKeys, setSegmentKeys] = useState<SegmentKey[]>(initial.segmentKeys);
+  const [newsletterLabelJa, setNewsletterLabelJa] = useState(initial.newsletterLabelJa);
+  const [newsletterLabelEn, setNewsletterLabelEn] = useState(initial.newsletterLabelEn);
+  const [helperTextJa, setHelperTextJa] = useState(initial.helperTextJa);
+  const [helperTextEn, setHelperTextEn] = useState(initial.helperTextEn);
   const [subjectJa, setSubjectJa] = useState(initial.subjectJa);
   const [subjectEn, setSubjectEn] = useState(initial.subjectEn);
   const [bodyMdJa, setBodyMdJa] = useState(initial.bodyMdJa);
@@ -47,13 +51,24 @@ export function AdminEmailEditor({ campaignId, initial }: EditorProps) {
   const canSave = useMemo(() => {
     return (
       title.trim().length > 0 &&
+      newsletterLabelJa.trim().length > 0 &&
+      newsletterLabelEn.trim().length > 0 &&
       subjectJa.trim().length > 0 &&
       subjectEn.trim().length > 0 &&
       bodyMdJa.trim().length > 0 &&
       bodyMdEn.trim().length > 0 &&
       segmentKeys.length > 0
     );
-  }, [title, subjectJa, subjectEn, bodyMdJa, bodyMdEn, segmentKeys]);
+  }, [
+    title,
+    newsletterLabelJa,
+    newsletterLabelEn,
+    subjectJa,
+    subjectEn,
+    bodyMdJa,
+    bodyMdEn,
+    segmentKeys,
+  ]);
 
   const setLocaleBody = (locale: "ja" | "en", value: string) => {
     if (locale === "ja") {
@@ -78,6 +93,10 @@ export function AdminEmailEditor({ campaignId, initial }: EditorProps) {
         id: campaignId,
         title,
         segmentKeys,
+        newsletterLabelJa,
+        newsletterLabelEn,
+        helperTextJa,
+        helperTextEn,
         subjectJa,
         subjectEn,
         bodyMdJa,
@@ -228,6 +247,48 @@ export function AdminEmailEditor({ campaignId, initial }: EditorProps) {
             <Button onClick={handleInsertCard} disabled={isPending}>
               URLカード挿入
             </Button>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>テンプレート文言</CardTitle>
+        </CardHeader>
+        <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="flex flex-col gap-2">
+            <label className="text-sm font-medium">ヘッダー（日本語）</label>
+            <Input
+              value={newsletterLabelJa}
+              onChange={(event) => setNewsletterLabelJa(event.target.value)}
+              placeholder="例: データの道具箱 ニュースレター"
+            />
+          </div>
+          <div className="flex flex-col gap-2">
+            <label className="text-sm font-medium">ヘッダー（英語）</label>
+            <Input
+              value={newsletterLabelEn}
+              onChange={(event) => setNewsletterLabelEn(event.target.value)}
+              placeholder="Example: Data Toolbox Newsletter"
+            />
+          </div>
+          <div className="flex flex-col gap-2">
+            <label className="text-sm font-medium">補助ボックス（日本語）</label>
+            <textarea
+              value={helperTextJa}
+              onChange={(event) => setHelperTextJa(event.target.value)}
+              className="min-h-[84px] rounded-md border p-3 text-sm"
+              placeholder="例: このメールは管理画面で作成されたお知らせです。"
+            />
+          </div>
+          <div className="flex flex-col gap-2">
+            <label className="text-sm font-medium">補助ボックス（英語）</label>
+            <textarea
+              value={helperTextEn}
+              onChange={(event) => setHelperTextEn(event.target.value)}
+              className="min-h-[84px] rounded-md border p-3 text-sm"
+              placeholder="Example: This email contains an update created from the admin console."
+            />
           </div>
         </CardContent>
       </Card>

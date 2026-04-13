@@ -28,6 +28,9 @@ function parseSegmentKeys(input: string[]): SegmentKey[] {
 
 function ensureCampaignInput(input: CampaignInput): string | null {
   if (!input.title?.trim()) return "タイトルを入力してください";
+  if (!input.newsletterLabelJa?.trim() || !input.newsletterLabelEn?.trim()) {
+    return "ヘッダー文言（日本語・英語）を入力してください";
+  }
   if (!input.subjectJa?.trim() || !input.subjectEn?.trim()) {
     return "件名（日本語・英語）を入力してください";
   }
@@ -68,6 +71,10 @@ function getLocalizedCampaignContent(
     subject_en: string;
     body_md_ja: string;
     body_md_en: string;
+    newsletter_label_ja: string;
+    newsletter_label_en: string;
+    helper_text_ja: string;
+    helper_text_en: string;
     title: string;
   },
   locale: LocaleCode
@@ -76,12 +83,16 @@ function getLocalizedCampaignContent(
     return {
       subject: campaign.subject_en,
       bodyMarkdown: campaign.body_md_en,
+      newsletterLabel: campaign.newsletter_label_en,
+      helperText: campaign.helper_text_en,
       title: campaign.title,
     };
   }
   return {
     subject: campaign.subject_ja,
     bodyMarkdown: campaign.body_md_ja,
+    newsletterLabel: campaign.newsletter_label_ja,
+    helperText: campaign.helper_text_ja,
     title: campaign.title,
   };
 }
@@ -139,6 +150,10 @@ export async function saveCampaign(input: CampaignInput) {
   const payload = {
     title: input.title.trim(),
     segment_keys: segmentKeys,
+    newsletter_label_ja: input.newsletterLabelJa.trim(),
+    newsletter_label_en: input.newsletterLabelEn.trim(),
+    helper_text_ja: input.helperTextJa.trim(),
+    helper_text_en: input.helperTextEn.trim(),
     subject_ja: input.subjectJa.trim(),
     subject_en: input.subjectEn.trim(),
     body_md_ja: input.bodyMdJa.trim(),
@@ -243,6 +258,8 @@ export async function sendCampaignTest(
     const { messageId } = await sendMarketingEmail({
       to: email,
       title: content.title,
+      newsletterLabel: content.newsletterLabel,
+      helperText: content.helperText,
       subject: content.subject,
       bodyMarkdown: content.bodyMarkdown,
       unsubscribeUrl,
@@ -485,6 +502,8 @@ export async function runCampaignQueue(campaignId: string, batchSize = 20) {
       const { messageId } = await sendMarketingEmail({
         to: recipient.email,
         title: content.title,
+        newsletterLabel: content.newsletterLabel,
+        helperText: content.helperText,
         subject: content.subject,
         bodyMarkdown: content.bodyMarkdown,
         unsubscribeUrl,

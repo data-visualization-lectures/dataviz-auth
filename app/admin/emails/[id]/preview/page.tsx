@@ -25,9 +25,14 @@ export default async function CampaignPreviewPage({
 
   const subject = selectedLocale === "en" ? campaign.subject_en : campaign.subject_ja;
   const body = selectedLocale === "en" ? campaign.body_md_en : campaign.body_md_ja;
+  const newsletterLabel =
+    selectedLocale === "en" ? campaign.newsletter_label_en : campaign.newsletter_label_ja;
+  const helperText = selectedLocale === "en" ? campaign.helper_text_en : campaign.helper_text_ja;
   const unsubscribeUrl = `https://app.dataviz.jp/api/emails/unsubscribe?token=preview-token`;
   const { html, text } = await buildMarketingEmail({
     title: campaign.title,
+    newsletterLabel,
+    helperText,
     subject,
     bodyMarkdown: body,
     unsubscribeUrl,

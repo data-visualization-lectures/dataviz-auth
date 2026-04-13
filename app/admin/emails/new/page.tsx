@@ -2,6 +2,7 @@ import Link from "next/link";
 import { requireAdminForPage } from "@/lib/marketing/admin-auth";
 import { AdminEmailEditor } from "@/components/admin-email-editor";
 import { Button } from "@/components/ui/button";
+import { DEFAULT_HELPER_TEXT, DEFAULT_NEWSLETTER_LABEL } from "@/lib/marketing/template-defaults";
 
 export const dynamic = "force-dynamic";
 
@@ -27,6 +28,10 @@ export default async function NewEmailCampaignPage() {
           initial={{
             title: "",
             segmentKeys: [],
+            newsletterLabelJa: DEFAULT_NEWSLETTER_LABEL.ja,
+            newsletterLabelEn: DEFAULT_NEWSLETTER_LABEL.en,
+            helperTextJa: DEFAULT_HELPER_TEXT.ja,
+            helperTextEn: DEFAULT_HELPER_TEXT.en,
             subjectJa: "",
             subjectEn: "",
             bodyMdJa: "",

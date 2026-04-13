@@ -6,6 +6,8 @@ import type { LocaleCode } from "@/lib/marketing/types";
 
 type BuildEmailParams = {
   title: string;
+  newsletterLabel: string;
+  helperText: string;
   subject: string;
   bodyMarkdown: string;
   unsubscribeUrl: string;
@@ -30,6 +32,8 @@ function ensureResendClient(): Resend {
 
 export async function buildMarketingEmail({
   title,
+  newsletterLabel,
+  helperText,
   subject,
   bodyMarkdown,
   unsubscribeUrl,
@@ -42,6 +46,8 @@ export async function buildMarketingEmail({
     MarketingEmailTemplate({
       previewText,
       title,
+      newsletterLabel,
+      helperText,
       bodyHtml,
       unsubscribeUrl,
       locale,
@@ -55,6 +61,8 @@ export async function buildMarketingEmail({
 export async function sendMarketingEmail({
   to,
   title,
+  newsletterLabel,
+  helperText,
   subject,
   bodyMarkdown,
   unsubscribeUrl,
@@ -63,6 +71,8 @@ export async function sendMarketingEmail({
   const resend = ensureResendClient();
   const { html, text } = await buildMarketingEmail({
     title,
+    newsletterLabel,
+    helperText,
     subject,
     bodyMarkdown,
     unsubscribeUrl,
