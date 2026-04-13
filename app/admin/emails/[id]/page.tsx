@@ -39,7 +39,7 @@ export default async function CampaignDetailPage({
         <div className="flex flex-wrap items-center justify-between gap-2">
           <div>
             <h2 className="text-3xl font-bold tracking-tight">{campaign.title}</h2>
-            <p className="text-muted-foreground">キャンペーン詳細</p>
+            <p className="text-muted-foreground">メール詳細</p>
           </div>
           <div className="flex flex-wrap gap-2">
             <Button asChild variant="outline">

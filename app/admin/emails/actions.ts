@@ -180,10 +180,10 @@ export async function saveCampaign(input: CampaignInput) {
   if (input.id) {
     const existing = await getCampaignById(input.id);
     if (!existing) {
-      return { success: false as const, error: "キャンペーンが見つかりません" };
+      return { success: false as const, error: "メールが見つかりません" };
     }
     if (existing.status === "queued" || existing.status === "sending") {
-      return { success: false as const, error: "配信中のキャンペーンは編集できません" };
+      return { success: false as const, error: "配信中のメールは編集できません" };
     }
 
     const { error } = await adminDb
@@ -261,7 +261,7 @@ export async function sendCampaignTest(
 
   const campaign = await getCampaignById(campaignId);
   if (!campaign) {
-    return { success: false as const, error: "キャンペーンが見つかりません" };
+    return { success: false as const, error: "メールが見つかりません" };
   }
 
   const content = getLocalizedCampaignContent(campaign, locale);
@@ -310,13 +310,13 @@ export async function queueCampaign(campaignId: string) {
   await requireAdminForAction();
   const campaign = await getCampaignById(campaignId);
   if (!campaign) {
-    return { success: false as const, error: "キャンペーンが見つかりません" };
+    return { success: false as const, error: "メールが見つかりません" };
   }
   if (!campaign.test_sent_at) {
     return { success: false as const, error: "先にテスト送信を実行してください" };
   }
   if (campaign.status === "sending") {
-    return { success: false as const, error: "配信中のキャンペーンはキュー作成できません" };
+    return { success: false as const, error: "配信中のメールはキュー作成できません" };
   }
 
   const recipients = await resolveRecipientsBySegments(campaign.segment_keys ?? []);
@@ -380,10 +380,10 @@ export async function deleteCampaign(campaignId: string) {
   await requireAdminForAction();
   const campaign = await getCampaignById(campaignId);
   if (!campaign) {
-    return { success: false as const, error: "キャンペーンが見つかりません" };
+    return { success: false as const, error: "メールが見つかりません" };
   }
   if (campaign.status === "sending") {
-    return { success: false as const, error: "配信中のキャンペーンは削除できません" };
+    return { success: false as const, error: "配信中のメールは削除できません" };
   }
 
   const adminDb = createAdminClient();
@@ -410,7 +410,7 @@ export async function runCampaignQueue(campaignId: string, batchSize = 20) {
   await requireAdminForAction();
   const campaign = await getCampaignById(campaignId);
   if (!campaign) {
-    return { success: false as const, error: "キャンペーンが見つかりません" };
+    return { success: false as const, error: "メールが見つかりません" };
   }
   if (campaign.status === "draft") {
     return { success: false as const, error: "先にキュー作成を実行してください" };

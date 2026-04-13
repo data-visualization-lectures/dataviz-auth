@@ -23,7 +23,7 @@ export default async function EditEmailCampaignPage({
       <main className="grid flex-1 items-start gap-4 md:gap-8 max-w-5xl mx-auto w-full min-w-0">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <h2 className="text-3xl font-bold tracking-tight">キャンペーン編集</h2>
+            <h2 className="text-3xl font-bold tracking-tight">メール編集</h2>
             <p className="text-muted-foreground">{campaign.title}</p>
           </div>
           <Button asChild variant="outline">

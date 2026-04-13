@@ -162,7 +162,7 @@ export function AdminEmailEditor({ campaignId, initial }: EditorProps) {
   const handleDeleteCampaign = () => {
     if (!campaignId) return;
 
-    const confirmed = window.confirm("このキャンペーンを削除しますか？\nこの操作は取り消せません。");
+    const confirmed = window.confirm("このメールを削除しますか？\nこの操作は取り消せません。");
     if (!confirmed) return;
 
     setError("");
@@ -187,7 +187,7 @@ export function AdminEmailEditor({ campaignId, initial }: EditorProps) {
         </CardHeader>
         <CardContent className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
-            <label className="text-sm font-medium">キャンペーンタイトル</label>
+            <label className="text-sm font-medium">メールタイトル</label>
             <Input
               value={title}
               onChange={(event) => setTitle(event.target.value)}

@@ -33,7 +33,7 @@ export default async function AdminEmailsPage() {
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
             <h2 className="text-3xl font-bold tracking-tight">メール配信管理</h2>
-            <p className="text-muted-foreground">キャンペーン作成・キュー実行・送信履歴</p>
+            <p className="text-muted-foreground">メール作成・キュー実行・送信履歴</p>
           </div>
           <div className="flex gap-2">
             <Button asChild variant="outline">
@@ -47,7 +47,7 @@ export default async function AdminEmailsPage() {
 
         <Card>
           <CardHeader>
-            <CardTitle>キャンペーン一覧</CardTitle>
+            <CardTitle>メール一覧</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="overflow-x-auto">
@@ -69,7 +69,7 @@ export default async function AdminEmailsPage() {
                   {campaigns.length === 0 ? (
                     <tr>
                       <td colSpan={9} className="py-8 text-center text-muted-foreground">
-                        キャンペーンはまだありません。
+                        メールはまだありません。
                       </td>
                     </tr>
                   ) : (

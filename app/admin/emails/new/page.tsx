@@ -14,7 +14,7 @@ export default async function NewEmailCampaignPage() {
       <main className="grid flex-1 items-start gap-4 md:gap-8 max-w-5xl mx-auto w-full min-w-0">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <h2 className="text-3xl font-bold tracking-tight">新規メールキャンペーン</h2>
+            <h2 className="text-3xl font-bold tracking-tight">新規配信メール</h2>
             <p className="text-muted-foreground">
               日本語・英語の件名/本文を入力し、下書きを作成します。
             </p>
