@@ -54,6 +54,7 @@ export function AdminEmailEditor({ campaignId, initial }: EditorProps) {
   const [hugoLocale, setHugoLocale] = useState<"ja" | "en">("ja");
   const [cardUrl, setCardUrl] = useState("");
   const [cardLocale, setCardLocale] = useState<"ja" | "en">("ja");
+  const isMarketingCampaign = campaignType === "marketing";
 
   const canSave = useMemo(() => {
     return (
@@ -64,7 +65,7 @@ export function AdminEmailEditor({ campaignId, initial }: EditorProps) {
       subjectEn.trim().length > 0 &&
       bodyMdJa.trim().length > 0 &&
       bodyMdEn.trim().length > 0 &&
-      segmentKeys.length > 0
+      (!isMarketingCampaign || segmentKeys.length > 0)
     );
   }, [
     title,
@@ -75,6 +76,7 @@ export function AdminEmailEditor({ campaignId, initial }: EditorProps) {
     bodyMdJa,
     bodyMdEn,
     segmentKeys,
+    isMarketingCampaign,
   ]);
 
   const setLocaleBody = (locale: "ja" | "en", value: string) => {
@@ -100,7 +102,7 @@ export function AdminEmailEditor({ campaignId, initial }: EditorProps) {
         id: campaignId,
         title,
         campaignType,
-        segmentKeys,
+        segmentKeys: isMarketingCampaign ? segmentKeys : [],
         newsletterLabelJa,
         newsletterLabelEn,
         helperTextJa,
@@ -198,7 +200,13 @@ export function AdminEmailEditor({ campaignId, initial }: EditorProps) {
             <select
               className="border rounded px-3 py-2 text-sm"
               value={campaignType}
-              onChange={(event) => setCampaignType(event.target.value as CampaignType)}
+              onChange={(event) => {
+                const nextType = event.target.value as CampaignType;
+                setCampaignType(nextType);
+                if (nextType !== "marketing") {
+                  setSegmentKeys([]);
+                }
+              }}
             >
               {CAMPAIGN_TYPE_LABELS.map((type) => (
                 <option key={type.key} value={type.key}>
@@ -210,21 +218,27 @@ export function AdminEmailEditor({ campaignId, initial }: EditorProps) {
 
           <div className="flex flex-col gap-2">
             <label className="text-sm font-medium">配信セグメント</label>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-              {SEGMENT_LABELS.map((segment) => (
-                <label
-                  key={segment.key}
-                  className="flex items-center gap-2 text-sm border rounded px-3 py-2"
-                >
-                  <input
-                    type="checkbox"
-                    checked={segmentKeys.includes(segment.key)}
-                    onChange={() => toggleSegment(segment.key)}
-                  />
-                  <span>{segment.label}</span>
-                </label>
-              ))}
-            </div>
+            {isMarketingCampaign ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                {SEGMENT_LABELS.map((segment) => (
+                  <label
+                    key={segment.key}
+                    className="flex items-center gap-2 text-sm border rounded px-3 py-2"
+                  >
+                    <input
+                      type="checkbox"
+                      checked={segmentKeys.includes(segment.key)}
+                      onChange={() => toggleSegment(segment.key)}
+                    />
+                    <span>{segment.label}</span>
+                  </label>
+                ))}
+              </div>
+            ) : (
+              <p className="text-sm text-muted-foreground border rounded px-3 py-2">
+                この種別では配信セグメントは使用しません。
+              </p>
+            )}
           </div>
         </CardContent>
       </Card>

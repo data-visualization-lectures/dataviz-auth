@@ -34,6 +34,8 @@ function parseCampaignType(input: string | null | undefined): CampaignType | nul
 }
 
 function ensureCampaignInput(input: CampaignInput): string | null {
+  const campaignType = parseCampaignType(input.campaignType);
+  if (!campaignType) return "メール種別の指定が不正です";
   if (!input.title?.trim()) return "タイトルを入力してください";
   if (!input.newsletterLabelJa?.trim() || !input.newsletterLabelEn?.trim()) {
     return "ヘッダー文言（日本語・英語）を入力してください";
@@ -45,7 +47,9 @@ function ensureCampaignInput(input: CampaignInput): string | null {
     return "本文（日本語・英語）を入力してください";
   }
   const keys = parseSegmentKeys(input.segmentKeys ?? []);
-  if (keys.length === 0) return "配信セグメントを1つ以上選択してください";
+  if (campaignType === "marketing" && keys.length === 0) {
+    return "配信セグメントを1つ以上選択してください";
+  }
   return null;
 }
 
@@ -157,11 +161,12 @@ export async function saveCampaign(input: CampaignInput) {
 
   const adminDb = createAdminClient();
   const segmentKeys = parseSegmentKeys(input.segmentKeys);
+  const effectiveSegments = campaignType === "marketing" ? segmentKeys : [];
 
   const payload = {
     title: input.title.trim(),
     campaign_type: campaignType,
-    segment_keys: segmentKeys,
+    segment_keys: effectiveSegments,
     newsletter_label_ja: input.newsletterLabelJa.trim(),
     newsletter_label_en: input.newsletterLabelEn.trim(),
     helper_text_ja: input.helperTextJa.trim(),
