@@ -1,8 +1,8 @@
 // Imports removed for browser usage
 
 
-// ── i18n (URL優先、HTML lang属性とブラウザ言語をフォールバック) ──
-// 優先順位: URL(lang query / /en prefix) > document.documentElement.lang > navigator.language
+// ── i18n (URL優先、locale cookie / HTML lang属性 / ブラウザ言語をフォールバック) ──
+// 優先順位: URL(lang query / /en prefix) > locale cookie > document.documentElement.lang > navigator.language
 function _dvGetLocaleFromUrl() {
   try {
     const url = new URL(window.location.href);
@@ -15,10 +15,29 @@ function _dvGetLocaleFromUrl() {
   return null;
 }
 
+function _dvGetLocaleFromCookie() {
+  try {
+    const raw = document.cookie
+      .split(';')
+      .map((c) => c.trim())
+      .find((c) => c.startsWith('locale='));
+    if (!raw) return null;
+    const value = decodeURIComponent(raw.slice('locale='.length)).toLowerCase();
+    return (value === 'ja' || value === 'en') ? value : null;
+  } catch (e) {
+    // ignore
+  }
+  return null;
+}
+
 function _dvGetLocale() {
   const urlLocale = _dvGetLocaleFromUrl();
   if (urlLocale) {
     return urlLocale;
+  }
+  const cookieLocale = _dvGetLocaleFromCookie();
+  if (cookieLocale) {
+    return cookieLocale;
   }
   const htmlLang = (typeof document !== 'undefined' && document.documentElement.lang || '').toLowerCase();
   if (htmlLang.startsWith('ja')) return 'ja';

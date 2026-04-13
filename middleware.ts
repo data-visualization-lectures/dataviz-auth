@@ -65,17 +65,38 @@ function resolveLocale(request: NextRequest): Locale {
     return primary.startsWith('ja') ? 'ja' : 'en';
 }
 
-function setLocaleCookie(response: NextResponse, locale: Locale, secure: boolean) {
+function getLocaleCookieDomain(hostname: string): string | undefined {
+    const rootDomain = APP_CONFIG.DOMAIN.startsWith('.') ? APP_CONFIG.DOMAIN.slice(1) : APP_CONFIG.DOMAIN;
+    if (!hostname || hostname === 'localhost' || hostname === '127.0.0.1') {
+        return undefined;
+    }
+    if (/^(\d{1,3}\.){3}\d{1,3}$/.test(hostname)) {
+        return undefined;
+    }
+    if (hostname === rootDomain || hostname.endsWith(`.${rootDomain}`)) {
+        return rootDomain;
+    }
+    return undefined;
+}
+
+function setLocaleCookie(
+    response: NextResponse,
+    locale: Locale,
+    secure: boolean,
+    domain?: string,
+) {
     response.cookies.set(LOCALE_COOKIE_NAME, locale, {
         path: '/',
         maxAge: LOCALE_COOKIE_MAX_AGE,
         sameSite: 'lax',
         secure,
+        ...(domain ? { domain } : {}),
     });
 }
 
 export async function middleware(request: NextRequest) {
     const useSecureCookie = request.nextUrl.protocol === 'https:';
+    const localeCookieDomain = getLocaleCookieDomain(request.nextUrl.hostname);
     const origin = request.headers.get('origin') ?? '';
     // Allow specific origins OR any subdomain of the main domain (securely checked via suffix)
     const isAllowedOrigin = allowedOrigins.includes(origin) ||
@@ -115,7 +136,7 @@ export async function middleware(request: NextRequest) {
             newUrl.pathname = canonicalPath;
             newUrl.searchParams.delete('lang');
             const redirectResponse = NextResponse.redirect(newUrl);
-            setLocaleCookie(redirectResponse, normalizedLocale, useSecureCookie);
+            setLocaleCookie(redirectResponse, normalizedLocale, useSecureCookie, localeCookieDomain);
             return redirectResponse;
         }
     }
@@ -136,10 +157,10 @@ export async function middleware(request: NextRequest) {
     // lang query param を検知したら locale cookie に永続化（30日）
     // （Hugoへのリダイレクト分岐で捕捉されなかったケース、Next.jsネイティブルート向け）
     if (hasLangParam) {
-        setLocaleCookie(response, langParam, useSecureCookie);
+        setLocaleCookie(response, langParam, useSecureCookie, localeCookieDomain);
     } else if (!isNextJsRoute) {
         // Hugo系: /en 到達時は en、それ以外は ja を cookie に同期
-        setLocaleCookie(response, getPathLocale(pathname), useSecureCookie);
+        setLocaleCookie(response, getPathLocale(pathname), useSecureCookie, localeCookieDomain);
     }
 
     return response;

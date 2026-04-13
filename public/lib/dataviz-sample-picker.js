@@ -16,6 +16,19 @@ function _dvPickerGetLocale() {
     // ignore
   }
 
+  try {
+    const raw = document.cookie
+      .split(';')
+      .map((c) => c.trim())
+      .find((c) => c.startsWith('locale='));
+    if (raw) {
+      const value = decodeURIComponent(raw.slice('locale='.length)).toLowerCase();
+      if (value === 'ja' || value === 'en') return value;
+    }
+  } catch (e) {
+    // ignore
+  }
+
   const htmlLang = (document.documentElement.lang || '').toLowerCase();
   if (htmlLang.startsWith('ja')) return 'ja';
   if (htmlLang.startsWith('en')) return 'en';
