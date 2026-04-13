@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import {
@@ -309,11 +310,19 @@ export default async function AdminPage() {
     <div className="flex min-h-screen w-full flex-col bg-muted/40 p-4 md:p-10 gap-8">
       <main className="grid flex-1 items-start gap-4 md:gap-8 max-w-5xl mx-auto w-full min-w-0">
 
-        <div className="flex flex-col gap-2 mb-4">
-          <h2 className="text-3xl font-bold tracking-tight">管理者ダッシュボード</h2>
-          <p className="text-muted-foreground">
-            ユーザー数・サブスクリプション・売上の概要
-          </p>
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-4">
+          <div className="flex flex-col gap-2">
+            <h2 className="text-3xl font-bold tracking-tight">管理者ダッシュボード</h2>
+            <p className="text-muted-foreground">
+              ユーザー数・サブスクリプション・売上の概要
+            </p>
+          </div>
+          <Link
+            href="/admin/emails"
+            className="inline-flex items-center rounded border border-input bg-background px-3 py-2 text-sm hover:bg-muted"
+          >
+            メール配信管理へ
+          </Link>
         </div>
 
         {/* 主要指標カード */}
