@@ -12,7 +12,9 @@ function normalizeWhitespace(input: string): string {
 }
 
 function stripTags(input: string): string {
-  return input.replace(/<[^>]+>/g, "");
+  return input
+    .replace(/<br\s*\/?>/gi, " ")
+    .replace(/<[^>]+>/g, " ");
 }
 
 function escapeMarkdownText(input: string): string {
