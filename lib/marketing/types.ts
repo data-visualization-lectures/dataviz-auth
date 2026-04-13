@@ -15,6 +15,14 @@ export type CampaignStatus =
   | "completed"
   | "failed";
 
+export const CAMPAIGN_TYPES = [
+  "account_created",
+  "account_canceled",
+  "marketing",
+] as const;
+
+export type CampaignType = (typeof CAMPAIGN_TYPES)[number];
+
 export type RecipientStatus = "pending" | "sent" | "failed" | "skipped";
 
 export type LocaleCode = "ja" | "en";
@@ -22,6 +30,7 @@ export type LocaleCode = "ja" | "en";
 export type CampaignInput = {
   id?: string;
   title: string;
+  campaignType: CampaignType;
   segmentKeys: SegmentKey[];
   subjectJa: string;
   subjectEn: string;
@@ -36,6 +45,7 @@ export type CampaignInput = {
 export type CampaignRecord = {
   id: string;
   title: string;
+  campaign_type: CampaignType;
   status: CampaignStatus;
   segment_keys: SegmentKey[];
   subject_ja: string;

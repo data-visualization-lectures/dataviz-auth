@@ -11,7 +11,7 @@ import {
   resolveUrlCard,
   saveCampaign,
 } from "@/app/admin/emails/actions";
-import type { CampaignInput, SegmentKey } from "@/lib/marketing/types";
+import type { CampaignInput, CampaignType, SegmentKey } from "@/lib/marketing/types";
 
 const SEGMENT_LABELS: { key: SegmentKey; label: string }[] = [
   { key: "free_trialing", label: "無料 / お試し期間中" },
@@ -19,6 +19,12 @@ const SEGMENT_LABELS: { key: SegmentKey; label: string }[] = [
   { key: "paid_individual", label: "有料 / 個人で利用" },
   { key: "paid_team", label: "有料 / 複数人で利用" },
   { key: "free_academia", label: "無料 / アカデミア" },
+];
+
+const CAMPAIGN_TYPE_LABELS: { key: CampaignType; label: string }[] = [
+  { key: "account_created", label: "アカウント作成時" },
+  { key: "account_canceled", label: "解約時" },
+  { key: "marketing", label: "マーケティング" },
 ];
 
 type EditorProps = {
@@ -33,6 +39,7 @@ export function AdminEmailEditor({ campaignId, initial }: EditorProps) {
   const [error, setError] = useState<string>("");
 
   const [title, setTitle] = useState(initial.title);
+  const [campaignType, setCampaignType] = useState<CampaignType>(initial.campaignType);
   const [segmentKeys, setSegmentKeys] = useState<SegmentKey[]>(initial.segmentKeys);
   const [newsletterLabelJa, setNewsletterLabelJa] = useState(initial.newsletterLabelJa);
   const [newsletterLabelEn, setNewsletterLabelEn] = useState(initial.newsletterLabelEn);
@@ -92,6 +99,7 @@ export function AdminEmailEditor({ campaignId, initial }: EditorProps) {
       const result = await saveCampaign({
         id: campaignId,
         title,
+        campaignType,
         segmentKeys,
         newsletterLabelJa,
         newsletterLabelEn,
@@ -183,6 +191,21 @@ export function AdminEmailEditor({ campaignId, initial }: EditorProps) {
               onChange={(event) => setTitle(event.target.value)}
               placeholder="例: 4月のおすすめツール特集"
             />
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <label className="text-sm font-medium">メール種別</label>
+            <select
+              className="border rounded px-3 py-2 text-sm"
+              value={campaignType}
+              onChange={(event) => setCampaignType(event.target.value as CampaignType)}
+            >
+              {CAMPAIGN_TYPE_LABELS.map((type) => (
+                <option key={type.key} value={type.key}>
+                  {type.label}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="flex flex-col gap-2">

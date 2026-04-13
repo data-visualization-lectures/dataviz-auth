@@ -3,6 +3,7 @@ import { requireAdminForPage } from "@/lib/marketing/admin-auth";
 import { listCampaigns } from "@/lib/marketing/repository";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import type { CampaignType } from "@/lib/marketing/types";
 
 export const dynamic = "force-dynamic";
 
@@ -14,6 +15,12 @@ function formatDate(value: string | null): string {
   ).padStart(2, "0")} ${String(d.getHours()).padStart(2, "0")}:${String(
     d.getMinutes()
   ).padStart(2, "0")}`;
+}
+
+function formatCampaignType(type: CampaignType): string {
+  if (type === "account_created") return "アカウント作成時";
+  if (type === "account_canceled") return "解約時";
+  return "マーケティング";
 }
 
 export default async function AdminEmailsPage() {
@@ -48,6 +55,7 @@ export default async function AdminEmailsPage() {
                 <thead>
                   <tr className="border-b">
                     <th className="py-2 px-2 text-left">タイトル</th>
+                    <th className="py-2 px-2 text-left">種別</th>
                     <th className="py-2 px-2 text-left">ステータス</th>
                     <th className="py-2 px-2 text-right">対象</th>
                     <th className="py-2 px-2 text-right">送信成功</th>
@@ -60,7 +68,7 @@ export default async function AdminEmailsPage() {
                 <tbody>
                   {campaigns.length === 0 ? (
                     <tr>
-                      <td colSpan={8} className="py-8 text-center text-muted-foreground">
+                      <td colSpan={9} className="py-8 text-center text-muted-foreground">
                         キャンペーンはまだありません。
                       </td>
                     </tr>
@@ -68,6 +76,7 @@ export default async function AdminEmailsPage() {
                     campaigns.map((campaign) => (
                       <tr key={campaign.id} className="border-b last:border-0">
                         <td className="py-2 px-2">{campaign.title}</td>
+                        <td className="py-2 px-2">{formatCampaignType(campaign.campaign_type)}</td>
                         <td className="py-2 px-2">{campaign.status}</td>
                         <td className="py-2 px-2 text-right">{campaign.total_count}</td>
                         <td className="py-2 px-2 text-right">{campaign.sent_count}</td>

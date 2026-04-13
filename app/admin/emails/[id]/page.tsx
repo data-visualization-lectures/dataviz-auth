@@ -17,6 +17,12 @@ function formatDate(value: string | null): string {
   ).padStart(2, "0")}`;
 }
 
+function formatCampaignType(type: string): string {
+  if (type === "account_created") return "アカウント作成時";
+  if (type === "account_canceled") return "解約時";
+  return "マーケティング";
+}
+
 export default async function CampaignDetailPage({
   params,
 }: {
@@ -85,6 +91,10 @@ export default async function CampaignDetailPage({
             <CardTitle>配信設定</CardTitle>
           </CardHeader>
           <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+            <div>
+              <div className="text-muted-foreground">種別</div>
+              <div>{formatCampaignType(campaign.campaign_type)}</div>
+            </div>
             <div>
               <div className="text-muted-foreground">セグメント</div>
               <div>{campaign.segment_keys.join(", ") || "-"}</div>

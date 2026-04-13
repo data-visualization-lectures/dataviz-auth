@@ -8,15 +8,17 @@ import { importHugoFromUrl, resolveUrlCard as resolveUrlCardInternal } from "@/l
 import { getCampaignById, getRecipientCounts } from "@/lib/marketing/repository";
 import { resolveRecipientsBySegments } from "@/lib/marketing/segments";
 import { sendMarketingEmail } from "@/lib/marketing/send";
-import { SEGMENT_KEYS } from "@/lib/marketing/types";
+import { CAMPAIGN_TYPES, SEGMENT_KEYS } from "@/lib/marketing/types";
 import type {
   CampaignInput,
   CampaignRecipientRecord,
+  CampaignType,
   LocaleCode,
   SegmentKey,
 } from "@/lib/marketing/types";
 
 const SEGMENT_SET = new Set<string>(SEGMENT_KEYS);
+const CAMPAIGN_TYPE_SET = new Set<string>(CAMPAIGN_TYPES);
 
 function baseUrl(): string {
   return process.env.NEXT_PUBLIC_SITE_URL || "https://app.dataviz.jp";
@@ -24,6 +26,11 @@ function baseUrl(): string {
 
 function parseSegmentKeys(input: string[]): SegmentKey[] {
   return input.filter((key): key is SegmentKey => SEGMENT_SET.has(key));
+}
+
+function parseCampaignType(input: string | null | undefined): CampaignType | null {
+  if (!input) return null;
+  return CAMPAIGN_TYPE_SET.has(input) ? (input as CampaignType) : null;
 }
 
 function ensureCampaignInput(input: CampaignInput): string | null {
@@ -143,12 +150,17 @@ export async function saveCampaign(input: CampaignInput) {
   if (errorMessage) {
     return { success: false as const, error: errorMessage };
   }
+  const campaignType = parseCampaignType(input.campaignType);
+  if (!campaignType) {
+    return { success: false as const, error: "メール種別の指定が不正です" };
+  }
 
   const adminDb = createAdminClient();
   const segmentKeys = parseSegmentKeys(input.segmentKeys);
 
   const payload = {
     title: input.title.trim(),
+    campaign_type: campaignType,
     segment_keys: segmentKeys,
     newsletter_label_ja: input.newsletterLabelJa.trim(),
     newsletter_label_en: input.newsletterLabelEn.trim(),
