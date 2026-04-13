@@ -43,7 +43,7 @@ export async function importHugoFromUrl(url: string) {
   const html = await res.text();
   const title = extractTitle(html);
   const mainHtml = extractMainHtml(html);
-  const markdown = htmlToMarkdown(mainHtml);
+  const markdown = htmlToMarkdown(mainHtml, targetUrl);
 
   return {
     title: title || url,

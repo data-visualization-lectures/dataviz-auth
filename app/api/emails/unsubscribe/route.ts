@@ -25,16 +25,7 @@ function htmlPage(title: string, message: string) {
 </html>`;
 }
 
-export async function GET(request: Request) {
-  const url = new URL(request.url);
-  const token = (url.searchParams.get("token") ?? "").trim();
-  if (!token) {
-    return new Response(
-      htmlPage("無効なリンクです", "配信停止リンクのパラメータが不足しています。"),
-      { status: 400, headers: { "Content-Type": "text/html; charset=utf-8" } }
-    );
-  }
-
+async function executeUnsubscribe(token: string) {
   const adminDb = createAdminClient();
   const { data: preference, error: fetchError } = await adminDb
     .from("marketing_email_preferences")
@@ -43,16 +34,20 @@ export async function GET(request: Request) {
     .maybeSingle();
 
   if (fetchError) {
-    return new Response(
-      htmlPage("処理に失敗しました", "配信停止の処理中にエラーが発生しました。"),
-      { status: 500, headers: { "Content-Type": "text/html; charset=utf-8" } }
-    );
+    return {
+      status: 500,
+      title: "処理に失敗しました",
+      message: "配信停止の処理中にエラーが発生しました。",
+      code: "error" as const,
+    };
   }
   if (!preference) {
-    return new Response(
-      htmlPage("無効なリンクです", "この配信停止リンクは有効ではありません。"),
-      { status: 404, headers: { "Content-Type": "text/html; charset=utf-8" } }
-    );
+    return {
+      status: 404,
+      title: "無効なリンクです",
+      message: "この配信停止リンクは有効ではありません。",
+      code: "invalid" as const,
+    };
   }
 
   const { error: updateError } = await adminDb
@@ -64,14 +59,52 @@ export async function GET(request: Request) {
     .eq("user_id", preference.user_id);
 
   if (updateError) {
+    return {
+      status: 500,
+      title: "処理に失敗しました",
+      message: "配信停止の更新に失敗しました。",
+      code: "error" as const,
+    };
+  }
+
+  return {
+    status: 200,
+    title: "配信を停止しました",
+    message: "今後、この種類のメールは配信されません。",
+    code: "ok" as const,
+  };
+}
+
+function getTokenFromRequest(request: Request): string {
+  const url = new URL(request.url);
+  return (url.searchParams.get("token") ?? "").trim();
+}
+
+export async function GET(request: Request) {
+  const token = getTokenFromRequest(request);
+  if (!token) {
     return new Response(
-      htmlPage("処理に失敗しました", "配信停止の更新に失敗しました。"),
-      { status: 500, headers: { "Content-Type": "text/html; charset=utf-8" } }
+      htmlPage("無効なリンクです", "配信停止リンクのパラメータが不足しています。"),
+      { status: 400, headers: { "Content-Type": "text/html; charset=utf-8" } }
     );
   }
 
-  return new Response(
-    htmlPage("配信を停止しました", "今後、この種類のメールは配信されません。"),
-    { status: 200, headers: { "Content-Type": "text/html; charset=utf-8" } }
-  );
+  const result = await executeUnsubscribe(token);
+  return new Response(htmlPage(result.title, result.message), {
+    status: result.status,
+    headers: { "Content-Type": "text/html; charset=utf-8" },
+  });
+}
+
+export async function POST(request: Request) {
+  const token = getTokenFromRequest(request);
+  if (!token) {
+    return new Response("missing token", { status: 400, headers: { "Content-Type": "text/plain; charset=utf-8" } });
+  }
+
+  const result = await executeUnsubscribe(token);
+  return new Response(result.code, {
+    status: result.status,
+    headers: { "Content-Type": "text/plain; charset=utf-8" },
+  });
 }

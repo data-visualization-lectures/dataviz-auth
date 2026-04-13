@@ -77,6 +77,7 @@ export async function sendMarketingEmail({
     text,
     headers: {
       "List-Unsubscribe": `<${unsubscribeUrl}>`,
+      "List-Unsubscribe-Post": "List-Unsubscribe=One-Click",
     },
   });
 
