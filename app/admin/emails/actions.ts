@@ -342,6 +342,36 @@ export async function queueCampaign(campaignId: string) {
   };
 }
 
+export async function deleteCampaign(campaignId: string) {
+  await requireAdminForAction();
+  const campaign = await getCampaignById(campaignId);
+  if (!campaign) {
+    return { success: false as const, error: "キャンペーンが見つかりません" };
+  }
+  if (campaign.status === "sending") {
+    return { success: false as const, error: "配信中のキャンペーンは削除できません" };
+  }
+
+  const adminDb = createAdminClient();
+  const { error } = await adminDb
+    .from("marketing_campaigns")
+    .delete()
+    .eq("id", campaignId);
+  if (error) {
+    return { success: false as const, error: error.message };
+  }
+
+  revalidatePath("/admin/emails");
+  revalidatePath(`/admin/emails/${campaignId}`);
+  revalidatePath(`/admin/emails/${campaignId}/edit`);
+  revalidatePath(`/admin/emails/${campaignId}/preview`);
+  revalidatePath(`/admin/emails/${campaignId}/test`);
+  revalidatePath(`/admin/emails/${campaignId}/queue`);
+  revalidatePath(`/admin/emails/${campaignId}/recipients`);
+
+  return { success: true as const };
+}
+
 export async function runCampaignQueue(campaignId: string, batchSize = 20) {
   await requireAdminForAction();
   const campaign = await getCampaignById(campaignId);

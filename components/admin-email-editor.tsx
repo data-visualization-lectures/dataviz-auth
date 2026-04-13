@@ -5,7 +5,12 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { importHugoContent, resolveUrlCard, saveCampaign } from "@/app/admin/emails/actions";
+import {
+  deleteCampaign,
+  importHugoContent,
+  resolveUrlCard,
+  saveCampaign,
+} from "@/app/admin/emails/actions";
 import type { CampaignInput, SegmentKey } from "@/lib/marketing/types";
 
 const SEGMENT_LABELS: { key: SegmentKey; label: string }[] = [
@@ -122,6 +127,26 @@ export function AdminEmailEditor({ campaignId, initial }: EditorProps) {
       }
       setLocaleBody(cardLocale, result.markdown);
       setNotice("URLカードを本文に挿入しました。");
+    });
+  };
+
+  const handleDeleteCampaign = () => {
+    if (!campaignId) return;
+
+    const confirmed = window.confirm("このキャンペーンを削除しますか？\nこの操作は取り消せません。");
+    if (!confirmed) return;
+
+    setError("");
+    setNotice("");
+    startTransition(async () => {
+      const result = await deleteCampaign(campaignId);
+      if (!result.success) {
+        setError(result.error);
+        return;
+      }
+
+      router.push("/admin/emails");
+      router.refresh();
     });
   };
 
@@ -262,6 +287,9 @@ export function AdminEmailEditor({ campaignId, initial }: EditorProps) {
             </Button>
             <Button variant="outline" onClick={() => router.push(`/admin/emails/${campaignId}/queue`)}>
               キュー管理
+            </Button>
+            <Button variant="destructive" onClick={handleDeleteCampaign} disabled={isPending}>
+              削除
             </Button>
           </>
         )}
