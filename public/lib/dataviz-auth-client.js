@@ -1,13 +1,24 @@
 // Imports removed for browser usage
 
 
-// ── i18n (HTML lang属性優先、ブラウザ言語はフォールバック) ──
-// 優先順位: <dataviz-header lang="xx"> 属性 > document.documentElement.lang > navigator.language
+// ── i18n (URL優先、HTML lang属性とブラウザ言語をフォールバック) ──
+// 優先順位: URL(lang query / /en prefix) > document.documentElement.lang > navigator.language
+function _dvGetLocaleFromUrl() {
+  try {
+    const url = new URL(window.location.href);
+    const langParam = (url.searchParams.get('lang') || '').toLowerCase();
+    if (langParam === 'ja' || langParam === 'en') return langParam;
+    if (url.pathname === '/en' || url.pathname.startsWith('/en/')) return 'en';
+  } catch (e) {
+    // ignore
+  }
+  return null;
+}
+
 function _dvGetLocale() {
-  const headerEl = typeof document !== 'undefined' ? document.querySelector('dataviz-header') : null;
-  if (headerEl) {
-    const attr = (headerEl.getAttribute('lang') || '').toLowerCase();
-    if (attr === 'ja' || attr === 'en') return attr;
+  const urlLocale = _dvGetLocaleFromUrl();
+  if (urlLocale) {
+    return urlLocale;
   }
   const htmlLang = (typeof document !== 'undefined' && document.documentElement.lang || '').toLowerCase();
   if (htmlLang.startsWith('ja')) return 'ja';

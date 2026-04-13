@@ -6,10 +6,23 @@
 // モーダルで一覧表示する。選択時に CustomEvent を発火する。
 // =========================================================================
 
-const _dvPickerLocale = (() => {
+function _dvPickerGetLocale() {
+  try {
+    const url = new URL(window.location.href);
+    const langParam = (url.searchParams.get('lang') || '').toLowerCase();
+    if (langParam === 'ja' || langParam === 'en') return langParam;
+    if (url.pathname === '/en' || url.pathname.startsWith('/en/')) return 'en';
+  } catch (e) {
+    // ignore
+  }
+
+  const htmlLang = (document.documentElement.lang || '').toLowerCase();
+  if (htmlLang.startsWith('ja')) return 'ja';
+  if (htmlLang.startsWith('en')) return 'en';
+
   const lang = (navigator.language || navigator.userLanguage || 'ja').toLowerCase();
   return lang.startsWith('ja') ? 'ja' : 'en';
-})();
+}
 
 const _dvPickerI18n = {
   'picker.title':       { ja: 'サンプルデータ', en: 'Sample Data' },
@@ -20,7 +33,10 @@ const _dvPickerI18n = {
   'picker.loading':     { ja: '読み込み中...', en: 'Loading...' },
   'picker.error':       { ja: 'データの取得に失敗しました', en: 'Failed to load data' },
 };
-function _dvPickerT(key) { return (_dvPickerI18n[key] && _dvPickerI18n[key][_dvPickerLocale]) || key; }
+function _dvPickerT(key) {
+  const locale = _dvPickerGetLocale();
+  return (_dvPickerI18n[key] && _dvPickerI18n[key][locale]) || key;
+}
 
 // d3.schemeTableau10 — フォーマット別カラー
 const _dvFormatColors = {
@@ -102,11 +118,12 @@ class DatavizSamplePicker extends HTMLElement {
   }
 
   _onSelect(entry, variant) {
+    const locale = _dvPickerGetLocale();
     const fileUrl = variant
-      ? ((_dvPickerLocale === 'en' && variant.fileUrlEn) ? variant.fileUrlEn : variant.fileUrl)
-      : ((_dvPickerLocale === 'en' && entry.fileUrlEn) ? entry.fileUrlEn : entry.fileUrl);
+      ? ((locale === 'en' && variant.fileUrlEn) ? variant.fileUrlEn : variant.fileUrl)
+      : ((locale === 'en' && entry.fileUrlEn) ? entry.fileUrlEn : entry.fileUrl);
     const name = variant
-      ? (_dvPickerLocale === 'ja' ? variant.label : variant.labelEn)
+      ? (locale === 'ja' ? variant.label : variant.labelEn)
       : entry.name;
     this.dispatchEvent(new CustomEvent('sample-data-selected', {
       bubbles: true,
@@ -172,9 +189,10 @@ class DatavizSamplePicker extends HTMLElement {
       return `<div class="dv-picker-empty">${msg}</div>`;
     }
 
+    const locale = _dvPickerGetLocale();
     return this._filteredEntries.map((entry, i) => {
-      const name = _dvPickerLocale === 'ja' ? entry.name : entry.nameEn;
-      const desc = _dvPickerLocale === 'ja' ? entry.description : entry.descriptionEn;
+      const name = locale === 'ja' ? entry.name : entry.nameEn;
+      const desc = locale === 'ja' ? entry.description : entry.descriptionEn;
       const color = _dvFormatColors[entry.format] || '#888';
       const rowInfo = entry.rowCount > 0
         ? `${entry.rowCount.toLocaleString()} ${_dvPickerT('picker.rows')}`
@@ -182,10 +200,10 @@ class DatavizSamplePicker extends HTMLElement {
       const hasVariants = entry.variants && entry.variants.length > 0;
 
       if (hasVariants) {
-        const placeholder = _dvPickerLocale === 'ja' ? '-- 選択 --' : '-- Select --';
+        const placeholder = locale === 'ja' ? '-- 選択 --' : '-- Select --';
         const options = entry.variants.map((v, vi) => {
-          const vLabel = _dvPickerLocale === 'ja' ? v.label : v.labelEn;
-          const vRows = v.rowCount ? ` (${v.rowCount}${_dvPickerLocale === 'ja' ? '行' : ' rows'})` : '';
+          const vLabel = locale === 'ja' ? v.label : v.labelEn;
+          const vRows = v.rowCount ? ` (${v.rowCount}${locale === 'ja' ? '行' : ' rows'})` : '';
           return `<option value="${vi}">${vLabel}${vRows}</option>`;
         }).join('');
 

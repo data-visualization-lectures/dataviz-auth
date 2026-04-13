@@ -50,10 +50,24 @@
 // =========================================================================
 
 // ── i18n for project modals ──
-const _dvToolLocale = (() => {
+function _dvToolGetLocale() {
+  try {
+    const url = new URL(window.location.href);
+    const langParam = (url.searchParams.get('lang') || '').toLowerCase();
+    if (langParam === 'ja' || langParam === 'en') return langParam;
+    if (url.pathname === '/en' || url.pathname.startsWith('/en/')) return 'en';
+  } catch (e) {
+    // ignore
+  }
+
+  const htmlLang = (document.documentElement.lang || '').toLowerCase();
+  if (htmlLang.startsWith('ja')) return 'ja';
+  if (htmlLang.startsWith('en')) return 'en';
+
   const lang = (navigator.language || navigator.userLanguage || 'ja').toLowerCase();
   return lang.startsWith('ja') ? 'ja' : 'en';
-})();
+}
+
 const _dvToolI18n = {
   'modal.loadTitle':       { ja: 'プロジェクトを開く', en: 'Open Project' },
   'modal.saveTitle':       { ja: 'プロジェクトを保存', en: 'Save Project' },
@@ -85,7 +99,10 @@ const _dvToolI18n = {
   'modal.myProjects':      { ja: 'マイプロジェクト', en: 'My Projects' },
   'modal.groupEmpty':      { ja: 'チームプロジェクトはありません', en: 'No team projects' },
 };
-function _dvToolT(key) { return (_dvToolI18n[key] && _dvToolI18n[key][_dvToolLocale]) || key; }
+function _dvToolT(key) {
+  const locale = _dvToolGetLocale();
+  return (_dvToolI18n[key] && _dvToolI18n[key][locale]) || key;
+}
 
 
 class DatavizToolHeader extends HTMLElement {
@@ -588,7 +605,7 @@ class DatavizToolHeader extends HTMLElement {
         card.dataset.projectId = project.id;
 
         const dateStr = new Date(project.updated_at).toLocaleString(
-          _dvToolLocale === 'ja' ? 'ja-JP' : 'en-US'
+          _dvToolGetLocale() === 'ja' ? 'ja-JP' : 'en-US'
         );
 
         // グループプロジェクトは削除ボタンを非表示
