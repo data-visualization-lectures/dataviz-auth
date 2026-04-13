@@ -58,7 +58,9 @@ const nextConfig: NextConfig = {
           source: `/en/categories/:cat(${TARGET_CATEGORIES})/:rest*`,
           destination: `${HUGO_APP_ORIGIN}/en/categories/:cat/:rest*`,
         },
-        // catch-all: Next.jsページに該当しないパスはHugoへ転送
+      ],
+      // catch-all: Next.jsの動的ルート解決後に、未解決パスのみHugoへ転送
+      fallback: [
         {
           source: "/:path*",
           destination: `${HUGO_APP_ORIGIN}/:path*`,
