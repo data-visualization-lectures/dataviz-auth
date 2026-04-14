@@ -363,7 +363,11 @@ class DatavizGlobalHeader extends HTMLElement {
       rightContent = `<span class="dv-loading">${error}</span>`;
     } else if (user) {
       const email = user.email || 'User';
-      const isAdmin = !!(user.is_admin || user.isAdmin);
+      const isAdmin = !!(
+        user.is_admin ||
+        user.isAdmin ||
+        (user.profile && (user.profile.is_admin || user.profile.isAdmin))
+      );
       const adminLink = isAdmin
         ? `<a href="${adminUrl}" class="dv-btn">${_dvT('adminDashboard')}</a>`
         : '';
