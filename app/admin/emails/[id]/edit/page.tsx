@@ -36,6 +36,8 @@ export default async function EditEmailCampaignPage({
           initial={{
             id: campaign.id,
             title: campaign.title,
+            emailTitleJa: campaign.email_title_ja || campaign.title,
+            emailTitleEn: campaign.email_title_en || campaign.title,
             campaignType: campaign.campaign_type || "marketing",
             segmentKeys: campaign.segment_keys ?? [],
             newsletterLabelJa: campaign.newsletter_label_ja || DEFAULT_NEWSLETTER_LABEL.ja,

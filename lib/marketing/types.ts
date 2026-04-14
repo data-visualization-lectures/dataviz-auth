@@ -30,6 +30,8 @@ export type LocaleCode = "ja" | "en";
 export type CampaignInput = {
   id?: string;
   title: string;
+  emailTitleJa: string;
+  emailTitleEn: string;
   campaignType: CampaignType;
   segmentKeys: SegmentKey[];
   subjectJa: string;
@@ -45,6 +47,8 @@ export type CampaignInput = {
 export type CampaignRecord = {
   id: string;
   title: string;
+  email_title_ja: string;
+  email_title_en: string;
   campaign_type: CampaignType;
   status: CampaignStatus;
   segment_keys: SegmentKey[];

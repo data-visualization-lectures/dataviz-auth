@@ -28,9 +28,13 @@ export default async function CampaignPreviewPage({
   const newsletterLabel =
     selectedLocale === "en" ? campaign.newsletter_label_en : campaign.newsletter_label_ja;
   const helperText = selectedLocale === "en" ? campaign.helper_text_en : campaign.helper_text_ja;
+  const emailTitle =
+    selectedLocale === "en"
+      ? campaign.email_title_en || campaign.email_title_ja || campaign.title
+      : campaign.email_title_ja || campaign.email_title_en || campaign.title;
   const unsubscribeUrl = `https://app.dataviz.jp/api/emails/unsubscribe?token=preview-token`;
   const { html, text } = await buildMarketingEmail({
-    title: campaign.title,
+    title: emailTitle,
     newsletterLabel,
     helperText,
     subject,
@@ -45,7 +49,7 @@ export default async function CampaignPreviewPage({
         <div className="flex flex-wrap items-center justify-between gap-2">
           <div>
             <h2 className="text-3xl font-bold tracking-tight">メールプレビュー</h2>
-            <p className="text-muted-foreground">{campaign.title}</p>
+            <p className="text-muted-foreground">{emailTitle}</p>
           </div>
           <div className="flex flex-wrap gap-2">
             <Button asChild variant={selectedLocale === "ja" ? "default" : "outline"}>

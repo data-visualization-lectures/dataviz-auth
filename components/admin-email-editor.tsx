@@ -39,6 +39,8 @@ export function AdminEmailEditor({ campaignId, initial }: EditorProps) {
   const [error, setError] = useState<string>("");
 
   const [title, setTitle] = useState(initial.title);
+  const [emailTitleJa, setEmailTitleJa] = useState(initial.emailTitleJa);
+  const [emailTitleEn, setEmailTitleEn] = useState(initial.emailTitleEn);
   const [campaignType, setCampaignType] = useState<CampaignType>(initial.campaignType);
   const [segmentKeys, setSegmentKeys] = useState<SegmentKey[]>(initial.segmentKeys);
   const [newsletterLabelJa, setNewsletterLabelJa] = useState(initial.newsletterLabelJa);
@@ -59,6 +61,8 @@ export function AdminEmailEditor({ campaignId, initial }: EditorProps) {
   const canSave = useMemo(() => {
     return (
       title.trim().length > 0 &&
+      emailTitleJa.trim().length > 0 &&
+      emailTitleEn.trim().length > 0 &&
       newsletterLabelJa.trim().length > 0 &&
       newsletterLabelEn.trim().length > 0 &&
       subjectJa.trim().length > 0 &&
@@ -69,6 +73,8 @@ export function AdminEmailEditor({ campaignId, initial }: EditorProps) {
     );
   }, [
     title,
+    emailTitleJa,
+    emailTitleEn,
     newsletterLabelJa,
     newsletterLabelEn,
     subjectJa,
@@ -101,6 +107,8 @@ export function AdminEmailEditor({ campaignId, initial }: EditorProps) {
       const result = await saveCampaign({
         id: campaignId,
         title,
+        emailTitleJa,
+        emailTitleEn,
         campaignType,
         segmentKeys: isMarketingCampaign ? segmentKeys : [],
         newsletterLabelJa,
@@ -139,6 +147,12 @@ export function AdminEmailEditor({ campaignId, initial }: EditorProps) {
       setLocaleBody(hugoLocale, result.markdown);
       if (!title.trim()) {
         setTitle(result.title);
+      }
+      if (hugoLocale === "ja" && !emailTitleJa.trim()) {
+        setEmailTitleJa(result.title);
+      }
+      if (hugoLocale === "en" && !emailTitleEn.trim()) {
+        setEmailTitleEn(result.title);
       }
       setNotice("Hugo記事を取り込みました。");
     });
@@ -187,12 +201,30 @@ export function AdminEmailEditor({ campaignId, initial }: EditorProps) {
         </CardHeader>
         <CardContent className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
-            <label className="text-sm font-medium">メールタイトル</label>
+            <label className="text-sm font-medium">管理用タイトル</label>
             <Input
               value={title}
               onChange={(event) => setTitle(event.target.value)}
               placeholder="例: 4月のおすすめツール特集"
             />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-medium">メールタイトル（日本語）</label>
+              <Input
+                value={emailTitleJa}
+                onChange={(event) => setEmailTitleJa(event.target.value)}
+                placeholder="例: データの道具箱へようこそ！"
+              />
+            </div>
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-medium">メールタイトル（英語）</label>
+              <Input
+                value={emailTitleEn}
+                onChange={(event) => setEmailTitleEn(event.target.value)}
+                placeholder="Example: Welcome to Data Toolbox!"
+              />
+            </div>
           </div>
 
           <div className="flex flex-col gap-2">

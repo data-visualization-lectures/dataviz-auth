@@ -36,7 +36,10 @@ function parseCampaignType(input: string | null | undefined): CampaignType | nul
 function ensureCampaignInput(input: CampaignInput): string | null {
   const campaignType = parseCampaignType(input.campaignType);
   if (!campaignType) return "メール種別の指定が不正です";
-  if (!input.title?.trim()) return "タイトルを入力してください";
+  if (!input.title?.trim()) return "管理用タイトルを入力してください";
+  if (!input.emailTitleJa?.trim() || !input.emailTitleEn?.trim()) {
+    return "メールタイトル（日本語・英語）を入力してください";
+  }
   if (!input.newsletterLabelJa?.trim() || !input.newsletterLabelEn?.trim()) {
     return "ヘッダー文言（日本語・英語）を入力してください";
   }
@@ -86,25 +89,31 @@ function getLocalizedCampaignContent(
     newsletter_label_en: string;
     helper_text_ja: string;
     helper_text_en: string;
+    email_title_ja: string;
+    email_title_en: string;
     title: string;
   },
   locale: LocaleCode
 ) {
   if (locale === "en") {
+    const emailTitle =
+      campaign.email_title_en?.trim() || campaign.email_title_ja?.trim() || campaign.title;
     return {
       subject: campaign.subject_en,
       bodyMarkdown: campaign.body_md_en,
       newsletterLabel: campaign.newsletter_label_en,
       helperText: campaign.helper_text_en,
-      title: campaign.title,
+      title: emailTitle,
     };
   }
+  const emailTitle =
+    campaign.email_title_ja?.trim() || campaign.email_title_en?.trim() || campaign.title;
   return {
     subject: campaign.subject_ja,
     bodyMarkdown: campaign.body_md_ja,
     newsletterLabel: campaign.newsletter_label_ja,
     helperText: campaign.helper_text_ja,
-    title: campaign.title,
+    title: emailTitle,
   };
 }
 
@@ -165,6 +174,8 @@ export async function saveCampaign(input: CampaignInput) {
 
   const payload = {
     title: input.title.trim(),
+    email_title_ja: input.emailTitleJa.trim(),
+    email_title_en: input.emailTitleEn.trim(),
     campaign_type: campaignType,
     segment_keys: effectiveSegments,
     newsletter_label_ja: input.newsletterLabelJa.trim(),

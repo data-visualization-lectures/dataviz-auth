@@ -27,6 +27,8 @@ export default async function NewEmailCampaignPage() {
         <AdminEmailEditor
           initial={{
             title: "",
+            emailTitleJa: "",
+            emailTitleEn: "",
             campaignType: "marketing",
             segmentKeys: [],
             newsletterLabelJa: DEFAULT_NEWSLETTER_LABEL.ja,
