@@ -298,9 +298,14 @@ class DatavizToolHeader extends HTMLElement {
    * @param {function} projectConfig.onProjectLoad - Called with (projectData) when user selects a project to load
    * @param {function} [projectConfig.onProjectSave] - Called with (projectMeta) after successful save
    * @param {function} [projectConfig.onProjectDelete] - Called with (projectId) after successful delete
-   */
+  */
   setProjectConfig(projectConfig) {
-    this._projectConfig = projectConfig;
+    const defaultThreshold = 4.5 * 1024 * 1024;
+    this._projectConfig = {
+      largeUploadEnabled: false,
+      largeUploadThresholdBytes: defaultThreshold,
+      ...(projectConfig || {}),
+    };
   }
 
   /**
@@ -348,21 +353,13 @@ class DatavizToolHeader extends HTMLElement {
       throw new Error('setProjectConfig({ appName }) must be called first');
     }
     try {
-      let result;
-      if (payload.existingProjectId) {
-        result = await this._updateProject(payload.existingProjectId, {
-          name: payload.name,
-          data: payload.data,
-          thumbnail: payload.thumbnailDataUri || undefined,
-        });
-      } else {
-        result = await this._createProject({
-          name: payload.name,
-          app_name: this._projectConfig.appName,
-          data: payload.data,
-          thumbnail: payload.thumbnailDataUri || undefined,
-        });
-      }
+      const result = await this._saveProjectAuto({
+        name: payload.name,
+        data: payload.data,
+        thumbnailDataUri: payload.thumbnailDataUri || null,
+        existingProjectId: payload.existingProjectId || null,
+        groupId: payload.groupId || null,
+      });
       this.showMessage(_dvToolT('toast.saved'), 'success');
       return result;
     } catch (err) {
@@ -440,6 +437,122 @@ class DatavizToolHeader extends HTMLElement {
     const contentType = response.headers.get('content-type');
     if (contentType && contentType.includes('application/json')) return response.json();
     return response;
+  }
+
+  _serializeProjectData(data) {
+    let json;
+    try {
+      json = JSON.stringify(data);
+    } catch (err) {
+      throw new Error('failed_to_serialize_project_data');
+    }
+
+    if (typeof json !== 'string') {
+      throw new Error('failed_to_serialize_project_data');
+    }
+
+    const bytes = typeof TextEncoder !== 'undefined'
+      ? new TextEncoder().encode(json).length
+      : new Blob([json]).size;
+
+    return { json, bytes };
+  }
+
+  _getLargeUploadThresholdBytes() {
+    const defaultThreshold = 4.5 * 1024 * 1024;
+    const value = this._projectConfig && this._projectConfig.largeUploadThresholdBytes;
+    return Number.isFinite(value) && value > 0 ? value : defaultThreshold;
+  }
+
+  _shouldUseLargeUpload(bytes) {
+    if (!(this._projectConfig && this._projectConfig.largeUploadEnabled)) {
+      return false;
+    }
+    if (!Number.isFinite(bytes)) {
+      return false;
+    }
+    return bytes >= this._getLargeUploadThresholdBytes();
+  }
+
+  async _saveProjectLarge({ name, json, existingProjectId, thumbnailDataUri, groupId }) {
+    const uploadUrlPayload = { type: 'data' };
+    if (existingProjectId) {
+      uploadUrlPayload.project_id = existingProjectId;
+    }
+
+    const uploadUrlResult = await this._apiRequest('/api/projects-upload-url', {
+      method: 'POST',
+      body: JSON.stringify(uploadUrlPayload),
+    });
+
+    const { upload_url, storage_path, project_id } = uploadUrlResult || {};
+    if (!upload_url || !storage_path || !project_id) {
+      throw new Error('invalid_upload_url_response');
+    }
+
+    const storageResponse = await fetch(upload_url, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: json,
+    });
+
+    if (!storageResponse.ok) {
+      const detail = await storageResponse.text().catch(() => '');
+      throw new Error(detail || `storage_upload_failed_${storageResponse.status}`);
+    }
+
+    if (existingProjectId) {
+      const updatePayload = {
+        name,
+        storage_uploaded: true,
+      };
+      if (thumbnailDataUri) updatePayload.thumbnail = thumbnailDataUri;
+      return this._updateProject(existingProjectId, updatePayload);
+    }
+
+    const createPayload = {
+      name,
+      app_name: this._projectConfig.appName,
+      project_id,
+      storage_path,
+      storage_uploaded: true,
+    };
+    if (thumbnailDataUri) createPayload.thumbnail = thumbnailDataUri;
+    if (groupId) createPayload.group_id = groupId;
+
+    return this._createProject(createPayload);
+  }
+
+  async _saveProjectAuto({ name, data, thumbnailDataUri, existingProjectId, groupId }) {
+    const { json, bytes } = this._serializeProjectData(data);
+
+    if (this._shouldUseLargeUpload(bytes)) {
+      return this._saveProjectLarge({
+        name,
+        json,
+        existingProjectId,
+        thumbnailDataUri,
+        groupId,
+      });
+    }
+
+    if (existingProjectId) {
+      return this._updateProject(existingProjectId, {
+        name,
+        data,
+        thumbnail: thumbnailDataUri || undefined,
+      });
+    }
+
+    const payload = {
+      name,
+      app_name: this._projectConfig.appName,
+      data,
+      thumbnail: thumbnailDataUri || undefined,
+    };
+    if (groupId) payload.group_id = groupId;
+
+    return this._createProject(payload);
   }
 
   async _listProjects(appName) {
@@ -858,23 +971,13 @@ class DatavizToolHeader extends HTMLElement {
     errorEl.classList.add('dv-hidden');
 
     try {
-      let result;
-      if (existingProjectId) {
-        result = await this._updateProject(existingProjectId, {
-          name: projectName,
-          data: data,
-          thumbnail: thumbnailDataUri || undefined,
-        });
-      } else {
-        const payload = {
-          name: projectName,
-          app_name: this._projectConfig.appName,
-          data: data,
-          thumbnail: thumbnailDataUri || undefined,
-        };
-        if (groupId) payload.group_id = groupId;
-        result = await this._createProject(payload);
-      }
+      const result = await this._saveProjectAuto({
+        name: projectName,
+        data,
+        thumbnailDataUri: thumbnailDataUri || null,
+        existingProjectId: existingProjectId || null,
+        groupId: groupId || null,
+      });
       this._closeAnyModal();
       this.showMessage(_dvToolT('toast.saved'), 'success');
       if (this._projectConfig.onProjectSave) this._projectConfig.onProjectSave(result);
