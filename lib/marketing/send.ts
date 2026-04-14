@@ -18,20 +18,56 @@ type SendEmailParams = BuildEmailParams & {
   to: string;
 };
 
-export function getEmailFromAddress(): string {
+type ParsedFromAddress = {
+  name: string | null;
+  address: string;
+};
+
+function parseFromAddress(value: string): ParsedFromAddress | null {
+  const trimmed = value.trim();
+  if (!trimmed) return null;
+
+  const bracketMatch = trimmed.match(/^(.*)<\s*([^>]+)\s*>$/);
+  if (bracketMatch) {
+    const rawName = bracketMatch[1]?.trim() ?? "";
+    const address = bracketMatch[2]?.trim() ?? "";
+    if (!address.includes("@")) return null;
+    return {
+      name: rawName ? rawName.replace(/^"|"$/g, "") : null,
+      address,
+    };
+  }
+
+  if (!trimmed.includes("@")) return null;
+  return { name: null, address: trimmed };
+}
+
+function resolveSenderName(locale: LocaleCode, fallbackName?: string | null): string {
+  const localized =
+    locale === "ja"
+      ? (process.env.EMAIL_FROM_NAME_JA ?? "").trim()
+      : (process.env.EMAIL_FROM_NAME_EN ?? "").trim();
+  if (localized) return localized;
+
+  const common = (process.env.EMAIL_FROM_NAME ?? "").trim();
+  if (common) return common;
+
+  if (fallbackName?.trim()) return fallbackName.trim();
+  return locale === "ja" ? "データの道具箱" : "Data Toolbox";
+}
+
+export function getEmailFromAddress(locale: LocaleCode): string {
   const configuredFrom = (process.env.EMAIL_FROM_ADDRESS ?? "").trim();
-  const configuredName = (process.env.EMAIL_FROM_NAME ?? "").trim();
-
-  if (!configuredFrom) {
-    return "Data Toolbox <news@dataviz.jp>";
+  const fallback = parseFromAddress("news@dataviz.jp");
+  const parsed = parseFromAddress(configuredFrom) ?? fallback;
+  if (!parsed) {
+    return locale === "ja"
+      ? "データの道具箱 <news@dataviz.jp>"
+      : "Data Toolbox <news@dataviz.jp>";
   }
 
-  if (configuredFrom.includes("<") && configuredFrom.includes(">")) {
-    return configuredFrom;
-  }
-
-  const name = configuredName || "Data Toolbox";
-  return `${name} <${configuredFrom}>`;
+  const name = resolveSenderName(locale, parsed.name);
+  return `${name} <${parsed.address}>`;
 }
 
 function ensureResendClient(): Resend {
@@ -92,7 +128,7 @@ export async function sendMarketingEmail({
   });
 
   const result = await resend.emails.send({
-    from: getEmailFromAddress(),
+    from: getEmailFromAddress(locale),
     to: [to],
     subject,
     html,
