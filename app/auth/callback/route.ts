@@ -8,8 +8,8 @@ export async function GET(request: Request) {
     // if "next" is in param, use it as the redirect URL
     const next = searchParams.get("next") ?? "/";
 
-    const inviteCode = searchParams.get("invite_code");
     const signupLocale = searchParams.get("signup_locale");
+    const shouldSendAccountCreatedMail = !!signupLocale;
 
     if (code) {
         const supabase = await createClient();
@@ -24,6 +24,19 @@ export async function GET(request: Request) {
                 await supabase.auth.updateUser({
                     data: { signup_locale: signupLocale },
                 });
+            }
+
+            if (shouldSendAccountCreatedMail && data.user.email) {
+                try {
+                    const { sendAccountCreatedEmailIfNeeded } = await import("@/lib/marketing/automation");
+                    await sendAccountCreatedEmailIfNeeded({
+                        userId: data.user.id,
+                        email: data.user.email,
+                        signupLocale: signupLocale === "en" ? "en" : "ja",
+                    });
+                } catch (mailError) {
+                    console.error("account_created auto send failed", mailError);
+                }
             }
 
             // グループ招待の受諾処理（招待メールからの登録時）

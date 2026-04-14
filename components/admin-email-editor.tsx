@@ -30,9 +30,14 @@ const CAMPAIGN_TYPE_LABELS: { key: CampaignType; label: string }[] = [
 type EditorProps = {
   campaignId?: string;
   initial: CampaignInput;
+  canEnableAutoSend?: boolean;
 };
 
-export function AdminEmailEditor({ campaignId, initial }: EditorProps) {
+export function AdminEmailEditor({
+  campaignId,
+  initial,
+  canEnableAutoSend = false,
+}: EditorProps) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [notice, setNotice] = useState<string>("");
@@ -41,6 +46,7 @@ export function AdminEmailEditor({ campaignId, initial }: EditorProps) {
   const [title, setTitle] = useState(initial.title);
   const [emailTitleJa, setEmailTitleJa] = useState(initial.emailTitleJa);
   const [emailTitleEn, setEmailTitleEn] = useState(initial.emailTitleEn);
+  const [autoSendEnabled, setAutoSendEnabled] = useState(initial.autoSendEnabled);
   const [campaignType, setCampaignType] = useState<CampaignType>(initial.campaignType);
   const [segmentKeys, setSegmentKeys] = useState<SegmentKey[]>(initial.segmentKeys);
   const [newsletterLabelJa, setNewsletterLabelJa] = useState(initial.newsletterLabelJa);
@@ -57,6 +63,8 @@ export function AdminEmailEditor({ campaignId, initial }: EditorProps) {
   const [cardUrl, setCardUrl] = useState("");
   const [cardLocale, setCardLocale] = useState<"ja" | "en">("ja");
   const isMarketingCampaign = campaignType === "marketing";
+  const isAccountCreatedCampaign = campaignType === "account_created";
+  const isQueueAvailableCampaign = campaignType !== "account_created";
 
   const canSave = useMemo(() => {
     return (
@@ -109,6 +117,7 @@ export function AdminEmailEditor({ campaignId, initial }: EditorProps) {
         title,
         emailTitleJa,
         emailTitleEn,
+        autoSendEnabled,
         campaignType,
         segmentKeys: isMarketingCampaign ? segmentKeys : [],
         newsletterLabelJa,
@@ -238,6 +247,9 @@ export function AdminEmailEditor({ campaignId, initial }: EditorProps) {
                 if (nextType !== "marketing") {
                   setSegmentKeys([]);
                 }
+                if (nextType !== "account_created") {
+                  setAutoSendEnabled(false);
+                }
               }}
             >
               {CAMPAIGN_TYPE_LABELS.map((type) => (
@@ -272,6 +284,26 @@ export function AdminEmailEditor({ campaignId, initial }: EditorProps) {
               </p>
             )}
           </div>
+
+          {isAccountCreatedCampaign ? (
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-medium">自動送信設定</label>
+              <label className="flex items-center gap-2 text-sm border rounded px-3 py-2">
+                <input
+                  type="checkbox"
+                  checked={autoSendEnabled}
+                  disabled={isPending || (!canEnableAutoSend && !autoSendEnabled)}
+                  onChange={(event) => setAutoSendEnabled(event.target.checked)}
+                />
+                <span>アカウント作成時にこのメールを自動送信する</span>
+              </label>
+              {!canEnableAutoSend && !autoSendEnabled ? (
+                <p className="text-xs text-muted-foreground">
+                  有効化するには先にテスト送信を実行してください。
+                </p>
+              ) : null}
+            </div>
+          ) : null}
         </CardContent>
       </Card>
 
@@ -415,9 +447,11 @@ export function AdminEmailEditor({ campaignId, initial }: EditorProps) {
             <Button variant="outline" onClick={() => router.push(`/admin/emails/${campaignId}/test`)}>
               テスト送信
             </Button>
-            <Button variant="outline" onClick={() => router.push(`/admin/emails/${campaignId}/queue`)}>
-              キュー管理
-            </Button>
+            {isQueueAvailableCampaign ? (
+              <Button variant="outline" onClick={() => router.push(`/admin/emails/${campaignId}/queue`)}>
+                キュー管理
+              </Button>
+            ) : null}
             <Button variant="destructive" onClick={handleDeleteCampaign} disabled={isPending}>
               削除
             </Button>

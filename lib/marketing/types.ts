@@ -32,6 +32,7 @@ export type CampaignInput = {
   title: string;
   emailTitleJa: string;
   emailTitleEn: string;
+  autoSendEnabled: boolean;
   campaignType: CampaignType;
   segmentKeys: SegmentKey[];
   subjectJa: string;
@@ -49,6 +50,7 @@ export type CampaignRecord = {
   title: string;
   email_title_ja: string;
   email_title_en: string;
+  auto_send_enabled: boolean;
   campaign_type: CampaignType;
   status: CampaignStatus;
   segment_keys: SegmentKey[];
@@ -109,4 +111,24 @@ export type ResolvedRecipient = {
   email: string;
   locale: LocaleCode;
   segmentKey: SegmentKey;
+};
+
+export type MarketingEventType = "account_created";
+
+export type MarketingEventDeliveryStatus = "sent" | "failed" | "skipped";
+
+export type MarketingEventDeliveryRecord = {
+  id: string;
+  event_type: MarketingEventType;
+  user_id: string;
+  campaign_id: string | null;
+  email: string;
+  locale: LocaleCode;
+  status: MarketingEventDeliveryStatus;
+  attempt_count: number;
+  resend_message_id: string | null;
+  last_error: string | null;
+  sent_at: string | null;
+  created_at: string;
+  updated_at: string;
 };

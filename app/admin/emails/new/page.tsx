@@ -29,6 +29,7 @@ export default async function NewEmailCampaignPage() {
             title: "",
             emailTitleJa: "",
             emailTitleEn: "",
+            autoSendEnabled: false,
             campaignType: "marketing",
             segmentKeys: [],
             newsletterLabelJa: DEFAULT_NEWSLETTER_LABEL.ja,

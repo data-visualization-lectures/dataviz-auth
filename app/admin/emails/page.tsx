@@ -86,6 +86,7 @@ export default async function AdminEmailsPage() {
                       <tr className="border-b">
                         <th className="py-2 px-2 text-left">タイトル</th>
                         <th className="py-2 px-2 text-left">ステータス</th>
+                        <th className="py-2 px-2 text-left">自動送信</th>
                         <th className="py-2 px-2 text-right">対象</th>
                         <th className="py-2 px-2 text-right">送信成功</th>
                         <th className="py-2 px-2 text-right">送信失敗</th>
@@ -97,7 +98,7 @@ export default async function AdminEmailsPage() {
                     <tbody>
                       {rows.length === 0 ? (
                         <tr>
-                          <td colSpan={8} className="py-8 text-center text-muted-foreground">
+                          <td colSpan={9} className="py-8 text-center text-muted-foreground">
                             {group.emptyText}
                           </td>
                         </tr>
@@ -106,6 +107,13 @@ export default async function AdminEmailsPage() {
                           <tr key={campaign.id} className="border-b last:border-0">
                             <td className="py-2 px-2">{campaign.title}</td>
                             <td className="py-2 px-2">{campaign.status}</td>
+                            <td className="py-2 px-2">
+                              {campaign.campaign_type === "account_created"
+                                ? campaign.auto_send_enabled
+                                  ? "有効"
+                                  : "無効"
+                                : "-"}
+                            </td>
                             <td className="py-2 px-2 text-right">{campaign.total_count}</td>
                             <td className="py-2 px-2 text-right">{campaign.sent_count}</td>
                             <td className="py-2 px-2 text-right">{campaign.failed_count}</td>
@@ -123,9 +131,11 @@ export default async function AdminEmailsPage() {
                                 <Link className="underline" href={`/admin/emails/${campaign.id}/edit`}>
                                   編集
                                 </Link>
-                                <Link className="underline" href={`/admin/emails/${campaign.id}/queue`}>
-                                  キュー
-                                </Link>
+                                {campaign.campaign_type !== "account_created" ? (
+                                  <Link className="underline" href={`/admin/emails/${campaign.id}/queue`}>
+                                    キュー
+                                  </Link>
+                                ) : null}
                               </div>
                             </td>
                           </tr>

@@ -171,11 +171,14 @@ export async function saveCampaign(input: CampaignInput) {
   const adminDb = createAdminClient();
   const segmentKeys = parseSegmentKeys(input.segmentKeys);
   const effectiveSegments = campaignType === "marketing" ? segmentKeys : [];
+  const effectiveAutoSendEnabled =
+    campaignType === "account_created" ? !!input.autoSendEnabled : false;
 
   const payload = {
     title: input.title.trim(),
     email_title_ja: input.emailTitleJa.trim(),
     email_title_en: input.emailTitleEn.trim(),
+    auto_send_enabled: effectiveAutoSendEnabled,
     campaign_type: campaignType,
     segment_keys: effectiveSegments,
     newsletter_label_ja: input.newsletterLabelJa.trim(),
@@ -196,6 +199,25 @@ export async function saveCampaign(input: CampaignInput) {
     if (existing.status === "queued" || existing.status === "sending") {
       return { success: false as const, error: "配信中のメールは編集できません" };
     }
+    if (effectiveAutoSendEnabled && !existing.test_sent_at) {
+      return {
+        success: false as const,
+        error: "自動送信を有効化する前にテスト送信を実行してください",
+      };
+    }
+
+    if (effectiveAutoSendEnabled) {
+      const { error: disableError } = await adminDb
+        .from("marketing_campaigns")
+        .update({
+          auto_send_enabled: false,
+        })
+        .eq("campaign_type", "account_created")
+        .eq("auto_send_enabled", true);
+      if (disableError) {
+        return { success: false as const, error: disableError.message };
+      }
+    }
 
     const { error } = await adminDb
       .from("marketing_campaigns")
@@ -214,6 +236,13 @@ export async function saveCampaign(input: CampaignInput) {
     revalidatePath(`/admin/emails/${input.id}/edit`);
     revalidatePath(`/admin/emails/${input.id}/preview`);
     return { success: true as const, campaignId: input.id };
+  }
+
+  if (effectiveAutoSendEnabled) {
+    return {
+      success: false as const,
+      error: "自動送信の有効化は作成後にテスト送信を実行してから行ってください",
+    };
   }
 
   const { data, error } = await adminDb
@@ -323,6 +352,12 @@ export async function queueCampaign(campaignId: string) {
   if (!campaign) {
     return { success: false as const, error: "メールが見つかりません" };
   }
+  if (campaign.campaign_type === "account_created") {
+    return {
+      success: false as const,
+      error: "この種別のメールはキュー実行できません",
+    };
+  }
   if (!campaign.test_sent_at) {
     return { success: false as const, error: "先にテスト送信を実行してください" };
   }
@@ -422,6 +457,12 @@ export async function runCampaignQueue(campaignId: string, batchSize = 20) {
   const campaign = await getCampaignById(campaignId);
   if (!campaign) {
     return { success: false as const, error: "メールが見つかりません" };
+  }
+  if (campaign.campaign_type === "account_created") {
+    return {
+      success: false as const,
+      error: "この種別のメールはキュー実行できません",
+    };
   }
   if (campaign.status === "draft") {
     return { success: false as const, error: "先にキュー作成を実行してください" };

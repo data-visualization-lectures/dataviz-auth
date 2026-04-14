@@ -33,11 +33,13 @@ export default async function EditEmailCampaignPage({
 
         <AdminEmailEditor
           campaignId={campaign.id}
+          canEnableAutoSend={!!campaign.test_sent_at}
           initial={{
             id: campaign.id,
             title: campaign.title,
             emailTitleJa: campaign.email_title_ja || campaign.title,
             emailTitleEn: campaign.email_title_en || campaign.title,
+            autoSendEnabled: campaign.auto_send_enabled ?? false,
             campaignType: campaign.campaign_type || "marketing",
             segmentKeys: campaign.segment_keys ?? [],
             newsletterLabelJa: campaign.newsletter_label_ja || DEFAULT_NEWSLETTER_LABEL.ja,

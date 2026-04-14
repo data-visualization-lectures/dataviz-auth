@@ -54,9 +54,11 @@ export default async function CampaignDetailPage({
             <Button asChild variant="outline">
               <Link href={`/admin/emails/${campaign.id}/test`}>テスト送信</Link>
             </Button>
-            <Button asChild variant="outline">
-              <Link href={`/admin/emails/${campaign.id}/queue`}>キュー管理</Link>
-            </Button>
+            {campaign.campaign_type !== "account_created" ? (
+              <Button asChild variant="outline">
+                <Link href={`/admin/emails/${campaign.id}/queue`}>キュー管理</Link>
+              </Button>
+            ) : null}
             <Button asChild variant="outline">
               <Link href={`/admin/emails/${campaign.id}/recipients`}>宛先結果</Link>
             </Button>
@@ -98,6 +100,16 @@ export default async function CampaignDetailPage({
             <div>
               <div className="text-muted-foreground">セグメント</div>
               <div>{campaign.segment_keys.join(", ") || "-"}</div>
+            </div>
+            <div>
+              <div className="text-muted-foreground">自動送信</div>
+              <div>
+                {campaign.campaign_type === "account_created"
+                  ? campaign.auto_send_enabled
+                    ? "有効"
+                    : "無効"
+                  : "-"}
+              </div>
             </div>
             <div>
               <div className="text-muted-foreground">テスト送信日時</div>

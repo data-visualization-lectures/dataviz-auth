@@ -25,7 +25,6 @@ export async function login(formData: FormData) {
 export async function signUp(formData: FormData) {
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
-    const inviteCode = formData.get("inviteCode") as string | null;
     const redirectTo = formData.get("redirectTo") as string | null;
     const locale = (formData.get("locale") as string) || "en";
 
@@ -35,7 +34,7 @@ export async function signUp(formData: FormData) {
     const mainSiteUrl = process.env.NEXT_PUBLIC_MAIN_SITE_URL || "https://www.dataviz.jp";
     const pricingPath = locale === "en" ? "/en/pricing/" : "/pricing/";
     const nextPath = redirectTo || `${mainSiteUrl}${pricingPath}`;
-    const emailRedirectTo = `${siteUrl}/auth/callback?next=${encodeURIComponent(nextPath)}`;
+    const emailRedirectTo = `${siteUrl}/auth/callback?next=${encodeURIComponent(nextPath)}&signup_locale=${encodeURIComponent(locale)}`;
 
     // ユーザー作成
     const { data, error } = await supabase.auth.signUp({
