@@ -2848,7 +2848,7 @@
       ],
       "category": "tabular",
       "dataAsOf": "2025年9年29日公開",
-      "sourceUrl": "http://insideairbnb.com/tokyo/",
+      "sourceUrl": "https://insideairbnb.com/get-the-data/",
       "variants": [
         { "label": "千代田区", "labelEn": "Chiyoda Ward", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_ChiyodaKu.csv", "rowCount": 259 },
         { "label": "中央区", "labelEn": "Chuo Ward", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_ChuoKu.csv", "rowCount": 382 },
