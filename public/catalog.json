@@ -2530,17 +2530,17 @@
       "category": "tabular"
     },
     {
-      "id": "ssdse",
-      "name": "SSDSE（教育用標準データセット）",
-      "nameEn": "SSDSE (Standard Statistical Dataset for Education)",
-      "description": "データ分析のための汎用素材として、独立行政法人統計センターが作成・公開している統計データ",
-      "descriptionEn": "Statistical data created and published by the National Statistics Center as general-purpose material for data analysis",
+      "id": "ssdse-c",
+      "name": "SSDSE-C（家計調査）",
+      "nameEn": "SSDSE-C (Household Survey)",
+      "description": "独立行政法人統計センターが公開する教育用標準データセットのうち、都道府県庁所在市別の家計調査（品目別消費支出）データ",
+      "descriptionEn": "Household Survey data (consumption expenditure by item) by prefectural capital city, from the Standard Statistical Dataset for Education published by the National Statistics Center",
       "format": "csv",
       "tags": [
         "統計",
         "家計",
-        "社会",
-        "気候"
+        "消費",
+        "都道府県"
       ],
       "columns": [
         "都道府県",
@@ -2567,21 +2567,56 @@
         "voyager2",
         "parallel-coordinates"
       ],
-      "category": "tabular",
-      "variants": [
-        {
-          "label": "SSDSE-C（家計調査）",
-          "labelEn": "SSDSE-C (Household Survey)",
-          "fileUrl": "https://app.dataviz.jp/data/ssdse-c.csv",
-          "rowCount": 46
-        },
-        {
-          "label": "SSDSE-E（都道府県・基本指標）",
-          "labelEn": "SSDSE-E (Prefectures / Basic Indicators)",
-          "fileUrl": "https://app.dataviz.jp/data/ssdse-e.csv",
-          "rowCount": 46
-        }
-      ]
+      "category": "tabular"
+    },
+    {
+      "id": "ssdse-e",
+      "name": "SSDSE-E（都道府県・基本指標）",
+      "nameEn": "SSDSE-E (Prefectures / Basic Indicators)",
+      "description": "独立行政法人統計センターが公開する教育用標準データセットのうち、人口・世帯・経済・教育・医療・環境など都道府県の基本指標を網羅したデータ",
+      "descriptionEn": "Basic prefectural indicators covering population, households, economy, education, healthcare, environment, etc., from the Standard Statistical Dataset for Education published by the National Statistics Center",
+      "format": "csv",
+      "tags": [
+        "統計",
+        "社会",
+        "経済",
+        "都道府県"
+      ],
+      "columns": [
+        "地域コード",
+        "都道府県",
+        "総人口",
+        "15歳未満人口",
+        "15〜64歳人口",
+        "65歳以上人口",
+        "出生数",
+        "合計特殊出生率",
+        "一般世帯数",
+        "県内総生産額（平成27年基準）",
+        "1人当たり県民所得（平成27年基準）",
+        "事業所数（民営）",
+        "従業者数（民営）",
+        "小学校数",
+        "中学校数",
+        "高等学校数",
+        "大学数",
+        "一般病院数",
+        "医師数",
+        "総住宅数",
+        "空き家数",
+        "ごみ総排出量（総量）",
+        "消費支出（二人以上の世帯）"
+      ],
+      "rowCount": 46,
+      "fileUrl": "https://app.dataviz.jp/data/ssdse-e.csv",
+      "fileUrlEn": null,
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "rawgraphs",
+        "voyager2",
+        "parallel-coordinates"
+      ],
+      "category": "tabular"
     },
     {
       "id": "starbucks-stores",
