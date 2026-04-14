@@ -253,6 +253,44 @@ class DatavizGlobalHeader extends HTMLElement {
     this.render();
   }
 
+  isCurrentUserAdmin() {
+    const user = this.state.user;
+    if (!user) return false;
+    return !!(
+      user.is_admin ||
+      user.isAdmin ||
+      (user.profile && (user.profile.is_admin || user.profile.isAdmin))
+    );
+  }
+
+  syncAdminSubnavLink() {
+    const subnavInner = document.querySelector('.app-subnav__inner');
+    if (!subnavInner) return;
+
+    const linkId = 'dv-admin-subnav-link';
+    const existing = document.getElementById(linkId);
+    const isAdmin = this.isCurrentUserAdmin();
+
+    if (!isAdmin) {
+      if (existing) existing.remove();
+      return;
+    }
+
+    const linkText = _dvT('adminDashboard');
+
+    if (existing) {
+      existing.textContent = linkText;
+      return;
+    }
+
+    const link = document.createElement('a');
+    link.id = linkId;
+    link.href = '/admin';
+    link.className = 'app-subnav__link';
+    link.textContent = linkText;
+    subnavInner.appendChild(link);
+  }
+
   // スタイル定義
   getStyles() {
     return `
@@ -352,7 +390,6 @@ class DatavizGlobalHeader extends HTMLElement {
 
     // アカウントページのURL
     const accountUrl = `${AUTH_APP_URL}/account`;
-    const adminUrl = `${AUTH_APP_URL}/admin`;
     const loginUrl = `${AUTH_APP_URL}/auth/login?redirect_to=${encodeURIComponent(window.location.href)}&lang=${_dvGetLocale()}`;
 
     let rightContent = '';
@@ -363,19 +400,10 @@ class DatavizGlobalHeader extends HTMLElement {
       rightContent = `<span class="dv-loading">${error}</span>`;
     } else if (user) {
       const email = user.email || 'User';
-      const isAdmin = !!(
-        user.is_admin ||
-        user.isAdmin ||
-        (user.profile && (user.profile.is_admin || user.profile.isAdmin))
-      );
-      const adminLink = isAdmin
-        ? `<a href="${adminUrl}" class="dv-btn">${_dvT('adminDashboard')}</a>`
-        : '';
       rightContent = `
         <div class="dv-user-info">
           <a href="${accountUrl}" class="dv-user-email" title="${email}">${email}</a>
         </div>
-        ${adminLink}
         <button class="dv-btn" id="dv-logout-btn">${_dvT('logOut')}</button>
       `;
     } else {
@@ -408,6 +436,8 @@ class DatavizGlobalHeader extends HTMLElement {
         }
       });
     }
+
+    this.syncAdminSubnavLink();
   }
 }
 customElements.define('dataviz-header', DatavizGlobalHeader);
