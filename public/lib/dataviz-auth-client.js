@@ -49,6 +49,7 @@ const _dvI18n = {
   brand:         { ja: 'データの道具箱', en: 'Data Toolbox' },
   brandTitle:    { ja: 'データの道具箱トップへ', en: 'Go to Data Toolbox' },
   loading:       { ja: '読み込み中...', en: 'Loading...' },
+  adminDashboard:{ ja: '管理者ダッシュボード', en: 'Admin Dashboard' },
   logOut:        { ja: 'ログアウト', en: 'Log out' },
   logIn:         { ja: 'ログイン', en: 'Log in' },
   notLoggedIn:   { ja: '未ログイン', en: 'Not logged in' },
@@ -351,6 +352,7 @@ class DatavizGlobalHeader extends HTMLElement {
 
     // アカウントページのURL
     const accountUrl = `${AUTH_APP_URL}/account`;
+    const adminUrl = `${AUTH_APP_URL}/admin`;
     const loginUrl = `${AUTH_APP_URL}/auth/login?redirect_to=${encodeURIComponent(window.location.href)}&lang=${_dvGetLocale()}`;
 
     let rightContent = '';
@@ -361,10 +363,15 @@ class DatavizGlobalHeader extends HTMLElement {
       rightContent = `<span class="dv-loading">${error}</span>`;
     } else if (user) {
       const email = user.email || 'User';
+      const isAdmin = !!(user.is_admin || user.isAdmin);
+      const adminLink = isAdmin
+        ? `<a href="${adminUrl}" class="dv-btn">${_dvT('adminDashboard')}</a>`
+        : '';
       rightContent = `
         <div class="dv-user-info">
           <a href="${accountUrl}" class="dv-user-email" title="${email}">${email}</a>
         </div>
+        ${adminLink}
         <button class="dv-btn" id="dv-logout-btn">${_dvT('logOut')}</button>
       `;
     } else {
