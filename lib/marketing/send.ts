@@ -19,7 +19,19 @@ type SendEmailParams = BuildEmailParams & {
 };
 
 export function getEmailFromAddress(): string {
-  return process.env.EMAIL_FROM_ADDRESS || "news@dataviz.jp";
+  const configuredFrom = (process.env.EMAIL_FROM_ADDRESS ?? "").trim();
+  const configuredName = (process.env.EMAIL_FROM_NAME ?? "").trim();
+
+  if (!configuredFrom) {
+    return "Data Toolbox <news@dataviz.jp>";
+  }
+
+  if (configuredFrom.includes("<") && configuredFrom.includes(">")) {
+    return configuredFrom;
+  }
+
+  const name = configuredName || "Data Toolbox";
+  return `${name} <${configuredFrom}>`;
 }
 
 function ensureResendClient(): Resend {
