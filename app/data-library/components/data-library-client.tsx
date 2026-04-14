@@ -52,8 +52,14 @@ export function DataLibraryClient({ locale }: Props) {
     return Array.from(toolSet).sort();
   }, [catalog]);
 
-  // Filter
+  // Filter & sort
   const filtered = useMemo(() => {
+    const categoryOrder: Record<CatalogEntry["category"], number> = {
+      tabular: 0,
+      geographic: 1,
+      network: 2,
+      spec: 3,
+    };
     let result = catalog;
 
     if (debouncedQuery) {
@@ -85,6 +91,12 @@ export function DataLibraryClient({ locale }: Props) {
         activeTags.every((tag) => e.tags.includes(tag))
       );
     }
+
+    // Sort by category order; within a category, preserve insertion order
+    // from catalog.json (Array.prototype.sort is stable since ES2019).
+    result = [...result].sort(
+      (a, b) => categoryOrder[a.category] - categoryOrder[b.category]
+    );
 
     return result;
   }, [catalog, debouncedQuery, categoryFilter, formatFilter, toolFilter, activeTags]);
