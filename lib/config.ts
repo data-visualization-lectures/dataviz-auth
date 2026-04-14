@@ -20,7 +20,8 @@ export const APP_CONFIG = {
         "https://parallel-coordinates.dataviz.jp",
         "https://drawing-line-chart.dataviz.jp",
         "https://3d-surface-chart.dataviz.jp",
-        "https://broadcast-based-tracking-systems.dataviz.jp"
+        "https://broadcast-based-tracking-systems.dataviz.jp",
+        "https://interactive-chart-builder.dataviz.jp"
     ],
     TOOL_URLS: {
         "rawgraphs": "https://rawgraphs.dataviz.jp",
@@ -41,6 +42,7 @@ export const APP_CONFIG = {
         "parallel-coordinates": "https://parallel-coordinates.dataviz.jp",
         "drawing-line-chart": "https://drawing-line-chart.dataviz.jp",
         "3d-surface-chart": "https://3d-surface-chart.dataviz.jp",
-        "broadcast-based-tracking-systems": "https://broadcast-based-tracking-systems.dataviz.jp"
+        "broadcast-based-tracking-systems": "https://broadcast-based-tracking-systems.dataviz.jp",
+        "interactive-chart-builder": "https://interactive-chart-builder.dataviz.jp"
     }
 } as const;
