@@ -21,6 +21,12 @@ export type CatalogEntry = {
   thumbnailUrl: string | null;
   compatibleTools: string[];
   category: "tabular" | "geographic" | "network" | "spec";
+  // Free-form string describing the time period the data represents
+  // (e.g. "2023年度", "令和5年", "2020年国勢調査", "2024年4月時点").
+  // Display-only — not used for sorting.
+  dataAsOf?: string | null;
+  // Optional source URL for citation / verification.
+  sourceUrl?: string | null;
   variants?: CatalogVariant[];
 };
 

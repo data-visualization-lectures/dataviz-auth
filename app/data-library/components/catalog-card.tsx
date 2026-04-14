@@ -1,6 +1,6 @@
 "use client";
 
-import { FileSpreadsheet, Globe, Share2, Code, Wrench } from "lucide-react";
+import { FileSpreadsheet, Globe, Share2, Code, Wrench, Calendar } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import type { CatalogEntry } from "@/types/catalog";
 import type { Locale } from "@/lib/i18n";
@@ -82,6 +82,13 @@ export function CatalogCard({ entry, locale, onSelect, onTagClick }: CatalogCard
             {t(locale, CATEGORY_LABEL_KEYS[entry.category] || "dataLibrary.catTabular")}
           </Badge>
         </div>
+
+        {entry.dataAsOf && (
+          <div className="flex items-center gap-1 text-xs text-muted-foreground mt-1">
+            <Calendar className="h-3 w-3 shrink-0" />
+            <span>{entry.dataAsOf}</span>
+          </div>
+        )}
 
         {entry.rowCount > 0 && (
           <p className="text-xs text-muted-foreground mt-auto">

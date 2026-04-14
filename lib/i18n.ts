@@ -347,6 +347,8 @@ const dict = {
   "dataLibrary.columns": { ja: "列", en: "columns" },
   "dataLibrary.openWith": { ja: "このデータを開く", en: "Open with" },
   "dataLibrary.preview": { ja: "データプレビュー", en: "Data Preview" },
+  "dataLibrary.dataAsOf": { ja: "データ時点", en: "Data as of" },
+  "dataLibrary.source": { ja: "出典", en: "Source" },
   "dataLibrary.noResults": {
     ja: "条件に一致するデータが見つかりません。",
     en: "No datasets match your filters.",

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Calendar, Link as LinkIcon } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -127,6 +127,37 @@ export function CatalogDetail({
               {displayRowCount.toLocaleString()} {t(locale, "dataLibrary.rows")}
               {entry.columns.length > 0 && (
                 <> / {entry.columns.length} {t(locale, "dataLibrary.columns")}</>
+              )}
+            </div>
+          )}
+
+          {/* Data vintage & source */}
+          {(entry.dataAsOf || entry.sourceUrl) && (
+            <div className="space-y-2 text-sm">
+              {entry.dataAsOf && (
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <Calendar className="h-4 w-4 shrink-0" />
+                  <span className="font-medium">
+                    {t(locale, "dataLibrary.dataAsOf")}:
+                  </span>
+                  <span>{entry.dataAsOf}</span>
+                </div>
+              )}
+              {entry.sourceUrl && (
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <LinkIcon className="h-4 w-4 shrink-0" />
+                  <span className="font-medium">
+                    {t(locale, "dataLibrary.source")}:
+                  </span>
+                  <a
+                    href={entry.sourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline truncate"
+                  >
+                    {entry.sourceUrl.replace(/^https?:\/\//, "")}
+                  </a>
+                </div>
               )}
             </div>
           )}

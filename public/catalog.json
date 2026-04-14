@@ -2567,7 +2567,9 @@
         "voyager2",
         "parallel-coordinates"
       ],
-      "category": "tabular"
+      "category": "tabular",
+      "dataAsOf": "2025年4月25日公開",
+      "sourceUrl": "https://www.nstac.go.jp/use/literacy/ssdse/#SSDSE-C"
     },
     {
       "id": "ssdse-e",
@@ -2616,7 +2618,9 @@
         "voyager2",
         "parallel-coordinates"
       ],
-      "category": "tabular"
+      "category": "tabular",
+      "dataAsOf": "2025年4月25日公開",
+      "sourceUrl": "https://www.nstac.go.jp/use/literacy/ssdse/#SSDSE-E"
     },
     {
       "id": "starbucks-stores",
