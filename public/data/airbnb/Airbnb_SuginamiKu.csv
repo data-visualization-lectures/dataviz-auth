@@ -1,0 +1,628 @@
+id,物件名,ホストID,ホスト名,基礎自治体名,latitude,longitude,物件種別,一日あたりの金額（円）,最小宿泊日数,レビュー数,最新レビューの日付,月間レビュー数,ホストがこの自治体で持っている物件の数,次の365日間でその物件が予約可能な日数,過去12ヶ月間のレビュー数,ライセンス
+3814258,apartment hotel TASU TOCO,19611972,岩間,杉並区,35.70293,139.60045,Entire home/apt,8205,3,252,2025-09-04,1.89,4,165,29,Hotels and Inns Business Act | 杉並区杉並保健所 | 22　杉並第　37960　号
+3845889,COZY LOFT bedroom,19089769,Manami,杉並区,35.70679,139.6551,Entire home/apt,12000,4,109,2025-08-27,0.95,2,50,18,M130000777
+3846001,COZY COMFY apartment,19089769,Manami,杉並区,35.70686575604375,139.6554380782686,Entire home/apt,14184,4,163,2025-09-14,1.21,2,101,18,M130008732
+3871442,Nishi-Ogikubo 1BR Roomy  2F,18776800,近藤,杉並区,35.70399,139.59775,Entire home/apt,16200,3,38,2025-06-06,0.29,20,68,2,M130002734
+4396219,Nishi-Ogikubo 1BR Twin Type-B 2F,18776800,近藤,杉並区,35.70399,139.59775,Entire home/apt,16650,3,71,2025-07-18,0.54,20,70,12,M130002742
+4396221,nishi-ogikubo 1BED Roomy 5F,18776800,近藤,杉並区,35.70399,139.59775,Entire home/apt,21500,3,50,2025-07-27,0.39,20,87,11,M130002749
+5410242,Steve's International Guest Place,28045851,Steve,杉並区,35.70055,139.60022,Entire home/apt,8741,4,62,2023-11-29,0.52,1,86,0,M130000018
+5464293,3F Cool Bar Entire Apt in Asagaya TOKYO /w WIFI,28340699,Kimmy And Dee,杉並区,35.70524,139.63828,Entire home/apt,7458,2,182,2025-07-18,1.42,6,351,14,Hotels and Inns Business Act | 杉並区杉並保健所 | 31杉保衛環第50号
+5464305,2F Cool Bar Entire Apt in Asagaya TOKYO /w WIFI,28340699,Kimmy And Dee,杉並区,35.71162,139.63497,Entire home/apt,6300,2,196,2025-09-23,1.53,6,342,24,Hotels and Inns Business Act | 東京都杉並区保健所 | 31杉保衛環第50号
+6380625,Sunny House in a Leafy Street,33088758,Nayu,杉並区,35.67951,139.64878,Entire home/apt,30143,3,173,2025-09-22,1.38,1,176,5,M130001866
+6856801,Nishi-Ogikubo 1BR Studio Type-B  5F,18776800,近藤,杉並区,35.70402,139.5977,Entire home/apt,16200,3,74,2025-07-14,0.62,20,135,6,M130002746
+6914633,☆KOUENJI 5min / SHINJUKU 9min (Free WiFi) ☆,33705289,Tomomasa,杉並区,35.70565,139.65262,Entire home/apt,11111,1,284,2025-07-30,2.28,4,280,12,M130001781
+7136098,☆☆KOUENJI 5min / SHINJUKU 10min Free WiFi ☆☆,33705289,Tomomasa,杉並区,35.70522,139.65431,Entire home/apt,11111,1,138,2025-07-14,1.11,4,319,7,M130001777
+7450080,Japanese style room near Shinjuku,39017078,Lina,杉並区,35.68239,139.65346,Private room,5225,5,208,2025-09-22,1.68,1,292,17,M130000751
+7899504,Top edge house 202,38655722,"Top Edge Co., Ltd.",杉並区,35.70366,139.62997,Private room,,1,53,2025-09-14,0.43,9,0,15,M130001125
+9239019,Shinjuku W Fuji House Great VALUE * 2rms 2baths *,10986553,Veronica,杉並区,35.69144,139.66396,Entire home/apt,15979,2,104,2024-07-17,0.87,1,333,0,Hotels and Inns Business Act | 杉並区杉並保健所 | 5杉保衛 環第453号
+9437825,Nishi-Ogikubo 1BR Box  5F,18776800,近藤,杉並区,35.70415363112948,139.5976820960641,Entire home/apt,17100,3,36,2025-07-09,0.31,20,146,16,M130002745
+9825656,【4min Walk Sta】Shinjuku 6min thru Train/Maisonette,44812749,千万樹,杉並区,35.67275,139.65971,Entire home/apt,15572,1,154,2025-09-16,1.30,10,136,25,Hotels and Inns Business Act | 杉並区杉並保健所 | 30杉保衛環第331号
+10553744,studio 15minutes to Sinjuku station,54434007,Shohei,杉並区,35.67441,139.66045,Entire home/apt,10143,1,418,2025-09-15,3.54,6,148,25,M130001764
+11575556,"New cozy studio ,10 min to Shinjuku",56131353,Kazutomi,杉並区,35.70253,139.62658,Entire home/apt,8515,2,231,2025-09-08,2.00,1,29,23,M130000322
+11675888,studio 15min to Sinjuku station #2,54434007,Shohei,杉並区,35.67372,139.66122,Entire home/apt,10000,1,448,2025-09-15,3.86,6,176,34,M130001769
+11997228,1 min to st/ 8 min to Shinjuku/ 16 min to Shibuya,11686184,Yoko,杉並区,35.70548,139.63424,Entire home/apt,19508,2,216,2025-09-23,1.88,2,179,30,M130002732
+12073235,HAMADAYAMA! COZY HOME IDEAL FOR LONG STAY/FAMILIES,37753161,Den,杉並区,35.68305,139.62548,Private room,24107,3,21,2024-06-12,0.20,1,259,0,M130001154
+14015855,Nishi-Ogikubo 2BR Type-A  2F,18776800,近藤,杉並区,35.70399,139.59775,Entire home/apt,26550,3,36,2025-07-24,0.34,20,132,7,M130002737
+14018114,Nishi-Ogikubo 2BR Type-B  2F,18776800,近藤,杉並区,35.70399,139.59775,Entire home/apt,21150,3,27,2025-05-23,0.26,20,79,2,M130002738
+14094167,Nishi-Ogikubo 1BR Studio Type-A  4F,18776800,近藤,杉並区,35.70399,139.59775,Entire home/apt,16200,3,49,2025-08-02,0.45,20,111,8,M130002743
+14618565,Nishi-Ogikubo 1BR Type-A1 4F,18776800,近藤,杉並区,35.70399,139.59775,Entire home/apt,17100,3,45,2025-08-31,0.52,20,100,6,M130002736
+14700936,Nishi-Ogikubo 1BR Type-A2  6F,18776800,近藤,杉並区,35.70399,139.59775,Entire home/apt,17100,3,49,2025-07-01,0.46,20,120,7,M130002735
+14701831,Nishi-Ogikubo 1BR Type-B1  6F,18776800,近藤,杉並区,35.70399,139.59775,Entire home/apt,16200,3,60,2025-09-15,0.62,20,116,11,M130002740
+14715333,Nishi-Ogikubo 1BR Type-B2  7F,18776800,近藤,杉並区,35.70399,139.59775,Entire home/apt,16200,3,47,2025-06-08,0.50,20,144,10,M130002744
+15276332,おひとり様用　小さなゲストルーム room wi-fi　長期割引あり！学生歓迎！,93851602,Shigeru,杉並区,35.68252,139.65907,Entire home/apt,12432,5,59,2025-04-29,0.55,6,293,3,M130000001
+15905026,(KB#21) minute to station near Shinjuku/Koenji!,17228309,一,杉並区,35.69676,139.66012,Entire home/apt,10608,2,148,2025-09-28,1.37,17,2,15,M130012430
+15989205,(KB#32R) Smooth Apartment Close Shinjuku/Koenji,17228309,一,杉並区,35.69697,139.66003,Entire home/apt,12536,2,117,2025-03-31,1.09,17,29,4,M130012431
+16004073,(KB#21R) minute to station near Shinjuku/Koenji!,17228309,一,杉並区,35.69893,139.65931,Entire home/apt,10608,2,120,2025-04-01,1.11,17,17,10,M130012432
+16058623,(KB#61R) Fashionable 2bedrooms 1minute to station,17228309,一,杉並区,35.6968,139.65953,Entire home/apt,,2,131,2025-03-31,1.23,17,5,12,M130007277
+16166539,[Detached house] 2nd floor/1 min from Iogi Station,2931434,Daisuke,杉並区,35.72524,139.6142,Entire home/apt,10798,1,118,2025-07-21,1.11,1,235,18,Hotels and Inns Business Act | 杉並区杉並保健所 | 30杉保衛環第239号
+16374412,很帅男生在这里,36879269,Hiro,杉並区,35.70738,139.64501,Private room,9000,8,119,2024-11-08,1.12,3,64,1,M130008733
+16457727,Nishi-Ogikubo 1BR Twin Type-C  3F,18776800,近藤,杉並区,35.70399,139.59775,Entire home/apt,18500,3,37,2025-03-29,0.36,20,81,6,M130002750
+16480522,很酷男生在这里,36879269,Hiro,杉並区,35.70971,139.64506,Private room,10010,8,76,2025-07-29,0.71,3,154,9,M130008733
+16625740,CuteFamilyHouse! 3LDK 6min Shinjuku/3min JR Sta.,36582105,Emi,杉並区,35.70504,139.64676,Entire home/apt,30858,2,426,2025-09-25,4.01,3,158,61,Hotels and Inns Business Act | 東京都杉並区保健所 | 29杉保衛環第532号
+16692808,和室キッチンバストイレ+room wi-fi＋LAN　長期割引あり！学生歓迎！,93851602,Shigeru,杉並区,35.68129,139.65952,Entire home/apt,11590,5,45,2025-05-24,0.45,6,326,5,M130000001
+16694529,出張や一人旅にぴったりの room wifi　長期割あり！,93851602,Shigeru,杉並区,35.68129,139.65952,Entire home/apt,12445,5,63,2025-04-20,0.60,6,326,2,M130000001
+17548435,Quiet nest in Tokyo.,75139813,京子,杉並区,35.67721,139.61593,Entire home/apt,8051,1,145,2025-08-17,1.40,1,282,13,M130001605
+17766599,☆KOUENJI 5min / SHINJUKU 10min( Free WiFi )☆☆☆,33705289,Tomomasa,杉並区,35.70489,139.65422,Entire home/apt,11111,1,139,2025-07-28,1.35,4,312,15,M130001772
+19355397,☆☆☆高円寺駅から5分/新宿まで9分／吉祥寺まで8分(wifiあり)☆☆☆,130718682,友政,杉並区,35.70347,139.65277,Entire home/apt,10924,1,117,2025-09-14,1.18,1,328,15,M130001774
+19413842,"Sophisticated  room,  Katakoto Inn 201",224251148,結香,杉並区,35.70392,139.61303,Private room,11762,1,136,2025-06-28,1.36,2,234,16,M130002560
+19439403,"Your hideaway room, Katakoto Inn #202",224251148,結香,杉並区,35.70458,139.61126,Private room,11519,1,174,2025-09-07,1.74,2,253,13,M130002560
+19774645,Cozy private apartment 8min train to Shinjuku!,30706521,Yong,杉並区,35.69884,139.65964,Entire home/apt,10948,2,143,2025-09-15,1.43,4,34,7,M130004585
+20041303,#5 studio 15min to Shinjuku station #5 apartment,54434007,Shohei,杉並区,35.67404,139.66032,Entire home/apt,11286,1,284,2025-09-15,2.87,6,59,41,M130001763
+20058771,203【4min Walk Sta】2 stops to Shinjuku/Maisonette,44812749,千万樹,杉並区,35.67275,139.65971,Entire home/apt,20932,1,58,2025-08-06,0.81,10,109,16,Hotels and Inns Business Act | 杉並区杉並保健所 | 30保衛環第331号
+20233369,Clean & Comfortable! Cynthia House,123150587,Cynthia,杉並区,35.69024,139.62522,Private room,,2,51,2025-09-15,0.55,1,0,6,M130000284
+20576512,#4 studio 15min to Sinjuku station #4 apartment,54434007,Shohei,杉並区,35.67271,139.66023,Entire home/apt,11000,1,181,2025-07-24,1.84,6,143,33,M130001765
+20866034,駅近、昭和の和室で暮らす。room wi-fi付　長期割引あり！学生歓迎！,93851602,Shigeru,杉並区,35.68129,139.65952,Entire home/apt,11590,5,40,2025-04-15,0.42,6,326,2,M130000001
+21102829,①Shin-koenji Guesthouse【Female only＆Private room】,44129457,Sangwon,杉並区,35.69107,139.65181,Private room,3936,1,49,2020-01-17,0.50,8,0,0,M130003035
+21113541,②Shin-koenji Guesthouse【Female only＆Private room】,44129457,Sangwon,杉並区,35.69107,139.65181,Private room,3936,1,38,2019-10-27,0.40,8,0,0,M130003035
+21182191,③Shin-koenji Guesthouse【Female only＆Private room】,44129457,Sangwon,杉並区,35.69107,139.65181,Private room,3936,1,33,2019-11-04,0.34,8,0,0,M130003035
+21209298,④Shin-koenji Guesthouse【Female only＆Private room】,44129457,Sangwon,杉並区,35.69107,139.65181,Private room,3936,1,44,2020-02-18,0.46,8,0,0,M130003035
+21220334,⑤Shin-koenji Guesthouse【Female only＆Private room】,44129457,Sangwon,杉並区,35.69107,139.65181,Private room,3936,1,31,2019-11-29,0.33,8,0,0,M130003035
+21721258,3A★PET OK★Sunny1BedRmAPT 8mins>Shinjuku w/parking,100098226,Tomoko Cathy,杉並区,35.689431717738216,139.66242275146632,Entire home/apt,9048,2,118,2025-09-16,1.23,3,245,14,Hotels and Inns Business Act | 東京都杉並区保健所 | 30杉保衛環第279号
+21804845,Nishi-Ogikubo 1BR Twin Type-D  5F,18776800,近藤,杉並区,35.70399,139.59775,Entire home/apt,16650,3,47,2025-07-14,0.50,20,86,13,M130002741
+21820201,SHINJUKU W ★ FujiHouse 2rooms 2baths ★ Best Value,4626879,Tracey,杉並区,35.6922,139.66286,Entire home/apt,24600,1,68,2025-08-17,0.72,9,333,9,Hotels and Inns Business Act | 杉並区杉並保健所 | 5杉保衛環第452号
+22070345,【高円寺駅徒歩１分】新宿駅まで快速電車８分/Wi-Fi/最大６名/長期滞在可,158802471,愛依,杉並区,35.70530962266017,139.65148333734243,Entire home/apt,26812,3,158,2025-09-22,1.67,3,136,22,Hotels and Inns Business Act | 杉並区杉並保健所 | 4杉保衛環第366号
+22090987,【高円寺駅徒歩１分】新宿駅まで快速電車８分/Wi-Fi/最大6名/長期滞在可,158802471,愛依,杉並区,35.705483036716906,139.65075606070067,Entire home/apt,31596,3,195,2025-09-21,2.05,3,111,34,Hotels and Inns Business Act | 杉並区杉並保健所 | 4杉保衛環第366号
+22866577,# 新宿まで2駅で部屋から10分！ 駅近なのに静かな快適環境の小さなマンションステイ。WIFIフリー,152014889,Takashi & Shiho,杉並区,35.70593,139.64947,Entire home/apt,11640,2,139,2025-09-05,1.49,2,164,17,Hotels and Inns Business Act | 杉並区杉並保健所 | 6杉保衛環第316号
+22892704,Guest House Koenji Junjo Hotel 101 (Shinjuku:7min),169437708,Junjo Hotel,杉並区,35.70617,139.65349,Private room,15500,1,7,2024-10-15,0.08,5,105,1,Hotels and Inns Business Act | 杉並区杉並保健所 | 29杉保衛環第406号
+22893534,Guest House Koenji Junjo Hotel 103 (Shinjuku:7min),169437708,Junjo Hotel,杉並区,35.7057,139.65403,Private room,,1,21,2025-05-20,0.24,5,56,2,Hotels and Inns Business Act | 杉並区杉並保健所 | 29杉保衛環第406号
+22893694,Guest House Koenji Junjo Hotel 102 (Shinjuku:7min),169437708,Junjo Hotel,杉並区,35.70635,139.65371,Private room,11400,1,16,2025-07-15,0.18,5,88,2,Hotels and Inns Business Act | 杉並区杉並保健所 | 29杉保衛環第406号
+22894319,Guest House Koenji Junjo Hotel 104 (Shinjuku:7min),169437708,Junjo Hotel,杉並区,35.7061,139.65392,Private room,11400,1,7,2025-05-28,0.08,5,95,1,Hotels and Inns Business Act | 杉並区杉並保健所 | 29杉保衛環第406号
+22894468,Guest House Koenji Junjo Hotel 105 (Shinjuku:7min),169437708,Junjo Hotel,杉並区,35.70603,139.65395,Private room,6200,1,37,2025-09-14,0.42,5,63,9,Hotels and Inns Business Act | 杉並区杉並保健所 | 29杉保衛環第406号
+23506737,A cozy life in Suginami - direct train to Shibuya!,68828017,Nanako,杉並区,35.67886,139.63364,Entire home/apt,47572,3,82,2025-09-22,0.92,2,118,15,M130000079
+23720011,新宿まで2駅で部屋から10分　駅近なのに静かな快適環境の小さなマンションステイ。,152014889,Takashi & Shiho,杉並区,35.70565,139.64929,Entire home/apt,19204,2,226,2025-09-08,2.47,2,191,48,Hotels and Inns Business Act | 杉並区杉並保健所 | 5杉保衛環第257号
+23774007,"301★wifi18 min to Shinjuku, 2 min walk station",177445547,Enzo,杉並区,35.7242,139.61218,Entire home/apt,6060,1,175,2025-09-12,1.92,36,95,25,Hotels and Inns Business Act | 杉並区保健所 | 30杉保衛環第348号
+23782998,306wifi18 minutes to Shinjuku!  2 min walk station,177445547,Enzo,杉並区,35.72557,139.61375,Entire home/apt,5395,1,76,2025-08-22,0.83,36,132,11,Hotels and Inns Business Act | 東京都杉並保健所 | 30杉保衛環第348号
+23791991,406wifi18 minutes to Shinjuku!  2 min walk station,177445547,Enzo,杉並区,35.72487,139.61414,Entire home/apt,5286,1,90,2025-08-13,0.99,36,114,8,Hotels and Inns Business Act | 東京都杉並区保健所 | 30杉保衛環第348号
+23812494,401wifi18 minutes to Shinjuku!  2 min walk station,177445547,Enzo,杉並区,35.72491,139.61461,Entire home/apt,6060,1,178,2025-08-31,1.96,36,273,20,Hotels and Inns Business Act | 東京都杉並区 | 30杉保衛環第348号
+24268546,和室とキッチン room wi-fi 長期割引あり。駅近、学生歓迎！,93851602,Shigeru,杉並区,35.68129,139.65952,Entire home/apt,11577,5,31,2025-05-20,0.34,6,291,7,M130000001
+24336670,リリレオ　高円寺　101号室,23956957,Kana,杉並区,35.70236,139.64628,Entire home/apt,30558,1,136,2024-11-17,1.50,4,90,3,M130000219
+24357706,Ririleo Koenji Room 102. 2 stations from Shinjuku,23956957,Kana,杉並区,35.70034,139.64569,Entire home/apt,27896,1,135,2025-08-20,1.50,4,98,8,M130000220
+24378724,Ririleo Koenji Room 103. 2 stations from Shinjuku,23956957,Kana,杉並区,35.70197,139.64617,Entire home/apt,32036,1,155,2025-08-31,1.72,4,103,13,M130000221
+24611951,2 minute walk to Takaido Station/c02,182723327,Takada,杉並区,35.68121,139.61521,Entire home/apt,15213,1,84,2025-08-02,0.93,6,266,13,M130031743
+25389822,Vacant room in my house I live in . Semi-Private,191676897,Studio-R,杉並区,35.6768,139.6612,Private room,9286,2,128,2025-09-22,1.44,1,108,23,M130002887
+25894592,Wood  new stayle house,36335780,Yoko,杉並区,35.71614735459874,139.5980981610496,Private room,7000,28,1,2022-07-09,0.03,5,147,0,M130000309
+25895949,"Nature, vegetarian, Hopping! Unique Aero House",36335780,Yoko,杉並区,35.71649,139.59821,Private room,6912,3,86,2025-09-23,0.97,5,102,11,M130000309
+27963951,503 ENZO iogi Condo and Apartment,177445547,Enzo,杉並区,35.72346,139.61285,Entire home/apt,4513,1,192,2025-08-10,2.24,36,84,42,Hotels and Inns Business Act | 東京都杉並区 | 30杉保衛環第348号
+28017428,CuteFamilyHouse FreeParking 6minShinjuku 6minSta.,36582105,Emi,杉並区,35.67344,139.66048,Entire home/apt,28054,2,298,2025-09-16,3.54,3,147,62,Hotels and Inns Business Act | 東京都杉並区保健所 | 30杉保衛環第207号
+28070939,"Aero House 2: meet  local life, Nature,vegetarian",36335780,Yoko,杉並区,35.71602,139.59818,Private room,6912,3,47,2025-08-20,0.56,5,102,15,M130000309
+28259271,Apartment style in Shinjuku area (B&B TOKYO),87485600,Mamoru,杉並区,35.6889,139.66083,Entire home/apt,11088,4,67,2025-08-30,0.80,2,121,21,Hotels and Inns Business Act | 杉並区杉並保健所 | 30杉保衛環第195号
+28291612,70㎡ fully private house (10min to Shinjuku),87485600,Mamoru,杉並区,35.6891,139.66098,Entire home/apt,19552,4,39,2025-09-17,0.52,2,128,16,Hotels and Inns Business Act | 東京都杉並区保健所 | 30杉保衛環第427号
+28371492,w/Breakfast. calming space. 13 mins to inner city,214203053,Yagi,杉並区,35.67534150115842,139.63408970832828,Private room,26100,1,143,2025-07-28,1.67,1,157,13,M130007266
+28790938,Private In Tokyo /3min Sta Anything within 3 min,138109993,Sae,杉並区,35.68428,139.62799,Entire home/apt,,180,33,2020-04-25,0.39,3,269,0,M130008994
+29021285,5 min to Shin-Koenji Sta. Woman only 4 dorm beds.,38655722,"Top Edge Co., Ltd.",杉並区,35.70057,139.64757,Hotel room,5286,1,45,2025-05-01,0.53,9,358,8,Hotels and Inns Business Act | 杉並区杉並保健所 | 30杉保衛環第241号
+29027070,5 min to Shin-Koenji Sta. Mixed 6 dorm beds.,38655722,"Top Edge Co., Ltd.",杉並区,35.70056,139.64752,Hotel room,,1,75,2025-09-14,0.89,9,355,13,Hotels and Inns Business Act | 杉並区杉並保健所 | 30杉保衛環第241号
+29140132,Tsukimura Building 202,182723327,Takada,杉並区,35.68246,139.61409,Entire home/apt,16710,2,121,2025-09-22,1.44,6,172,21,M130007874
+29326227,CuteFamilyHouse! 8min Shinjuku 5minJR/3minSub,36582105,Emi,杉並区,35.70129,139.63556,Entire home/apt,31629,2,286,2025-09-16,3.45,3,229,60,Hotels and Inns Business Act | 東京都杉並区保健所 | 30杉保衛環第208号
+29341217,"Private, entire apartment for long term  stay",221051191,Heath,杉並区,35.71101,139.6154,Entire home/apt,13000,7,44,2025-09-26,0.52,1,187,8,M130008470
+29545441,【Room Rental】5 min to Shin-Koenji Sta. 4 dorm beds,38655722,"Top Edge Co., Ltd.",杉並区,35.7017,139.64687,Hotel room,21143,1,12,2025-04-09,0.14,9,305,2,Hotels and Inns Business Act | 杉並区杉並保健所 | 30杉保衛環第241号
+29571169,【Room Rental】5 min to Shin-Koenji Sta. 6 dorm beds,38655722,"Top Edge Co., Ltd.",杉並区,35.6995,139.64646,Hotel room,31715,1,1,2022-05-22,0.02,9,275,0,Hotels and Inns Business Act | 杉並区杉並保健所 | 30杉保衛環第241号
+30084207,201 Just perfect Apartment Hotel 3min Sta 24H SM,138109993,Sae,杉並区,35.684322,139.628708,Entire home/apt,19446,5,25,2025-05-02,0.35,3,244,6,M130020759
+30333801,ENZO Tokyo 502,177445547,Enzo,杉並区,35.72489,139.61449,Entire home/apt,6060,1,164,2025-09-12,2.02,36,259,29,Hotels and Inns Business Act | 東京都杉並区保健所 | 30杉保衛環第348号
+30405904,⑦Shin-koenji Guesthouse【Female only＆Private room】,44129457,Sangwon,杉並区,35.69106,139.65183,Private room,3546,1,19,2020-01-03,0.23,8,0,0,M130003035
+30744535,【4min Walk Sta.】Shinjuku 6min thru Train/1K+Loft,44812749,千万樹,杉並区,35.67364,139.65875,Entire home/apt,11429,1,28,2025-09-18,0.35,10,115,10,Hotels and Inns Business Act | 東京都杉並区杉並保健所 | 30杉保衛環第331号
+30745006,【4min Walk Sta.】Shinjuku 6min thru Train/1K+Loft,44812749,千万樹,杉並区,35.6732,139.65853,Entire home/apt,12143,1,23,2025-09-17,0.28,10,135,10,Hotels and Inns Business Act | 東京都杉並区杉並保健所 | 30杉保衛環第331号
+30745059,【4min Walk Sta.】Shinjuku 6min thru Train/1K+Loft,44812749,千万樹,杉並区,35.67382,139.65865,Entire home/apt,12572,1,57,2025-09-15,0.74,10,137,10,Hotels and Inns Business Act | 東京都杉並保健所 | 30杉保衛環第331号
+30970703,Private Guest House IIDE *3 min from Sta. (3F&4F),231403014,Iide,杉並区,35.70684,139.64889,Entire home/apt,15300,3,30,2025-05-12,0.38,2,108,6,Hotels and Inns Business Act | 杉並区杉並保健所 | 28杉保衛環第528号
+31027507,Nishi-Ogikubo 2BR TWIN Type-E  4F,18776800,近藤,杉並区,35.70476,139.59881,Entire home/apt,21150,3,31,2025-08-16,0.39,20,136,11,M130009450
+31393925,2 rooms open-air bath (Accommodates 5.5 people),234912666,Noriaki,杉並区,35.70406,139.65353,Entire home/apt,12843,2,123,2025-09-16,1.52,3,77,23,M130011648
+31560051,Japanese Craft & Cultural Exchange Homestay,236552325,Miki,杉並区,35.67563,139.61552,Private room,10151,1,52,2025-09-15,2.09,1,54,18,M130025432
+31584489,303 Enzo Tokyo,177445547,Enzo,杉並区,35.72554,139.61415,Entire home/apt,5286,1,62,2025-09-14,0.76,36,140,7,Hotels and Inns Business Act | 東京都杉並区保健所 | 30杉保衛環第348号
+31584675,505 Enzo Tokyo,177445547,Enzo,杉並区,35.72555,139.61372,Entire home/apt,4513,1,198,2025-09-11,2.44,36,92,33,Hotels and Inns Business Act | 東京都杉並区保健所 | 30杉保衛環第348号
+31600879,"10min to Shinjuku,7min walk Japan style retro HOME",37236474,M,杉並区,35.69331,139.65041,Entire home/apt,42995,2,34,2025-04-23,0.43,2,84,5,M130017229
+32538721,NEW OPEN! Koenji sta 5mins/Shijyuku 10mins,33705289,Tomomasa,杉並区,35.704207418892736,139.65421060292672,Private room,29000,1,14,2025-08-24,0.80,4,216,11,M130038837
+32552123,⑧Shin-koenji Guesthouse【Female only＆Private room】,44129457,Sangwon,杉並区,35.69005,139.65088,Private room,4996,1,11,2020-01-02,0.14,8,0,0,M130003035
+32625008,#005 高円寺駅徒歩４分｜一軒家貸切｜新宿2駅｜最大９名｜高速WiF｜渋谷秋葉原上野東京,173784603,Naoto,杉並区,35.70573425292969,139.6470184326172,Entire home/apt,30914,2,105,2025-08-25,1.33,2,281,19,M130014046
+33597346,(KB#61) Fashionable 2bedrooms 1minute to station,17228309,一,杉並区,35.69713,139.65814,Entire home/apt,17358,2,92,2025-09-27,1.18,17,2,27,M130015398
+34027261,apartment hotel TASU TOCO Room 305,19611972,岩間,杉並区,35.70631,139.59767,Entire home/apt,9951,3,137,2025-08-10,1.76,4,222,28,Hotels and Inns Business Act | 杉並区杉並保健所 | 31杉保衛環第4号
+34065718,apartment hotel TASU TOCO room 304,19611972,岩間,杉並区,35.70415,139.59797,Entire home/apt,11562,3,109,2025-09-10,1.40,4,208,27,Hotels and Inns Business Act | 杉並区保健所 | 31杉保衛環第4号
+34109350,1mins from Koenji st★6mins from Shinjuku st★2BR,257553347,Ken,杉並区,35.70463,139.64893,Entire home/apt,18915,2,186,2025-09-25,2.39,2,55,53,Hotels and Inns Business Act | 東京都杉並区保健所 | 31杉保衛環第344号
+34111392,1mins to Koenji station★6mins from Shinjuku★2BRAPT,257553347,Ken,杉並区,35.70695,139.64826,Entire home/apt,19686,2,169,2025-09-15,2.17,2,90,51,Hotels and Inns Business Act | 東京都杉並区杉並保健所 | 31杉保環衛第345号
+34447273,和中国人想交流的日本人在这里,36879269,Hiro,杉並区,35.70888,139.64433,Private room,14850,5,9,2025-04-03,0.12,3,154,2,M130008733
+34578146,Nishi-Ogikubo 2 Bedroom Type-C1  3F,18776800,近藤,杉並区,35.70514,139.59879,Entire home/apt,21150,3,21,2025-07-13,0.28,20,121,4,M130016350
+34732267,103　高円寺シェアハウスの一室。高円寺駅まで徒歩7分。新宿駅まで電車で7分,199825323,Miduki,杉並区,35.70248,139.64959,Private room,6086,3,19,2025-08-23,0.65,7,18,5,M130001782
+34979669,15 minutes from shinjuku station by Tokyo metro.,243795243,Etsuko & Shohei,杉並区,35.68458,139.65909,Entire home/apt,11315,2,170,2025-09-23,2.22,1,112,31,Hotels and Inns Business Act | 東京都杉並区杉並保健所 | 31杉保衛環第25号
+35742289,"201 wifi 18 min to Shinjuku, 2 min walk station",177445547,Enzo,杉並区,35.7253,139.61459,Entire home/apt,6060,1,72,2025-08-18,0.96,36,320,16,Hotels and Inns Business Act | 杉並区杉並保健所所長　木村博子 | 30杉保衛環第348号
+35755060,"202  wifi 18 min to Shinjuku, 2 min walk station",177445547,Enzo,杉並区,35.72519,139.61452,Entire home/apt,6060,1,123,2025-09-08,1.63,36,125,25,Hotels and Inns Business Act | 杉並区杉並保健所所長　木村博子 | 30杉保衛環第348号
+35755419,"203  wifi 18 min to Shinjuku, 2 min walk station",177445547,Enzo,杉並区,35.72491,139.61236,Entire home/apt,,1,80,2025-05-13,1.06,36,254,10,Hotels and Inns Business Act | 杉並区杉並保健所所長　木村博子 | 30杉保衛環第348号
+35755672,A205 ★Enzo Tokyo A ★,177445547,Enzo,杉並区,35.72343,139.61466,Entire home/apt,6060,1,151,2025-09-13,2.01,36,52,20,Hotels and Inns Business Act | 杉並区杉並保健所所長　木村博子 | 30杉保衛環第348号
+35755840,A206 ★Enzo Tokyo A ★,177445547,Enzo,杉並区,35.72346,139.61244,Entire home/apt,6060,1,156,2025-09-07,2.07,36,296,21,Hotels and Inns Business Act | 杉並区杉並保健所所長　木村博子 | 30杉保衛環第348号
+35756013,A302 ★Enzo Tokyo A ★,177445547,Enzo,杉並区,35.72364,139.61401,Entire home/apt,5286,1,101,2025-08-23,1.35,36,135,6,Hotels and Inns Business Act | 杉並区杉並保健所所長　木村博子 | 30杉保衛環第348号
+35756225,A403 ★Enzo Tokyo A ★,177445547,Enzo,杉並区,35.72562,139.61464,Entire home/apt,5286,1,101,2025-09-11,1.43,36,129,23,Hotels and Inns Business Act | 杉並区杉並保健所所長　木村博子 | 30杉保衛環第348号
+36919164,#005M [月極マンスリー]高円寺駅徒歩4分｜MAX9名｜高速Wi-Fi｜新宿2駅6分,173784603,Naoto,杉並区,35.70569610595703,139.6470184326172,Entire home/apt,23645,30,5,2025-03-21,0.24,2,262,2,M130014046
+37063861,Nishi-Ogikubo 1 Bedroom Studio Type-C 6F,18776800,近藤,杉並区,35.70433,139.59883,Entire home/apt,15750,3,19,2025-06-07,0.26,20,139,2,M130018589
+37097791,"[Rurban-202] Near Shinjyuku, GHIBLI Mus!!",44129333,Yuichi,杉並区,35.70494,139.59808,Entire home/apt,9000,3,77,2025-09-22,1.03,4,63,13,M130028836
+37945531,⑩Shin-koenji Guesthouse【Female only＆Private room】,44129457,Sangwon,杉並区,35.69182,139.65287,Private room,3936,1,3,2020-01-31,0.04,8,0,0,M130003035
+38417505,1mins to Koenji station★6mins from Shinjuku★2BRAPT,292767295,Ken,杉並区,35.70593,139.64816,Entire home/apt,19686,2,41,2025-09-20,0.56,1,90,5,Hotels and Inns Business Act | 杉並区杉並保健所 | 31杉保衛環第345号
+38563908,Ririleo Koenji 201. 2 stations from Shinjuku.,23956957,Kana,杉並区,35.70186,139.65094,Entire home/apt,46822,1,4,2025-05-30,0.47,4,91,4,M130000221
+39257249,"205 A wondeful, stylish convenient sparkling clean",138109993,Sae,杉並区,35.6843147277832,139.62869262695312,Entire home/apt,22413,5,19,2025-04-12,0.26,3,268,1,M130020750
+39448607,(KB#32) Smooth Apartment Close Shinjuku/Koenji,17228309,一,杉並区,35.69689,139.65836,Entire home/apt,,2,73,2025-09-29,1.02,17,0,19,M130020753
+39561171,European comfort with Japanese style B&B Tokyo,303963002,Hiroyuki,杉並区,35.69176,139.59814,Entire home/apt,12350,3,20,2025-08-15,0.49,1,155,8,M130007157
+40768542,2F floor charter! Full renovation! Convenient spor,316616431,Yasuhiro,杉並区,35.70971,139.61391,Private room,13800,1,144,2025-08-09,2.05,1,241,18,Hotels and Inns Business Act | 杉並区杉並保健所 | 31杉保衛環第284号
+41012772,女子旅 🎵 ドアtoドアで吉祥寺15分、新宿・渋谷へも30分/静かな一軒家の個室でゆっくり過ごす,158926363,陽子,杉並区,35.69320297241211,139.60650634765625,Private room,6650,3,30,2025-08-18,0.49,1,29,11,M130023316
+41160430,【37㎡ Duplex Suite/5ppl】5min from Nishi-Ogikubo sta,321813721,Kaoru,杉並区,35.70157,139.60173,Entire home/apt,26486,1,19,2025-04-14,0.28,5,347,3,M130023383
+41160521,【22㎡Studio/max3ppl】5min from Nishi-Ogikubo station,321813721,Kaoru,杉並区,35.7015,139.60169,Entire home/apt,25086,1,72,2025-09-13,1.06,5,321,18,Hotels and Inns Business Act | 杉並区杉並保健所 | 31杉保衛環第376号
+41482209,【25㎡ Studio/3ppl】 5 min from Nishi-Ogikubo station,321813721,Kaoru,杉並区,35.70157,139.60173,Entire home/apt,25086,1,15,2025-09-26,0.22,5,331,5,M130023384
+41565470,【40㎡ Family Suite/8ppl】5min from Nishi-Ogikubo sta,321813721,Kaoru,杉並区,35.70242,139.60208,Entire home/apt,24715,1,123,2025-09-17,1.82,5,343,25,Hotels and Inns Business Act | 杉並区杉並保健所 | 31杉保衛環第376号
+41566184,【40㎡ Family Suite/5ppl】5min from Nishi-Ogikubo sta,321813721,Kaoru,杉並区,35.70062,139.60233,Entire home/apt,26486,1,23,2025-04-22,0.34,5,337,3,M130023382
+42029003,【MONTHLY】Hatsudai station 7min! MAX 12ppl! 3LDK!,290270909,Plays,杉並区,35.68372,139.64571,Entire home/apt,23289,16,7,2025-01-26,0.13,11,151,2,M130020317
+42461786,猫と緑と共生するモダン和風の家1/3－1階和室&ｻﾝﾙｰﾑ「2匹の猫も待っています」,36119039,Mitsuko,杉並区,35.70386,139.65909,Private room,16232,3,81,2025-08-08,1.32,3,143,25,M130024406
+42518805,猫と緑と共生するモダン和風の家3/3－2階洋室-「2匹の猫も待っています」,36119039,Mitsuko,杉並区,35.7041,139.65764,Private room,16232,3,43,2025-09-10,1.24,3,247,10,M130024406
+42921772,Zuzu & Gizmo Welcome family with pets.,341775888,Zuzu&Gizmo,杉並区,35.69652,139.65236,Entire home/apt,36822,1,54,2025-07-29,0.84,1,37,14,Hotels and Inns Business Act | 杉並区杉並保健所 | 4杉保衛環第326号
+43199348,A house with a nice view (each room has a BR),343857895,和子,杉並区,35.67953,139.65459,Private room,35860,3,13,2025-04-28,0.42,1,3,2,M130025601
+43559288,#Mus. Tokyo/Shin-Koenji 2 mins/Shinjuku 10 mins,347725844,星,杉並区,35.69845,139.64753,Entire home/apt,,2,8,2021-09-29,0.13,1,0,0,M130025437
+45413566,方南町駅徒歩2分・3階部分2LDK［72.0㎡・775sqft］・スタイリッシュなＲＣ打ち放し住宅,367267582,恭子,杉並区,35.68241,139.65612,Private room,25539,1,85,2025-09-15,3.27,1,224,35,M130032542
+45868179,【高円寺駅徒歩１分】新宿駅まで快速電車８分/Wi-Fi/最大７名/長期滞在可,158802471,愛依,杉並区,35.70393,139.64931,Entire home/apt,32279,3,99,2025-09-24,1.70,3,126,30,Hotels and Inns Business Act | 杉並区杉並保健所 | 4杉保衛環第499号
+46041652,"Chill Inn Honan-cho, Tokyo/whole house/ wifi",42244167,浩史,杉並区,35.6752,139.65811,Entire home/apt,22864,1,191,2025-09-16,3.23,170,293,29,Hotels and Inns Business Act | 杉並区保健所 | 2杉保衛環第249号
+47892708,"OG) 4BR,120sqm/2 toilets/6bed/Direct Shinjuku/1F",76478703,Nana &Sato,杉並区,35.7036,139.61363,Entire home/apt,36429,3,111,2025-08-14,2.04,2,186,23,Hotels and Inns Business Act | 東京都杉並区杉並保健所 | 31杉保衛環第31号
+48613821,渋谷・吉祥寺 直通「高井戸」駅 徒歩５分 ワンフロアホテル 東京の山小屋「HACOCO」,392184197,誠,杉並区,35.686292184572004,139.61568371534423,Entire home/apt,18733,1,144,2025-09-21,3.92,1,203,38,Hotels and Inns Business Act | 杉並区杉並保健所 | 3杉保衛環第277号
+49116585,古民家鶴101室  東京新宿地下鉄丸の内線7分,214640453,恵,杉並区,35.69704,139.6597,Entire home/apt,12836,2,28,2024-12-22,0.79,54,194,10,M130007460
+49118746,新高円寺@平安世代Home 201/距離新宿十分鐘/離車站只要兩分鐘/近高円寺商店街,214640453,恵,杉並区,35.69745,139.65028,Entire home/apt,16077,2,62,2025-08-31,1.17,54,108,16,M130007461
+49296349,"★[Rurban-203] Near Shinjyuku, GHIBLI Mus!",44129333,Yuichi,杉並区,35.70449,139.59711,Entire home/apt,7715,3,60,2025-08-13,1.14,4,36,13,M130028837
+49297104,Central Tokyo koenji-private flat KH1,56653460,Taku,杉並区,35.6924,139.64789,Entire home/apt,9000,3,15,2025-03-30,0.28,7,73,7,M130026259
+49623898,優友荘2Fは、長屋として使えます、静かな住宅地にあります。場所は高円寺駅から４分。,367379600,優維,杉並区,35.70453,139.65331,Private room,18186,2,6,2025-08-05,0.15,4,201,4,M130028792
+49968713,優友荘1Fは、長屋として使えます、静かな住宅地にあります。場所は高円寺駅から４分。,367379600,優維,杉並区,35.70312,139.6546,Entire home/apt,23208,2,57,2025-09-21,1.86,4,175,18,M130029106
+49969770,１棟が独立した1Fと2F連続長屋であり 一つ一つに全く異なる趣向を凝らし 戸建てとしても使えます。,367379600,優維,杉並区,35.70378112792969,139.65391540527344,Private room,,2,0,,,4,0,0,M130028792
+52763338,CENTRAL TOKYO - KOENJI AREA - PRIVATE FLAT,56653460,Taku,杉並区,35.70005,139.64769,Entire home/apt,10613,1,38,2025-09-01,0.92,7,57,8,M130026259
+53448642,Trendy Area・Good Access・5m from Station・Home Lift！,111173491,Akito,杉並区,35.7021847,139.6479292,Entire home/apt,65210,3,158,2025-09-11,3.43,4,258,39,Hotels and Inns Business Act | 杉並区杉並保健所 | 4杉保衛環第392号
+53466624,明大前駅から徒歩10分/新宿まで電車で1本/首都高速に近い物件/ノゾミオ明大前d04,432956453,圭太,杉並区,35.67172094545894,139.65496051545588,Entire home/apt,11312,2,30,2025-03-18,0.67,26,127,3,M130030173
+559888044883833193,Holy Town 98㎡＋屋上　最大14名　無料駐車場　泊まれるアスレチック　高円寺,84181866,Aki,杉並区,35.71017,139.64575,Entire home/apt,63719,1,502,2025-09-21,12.06,3,58,130,Hotels and Inns Business Act | 中野区保健所 | 3中健衛環第317号
+577895937388401163,明大前駅から徒歩10分/新宿まで電車で1本/首都高速に近い物件/ノゾミオ明大前c01,432956453,圭太,杉並区,35.67168390734314,139.65470288173339,Entire home/apt,10915,2,38,2025-08-26,0.94,26,168,13,M130030687
+577898873794771984,明大前駅から徒歩10分/新宿まで電車で1本/首都高速に近い物件/ノゾミオ明大前e01,432956453,圭太,杉並区,35.67149,139.65276,Entire home/apt,11312,2,40,2025-09-08,0.97,26,114,14,M130030686
+609695180061583624,明大前駅から徒歩10分/新宿まで電車で1本/首都高速に近い物件/ノゾミオ明大前a01,432956453,圭太,杉並区,35.67151976601452,139.654896809883,Entire home/apt,12211,2,19,2025-03-15,0.48,26,106,3,M130030903
+609704839468581646,Cat Friendly House _Women /Family Only_Double Room,36172920,Hisako,杉並区,35.69677,139.6278,Private room,11034,3,63,2025-08-12,1.59,3,72,9,M130031189
+617740789840371719,明大前駅から徒歩10分/新宿まで電車で1本/首都高速に近い物件/ノゾミオ明大前a03,432956453,圭太,杉並区,35.67149,139.65474,Entire home/apt,12211,2,19,2025-01-11,0.52,26,153,1,M130031653
+641715257666904543,西荻窪アパートメント♪貸切静かな環境♪井の頭公園を歩いて散歩♪吉祥寺まで１駅♪渋谷新宿は電車で１５分,61936892,浩司,杉並区,35.69428,139.59726,Entire home/apt,5836,2,91,2025-09-26,2.27,3,13,31,M130031059
+656114896065091135,明大前駅から徒歩10分/新宿まで電車で1本/首都高速に近い物件/ノゾミオ明大前a04,432956453,圭太,杉並区,35.67178,139.65327,Entire home/apt,12211,2,21,2025-09-01,0.63,26,159,3,M130031188
+688332056196872386,新高円寺@平安世代 101/距離新宿十分鐘/離車站只要兩分鐘/近高円寺商店街,214640453,恵,杉並区,35.69744,139.65065,Entire home/apt,12306,2,34,2025-09-14,0.95,54,72,11,M130007461
+689355200460505020,在宅勤務OK！古民家鶴＠201室 Tokyo 新宿丸ノ内線7分,214640453,恵,杉並区,35.69704,139.65969,Entire home/apt,14977,2,33,2024-11-20,0.90,54,145,6,M130007460
+714774718722436387,明大前駅から徒歩10分/新宿まで電車で1本/首都高速に近い物件/ノゾミオ明大前d03,432956453,圭太,杉並区,35.67094072688417,139.65386478146942,Entire home/apt,11312,2,32,2025-09-10,0.94,26,135,13,M130032300
+736004220541894412,Stay in Art 1 min from Koenji Sta./BnA Koenji 2F,483275198,BnA Home,杉並区,35.7061296,139.6507715,Private room,18093,2,108,2025-09-11,3.12,2,148,48,Hotels and Inns Business Act | 杉並区杉並保健所 | 27杉保衛環第673号
+740191440069413392,明大前駅から徒歩10分/新宿まで電車で1本/首都高速に近い物件/ノゾミオ明大前b03,432956453,圭太,杉並区,35.67061528956995,139.65292509457623,Entire home/apt,9915,2,37,2025-09-10,1.09,26,191,17,M130031810
+756992147062370213,Stay in Art 1 min from Koenji Sta./BnA Koenji 3F,483275198,BnA Home,杉並区,35.7061296,139.6507715,Private room,18093,2,66,2025-09-21,2.17,2,145,28,Hotels and Inns Business Act | 杉並区杉並保健所 | 27杉保衛環第673号
+757819857552410618,65/東京観光に便利/最大9名/新宿10分・渋谷13分/3階建の一軒家の貸切/wifi有,183877565,優子,杉並区,35.66953808397805,139.62854957611702,Entire home/apt,30433,1,27,2025-04-12,0.87,44,151,4,Hotels and Inns Business Act | 杉並区杉並保健所 | 4杉保衛環第178号
+775609281322954471,5 min walk to Honancho / with auto lock/101,490397315,Sumyca,杉並区,35.68233,139.65364,Entire home/apt,12211,1,18,2025-05-01,1.05,13,183,9,M130032102
+775614719058268188,5 min walk to Honancho / with auto lock/ a02,490397315,Sumyca,杉並区,35.68229,139.65267,Entire home/apt,21410,1,22,2025-09-10,1.91,13,130,22,M130032103
+775618302365615447,10 minutes to Shinjuku/ 5 minutes from the station,490397315,Sumyca,杉並区,35.68270312455477,139.65262109175455,Entire home/apt,21410,2,38,2025-06-04,1.29,13,141,8,M130032104
+775623360105108661,5 min walk to Honancho / with auto lock/ b03,490397315,Sumyca,杉並区,35.682300029371,139.6541160455186,Entire home/apt,21850,1,32,2025-09-12,2.91,13,148,32,M130032108
+775632637217114701,5 min walk to Honancho / with auto lock/d01,490397315,Sumyca,杉並区,35.68244741934967,139.652781624263,Entire home/apt,12211,1,6,2025-09-22,3.40,13,152,6,M130032112
+775634445865454188,5 min walk to Honancho / with auto lock/402,490397315,Sumyca,杉並区,35.68433308072961,139.65245688220514,Entire home/apt,13497,2,28,2025-05-20,1.01,13,184,8,M130032113
+777721932613969872,明大前駅から徒歩10分/新宿まで電車で1本/首都高速に近い物件/ノゾミオ明大前b02,432956453,圭太,杉並区,35.67175,139.65502,Entire home/apt,9915,2,16,2025-09-20,0.49,26,168,2,M130032334
+780338356068287422,#1 50㎡ Renovated Spacious House near Shinjuku/WiFi,200518670,Jun,杉並区,35.72365,139.62174,Entire home/apt,14060,1,32,2025-09-21,0.94,2,61,10,M130006856
+780344212998357255,#2 50㎡ Renovated Spacious House near Shinjuku/WiFi,200518670,Jun,杉並区,35.7227916,139.6225174,Entire home/apt,14028,1,39,2025-09-21,1.16,2,26,12,M130006857
+799708254685917184,Relax Japanese Room for couples or 3 people,234912666,Noriaki,杉並区,35.70302829170473,139.65314051589965,Entire home/apt,,1,4,2025-08-03,0.25,3,0,3,M130011648
+813981045599145437,OG2)3BR/ 120sqm/8bed/Max10/Direct Shinjuku/2F,76478703,Nana &Sato,杉並区,35.7035986,139.6136344,Entire home/apt,26486,3,71,2025-08-25,2.23,2,235,22,Hotels and Inns Business Act | 杉並区杉並保健所 | 4杉保衛環第243号
+817758960686171614,明大前駅から徒歩10分/新宿まで電車で1本/首都高速に近い物件/ノゾミオ明大前b04,432956453,圭太,杉並区,35.67153,139.65302,Entire home/apt,9915,2,12,2024-09-06,0.39,26,207,0,M130032910
+825638092682046624,明大前駅から徒歩10分/新宿まで電車で1本/首都高速に近い物件/ノゾミオ明大前c02,432956453,圭太,杉並区,35.67142,139.65476,Entire home/apt,9915,2,28,2025-09-03,1.03,26,191,11,M130033800
+825640790025276998,明大前駅から徒歩10分/新宿まで電車で1本/首都高速に近い物件/ノゾミオ明大前c03,432956453,圭太,杉並区,35.67188,139.65348,Entire home/apt,9915,2,18,2025-09-15,0.58,26,211,5,M130032911
+836438837729778288,西荻窪１BR　Type―E（SSH１BR―E）２F,18776800,近藤,杉並区,35.7039844,139.5977637,Entire home/apt,19350,3,16,2025-04-07,0.53,20,112,7,M130032912
+845464181337110074,新宿まで電車で10分/最寄駅まで徒歩7分/立地良好/閑静な住宅街/セミダブルベッド1台／2名宿泊可,153095665,Tsuyoshi,杉並区,35.69804813268356,139.64281801828494,Entire home/apt,8615,2,15,2025-09-26,2.59,34,238,15,M130047593
+847336083090234598,"R302 Near  Nishi-Ogikubo, Ghibli mus",44129333,Yuichi,杉並区,35.70471,139.59927,Entire home/apt,9000,3,42,2025-09-22,1.38,4,61,14,M130033111
+847683786784272384,Jacuzzi/FloorHeating/Parking/13MinShinjuku,59551877,Lei,杉並区,35.669289,139.6284934,Entire home/apt,66500,3,126,2025-09-22,4.11,14,288,38,Hotels and Inns Business Act | 杉並区杉並保健所 | 4杉保衛環第406号
+858349174974426591,100㎡/4BR /10sec to station/7 mins to Shinjuku,476371170,順子,杉並区,35.6981259,139.658382,Entire home/apt,25551,1,80,2025-09-01,2.70,63,99,35,Hotels and Inns Business Act | 杉並区杉並保健所 | 4杉保衛環第400号
+866821404633308051,101【4min Walk Sta】Shinjuku 6min thru Train/1K+Loft,44812749,千万樹,杉並区,35.6730441336822,139.6587041121401,Entire home/apt,12143,1,50,2025-09-23,1.67,10,139,17,Hotels and Inns Business Act | 杉並区杉並保健所 | 30杉保衛環第331号
+875614985104984830,Nearby JR Asagaya Station*Japanese-style room/3ppl,42244167,浩史,杉並区,35.70661,139.63804,Entire home/apt,9086,1,125,2025-09-21,4.54,170,348,53,Hotels and Inns Business Act | 杉並区杉並保健所 | 31杉保衛環第381号
+876389523843173386,高円寺Cozy retreat 新宿駅6分/渋谷駅15分/高円寺駅まで徒歩6分,76857645,Hide And Aya,杉並区,35.707496,139.647107,Entire home/apt,16343,2,73,2025-08-14,2.48,6,206,27,M130033617
+888775953030214808,201【代田橋駅徒歩4分】新宿直通6分/1K+ロフト/キッチン付/最大4名/ダブルベッド２台/禁煙,44812749,千万樹,杉並区,35.67278608921226,139.65974266441802,Entire home/apt,24012,1,40,2025-09-25,1.47,10,101,15,Hotels and Inns Business Act | 杉並区杉並保健所 | 30杉保衛環第331号
+889359301338857774,明大前駅から徒歩10分/新宿まで電車で1本/首都高速に近い物件/ノゾミオ明大前d01,432956453,圭太,杉並区,35.67208397965185,139.65281959366763,Entire home/apt,11312,1,4,2025-08-14,1.12,26,103,4,M130033804
+894562883328360188,Honancho Entire house for rent 東京,136483811,Ishii,杉並区,35.68503,139.65902,Entire home/apt,45643,1,4,2025-02-03,0.38,1,112,4,M130036089
+908376820386212786,Long term/9min-walk Sasazuka Sta./5min to Shinjuku,476371170,順子,杉並区,35.67304119508808,139.66172180101927,Entire home/apt,12000,20,4,2025-03-12,0.22,63,90,1,M130033381
+919078737381366563,Cat friendly house_women/family only_Single Room,36172920,Hisako,杉並区,35.69711,139.62801,Private room,9935,3,36,2025-09-28,1.33,3,45,14,M130031189
+938123788642853000,新宿電車で9分 吉祥寺電車で4分/無料WiFi /自転車無料レンタル/長期滞在歓迎/201,526429351,Akemi And Yuta,杉並区,35.712416957489594,139.61157761256638,Entire home/apt,17375,2,44,2025-09-19,1.65,6,302,13,M130034856
+939463739072561067,Shinjuku/5min to Asagaya Sta/Netflix/Wifi/4 people,230910892,Risa & Kei,杉並区,35.708,139.63605,Entire home/apt,9491,3,0,,,63,51,0,M130032606
+942350755534160548,"Shinjuku area,50㎡, 3 beds, FreeWiFi,max3",488320629,Sachiko,杉並区,35.70484201396427,139.63261045658487,Entire home/apt,22863,3,42,2025-09-16,1.98,9,320,18,M130037555
+945881603839514558,Cat Friendly House - Women/Family Only,36172920,Hisako,杉並区,35.697125729782506,139.62959860541213,Private room,16259,3,0,,,3,45,0,M130031189
+950263347357498410,新宿電車で9分 吉祥寺電車で4分/無料WiFi /自転車無料レンタル/長期滞在歓迎/202,526429351,Akemi And Yuta,杉並区,35.71160732056546,139.61356542716152,Entire home/apt,17479,2,45,2025-09-24,1.80,6,329,8,M130035173
+954011289367546530,吉祥寺徒歩圏内！三鷹台駅から5分！西荻窪駅から15分！好立地！,530793630,Yas Meg,杉並区,35.69391082279281,139.59068877575515,Private room,6786,1,74,2025-09-25,3.04,1,110,37,M130034995
+957347229943936308,free wifi新宿駅まで電車6分、高円寺駅から徒歩8分＃1,531670120,勝亦,杉並区,35.708775732826744,139.65523693784147,Entire home/apt,11895,1,15,2025-07-25,0.63,3,238,6,M130004348
+958558137782423003,3Bedroom/130㎡/close to Shibuya Shinjuku 2F,531981082,Masaru,杉並区,35.67384,139.64453,Entire home/apt,69343,2,52,2025-07-08,2.03,2,331,18,M130035197
+958598689900460969,3Bedroom/130㎡/close to Shibuya Shinjuku 3F,531981082,Masaru,杉並区,35.67401,139.6467,Entire home/apt,50223,2,46,2025-08-13,1.80,2,347,17,M130035196
+963361017242411297,Cozy retreat 2高円寺駅まで徒歩6分 クイーンベッド1台＆EXベッド,76857645,Hide And Aya,杉並区,35.707898759798944,139.64827500346445,Entire home/apt,13299,2,46,2025-09-10,1.97,6,170,21,M130035565
+969389371228142013,Trendy Cultural Center Koenji・4m Walk from Station,111173491,Akito,杉並区,35.70788888225021,139.65024708031498,Entire home/apt,52569,3,71,2025-09-21,2.84,4,274,23,M130035585
+979540644925223937,Turtle House,465683966,Shu,杉並区,35.68437976919637,139.6351502329252,Private room,5520,1,34,2025-09-24,1.45,1,201,12,M130036091
+983948131624892820,(KA2)Koenji loft apartment/Shinjuku&Kichijoji/JR,311979642,Selina,杉並区,35.70331687035362,139.64556706926726,Entire home/apt,13843,2,37,2025-06-20,1.58,54,320,16,M130050645
+983950683491337890,(KB2)Koenji loft apartment/Shinjuku&Kichijoji/JR,311979642,Selina,杉並区,35.70316,139.64767,Entire home/apt,15065,2,56,2025-09-11,2.41,54,316,19,M130050645
+984637317136641344,8min  shinjuku/5min asagaya /un wifi/4 ppl/netflix,230910892,Risa & Kei,杉並区,35.70912716745995,139.63720792081742,Entire home/apt,,3,25,2024-09-23,1.06,63,0,0,M130035832
+985394432349135936,Ⅰ.南阿佐ヶ谷駅1分 新宿15分 1LDK(29㎡)日本らしい生活を楽しめる上質な家,538217653,Akiyo,杉並区,35.69846,139.63567,Entire home/apt,20968,3,48,2025-09-15,2.23,2,198,26,M130036695
+990079210828770090,Nishi-Ogikubo 1BR Studio Type-E 3F,18776800,近藤,杉並区,35.70468,139.59842,Entire home/apt,16200,3,6,2025-05-20,0.28,20,198,5,M130035143
+994689493774476375,9 mins to Shinjuku/6 pax/Hi speed WIFI/Netflix,230910892,Risa & Kei,杉並区,35.70409,139.62172,Entire home/apt,10247,3,25,2025-08-13,1.08,63,44,6,M130033150
+995231747179732254,西荻窪駅徒歩4分｜最大6名様｜ 1LDK ｜WiFi付き｜ COCORO 402,540428137,Cocoro,杉並区,35.70514789691114,139.59829020536583,Entire home/apt,18258,1,92,2025-09-01,4.05,2,148,46,Hotels and Inns Business Act | 杉並区杉並保健所 | 5杉保衛環第41号
+1005557395556079218,N8シェアハウスの一部屋。西荻窪駅徒歩10分、新宿駅まで約10分,199825323,Miduki,杉並区,35.69807,139.60426,Private room,5558,3,12,2024-10-01,0.56,7,44,1,M130037273
+1008998394374543255,Shinjuku10min/Max4ppl2B＆1EB/Mt.Fuji view/Long stay,1573582,Yohei,杉並区,35.6886825,139.6616707,Private room,25343,2,50,2025-09-09,2.43,1,299,28,Hotels and Inns Business Act | 杉並区杉並保健所 | 5杉保衛環第289号
+1010399066965442415,Convenient access to main city/Shinjuku/Shibuya,44066901,Yuqian,杉並区,35.669705,139.63172,Entire home/apt,6700,2,38,2025-09-12,1.63,44,295,22,Hotels and Inns Business Act | 杉並区杉並保健所 | 5杉保衛環第152号
+1010421313538003903,NN6閑静な住宅街にある日本式の古いお家。駅から徒歩10分。,199825323,Miduki,杉並区,35.69916779475629,139.6042628715987,Private room,4115,3,9,2024-09-30,0.41,7,42,1,M130037273
+1010424905614914742,新宿まで１０分 渋谷まで１５分 高速フリーwifi　和モダンなお部屋,44066901,Yuqian,杉並区,35.6698598,139.6318899,Entire home/apt,25000,2,63,2025-09-11,2.71,44,258,33,Hotels and Inns Business Act | 杉並区杉並保健所 | 5杉保衛環第154号
+1014684130321999440,Free Wi-Fi 4 min. walk from Higashi-Koenji Station,543430836,舞,杉並区,35.69961,139.6589,Entire home/apt,16458,1,40,2025-09-27,1.73,2,164,14,M130036572
+1015111230590236507,(KA2F)Koenji loft apartment/Shinjuku&Kichijoji/JR,311979642,Selina,杉並区,35.70365,139.64554,Entire home/apt,17102,2,4,2024-02-19,0.18,54,320,0,M130050645
+1016339455437838681,N4日本式の古民家、和室4.5畳。西荻窪駅から10分。,199825323,Miduki,杉並区,35.69898,139.60439,Private room,5315,3,20,2025-09-02,0.92,7,44,2,M130037273
+1020110626144354656,Tokyo/9min Shinjuku/Free parking/Entire house/8ppl,454494802,悠貴,杉並区,35.69071,139.65099,Entire home/apt,21379,3,14,2025-09-21,2.84,4,222,14,M130050571
+1025808913047068531,Private Guest House IIDE *3 min from Sta. (3F),231403014,Iide,杉並区,35.7072823323963,139.64912579751388,Entire home/apt,12600,3,13,2025-05-28,0.63,2,110,8,Hotels and Inns Business Act | 杉並区杉並保健所 | 28杉保衛環第528号
+1034608873418362108,1 minute walk to Takaido Station/c02,182723327,Takada,杉並区,35.6831,139.61389,Entire home/apt,11270,30,2,2024-03-16,0.10,6,266,0,M130031743
+1035075200139821091,5 min walk to Honancho / with auto lock/103,490397315,Sumyca,杉並区,35.68231,139.65279,Entire home/apt,20520,30,2,2025-01-29,0.18,13,141,2,M130032104
+1035076449141994234,5 min walk to Honancho / with auto lock/402,490397315,Sumyca,杉並区,35.68251,139.65445,Entire home/apt,9837,30,2,2024-12-05,0.18,13,184,2,M130032113
+1040893086503145733,"2min from station,  10min to Shinjuku, 4bedrooms",142900912,Katsuyoshi,杉並区,35.69892174461003,139.65788009310825,Entire home/apt,38408,1,36,2024-12-21,1.79,3,12,8,M130038084
+1042246492873685388,桜上水A房、房间面积加独立卫浴面积　2 2平方米左右。距离新宿、渋谷下北沢电车大概12分钟左右,331252115,Li,杉並区,35.66958235799991,139.6322937020326,Private room,11636,2,60,2025-06-22,2.91,3,332,19,M130018287
+1044455329926336527,2 minute walk to Takaido Station/c03,182723327,Takada,杉並区,35.68189,139.61594,Entire home/apt,11860,30,2,2025-02-26,0.10,6,239,1,M130031744
+1044569321763295334,新宿まで１０分 渋谷まで１５分 高速フリーwifi　出張や長期滞在に便利 207,44066901,Yuqian,杉並区,35.66945394461031,139.6329715023883,Entire home/apt,6700,2,45,2025-08-12,2.10,44,335,27,Hotels and Inns Business Act | 杉並区杉並保健所 | 5杉保衛環第153号
+1044640882439785715,2 minute walk to Takaido Station/d01,182723327,Takada,杉並区,35.681329218599885,139.61591119194088,Entire home/apt,11860,30,3,2025-08-31,0.16,6,233,1,M130031745
+1050296562615351115,明大前駅から徒歩10分/新宿まで電車で1本/首都高速に近い物件/ノゾミオ明大前c02,432956453,圭太,杉並区,35.67057,139.65276,Entire home/apt,8930,30,1,2024-10-04,0.08,26,191,1,M130033800
+1050604669365993298,(KB2F)Koenji loft apartment/Shinjuku&Kichijoji/JR,311979642,Selina,杉並区,35.702161990140084,139.6454899003406,Entire home/apt,18496,2,2,2025-03-23,0.31,54,316,2,M130050645
+1053258009176294501,173㎡/5BR/20pax/1min Station/6min Shinjuku by train,476371170,順子,杉並区,35.70393,139.64898,Entire home/apt,27826,1,48,2025-09-24,2.45,63,113,26,Hotels and Inns Business Act | 杉並区杉並保健所 | 5杉保衛環第432号
+1056444187202931881,Old Japanese house. private room in a share house.,199825323,Miduki,杉並区,35.699535128610655,139.60616944671986,Private room,3958,3,8,2024-09-22,0.40,7,24,0,M130037273
+1056958066910507112,JR阿佐ヶ谷駅西口徒歩3分】 新宿駅電車8分/プライベート利用　阿佐ヶ谷の家-B室,433492202,Fuji Tabi,杉並区,35.70439327380406,139.63238705805884,Private room,14265,1,35,2025-09-15,1.72,3,360,20,M130036699
+1062282697837690892,"No smoking Shinjuku Direct, 2 Beds Studio",366084083,Maiko,杉並区,35.672,139.62266,Entire home/apt,13472,3,24,2025-08-24,1.38,8,123,19,M130038808
+1062282704408739013,"Shinjuku 14mins,2 beds studio, welcome long stay",366084083,Maiko,杉並区,35.67385765903416,139.6213671454134,Entire home/apt,,30,3,2025-03-30,0.39,8,141,3,M130038808
+1069117378453880289,Tsukimura Building,182723327,Takada,杉並区,35.68321557549506,139.61609005649083,Entire home/apt,14169,30,1,2024-04-06,0.06,6,262,0,M130007874
+1069207315221139198,Built in 2023/3min from sta/ Near Shinjuku/502,555387707,圭太,杉並区,35.671877483134416,139.65870894000955,Entire home/apt,12852,1,24,2025-08-22,1.18,25,224,15,M130038028
+1073768441093422220,Renovated private room w/ bathroom in 2-story home,47766205,Shinya,杉並区,35.7123571655082,139.63037319481373,Private room,7000,3,9,2024-10-13,0.46,1,129,2,M130037908
+1081817543895624123,(KA6)Koenji loft apartment/Shinjuku&Kichijoji/JR,311979642,Selina,杉並区,35.7036709950237,139.64597353144927,Entire home/apt,12758,2,15,2025-08-31,0.81,54,342,10,M130050645
+1081840024727413053,(KA6F)Koenji Floft apartment/Shinjuku&Kichijoji/JR,311979642,Selina,杉並区,35.70333410555866,139.64721855810697,Entire home/apt,12758,2,23,2025-08-21,1.25,54,342,9,M130050645
+1084563826116553872,新宿駅まで14分/東京駅まで30分/方南町徒歩８分/最大２人/洗濯機/キッチン/電子レンジ,560445889,Chunling,杉並区,35.6879709,139.6541552,Entire home/apt,11460,2,13,2025-08-20,0.92,2,138,12,M130038449
+1088705318695149975,JR  荻窪駅から徒歩5分!新宿直通10分/中野駅まで電車3駅/和室/畳/balcony,450792956,Yasuhiko,杉並区,35.70753029999999,139.6196791,Entire home/apt,26736,2,60,2025-09-25,3.99,6,285,48,Hotels and Inns Business Act | 杉並区杉並保健所 | 5杉保衛環第404号
+1089475468210602890,明大前駅から徒歩10分/新宿まで電車で1本/首都高速に近い物件/ノゾミオ明大前c03,432956453,圭太,杉並区,35.67147,139.65482,Entire home/apt,8690,30,0,,,26,211,0,M130032911
+1090150592362619236,Near Asagaya Station/Japanese-style room/4ppl,42244167,浩史,杉並区,35.704005220005314,139.6333822107903,Entire home/apt,18277,1,67,2025-09-13,3.47,170,320,47,Hotels and Inns Business Act | 杉並区杉並保健所 | 31杉保衛環第381号
+1091243609851997149,(SA3)Kichijoji Loft Apartment/12mins to Shinjuku,311979642,Selina,杉並区,35.69802,139.59846,Entire home/apt,10722,2,28,2025-07-05,1.53,54,348,14,M130039159
+1091248599951703285,(SA3F)Kichijoji Loft Apartment/12mins to Shinjuku,311979642,Selina,杉並区,35.69598760893567,139.59658977949113,Entire home/apt,10722,2,4,2025-06-02,0.22,54,348,1,M130039159
+1091249752402254264,(SA1)Kichijoji Loft Apartment/12mins to Shinjuku,311979642,Selina,杉並区,35.69668510261956,139.5966362571573,Entire home/apt,12215,2,6,2024-09-13,0.32,54,335,0,M130039159
+1091251236846203916,(SA1F)Kichijoji Loft Apartment/12mins to Shinjuku,311979642,Selina,杉並区,35.69626910658751,139.5982766317281,Entire home/apt,12215,2,28,2025-09-08,1.59,54,335,25,M130039159
+1102609040914097963,"阿波踊り発祥地・お部屋広々
+高円寺駅徒歩4分・新宿駅付近
+８名0k！keep luggage ok",196271492,Takumi,杉並区,35.703415632131104,139.65248903949995,Entire home/apt,17575,1,65,2025-09-08,3.66,1,106,40,Hotels and Inns Business Act | 杉並区杉並保健所 | 5杉保衛環第286号
+1107901949406773877,Trendy Area・4m walk Koenji Sta・6m train Shinjuku!,111173491,Akito,杉並区,35.70837,139.65143,Entire home/apt,39941,3,25,2025-08-25,1.90,4,274,23,M130035585
+1108258485506855387,DoubleBed w/shower for you! Kids&3cats in a house,88581910,Takako,杉並区,35.67814,139.65569,Private room,17486,2,34,2025-09-16,1.81,1,313,19,M130032997
+1114337157848752536,102：高円寺駅より徒歩７分。新宿まで電車で７分のシェアハウスの個室,199825323,Miduki,杉並区,35.70225226555328,139.65121718491142,Private room,8286,3,21,2025-07-27,1.16,7,15,2,M130001782
+1114801248761539089,The Archaic / Luxury apartment near Shinjuku,228335576,Ted,杉並区,35.6729121,139.6222784,Entire home/apt,34572,1,82,2025-09-16,4.46,3,297,52,Hotels and Inns Business Act | 杉並区杉並保健所 | 5杉保衛環第395号
+1115824882448416977,(SB1)Kichijoji Loft Apartment/12mins to Shinjuku,311979642,Selina,杉並区,35.69723,139.59674,Entire home/apt,10586,2,8,2025-01-02,0.45,54,338,5,M130039159
+1115833116165432175,(SB1F)Kichijoji Loft Apartment/12mins to Shinjuku,311979642,Selina,杉並区,35.6972,139.59863,Entire home/apt,10586,2,20,2025-05-31,1.16,54,338,13,M130039159
+1115836883468412101,(KB3)Koenji loft apartment/Shinjuku&Kichijoji/JR,311979642,Selina,杉並区,35.70151,139.64629,Entire home/apt,15065,2,31,2025-09-22,1.75,54,328,17,M130050645
+1115848445722523753,(KB3F)Koenji loft apartment/Shinjuku&Kichijoji/JR,311979642,Selina,杉並区,35.702376257330734,139.64748889147324,Entire home/apt,15065,2,11,2025-09-09,0.64,54,328,7,M130050645
+1115851907922271114,(KA3F)Koenji loft apartment/Shinjuku&Kichijoji/JR,311979642,Selina,杉並区,35.70357862172191,139.6461666739198,Entire home/apt,13029,2,9,2025-05-11,0.50,54,337,5,M130050645
+1115854219440234550,(KB6F)Koenji loft apartment/Shinjuku&Kichijoji/JR,311979642,Selina,杉並区,35.70356,139.64623,Entire home/apt,15065,2,37,2025-09-09,2.11,54,307,22,M130050645
+1115858581576504592,(KA3)Koenji loft apartment/Shinjuku&Kichijoji/JR,311979642,Selina,杉並区,35.70295076297343,139.64533912720785,Entire home/apt,13029,2,25,2025-04-16,1.43,54,337,17,M130050645
+1115861938387933693,(KB6)Koenji loft apartment/Shinjuku&Kichijoji/JR,311979642,Selina,杉並区,35.70226137840192,139.64748746110473,Entire home/apt,15065,2,11,2025-03-29,0.62,54,307,10,M130050645
+1121183379406414626,103 New Open Enzo iogi  駅徒歩2分,177445547,Enzo,杉並区,35.723244,139.61467,Private room,7700,1,12,2025-04-29,0.72,36,110,8,Hotels and Inns Business Act | 杉並区杉並保健所 | 5杉保衛環第409号
+1123636384647023841,102 Enzo iogi,177445547,Enzo,杉並区,35.723244,139.61467,Private room,5005,1,19,2025-04-13,1.11,36,165,11,Hotels and Inns Business Act | 杉並区杉並保健所 | 5杉保衛環第409号
+1123685329602080100,105 Enzo iogi,177445547,Enzo,杉並区,35.723778353814524,139.61375227421374,Private room,5005,1,18,2025-06-11,1.11,36,119,11,Hotels and Inns Business Act | 杉並区杉並保健所 | 5杉保衛環第409号
+1124916920954524786,201 Enzo iogi,177445547,Enzo,杉並区,35.723244,139.61467,Private room,6443,1,28,2025-09-10,1.65,36,63,21,Hotels and Inns Business Act | 杉並区杉並保健所 | 5杉保衛環第410号
+1124931537708483608,202 Enzo iogi,177445547,Enzo,杉並区,35.723244,139.61467,Private room,7700,1,15,2025-06-10,0.88,36,119,10,Hotels and Inns Business Act | 杉並区杉並保健所 | 5杉保衛環第410号
+1124938795557541136,203 Enzo iogi,177445547,Enzo,杉並区,35.723244,139.61467,Private room,7700,1,30,2025-07-01,1.78,36,110,19,Hotels and Inns Business Act | 杉並区杉並保健所 | 5杉保衛環第410号
+1127316925185880054,206 Enzo iogi,177445547,Enzo,杉並区,35.72324,139.61467,Private room,6160,1,1,2024-06-29,0.07,36,173,0,Hotels and Inns Business Act | 杉並区杉並保健所 | 5杉保衛環第410号
+1131046195568156917,2 mins to Sta./Direct to Shinjuku/Modern Japanese,290344657,Toshi,杉並区,35.70570091978286,139.64876000674593,Entire home/apt,14786,2,56,2025-08-19,3.15,16,74,39,Hotels and Inns Business Act | 杉並区杉並保健所 | 5杉保衛環第406号
+1131067190148859175,2 mins to Sta/Direct to Shinjuku/Atelier room #401,290344657,Toshi,杉並区,35.70571398791385,139.64878146441805,Entire home/apt,16458,2,79,2025-09-25,4.50,16,77,57,Hotels and Inns Business Act | 杉並区杉並保健所 | 5杉保衛環第407号
+1131789761294284957,(KB4)Koenji loft apartment/Shinjuku&Kichijoji/JR,311979642,Selina,杉並区,35.70187,139.64754,Entire home/apt,15065,2,29,2025-06-23,1.70,54,330,19,M130050645
+1131793281205622241,(KB4F)Koenji loft apartment/Shinjuku&Kichijoji/JR,311979642,Selina,杉並区,35.70178,139.6459,Entire home/apt,18496,2,3,2024-06-12,0.18,54,330,0,M130050645
+1132576877677595007,Tranquil Apt near JR Line 8 Minutes to Shinjuku,379447928,Han,杉並区,35.70862,139.65292,Entire home/apt,15124,2,4,2025-08-05,0.31,102,165,3,M130040514
+1132579646879718194,Tranquil Apt near JR Line 8 Minutes to Shinjuku,379447928,Han,杉並区,35.70859,139.65478,Entire home/apt,15124,2,7,2025-08-31,0.43,102,206,6,M130040511
+1132581807704577485,Tranquil Apt near JR Line 8 Minutes to Shinjuku,379447928,Han,杉並区,35.70807,139.65264,Entire home/apt,15124,2,23,2025-09-11,1.44,102,174,17,M130040518
+1132583426390932377,Tranquil Apt near JR Line 8 Minutes to Shinjuku,379447928,Han,杉並区,35.70856928634162,139.65493132830719,Entire home/apt,15124,2,19,2025-09-09,1.18,102,179,13,M130040516
+1132585067886268822,Tranquil Apt near JR Line 8 Minutes to Shinjuku,379447928,Han,杉並区,35.70875,139.65489,Entire home/apt,15124,2,5,2025-04-04,0.30,102,176,3,M130040514
+1132586441869660476,Tranquil Apt near JR Line 8 Minutes to Shinjuku,379447928,Han,杉並区,35.70816,139.65279,Entire home/apt,15124,2,31,2025-09-02,1.85,102,185,24,M130040517
+1132587806743274593,Tranquil Apt near JR Line 8 Minutes to Shinjuku,379447928,Han,杉並区,35.70878,139.65468,Entire home/apt,15124,2,13,2025-08-29,0.94,102,201,10,M130040515
+1132589116105778235,Tranquil Apt near JR Line 8 Minutes to Shinjuku,379447928,Han,杉並区,35.70818,139.65447,Entire home/apt,15124,2,4,2025-09-15,0.33,102,205,4,M130040512
+1133866824527331998,【駅徒歩5分】128㎡/渋谷駅まで3駅15分/新宿駅まで2駅7分/送迎手配/3寝室！,37725252,Tadashi,杉並区,35.67167,139.65751,Entire home/apt,39222,3,74,2025-09-26,4.34,11,313,53,Hotels and Inns Business Act | 杉並区杉並保健所 | ６杉保衛環第２０７号
+1134626479659346425,No smoking Shinjuku Direct 2 beds studio Long stay,366084083,Maiko,杉並区,35.67397,139.62265,Entire home/apt,14786,3,31,2025-06-17,1.85,8,77,20,M130038836
+1137333079351568591,(KB5)Koenji loft apartment/Shinjuku&Kichijoji/JR,311979642,Selina,杉並区,35.70223,139.64743,Entire home/apt,11740,2,26,2025-07-15,1.57,54,328,16,M130050645
+1137367831593595992,(KB5F)Koenji loft apartment/Shinjuku&Kichijoji/JR,311979642,Selina,杉並区,35.702011683261404,139.64769335839088,Entire home/apt,13979,2,3,2025-03-30,0.37,54,328,3,M130050645
+1138632486980917740,"No smoking Shinjuku Direct, 2 Beds Studio",366084083,Maiko,杉並区,35.67403,139.62197,Entire home/apt,14786,3,3,2025-03-29,0.35,8,190,3,M130038808
+1138808667695696292,101：高円寺駅より徒歩7分。シェアハウスの個室。最大3名。,199825323,Miduki,杉並区,35.70218,139.65082,Private room,6343,3,18,2025-06-23,1.10,7,5,4,M130001782
+1141945814014295813,Nishi-ogikubo  西荻窪B 吉祥寺步行15分,518343589,Alice,杉並区,35.70076158894476,139.60415675393597,Entire home/apt,23786,3,14,2025-07-13,0.86,22,250,10,M130038137
+1142414529514546852,Exclusive Designer Room I - 10 min to Shinjuku,74905511,Yoshinobu,杉並区,35.6979134,139.6431169,Entire home/apt,13303,2,43,2025-09-22,3.40,2,319,41,M130043373
+1146831722267520062,APB高円寺(テラス付き） 杉並区の日当たり抜群、最寄り駅まで徒歩7分、最大２名様まで宿泊可能,678921947,Yanxi,杉並区,35.70834427841181,139.65490555725302,Entire home/apt,14541,2,10,2025-06-30,0.63,50,76,8,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第32号
+1146850625709344979,APB高円寺C-type 杉並区の日当たり抜群、最寄り駅まで徒歩7分、最大２名様まで宿泊可能,678921947,Yanxi,杉並区,35.70834,139.65345,Entire home/apt,12754,2,20,2025-09-20,1.40,50,72,17,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第32号
+1147701121249729345,Nishi-Ogikubo /Max 8 people/4LDKprivate space/Wifi,575378960,日下,杉並区,35.6975,139.59773,Entire home/apt,19978,1,2,2025-08-06,0.76,1,150,2,M130051615
+1147793011194573589,APB高円寺C-type 杉並区の日当たり抜群、最寄り駅まで徒歩7分、最大２名様まで宿泊可能,678921947,Yanxi,杉並区,35.7092256,139.6539177,Entire home/apt,12112,2,25,2025-06-23,1.55,50,80,18,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第32号
+1147816504784505355,APB高円寺C-type 杉並区の日当たり抜群、最寄り駅まで徒歩7分、最大２名様まで宿泊可能,678921947,Yanxi,杉並区,35.708035388104804,139.6548875141098,Entire home/apt,15307,2,15,2025-09-08,0.96,50,71,11,M130040511
+1147825226430399413,APB高円寺B-type 杉並区の日当たり抜群、最寄り駅まで徒歩7分、最大２名様まで宿泊可能,678921947,Yanxi,杉並区,35.7081,139.65305,Entire home/apt,12505,2,11,2025-09-09,0.86,50,86,10,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第32号
+1147830970872067727,APB高円寺B-type 杉並区の日当たり抜群、最寄り駅まで徒歩7分、最大２名様まで宿泊可能,678921947,Yanxi,杉並区,35.7092256,139.6539177,Entire home/apt,15307,2,4,2025-06-28,0.25,50,90,1,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第32号
+1147833277081380046,APB高円寺B-type 杉並区の日当たり抜群、最寄り駅まで徒歩7分、最大２名様まで宿泊可能,678921947,Yanxi,杉並区,35.7092256,139.6539177,Entire home/apt,14123,2,3,2025-02-12,0.19,50,90,1,M130040510
+1147835074441470935,APB高円寺B-type 杉並区の日当たり抜群、最寄り駅まで徒歩7分、最大２名様まで宿泊可能,678921947,Yanxi,杉並区,35.7092256,139.6539177,Entire home/apt,13985,2,12,2025-08-27,0.77,50,79,10,M130040508
+1147837602312341304,APB高円寺A-type 杉並区の日当たり抜群、最寄り駅まで徒歩7分、最大２名様まで宿泊可能,678921947,Yanxi,杉並区,35.7092256,139.6539177,Entire home/apt,12765,2,3,2024-10-02,0.19,50,96,1,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第32号
+1147845447359282962,APB高円寺A-type 杉並区の日当たり抜群、最寄り駅まで徒歩7分、最大２名様まで宿泊可能,678921947,Yanxi,杉並区,35.7092256,139.6539177,Entire home/apt,13746,2,5,2024-11-21,0.31,50,80,1,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第32号
+1147868750684414496,APB高円寺A-type 杉並区の日当たり抜群、最寄り駅まで徒歩7分、最大２名様まで宿泊可能,678921947,Yanxi,杉並区,35.7092256,139.6539177,Entire home/apt,13947,2,1,2024-06-24,0.06,50,86,0,M130040509
+1147877892931675278,APB高円寺A-type 杉並区の日当たり抜群、最寄り駅まで徒歩7分、最大２名様まで宿泊可能,678921947,Yanxi,杉並区,35.7092256,139.6539177,Entire home/apt,13746,2,3,2025-06-05,0.18,50,83,1,M130040507
+1150233084782353053,130㎡/5BR/28pax/3min Station/6min Shinjuku by train,476371170,順子,杉並区,35.70678,139.6487,Entire home/apt,24683,1,47,2025-09-19,2.87,63,116,39,Hotels and Inns Business Act | 杉並区杉並保健所 | 5杉保衛環第432号
+1150622753974244279,西荻漥 车站7分钟 四室一厅 2F,518343589,Alice,杉並区,35.70218,139.60605,Entire home/apt,13500,3,22,2025-09-15,1.43,22,246,18,M130038137
+1157007720579162548,2024年新築一軒家75㎡/新宿駅2駅・渋谷駅5駅/最寄駅まで徒歩6分/最大7人宿泊可（寝室3部屋）,229928127,Takao,杉並区,35.7077983,139.6398991,Entire home/apt,22050,2,41,2025-09-22,2.57,17,301,29,Hotels and Inns Business Act | 杉並区杉並保健所 | 6杉保衛環第303号
+1158257908019516501,新宿電車で9分 吉祥寺電車で4分/無料WiFi /自転車無料レンタル/長期滞在歓迎/102,526429351,Akemi And Yuta,杉並区,35.712775529076424,139.6115274181781,Entire home/apt,17478,2,33,2025-09-24,2.02,6,272,24,M130040650
+1159451617920129364,Top edge house 101,38655722,"Top Edge Co., Ltd.",杉並区,35.703647279333424,139.62998359325408,Private room,,1,7,2025-08-18,0.44,9,0,3,M130001125
+1159776888112900178,2 mins to Sta./Direct to Shinjuku/Japanese Deluxe,290344657,Toshi,杉並区,35.7057227,139.6487761,Entire home/apt,14722,2,54,2025-09-22,3.30,16,60,37,Hotels and Inns Business Act | 杉並区杉並保健所 | 5杉保衛環第406号
+1160410952764114015,【Monthly】JR阿佐谷駅まで徒歩１分、新宿8分/渋谷16分/最大4,11686184,Yoko,杉並区,35.70546,139.63389,Entire home/apt,20470,26,1,2025-02-28,0.14,2,158,1,M130002732
+1161167422403338488,1階シェアルームの個室　駅近　,93851602,Shigeru,杉並区,35.68218419531329,139.65875250734695,Private room,9310,3,3,2025-05-25,0.18,6,228,2,M130000001
+1161291736320434314,Long term stay in Suginami/15-min ride to Shibuya!,68828017,Nanako,杉並区,35.67885176382207,139.63487865681844,Entire home/apt,45000,30,3,2025-05-20,0.23,2,139,2,M130000079
+1162053698569742080,4 minutes walk from the station!,555388862,圭太,杉並区,35.702019120108396,139.649930353038,Entire home/apt,16660,30,0,,,21,239,0,M130038092
+1162314997011283750,Top edge house 201,38655722,"Top Edge Co., Ltd.",杉並区,35.70365,139.62997,Private room,,1,7,2024-08-24,0.43,9,0,0,M130001125
+1162336999721534306,新宿まで電車で7分！70平米広々最大9名可能/ベッド5台/B033,558808564,Kanta,杉並区,35.6756,139.65938,Entire home/apt,29586,3,59,2025-09-06,3.82,7,313,45,Hotels and Inns Business Act | 杉並区杉並保健所 | 6杉保衛環第206号
+1162907570351160827,301 Enzo iogi,177445547,Enzo,杉並区,35.72308840000001,139.6145505,Private room,6858,1,22,2025-07-02,1.46,36,45,16,M130041290
+1162916377027076634,302 Enzo iogi,177445547,Enzo,杉並区,35.72412430806874,139.61344446034764,Private room,6858,1,26,2025-09-10,1.68,36,64,18,M130041291
+1162921399581539494,303 Enzo iogi,177445547,Enzo,杉並区,35.72366,139.61568,Private room,6858,1,24,2025-09-07,1.72,36,72,23,M130041292
+1162925307467228954,305 Enzo iogi,177445547,Enzo,杉並区,35.72373681054942,139.61559969664538,Private room,6858,1,33,2025-07-13,2.11,36,79,24,M130041293
+1162933872551756235,306 Enzo iogi,177445547,Enzo,杉並区,35.72218,139.61518,Private room,,1,31,2025-09-11,1.97,36,0,25,M130041294
+1162937843320263514,401 Enzo iogi,177445547,Enzo,杉並区,35.72254,139.61381,Private room,6858,1,33,2025-09-06,2.26,36,66,29,M130041295
+1162943752344384574,402 Enzo iogi,177445547,Enzo,杉並区,35.72361745232829,139.6136730291927,Private room,6858,1,13,2025-08-02,0.90,36,78,12,M130041296
+1162948569334206414,403 Enzo iogi,177445547,Enzo,杉並区,35.72427845679926,139.61476842629204,Private room,6858,1,15,2025-06-19,1.00,36,74,12,M130041297
+1162953779138576489,406 Enzo iogi,177445547,Enzo,杉並区,35.724023106132556,139.61529255370394,Private room,6858,1,15,2025-07-22,0.95,36,91,8,M130041299
+1162958348069215110,405 Enzo iogi,177445547,Enzo,杉並区,35.72242424359239,139.61352875878745,Private room,6858,1,38,2025-09-11,2.45,36,83,31,M130041298
+1162971419540601402,501 Enzo iogi,177445547,Enzo,杉並区,35.723872380804586,139.61499282572376,Private room,6858,1,6,2025-07-03,0.66,36,76,6,M130041300
+1162976748232453781,502 Enzo iogi,177445547,Enzo,杉並区,35.72418744760286,139.61351685260738,Private room,4458,1,15,2025-07-16,1.04,36,104,12,M130041301
+1163114754170193154,506 Enzo iogi,177445547,Enzo,杉並区,35.72193126456903,139.61552726994623,Private room,6858,1,16,2025-09-09,1.21,36,74,15,M130041304
+1163179637090954109,505 Enzo iogi,177445547,Enzo,杉並区,35.72387,139.61524,Private room,6858,1,37,2025-08-23,2.66,36,70,33,M130041303
+1167510711601576188,Monthly Free. walk from Higashi-Koenji Station　,543430836,舞,杉並区,35.7005059,139.6598669,Entire home/apt,20000,28,2,2025-08-16,0.14,2,254,1,M130036572
+1167852795665231094,Trendy Area・7m walk to subway・9m train to Shinjuku,111173491,Akito,杉並区,35.69560530903404,139.64690314626264,Entire home/apt,32298,3,43,2025-09-25,2.76,4,282,35,Hotels and Inns Business Act | 杉並区杉並保健所 | 5杉保衛環第460号
+1168122593610607325,One room apartment. 20 min to Shinjuku,54434007,Shohei,杉並区,35.6752997,139.6594439,Entire home/apt,7655,1,85,2025-09-14,5.38,6,132,65,Hotels and Inns Business Act | 杉並区杉並保健所 | 6杉保衛環第2号
+1169128122610693829,"2min from the station, 10min to Shinjuku by train",419892638,聖芬,杉並区,35.683543585032254,139.65722966240315,Entire home/apt,11943,1,22,2024-11-23,1.39,2,13,8,M130039606
+1171231136047861291,private room with a patio and a cute dog,581282105,Yoshiko,杉並区,35.7066172,139.6111862,Private room,8286,1,46,2025-09-16,2.89,1,110,40,M130040588
+1171264878583832079,【連泊割】出張おすすめ！新宿・渋谷直通10分/コンビニ、銭湯徒歩2分/Wi-Fi/25㎡/最大4人,581386386,愛依,杉並区,35.68688449842014,139.63867848710606,Entire home/apt,7586,1,3,2025-04-04,0.25,2,165,3,M130033483
+1172041747571285345,"""TRIP PERCH"" 30㎡ 最大5名 上北沢駅から徒歩6分",36775835,Kei,杉並区,35.6729235,139.6222924,Entire home/apt,8832,1,28,2025-09-21,1.78,4,305,23,Hotels and Inns Business Act | 杉並区杉並保健所 | 6杉保衛環第9号
+1173061330926898054,2024オープン　最寄駅から新宿電車9分　まるまる貸切　最大6名可　閑静　サブカルチャー聖地,19729262,華,杉並区,35.6941801,139.6537645,Entire home/apt,27469,2,9,2024-12-26,0.61,1,229,3,Hotels and Inns Business Act | 杉並区杉並保健所 | 6杉保衛環第60号
+1179399085769508098,新宿一站，完全独立3层别墅，3室1厅1浴室2卫生间，全新装修，最大12人，交通便利,511947929,大倉,杉並区,35.6729,139.65962,Entire home/apt,35829,3,40,2025-09-13,3.16,28,269,39,M130043269
+1181431545105603420,6min Shinjuku/14min Shibuya/3min st/3bed.4person,533627789,Manabu,杉並区,35.6721692,139.6600862,Entire home/apt,16226,2,30,2025-09-07,2.05,3,345,25,Hotels and Inns Business Act |  世田谷区世田谷保健所 | 6世保生環第199号
+1181510608149733196,西荻漥 车站7分钟 四室一厅 1F,518343589,Alice,杉並区,35.70236846198596,139.60624028579295,Entire home/apt,13500,3,18,2025-08-06,1.30,22,221,17,M130038136
+1186553854926700484,新宿直通電車で7分！40平米最大6名可能/ベッド3台/B038,558808564,Kanta,杉並区,35.69257990537597,139.66456899691298,Entire home/apt,18006,3,43,2025-08-25,2.89,7,351,33,Hotels and Inns Business Act | 杉並区杉並保健所 | 6杉保衛環第10号
+1187518809786482087,【長期専用】Cozy retreat2,76857645,Hide And Aya,杉並区,35.70688,139.64644,Entire home/apt,16000,30,3,2024-12-15,0.21,6,241,2,M130035565
+1188509010520425833,［URBAN HOUSE NAKANO］Nakanofujimicho sta 2min,586125444,加納,杉並区,35.68958863863391,139.6638100045149,Entire home/apt,11943,1,27,2025-09-12,2.00,3,172,25,Hotels and Inns Business Act | 中野区保健所 | 6中健衛環第113号
+1193227754923176898,165㎡貸切|新宿電車10分|駅歩き5分|3寝室|巨大プレイルーム|2シャワー&バスタブ|3お手洗い,586812468,Kyoko,杉並区,35.6834691,139.6534792,Entire home/apt,74729,3,68,2025-09-23,4.53,1,304,49,Hotels and Inns Business Act | 杉並区杉並保健所 | 5杉保衛環第462号
+1193919378510105476,(SB3)Kichijoji Loft Apartment/12mins to Shinjuku,311979642,Selina,杉並区,35.69616,139.5967,Entire home/apt,10586,2,3,2024-12-31,0.22,54,346,2,M130039159
+1194052339460685957,(SB3F)Kichijoji Loft Apartment/12mins to Shinjuku,311979642,Selina,杉並区,35.69773814809099,139.59703343793964,Entire home/apt,10586,2,19,2025-09-08,1.38,54,346,15,M130039159
+1196873601933978781,Ⅱ.南阿佐ヶ谷駅1分 新宿15分 1LDK(29㎡)日本らしい生活を楽しめる上質な家,538217653,Akiyo,杉並区,35.70023,139.6361,Entire home/apt,22858,30,3,2025-01-01,0.24,2,180,2,M130036695
+1199027343782843589,JR新宿駅から電車で１０分　JR高円寺駅から徒歩3分　一棟貸し切り　,491149645,つくいリゾート,杉並区,35.70925,139.6485,Entire home/apt,34715,1,21,2025-08-16,1.47,12,174,20,M130042233
+1205414639618459077,西荻窪駅徒歩６分！新宿までJR中央総武線で１本！ニンテンドースイッチあり！,271539507,Star,杉並区,35.69903101913972,139.59928149575376,Entire home/apt,22286,2,29,2025-09-15,2.06,3,341,22,M130035827
+1206845385619636623,2 mins to Sta/Direct to Shinjuku/Atelier room #403,290344657,Toshi,杉並区,35.7057227,139.6487761,Entire home/apt,14722,2,37,2025-09-16,2.59,16,69,30,Hotels and Inns Business Act | 杉並区杉並保健所 | 5杉保衛環第407号
+1207643201399215326,明大前駅から徒歩10分/新宿まで電車で1本/首都高速に近い物件/ノゾミオ明大前a01,432956453,圭太,杉並区,35.672,139.65275,Entire home/apt,10430,30,0,,,26,106,0,M130030903
+1209161876463313115,明大前駅から徒歩10分/新宿まで電車で1本/首都高速に近い物件/ノゾミオ明大前a03,432956453,圭太,杉並区,35.67148,139.65303,Entire home/apt,10180,30,0,,,26,153,0,M130031653
+1210428531612268563,"猫と緑と共生するモダン和風の家２/3-
+ 1階Cozy room in black",36119039,Mitsuko,杉並区,35.7046104,139.658382,Private room,16232,3,14,2025-09-13,1.10,3,230,12,M130024406
+1212818191178204292,マンスリー用 /長期割引あり/ 新宿電車で9分 吉祥寺電車で4分/無料wifi/滞在中清掃サービス,526429351,Akemi And Yuta,杉並区,35.71114063893619,139.61213580494734,Entire home/apt,18572,30,2,2025-05-05,0.22,6,318,2,M130034856
+1213572149948503216,マンスリー用 / 長期割引あり/ 新宿電車で9分 吉祥寺電車で4分/無料wifi/滞在中清掃サービス,526429351,Akemi And Yuta,杉並区,35.71115166705928,139.61136067138563,Entire home/apt,19572,30,0,,,6,342,0,M130035173
+1213594593135387198,マンスリー用/長期割引あり/ 新宿電車で9分 吉祥寺電車で4分/無料wifi/滞在中清掃サービス,526429351,Akemi And Yuta,杉並区,35.71098,139.61148,Entire home/apt,19572,30,0,,,6,284,0,M130040650
+1218614711782566164,apartment hotel Tasu Toco room 2,19611972,岩間,杉並区,35.7049,139.6001,Entire home/apt,8017,3,34,2025-09-11,2.68,4,208,32,Hotels and Inns Business Act | 杉並区杉並保健所 | 6杉保衛環第141号
+1221550137362996102,Max 6 people /10 minutes to Shinjuku,593651048,智史,杉並区,35.67253,139.65914,Entire home/apt,15609,2,17,2025-06-18,1.49,2,148,17,M130042911
+1222194813211518099,Max2 people/Free Wi-Fi/10min to Shinjuku,593651048,智史,杉並区,35.67274,139.66122,Entire home/apt,10466,2,6,2025-04-09,0.49,2,158,5,M130042910
+1226406977578557993,MAX 16人/上北沢駅9分/静かな住宅街/交通便利/新宿まで電車で10分/一棟貸切ヴィラ,597012363,Yalan,杉並区,35.67350776401893,139.6227918006703,Entire home/apt,30277,1,11,2025-08-26,0.99,1,241,11,M130044299
+1228568672678999193,10 min. to Shinjuku/  2 min. walk to  sta. / d03,479148373,圭太,杉並区,35.69035,139.66584,Entire home/apt,30204,1,28,2025-09-18,2.31,36,217,28,M130043286
+1229987267205938778,西荻窪アパートメント・貸切静かな環境・新宿渋谷は電車で１５分,61936892,浩司,杉並区,35.6936219,139.5964448,Entire home/apt,6786,2,27,2025-09-24,2.06,3,50,25,M130043240
+1233805419152784511,NEW! | Koenji House | 3BR Family-Friendly Haven,4626879,Tracey,杉並区,35.70735,139.65264,Entire home/apt,52540,1,5,2025-08-12,0.55,9,263,5,M130043824
+1237369164206071169,Koenji cozy retreat　ワイドダブルベッド&EXベッド,76857645,Hide And Aya,杉並区,35.70859623509149,139.64659327342804,Entire home/apt,39429,3,16,2025-09-22,1.42,6,81,16,M130041354
+1238768318933559354,アクセス良好！/MAX16人/上北沢駅から9分/静かな住宅街/新宿まで電車で10分/一棟貸切ヴィラ,650304225,辰之助,杉並区,35.6732958,139.6218302,Entire home/apt,30277,1,16,2025-08-02,1.39,1,241,16,M130044299
+1244680728046567638,日本の生活文化を感じられる地域の101平米の広々ワンルーム,651774747,義樹,杉並区,35.69167393617339,139.6540671735591,Entire home/apt,22216,1,4,2024-12-08,0.35,1,118,4,M130043243
+1249116652043941721,阿佐ヶ谷駅｜新宿・渋谷・上野・浅草など都心へのアクセス便利｜長期滞在にもおすすめ,88467238,郷原,杉並区,35.707331564274774,139.62967711719665,Entire home/apt,95000,2,5,2025-04-01,0.45,20,51,5,M130043996
+1252461476099852545,5 min walk to Honancho / with auto lock/a02,490397315,Sumyca,杉並区,35.68234,139.65319,Entire home/apt,22800,30,0,,,13,130,0,M130032103
+1253322148893552749,明大前駅から徒歩10分/新宿まで電車で1本/首都高速に近い物件/ノゾミオ明大前c01,432956453,圭太,杉並区,35.67154,139.65504,Entire home/apt,8930,30,0,,,26,168,0,M130030687
+1253324085803075379,明大前駅から徒歩10分/新宿まで電車で1本/首都高速に近い物件/ノゾミオ明大前e01,432956453,圭太,杉並区,35.671791720520794,139.65271323564525,Entire home/apt,10180,30,0,,,26,114,0,M130030686
+1253388628412521438,New長屋として使えます、静かな住宅地にあります。場所は高円寺駅から４分,367379600,優維,杉並区,35.702642846497284,139.6535468859472,Entire home/apt,23208,2,14,2025-09-27,1.26,4,270,14,M130028792
+1254327461624991862,新築！2駅利用可！中野駅＆東高円寺駅/モダンで清潔/新宿・東京・銀座・赤坂見附まで電車1本！,48293774,Yoshie,杉並区,35.70234296875416,139.66063055934222,Entire home/apt,,2,39,2025-09-19,3.55,2,0,39,M130044996
+1254864915417838640,Kugayama Villa/3 mins to Sta./Direct to Shibuya,61919502,Li,杉並区,35.68788730000001,139.6022507,Entire home/apt,28029,2,24,2025-08-16,2.67,1,241,24,M130046086
+1256958822901058423,Japandi Hideaway by Architect | 15min to Shinjuku,554967976,Takenori,杉並区,35.6726217902453,139.62288044393063,Entire home/apt,12375,2,58,2025-09-26,5.27,1,187,58,Hotels and Inns Business Act | 杉並区杉並保健所 | 6杉保衛環第151号
+1257902932668777965,新宿まで15分/阿佐ヶ谷駅まで徒歩7分/50平米/最大4名/周辺環境が充実/無料WiFi/キッチン有,42573793,Shota,杉並区,35.708939022668524,139.63586333068378,Entire home/apt,13478,4,5,2025-08-03,0.65,12,95,5,Hotels and Inns Business Act | 杉並区杉並保健所 | 2杉保衛環第170号
+1258008963430782195,新宿まで15分/阿佐ヶ谷駅まで徒歩7分/50平米/最大4名/周辺環境が充実/無料WiFi/キッチン有,42573793,Shota,杉並区,35.708956,139.6359043,Entire home/apt,13478,4,9,2025-08-14,0.88,12,104,9,Hotels and Inns Business Act | 杉並区杉並保健所 | 2杉保衛環第170号
+1263339880535853972,"Cozy Tokyo Stay | Private Lift, 15min to Shinjuku",656207544,Tomoharu,杉並区,35.6686402,139.6334439,Private room,11805,1,18,2025-09-14,2.25,1,287,18,M130047406
+1267015943997739347,Sakura Bloom Separate House,657021060,爱彼迎旅行家,杉並区,35.67539526867371,139.6566868391466,Entire home/apt,45000,1,0,,,1,345,0,M130042069
+1267255898137891723,新宿駅まで電車6分、高円寺駅から徒歩8分＃2,531670120,勝亦,杉並区,35.707161681168294,139.65596606970405,Entire home/apt,13746,1,17,2025-09-24,1.57,3,207,17,M130017245
+1268449791621292222,PopularTown Koenji 7min walk/Max6ppl/6min Shinjuku,654119715,壮平,杉並区,35.707860000004516,139.65023943016635,Entire home/apt,7065,2,38,2025-09-18,3.39,1,293,38,Hotels and Inns Business Act | 中野区保健所 | 6中健衛環第356号
+1273820014430438945,5 min to Sta./4 people/Shinjuku/Free Wi-Fi/Netflix,230910892,Risa & Kei,杉並区,35.70971,139.63488,Entire home/apt,,3,13,2025-09-11,1.19,63,0,13,M130032608
+1277887067485896165,FreeParking｜106㎡2Bath｜6minJR Koenji｜6min Shinjuku,570833263,Zhang,杉並区,35.70374198072401,139.64621264487505,Entire home/apt,47626,1,73,2025-09-26,6.89,1,157,73,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第64号
+1277910212811268204,（新宿后花园）6分直达新宿/光纤Wi-Fi /3个房间最多入住6人/车站5分/独立2层,213330754,美奈,杉並区,35.67299,139.65993,Entire home/apt,18941,2,18,2025-09-03,2.01,5,225,18,M130035226
+1278017072111201743,TOKYO/Shinjuku area/Spacious 60㎡/7Beds/12ppl,239049998,Haru,杉並区,35.6728592,139.6223614,Entire home/apt,40912,3,2,2025-02-10,0.23,12,270,2,M130046063
+1278017077072621341,TOKYO/Shinjuku area/Spacious 80㎡/6Beds/11ppl,239049998,Haru,杉並区,35.6728592,139.6223614,Entire home/apt,36438,3,2,2025-04-16,0.22,12,270,2,M130046064
+1278017081896544503,TOKYO/Direct to Shinjuku!/Spacious 20㎡/4 people,239049998,Haru,杉並区,35.6728592,139.6223614,Entire home/apt,18171,3,2,2025-05-13,0.22,12,365,2,M130046065
+1278017083450503063,TOKYO/Direct to Shinjuku!/Spacious 23㎡/4 people,239049998,Haru,杉並区,35.6728592,139.6223614,Entire home/apt,17285,3,3,2025-07-22,0.41,12,231,3,M130046066
+1278017088032093258,TOKYO/Shinjuku area/Spacious 20㎡/4ppl/wifi,239049998,Haru,杉並区,35.6728592,139.6223614,Entire home/apt,15394,3,2,2025-02-28,0.27,12,209,2,M130046067
+1279385528716313059,10 min walk from Sta/b03,432956453,圭太,杉並区,35.67187307994453,139.65291666920277,Entire home/apt,8690,30,0,,,26,191,0,M130031810
+1279390896029366734,10 min walk from Sta/b04,432956453,圭太,杉並区,35.671523868049924,139.65490747728634,Entire home/apt,8930,30,0,,,26,207,0,M130032910
+1279394405336414671,10 min walk from Sta/d03,432956453,圭太,杉並区,35.67158248323714,139.6549462526615,Entire home/apt,10180,30,0,,,26,135,0,M130032300
+1279397254096098141,10 min walk from Sta/d04,432956453,圭太,杉並区,35.67117,139.65497,Entire home/apt,10430,30,0,,,26,127,0,M130030173
+1279506600869516996,5 min walk to Honancho / with auto lock/a01,490397315,Sumyca,杉並区,35.68454,139.65387,Entire home/apt,10680,30,0,,,13,183,0,M130032102
+1279510092924115199,5 min walk to Honancho / with auto lock/ b03,490397315,Sumyca,杉並区,35.68393005571076,139.6544204482244,Entire home/apt,15410,30,1,2025-08-29,0.94,13,148,1,M130032108
+1279513607761139899,5 min walk to Honancho / with auto lock/c01,490397315,Sumyca,杉並区,35.68226,139.65451,Entire home/apt,14300,30,0,,,13,193,0,M130032109
+1280388966841660327,"1 min from the sta! Quiet, cozy space for up to 3",324761252,Guangri,杉並区,35.69877495369014,139.65797814907378,Entire home/apt,9305,2,5,2025-05-11,0.45,5,323,5,M130044548
+1283053252862379503,Beautiful and calm interior/c03,479148373,圭太,杉並区,35.701935045879274,139.65043372822458,Entire home/apt,15213,1,27,2025-08-18,2.50,36,210,27,M130045094
+1283621955026202085,Beautiful and calm interior/c07,479148373,圭太,杉並区,35.704138010229855,139.65158156844086,Entire home/apt,15213,1,23,2025-09-11,2.28,36,208,23,M130045095
+1283621966186914758,Beautiful and calm interior/e04,479148373,圭太,杉並区,35.70397,139.65143,Entire home/apt,17354,1,14,2025-07-27,1.73,36,109,14,M130045098
+1283621969967376271,Beautiful and calm interior/f04,479148373,圭太,杉並区,35.702390187815915,139.6518274094142,Entire home/apt,17354,1,14,2025-09-21,1.32,36,98,14,M130045100
+1283670921273088077,4 minutes walk from Sta/Beautiful and calm/c03,479148373,圭太,杉並区,35.70395,139.65182,Entire home/apt,15600,30,0,,,36,210,0,M130045094
+1283670926054807242,"Convenient transportation,4 min. walk from Sta/c07",479148373,圭太,杉並区,35.70337,139.65033,Entire home/apt,10060,30,2,2025-07-06,0.41,36,208,2,M130045095
+1283670930025866938,4 minutes walk from Koenji Sta/Beautiful and calm/,479148373,圭太,杉並区,35.70195449208463,139.65067602308477,Entire home/apt,13758,30,0,,,36,86,0,M130045096
+1283670933520293833,4 minutes walk from Koenji Sta/Beautiful and calm/,479148373,圭太,杉並区,35.7018877171943,139.65054534366638,Entire home/apt,13758,30,0,,,36,109,0,M130045098
+1283670937330344912,Beautiful and calm interior/f04,479148373,圭太,杉並区,35.70242,139.65215,Entire home/apt,13758,30,1,2025-08-31,1,36,98,1,M130045100
+1284423149121813601,"2min from the station, 10min to Shinjuku by train",419892638,聖芬,杉並区,35.68317,139.6587,Entire home/apt,,1,32,2025-09-08,3.16,2,0,32,M130044982
+1288352797886005125,"新宿10分、駅徒歩3分[セミダブルベット2台]1LDK,最大4名",651727175,Tomoa,杉並区,35.69008208306134,139.66258878869564,Entire home/apt,13708,1,7,2025-09-22,2.28,1,293,7,M130052075
+1293802566650002381,ToyamaHouse2-202,663067038,芸菁,杉並区,35.71523988847853,139.63702924027461,Entire home/apt,8658,2,1,2025-04-22,0.19,2,23,1,M130045283
+1293964415898486846,7 min from Koenji sta | near Shinjuku | fast WiFi,588781465,Moka,杉並区,35.7096397,139.6495588,Entire home/apt,22000,2,44,2025-09-24,4.36,3,186,44,Hotels and Inns Business Act | 杉並区杉並保健所 | 6杉保衛環第246号
+1299797915627586511,"Shinjuku area 50㎡,5beds+2,max7",488320629,Sachiko,杉並区,35.70458,139.63366,Entire home/apt,41850,3,1,2025-03-29,0.16,9,321,1,M130046216
+1304867030254342839,Shinjuku Stn 12min/Shibuya Stn 22min/Max 8ppl /4BD,657219627,野中,杉並区,35.70617,139.60092,Entire home/apt,18975,1,32,2025-09-16,3.42,1,305,32,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第18号
+1305995642741569061,【New Open】新宿まで直通電車/上北沢駅/最大3名宿泊/近隣にコンビニ、スーパーあり,59549881,知美,杉並区,35.67383888115373,139.621565636663,Entire home/apt,11040,1,12,2025-09-15,1.71,5,328,12,Hotels and Inns Business Act | 杉並区杉並保健所 | ６杉保衛環第２１０号
+1306267962192693581,【New Open】新宿まで直通電車/上北沢駅/最大3名宿泊/近隣にコンビニ、スーパーあり,59549881,知美,杉並区,35.67197,139.62303,Entire home/apt,11040,1,20,2025-09-09,2.65,5,328,20,Hotels and Inns Business Act | 杉並区杉並保健所 | ６杉保衛環第２１１号
+1306433175756521863,Homestay Nishi-Ogikubo,665827491,Shinji,杉並区,35.70046,139.60656,Private room,4892,4,0,,,1,42,0,M130047998
+1307737572600686482,"4min walk from Stn,
+Wonderful stay at cosy House",584625549,Masayoshi,杉並区,35.70086145879529,139.6589734779549,Entire home/apt,15930,2,4,2025-04-22,0.44,1,58,4,M130045692
+1310011541036479258,Ogikubo丨12minutes to Shinjuku by train丨WiFi丨303,665124658,昌平,杉並区,35.7048,139.61592,Entire home/apt,17793,1,15,2025-08-15,1.62,8,59,15,M130045688
+1310024298978048900,Ogikubo丨12minutes to Shinjuku by train丨WiFi丨502,665124658,昌平,杉並区,35.70519,139.6162,Entire home/apt,27938,1,11,2025-09-25,1.34,8,51,11,M130045689
+1312364299055528709,モント方南町1階[Atype]20㎡/おしゃれで静かな新築ミニホテル/新宿まで電車で12分,547945986,Jun,杉並区,35.68890545198597,139.65375894047546,Entire home/apt,7095,1,18,2025-09-10,2.00,17,326,18,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第162号
+1312410702474710535,モント方南町2階[Atype]20㎡/おしゃれで静かな新築ミニホテル/新宿まで電車で12分,547945986,Jun,杉並区,35.6887791,139.6538555,Entire home/apt,6704,1,16,2025-09-15,1.77,17,324,16,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第162号
+1312416473081472984,モント方南町3階[Atype]20㎡/おしゃれで静かな新築ミニホテル/新宿まで電車で12分,547945986,Jun,杉並区,35.68891852286964,139.65376966931152,Entire home/apt,7211,1,20,2025-09-11,2.12,17,340,20,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第162号
+1312422503456873722,モント方南町1階[Btype]20㎡/おしゃれで静かな新築ミニホテル/新宿まで電車で12分,547945986,Jun,杉並区,35.6887791,139.6538555,Entire home/apt,7510,1,15,2025-09-13,1.81,17,137,15,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第162号
+1312431958549987252,モント方南町2階[Btype]20㎡/おしゃれで静かな新築ミニホテル/新宿まで電車で12分,547945986,Jun,杉並区,35.6887791,139.6538555,Entire home/apt,6463,1,27,2025-09-24,2.87,17,338,27,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第162号
+1312436385967295012,モント方南町3階[Btype]20㎡/おしゃれで静かな新築ミニホテル/新宿まで電車で12分,547945986,Jun,杉並区,35.68891852286964,139.65376430489349,Entire home/apt,7102,1,19,2025-09-08,2.02,17,335,19,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第162号
+1312439774562061560,モント方南町1階[Ctype]20㎡/おしゃれで静かな新築ミニホテル/新宿まで電車で12分,547945986,Jun,杉並区,35.6887791,139.6538555,Entire home/apt,6361,1,28,2025-09-23,3.00,17,310,28,Hotels and Inns Business Act | 江東区保健所 | ６江健生環き第９６号
+1312447014026511245,モント方南町2階[Ctype]20㎡/おしゃれで静かな新築ミニホテル/新宿まで電車で12分,547945986,Jun,杉並区,35.6887791,139.6538555,Entire home/apt,6533,1,25,2025-09-18,2.72,17,331,25,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第162号
+1312452541529394065,モント方南町3階[Ctype]20㎡/おしゃれで静かな新築ミニホテル/新宿まで電車で12分,547945986,Jun,杉並区,35.6887791,139.6538555,Entire home/apt,6721,1,24,2025-08-28,2.69,17,327,24,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第162号
+1312457264395125283,モント方南町4階[Dtype]27㎡/おしゃれで静かな新築ミニホテル/新宿まで電車で12分,547945986,Jun,杉並区,35.6887791,139.6538555,Entire home/apt,10526,1,31,2025-09-23,3.30,17,305,31,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第162号
+1313388918051635477,One train ride from Shinjuku/b02,432956453,圭太,杉並区,35.67174055355608,139.65449908874277,Entire home/apt,11040,30,0,,,26,109,0,M130032334
+1315544957649569025,新宿14分・東京駅30分｜静かな住宅街の快適2DK｜最大4名・キッチン＆Wi-Fi完備,560445889,Chunling,杉並区,35.68872907216335,139.65296079096456,Entire home/apt,11736,2,3,2025-09-15,0.49,2,126,3,M130046553
+1316370534577425302,Morden stylish villa/ Max15p/5min JR Asagaya Sta.,63598456,優姫,杉並区,35.70737939170873,139.63149800462537,Entire home/apt,33535,1,21,2025-09-07,2.31,25,84,21,M130046552
+1317126534608014819,Shibuya・Shinjuku 30 min｜12 min walk to Shin-Kōenji,166959930,Shizuka,杉並区,35.6948,139.64015,Entire home/apt,8035,3,4,2025-09-23,0.54,4,91,4,M130046554
+1318337433400681561,Tokyo Honancho Housel/Comfy Luxury/10min Shinjuku,654575899,村澤,杉並区,35.6834078,139.6549739,Entire home/apt,37063,2,24,2025-09-26,2.81,6,155,24,Hotels and Inns Business Act | 杉並区杉並保健所 | 6杉保衛環第286号
+1318896364828476774,渋谷14分/新宿6分/代田橋駅3分/都心アクセス抜群の快適ステイ,533627789,Manabu,杉並区,35.67217355787544,139.6600862,Entire home/apt,19335,3,23,2025-09-27,2.59,3,250,23,Hotels and Inns Business Act | 世田谷区世田谷保健所 | 6世保生環第829号
+1328760012166571352,One room apartment. 20 min to Shinjuku. #22,54434007,Shohei,杉並区,35.6758,139.66045,Entire home/apt,7465,1,42,2025-09-15,4.83,6,202,42,Hotels and Inns Business Act | 杉並区杉並保健所 | 6杉保衛環第305号
+1335092832371178789,エレベーターあり！高円寺駅近徒歩5分270m   6人宿泊可能　新宿駅まで6分　,673260169,野口,杉並区,35.70240805054896,139.6492016469094,Entire home/apt,17494,2,9,2025-09-23,1.48,1,114,9,M130048058
+1336576147633496502,渋谷・新宿30分以内｜新高円寺駅12分｜長期滞在用,166959930,Shizuka,杉並区,35.69373,139.63999,Entire home/apt,,30,0,,,4,91,0,M130046554
+1341034457945609769,新宿12分の日本家屋　骨董とグルメの街・西荻窪駅徒歩4分/ジブリの森至近/家族・夫婦向き/動画視聴可,35777092,教平,杉並区,35.701633,139.6004118,Entire home/apt,22295,1,12,2025-09-13,2.11,6,305,12,Hotels and Inns Business Act | 杉並区杉並保健所 | 6杉保衛環第365号
+1345398822462937880,新宿まで１０分 渋谷まで１５分 高速フリーwifi　新築ビラ２浴室２トイレ,44066901,Yuqian,杉並区,35.66961277924255,139.63179812727296,Entire home/apt,19400,2,16,2025-09-09,2.06,44,261,16,Hotels and Inns Business Act | 杉並区杉並保健所 | 6杉保衛環第226号
+1346314764363377684,【長期用】モダン建築に滞在 (個室2・ローカルに出会える街）,36335780,Yoko,杉並区,35.71610418426572,139.59818128340714,Private room,7450,28,1,2025-07-27,0.46,5,76,1,M130000309
+1346816276861928724,広々100㎡・4つの寝室・キッチンダイニングのある西荻のおうち・新宿まで電車で12分,676338132,健二,杉並区,35.69967319982476,139.5988944625656,Entire home/apt,32540,2,9,2025-08-05,1.39,1,314,9,Hotels and Inns Business Act | 杉並区杉並保健所 | 6杉保衛環第236号
+1347679540833735356,新高円寺駅徒歩２分｜新宿駅13分｜商店街｜ 16㎡｜MAX 2｜ゲーム｜東京　池袋　中野　渋谷,676533859,起子,杉並区,35.69882509523336,139.64743707329035,Entire home/apt,11825,2,31,2025-09-28,5.05,1,170,31,Hotels and Inns Business Act | 杉並区杉並保健所 | 6杉保衛環第377号
+1352126805753258171,新宿附近桜上水民宿C房,331252115,Li,杉並区,35.6681213,139.6337935,Private room,12946,2,2,2025-08-06,1.02,3,32,2,M130018287
+1354864545539503900,"Shinjuku area,100㎡, 8beds+2, max11",488320629,Sachiko,杉並区,35.69759,139.65881,Entire home/apt,38509,4,9,2025-08-23,1.47,9,252,9,M130047937
+1356571434392107556,Top edge house 203,38655722,"Top Edge Co., Ltd.",杉並区,35.7035558,139.6299675,Private room,,1,5,2025-06-25,0.82,9,0,5,M130001125
+1357084786838127703,"New designer house, 10min to Shinjuku (1f/ 40m²)",678931432,Kiheon,杉並区,35.69747962332037,139.65274058202147,Entire home/apt,16965,1,16,2025-09-09,2.21,3,181,16,M130048020
+1357851236580948092,spacious 110㎡ modern japanese home | 5 beds,679116728,海人,杉並区,35.6966466,139.6380461,Entire home/apt,29465,2,10,2025-09-17,1.64,1,147,10,Hotels and Inns Business Act | 杉並区杉並保健所 | 6杉保衛環第189号
+1358649852511341282,Top edge house 103,38655722,"Top Edge Co., Ltd.",杉並区,35.7035558,139.6299675,Private room,,1,7,2025-09-01,1.16,9,0,7,M130001125
+1358735099013965277,新宿一站，完全独立3层别墅，3室1厅1浴室2卫生间，全新装修，最大12人，交通便利,511947929,大倉,杉並区,35.67365,139.66165,Entire home/apt,180286,3,1,2025-04-06,0.17,28,267,1,M130043269
+1362874972917775895,Japanese Modern | Great Access Shinjuku|4Bed 55㎡,148200213,Takeo,杉並区,35.70712445284248,139.61737286299467,Entire home/apt,34895,2,27,2025-09-14,4.18,1,152,27,Hotels and Inns Business Act | 杉並区杉並保健所 | 6杉保衛環第363号
+1368050638547729056,"〈Lovely Koenji〉Best for 2 new room ,4mins to sta.",62389310,Yuwei,杉並区,35.7066364,139.6463551,Entire home/apt,8372,2,13,2025-09-10,1.90,11,282,13,M130040626
+1368058822518913117,〈Lovely Koenji〉New deco room 4mins to sta.,62389310,Yuwei,杉並区,35.7066364,139.6463551,Entire home/apt,12180,2,7,2025-09-12,1.02,11,273,7,M130040627
+1368128062610860481,〈Lovely Koenji〉New 2LDK family room 4mins to sta.,62389310,Yuwei,杉並区,35.7066364,139.6463551,Entire home/apt,18716,2,10,2025-09-12,1.49,11,248,10,M130040629
+1369236863638154185,新高円寺から徒歩7分/新宿直通10分/立地良好/1R/セミダブルベッド1台/最大2名宿泊可能,153095665,Tsuyoshi,杉並区,35.69731160000001,139.643631,Entire home/apt,11160,1,10,2025-09-24,1.76,34,242,10,M130047592
+1369261286712573611,7 minutes walk from the nearest station！/a01,538306999,絵梨,杉並区,35.6737,139.62099,Entire home/apt,10028,1,0,,,47,129,0,M130048409
+1369264777139113308,7 minutes walk from the nearest station！/a01,538306999,絵梨,杉並区,35.67304,139.62284,Entire home/apt,9360,30,0,,,47,129,0,M130048409
+1369267582042645452,7 minutes walk from the nearest station！/a02,538306999,絵梨,杉並区,35.67359,139.62222,Entire home/apt,10028,1,0,,,47,90,0,M130048410
+1369270756598127815,7 minutes walk from the nearest station！/a02,538306999,絵梨,杉並区,35.67297,139.62281,Entire home/apt,9360,30,0,,,47,90,0,M130048410
+1369276818969287232,7 minutes walk from the nearest station！/a03,538306999,絵梨,杉並区,35.67354,139.62231,Entire home/apt,10028,1,0,,,47,148,0,M130048411
+1369279362339262292,7 minutes walk from the nearest station！/a03,538306999,絵梨,杉並区,35.67327635469456,139.62080575310944,Entire home/apt,9360,30,0,,,47,148,0,M130048411
+1369282357766180845,7 minutes walk from the nearest station！/a04,538306999,絵梨,杉並区,35.67206430541798,139.6226881491703,Entire home/apt,10028,1,0,,,47,148,0,M130048412
+1369285042369633762,7 minutes walk from the nearest station！/a04,538306999,絵梨,杉並区,35.67213,139.62266,Entire home/apt,9360,30,0,,,47,145,0,M130048412
+1369288546759906626,7 minutes walk from the nearest station！/b01,538306999,絵梨,杉並区,35.67338,139.62127,Entire home/apt,10028,1,3,2025-07-12,0.46,47,139,3,M130048413
+1369290746625839087,7 minutes walk from the nearest station！/b01,538306999,絵梨,杉並区,35.67232,139.6229,Entire home/apt,9050,30,0,,,47,139,0,M130048413
+1369298557368677541,7 minutes walk from the nearest station！/b02,538306999,絵梨,杉並区,35.673760062376076,139.6221244640793,Entire home/apt,10028,1,3,2025-09-24,0.46,47,154,3,M130048414
+1369301097818624396,7 minutes walk from the nearest station！/b02,538306999,絵梨,杉並区,35.67304447960359,139.62250674297073,Entire home/apt,9050,30,2,2025-09-12,1.22,47,154,2,M130048414
+1369307418591990139,7 minutes walk from the nearest station！/b03,538306999,絵梨,杉並区,35.67199,139.6226,Entire home/apt,9050,30,0,,,47,146,0,M130048416
+1369310295719270216,7 minutes walk from the nearest station！/b04,538306999,絵梨,杉並区,35.6731,139.62251,Entire home/apt,10028,1,4,2025-07-01,0.61,47,89,4,M130048418
+1369312512421361492,7 minutes walk from the nearest station！/b04,538306999,絵梨,杉並区,35.67365,139.62088,Entire home/apt,9050,30,1,2025-07-31,0.49,47,89,1,M130048418
+1369326600812091550,7 minutes walk from the nearest station！/c01,538306999,絵梨,杉並区,35.672995667996965,139.62265428430706,Entire home/apt,10028,1,1,2025-03-19,0.15,47,147,1,M130048419
+1369329579931641653,7 minutes walk from the nearest station！/c01,538306999,絵梨,杉並区,35.67188141727001,139.6228306832345,Entire home/apt,9050,30,0,,,47,147,0,M130048419
+1369332633555238000,7 minutes walk from the nearest station！/c02,538306999,絵梨,杉並区,35.6719,139.62267,Entire home/apt,10028,1,7,2025-09-25,1.08,47,133,7,M130048420
+1369335024445939141,7 minutes walk from the nearest station！/c02,538306999,絵梨,杉並区,35.67222767655214,139.62263833572507,Entire home/apt,9050,30,1,2025-08-24,0.81,47,133,1,M130048420
+1369338084341027035,7 minutes walk from the nearest station！/c03,538306999,絵梨,杉並区,35.67316696288041,139.62258822039212,Entire home/apt,10028,1,2,2025-03-20,0.30,47,134,2,M130048421
+1369340528094156204,7 minutes walk from the nearest station！/c03,538306999,絵梨,杉並区,35.67235865485291,139.62272940686,Entire home/apt,9050,30,0,,,47,134,0,M130048421
+1369343374531089865,7 minutes walk from the nearest station！/c04,538306999,絵梨,杉並区,35.67352,139.62202,Entire home/apt,10028,1,7,2025-09-13,1.08,47,123,7,M130048422
+1369346659794519099,7 minutes walk from the nearest station！/c04,538306999,絵梨,杉並区,35.67365200348524,139.62130890406826,Entire home/apt,9050,30,0,,,47,123,0,M130048422
+1369364030474969724,7 minutes walk from the nearest station！/d01,538306999,絵梨,杉並区,35.67349718492517,139.62103606133215,Entire home/apt,10028,1,3,2025-07-12,0.46,47,148,3,M130048423
+1369366998881326253,7 minutes walk from the nearest station！/d01,538306999,絵梨,杉並区,35.672217699285476,139.62272876375198,Entire home/apt,9050,30,1,2025-08-11,0.60,47,148,1,M130048423
+1369370472164487881,7 minutes walk from the nearest station！/d02,538306999,絵梨,杉並区,35.67329,139.62102,Entire home/apt,10028,1,5,2025-08-13,0.78,47,123,5,M130048424
+1369372808662544934,7 minutes walk from the nearest station！/d02,538306999,絵梨,杉並区,35.67367,139.62074,Entire home/apt,9050,30,1,2025-06-29,0.32,47,123,1,M130048424
+1369375882356759762,7 minutes walk from the nearest station！/d03,538306999,絵梨,杉並区,35.67320386887087,139.62264564674607,Entire home/apt,10028,1,10,2025-09-04,1.60,47,107,10,M130048425
+1369378379596874847,7 minutes walk from the nearest station！/d03,538306999,絵梨,杉並区,35.67211,139.62275,Entire home/apt,9050,30,0,,,47,107,0,M130048425
+1370096138477924589,新宿まで部屋から10分、駅から3分の便利な宿。52㎡ワンルームの大規模空間。,124633337,佳康,杉並区,35.70723280000001,139.6503564,Entire home/apt,22685,2,21,2025-09-21,3.44,1,77,21,Hotels and Inns Business Act | 杉並区杉並保健所 | 6杉保衛環第371号
+1373143907752222068,(KA4)Koenji loft apartment/Shinjuku&Kichijoji/JR,311979642,Selina,杉並区,35.70378,139.64692,Entire home/apt,13165,2,1,2025-05-30,0.24,54,333,1,M130050645
+1373163545176829911,(KA4F)Koenji loft apartment/Shinjuku&Kichijoji/JR,311979642,Selina,杉並区,35.699639035067605,139.65050700203466,Entire home/apt,13165,2,13,2025-09-08,2.23,54,333,13,M130050645
+1374360983060833837,ToyamaHouse2-203,663067038,芸菁,杉並区,35.7155351,139.6358439,Entire home/apt,9896,1,0,,,2,45,0,M130045284
+1374460219493706014,人気エリア中野・高円寺至近！新高円寺駅徒歩7分/8名様宿泊可/keep荷物ok/Wifi,244662388,博雅,杉並区,35.695328505572085,139.64273387828652,Entire home/apt,13243,1,6,2025-09-07,0.96,25,161,6,M130048720
+1374495210743895611,Tokyo Designer House｜Twin Beds・Near Downtown,9613011,Mark,杉並区,35.69453057273273,139.63889655488154,Private room,14465,2,7,2025-09-14,1.56,3,164,7,M130050570
+1375766084989513850,静かな住宅街にあり、ファミリーや仲間たちが専有できる宿です。,681907702,Den,杉並区,35.681292821020854,139.6293713378837,Entire home/apt,25200,1,0,,,1,277,0,M130001154
+1376543680672216283,"渋谷も新宿も乗り換えなし
+昭和レトロな日本式アパート",684204599,朋子,杉並区,35.6776637,139.6522278,Private room,8486,2,14,2025-09-20,2.21,1,116,14,M130043448
+1381690188532735612,Just 1 minute walk from the nearest station/b01,673269417,圭太,杉並区,35.68325,139.60786,Entire home/apt,9381,1,12,2025-09-19,2.20,16,124,12,M130049098
+1381691782846705706,Just 1 minute walk from the nearest station/b02,673269417,圭太,杉並区,35.68454,139.60665,Entire home/apt,9381,1,3,2025-07-27,1.08,16,110,3,M130049100
+1381692951205833556,Just 1 minute walk from the nearest station/c01,673269417,圭太,杉並区,35.68325,139.60673,Entire home/apt,9381,1,7,2025-06-27,1.27,16,95,7,M130049101
+1381693753047024412,Just 1 minute walk from the nearest station/c02,673269417,圭太,杉並区,35.68371988195819,139.60845996377864,Entire home/apt,9381,1,12,2025-09-20,2.12,16,132,12,M130049102
+1381694519025069695,Just 1 minute walk from the nearest station/c03,673269417,圭太,杉並区,35.68314,139.60673,Entire home/apt,10395,1,4,2025-08-30,1.10,16,98,4,M130049103
+1381704728026894643,Just 1 minute walk from the nearest station/b01,673269417,圭太,杉並区,35.684520862956205,139.60673099062672,Entire home/apt,8050,30,0,,,16,124,0,M130049098
+1381706572587113656,Just 1 minute walk from the nearest station/b02,673269417,圭太,杉並区,35.68313328109082,139.60816575958953,Entire home/apt,8050,30,0,,,16,110,0,M130049100
+1381707420818426026,Just 1 minute walk from the nearest station/c01,673269417,圭太,杉並区,35.68331170533937,139.6078696099267,Entire home/apt,8400,30,0,,,16,95,0,M130049101
+1381708192384846164,Just 1 minute walk from the nearest station/c02,673269417,圭太,杉並区,35.68356,139.60667,Entire home/apt,8050,30,1,2025-07-21,0.42,16,132,1,M130049102
+1381709084831663851,Just 1 minute walk from the nearest station/c03,673269417,圭太,杉並区,35.683370034791224,139.60847298343958,Entire home/apt,8050,30,1,2025-08-28,0.91,16,98,1,M130049103
+1382364012444100986,4LDK private space / Max 12 people,129096261,俊一,杉並区,35.690866054303235,139.64508585607493,Entire home/apt,32529,2,0,,,118,290,0,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第30号
+1385819485800627591,Ramen Hot Spot!/Good access to Shinjuku&Shibuya,686232121,睦美,杉並区,35.7036,139.61544,Entire home/apt,8343,1,2,2025-07-28,0.78,2,224,2,M130049789
+1386066145290540642,Quiet TOKYO Stay|Shinjuku area|Spacious 20㎡ | 4ppl,682013456,Mitsuhiro,杉並区,35.6729235,139.6222924,Entire home/apt,14529,3,19,2025-09-28,3.18,3,252,19,M130049487
+1386248832592650957,【白HAKU】閑静な住宅街にあるゲストハウス。48.52㎡（定員5名様)阿佐谷駅徒歩7分コンビニ1分,665989766,美貴子,杉並区,35.70809029999999,139.6403573,Private room,16811,1,25,2025-09-13,4.39,1,260,25,M130049297
+1389541185439830491,Huge house｜2 story｜Shinjuku 10min｜Free Wi-Fi,498793338,横山保全,杉並区,35.70084,139.64833,Entire home/apt,48670,2,16,2025-09-21,3.58,23,204,16,Hotels and Inns Business Act | 杉並区杉並保健所 | 6杉保衛環第329号
+1391212473134287051,Colin＆ Cony Home　新宿まで部屋から10分、東高円寺駅から１分、３LDKの広い部屋です,687914741,千迅,杉並区,35.69782,139.65876,Entire home/apt,,2,2,2025-07-19,0.48,1,103,2,M130048736
+1391279862878820223,Near Shinjuku 3 stops,43430911,Ming Yang,杉並区,35.70142792772599,139.6582501311207,Entire home/apt,29171,2,7,2025-07-21,1.27,11,307,7,Hotels and Inns Business Act | 杉並区杉並保健所 | 6杉保衛環第301号
+1393932271720422012,R -301 Near Nishi-Ogikubo St!,44129333,Yuichi,杉並区,35.704949600000006,139.59809722883605,Entire home/apt,8786,2,10,2025-09-21,1.94,4,64,10,M130049655
+1394566093282451543,Long Stay:Quiet TOKYO Stay|Shinjuku area|20㎡|4ppl,682013456,Mitsuhiro,杉並区,35.67190657725768,139.6225819940024,Entire home/apt,20000,30,0,,,3,253,0,M130049487
+1394778012123614960,Jessica House Villa rental Max 12P,256531617,布衣,杉並区,35.70591628984993,139.65337782343948,Entire home/apt,47500,2,9,2025-09-03,1.81,18,127,9,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第74号
+1395525172670564473,西荻窪アパートメント・貸切静かな環境・新宿渋谷は電車で15分！,61936892,浩司,杉並区,35.69454056006763,139.59528570629567,Entire home/apt,5836,2,21,2025-09-15,3.80,3,29,21,M130043241
+1396639936977658481,Shinjuku Garden Monthly Rental,213330754,美奈,杉並区,35.67423,139.66009,Entire home/apt,16000,28,0,,,5,302,0,M130035226
+1396769802758142720,805/6名可/新宿駅15分/都心アクセス良好/ファミリー大歓迎/景色Good/Wi-Fi完備,243214612,大輔,杉並区,35.69753798702044,139.6458590932541,Entire home/apt,11606,2,5,2025-09-08,1.01,36,189,5,M130049502
+1396900052697093743,605/6名/新宿駅15分/都心アクセス良好/ファミリー大歓迎/景色Good/Wi-Fi完備,243214612,大輔,杉並区,35.6975467,139.645843,Entire home/apt,11908,2,3,2025-08-25,0.70,36,215,3,M130049501
+1396928744134220394,407/新宿駅15分/新宿駅15分/都心アクセス良好/ファミリー大歓迎/Wi-Fi完備/都内観光便利,243214612,大輔,杉並区,35.6975467,139.645843,Entire home/apt,7610,1,1,2025-05-23,0.23,36,201,1,M130049500
+1396938481947490445,305/新宿駅15分/都心アクセス良好/ファミリー大歓迎/Wi-Fi完備/都内観光便利,243214612,大輔,杉並区,35.6975467,139.645843,Entire home/apt,12946,1,5,2025-08-23,1.01,36,188,5,M130049498
+1398307786541242260,Special rates！/コンビニまで１分/新宿へ電車で１５分！方南町駅より徒歩3分,689606800,夏樹,杉並区,35.6835,139.65775,Entire home/apt,10953,1,2,2025-09-19,1.71,6,8,2,Hotels and Inns Business Act | 杉並区杉並保健所 | 2杉保衛環第348号
+1398497160105159687,5 min to Sta./Shinjuku/4 people/No.1 liveable/wifi,230910892,Risa & Kei,杉並区,35.70769,139.63477,Entire home/apt,11040,3,7,2025-09-12,1.51,63,0,7,M130032607
+1401369611245332507,Ramen Hot Spot!/Good access to Shinjuku&Shibuya,686232121,睦美,杉並区,35.7036,139.61544,Entire home/apt,11958,30,2,2025-09-19,0.70,2,224,2,M130049789
+1403434202391209674,"Walk 4 min, Ride 9 to Shinjuku | Youthful Koenji!",650098595,Noriko,杉並区,35.69488,139.64653,Entire home/apt,12293,2,9,2025-08-15,1.80,4,167,9,M130050134
+1407833567634715374,JR阿佐ヶ谷駅西口徒歩3分】 新宿駅電車8分/プライベート利用　阿佐ヶ谷の家-A室,433492202,Fuji Tabi,杉並区,35.7052611,139.6329558,Private room,13719,1,2,2025-05-20,0.40,3,365,2,M130049298
+1408605603800947075,JR阿佐ヶ谷駅西口徒歩3分】 新宿駅電車8分/プライベート利用　阿佐ヶ谷の家-C室,433492202,Fuji Tabi,杉並区,35.7063959990591,139.6333307658576,Private room,13719,1,3,2025-08-03,0.71,3,365,3,M130049299
+1409780077130231810,Tokyo Bauhaus,661232692,Yuaiホーム,杉並区,35.71199937850214,139.63422882209014,Entire home/apt,36518,2,0,,,1,255,0,M130048737
+1411584766413418377,〈Lovely Koenji〉New 4mins to sta. 2LDK family room,62389310,Yuwei,杉並区,35.70664,139.64636,Entire home/apt,19399,2,0,,,11,291,0,M130040628
+1414429119749021780,Tokyo Designer Stay｜King Bed・Near Downtown,9613011,Mark,杉並区,35.6940141,139.6399494,Private room,14490,2,7,2025-09-15,1.56,3,120,7,M130050570
+1414518279759349800,Tokyo Designer House| 2 Bedrooms(2 single/1 queen),9613011,Mark,杉並区,35.69401,139.63995,Private room,32000,1,2,2025-08-10,0.71,3,210,2,M130050570
+1415131620595858163,Tranquil Apt near JR Line 8 Minutes to Shinjuku,379447928,Han,杉並区,35.70876,139.65464,Entire home/apt,15124,2,1,2025-09-02,1,102,200,1,M130040516
+1415145625080243828,(SA4)Kichijoji Loft Apartment/12mins to Shinjuku,311979642,Selina,杉並区,35.697185714491944,139.5967700250169,Entire home/apt,12554,2,2,2025-08-03,0.45,54,354,2,M130039159
+1415150501395064663,(SA4F)Kichijoji Loft Apartment/12mins to Shinjuku,311979642,Selina,杉並区,35.69741717832204,139.59873318553676,Entire home/apt,12186,2,0,,,54,354,0,M130039159
+1415539863313036486,高円寺アパートの一室貸切,512377031,Haruka,杉並区,35.70229,139.65092,Entire home/apt,7644,5,10,2025-09-13,2.40,1,14,10,M130001782
+1417235793833548595,2 mins to Sta./Direct to Shinjuku/Japanese atelier,290344657,Toshi,杉並区,35.70572270000001,139.648770735582,Entire home/apt,14015,2,12,2025-09-27,2.81,16,84,12,Hotels and Inns Business Act | 杉並区杉並保健所 | 6杉保衛環第35号
+1419527495287152445,Shinjuku/5min to Asagaya Sta/Netflix/Wifi/4 people,230910892,Risa & Kei,杉並区,35.70915,139.63633,Entire home/apt,,3,3,2025-08-07,0.90,63,0,3,M130032608
+1420082630083652952,Triphome Koenji Minami 4 mins Higashi Koenji stn,682902706,緒舜,杉並区,35.7001997,139.6587277,Entire home/apt,13094,2,5,2025-09-06,1.34,1,38,5,M130047003
+1420570203807813498,明大前駅から徒歩10分/新宿まで電車で1本/首都高速に近い物件/ノゾミオ明大前a02,432956453,圭太,杉並区,35.67152,139.65305,Entire home/apt,12211,1,3,2025-07-30,0.92,26,109,3,M130033798
+1421569173145590151,オープン記念特別割引中｜新宿駅直通12分｜桜上水の静かな1R｜2人向け・Wi-Fi完備,518965202,Eiichi,杉並区,35.67103794710861,139.63199265178105,Entire home/apt,6802,2,7,2025-09-28,4.88,2,289,7,M130052711
+1422894079709458165,"New designer house, 10min to Shinjuku (3f/ 35m²)",678931432,Kiheon,杉並区,35.6966498,139.6520443,Entire home/apt,16150,1,5,2025-09-11,2.46,3,156,5,M130048020
+1423105508712086572,5 min to Asagaya/8 min to Shinjuku/4 guests/Wi-Fi,230910892,Risa & Kei,杉並区,35.70941,139.63438,Entire home/apt,,3,3,2025-08-25,0.88,63,0,3,M130032607
+1423409366283704547,【禁煙・渋谷・閑静な住宅街】広々リビング|3寝室|長期滞在,366084083,Maiko,杉並区,35.67495710960973,139.66169562189594,Entire home/apt,47559,30,5,2025-07-10,1.26,8,293,5,M130050788
+1425772588411271554,【Monthly】Tokyo/9 min Shinjuku/6min from station,454494802,悠貴,杉並区,35.6972662990342,139.64359782636166,Entire home/apt,19000,30,2,2025-07-26,0.52,4,165,2,M130050455
+1429294654608808827,明大前駅から徒歩10分/新宿まで電車で1本/首都高速に近い物件/ノゾミオ明大前d01,432956453,圭太,杉並区,35.68953602817927,139.64314828990624,Entire home/apt,10050,30,0,,,26,111,0,M130033804
+1429938257108706465,Large groups welcome / Top floor / 7 beds / 130㎡,538486902,Usg,杉並区,35.70541608144455,139.63839903473854,Entire home/apt,30536,2,9,2025-09-21,2.67,7,317,9,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第6号
+1430179023468706116,Keioline+ToeiShinjuku/Sakura Josui 5 min walk Unit,96808482,直幸,杉並区,35.66898016386729,139.63113058738563,Entire home/apt,9069,2,0,,,1,259,0,M130051838
+1430270273560347031,最大5名/出張おすすめ！新宿・渋谷直通10分/コンビニ、銭湯徒歩2分/Wi-Fi/102,581386386,愛依,杉並区,35.68767326643491,139.63841147480596,Entire home/apt,11893,1,2,2025-09-14,0.88,2,174,2,M130043653
+1430910518038296068,西荻窪駅徒歩4分｜最大6名様｜ 1LDK ｜WiFi付き｜ COCORO 404,540428137,Cocoro,杉並区,35.70640954128115,139.5976195371389,Entire home/apt,18258,1,6,2025-09-10,1.75,2,122,6,Hotels and Inns Business Act | 杉並区杉並保健所 | 5杉保衛環第42号
+1433617229841906303,6 minutes walk from the station|Very convenient,698626350,永子,杉並区,35.69769497128877,139.64356662698364,Entire home/apt,8889,1,14,2025-09-25,4.77,1,176,14,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第23号
+1433839835721393360,"New designer house, 10min to Shinjuku [2f/ 35m²]",678931432,Kiheon,杉並区,35.69636937057264,139.65323052805113,Entire home/apt,17372,1,1,2025-08-13,0.63,3,267,1,M130048020
+1435286298917142923,「高井戸駅近徒歩8分｜電車1本で渋谷18分/吉祥寺9分｜お得！広々ベッド1Rで快適ステイ東京旅」,699058329,徹,杉並区,35.6881658,139.6163181,Entire home/apt,7755,1,0,,,2,301,0,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第27号
+1436573480698708476,【Monthly】Tokyo/9min Shinjuku/Entire house/8ppl,454494802,悠貴,杉並区,35.69128122699447,139.65176926424166,Entire home/apt,26100,30,1,2025-08-18,0.70,4,222,1,M130050571
+1436740976837356860,Tokyo/9 min Shinjuku/6min from station/1 min store,454494802,悠貴,杉並区,35.69821,139.64476,Entire home/apt,9500,1,4,2025-09-18,1.12,4,165,4,M130050455
+1436853850294739149,申請中【長期用】モダンハウスに暮らす,36335780,Yoko,杉並区,35.71439408457127,139.59845879034452,Private room,7450,28,1,2025-08-21,0.75,5,117,1,M130000309
+1437438745675992767,新宿まで15分！東京の穴場スポット東高円寺に泊まろう！最大4名まで宿泊可能な１LDK,348256355,Moeka,杉並区,35.697664,139.6593339,Entire home/apt,9686,1,5,2025-09-05,1.79,14,68,5,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第20号
+1441023094044531282,Near Station & Park｜10min to Shinjuku｜4 Guests max,385042565,Sho,杉並区,35.697351523101645,139.65484231710434,Entire home/apt,8863,1,0,,,1,63,0,M130055488
+1441627768996775051,Spacious 4LDK detached house/ A,561786444,圭太,杉並区,35.6832,139.60785,Entire home/apt,34929,1,3,2025-09-18,1.25,28,254,3,M130051928
+1441633878599849097,Spacious 4LDK detached house/ A,561786444,圭太,杉並区,35.68350017808073,139.60778136901848,Entire home/apt,23240,30,1,2025-08-31,1,28,254,1,M130051928
+1441656137876858374,「高井戸駅近徒歩8分｜電車1本で渋谷18分/吉祥寺9分｜お得！広々ベッド1Rで快適ステイ東京旅」,699058329,徹,杉並区,35.6881658,139.6163181,Entire home/apt,10071,1,1,2025-09-21,1,2,283,1,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第27号
+1446239856125100152,Private house/Max14people/2 minwalkfromthestation,129096261,俊一,杉並区,35.72459,139.62322,Entire home/apt,17044,2,0,,,118,354,0,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第91号
+1446310507448566284,Shinjuku/8 min to Shinjuku/4 people/5 min to Sta,230910892,Risa & Kei,杉並区,35.70784,139.63427,Entire home/apt,,3,4,2025-09-14,1.41,63,0,4,M130032608
+1449207608597996419,Tokyo/Shinjuku電車１５分/５bed/駅近徒歩３分/一軒家貸切/家族/友人/Max１０人,689606800,夏樹,杉並区,35.683,139.65789,Entire home/apt,33558,1,4,2025-09-13,1.46,6,17,4,Hotels and Inns Business Act | 杉並区杉並保健所 | 2杉保衞環第348号
+1449280323558699238,Ghibli | Inokashira Park | House /Garden/ Parking,702798997,宇峰,杉並区,35.68490212399922,139.60173558443785,Entire home/apt,23919,2,4,2025-08-25,1.40,1,113,4,M130052267
+1454796221216555112,一軒家完全貸切｜2025年新築/駅近徒歩10分/アメニティ菓子水付き,678915355,正昭,杉並区,35.713152522549144,139.6369725490738,Entire home/apt,31500,2,0,,,7,338,0,Hotels and Inns Business Act | 杉並区杉並保健所 | 6杉保衛環第322号
+1455016505785811084,Shinjuku/4 people/Netflix/5 min to Sta./Free Wi-Fi,230910892,Risa & Kei,杉並区,35.70987,139.63622,Entire home/apt,,3,1,2025-08-25,0.81,63,0,1,M130032607
+1462127176562997827,シンプル空間｜新宿10分｜2名OK｜長期歓迎,488925750,大翁,杉並区,35.69619,139.64413,Entire home/apt,12000,30,0,,,1,365,0,M130047593
+1464029494062619018,駅から徒歩１分/渋谷17分、吉祥寺11分/アクセス便利で観光に最適,199545766,Mami,杉並区,35.68508569619777,139.60825760627915,Entire home/apt,10370,2,5,2025-09-02,2.73,7,302,5,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第156号
+1467868236060445284,Monthly/Tokyo Honancho/Comfy Luxury/10min Shinjuku,654575899,村澤,杉並区,35.68329012842235,139.6549418571441,Entire home/apt,32200,3,1,2025-09-23,1,6,244,1,Hotels and Inns Business Act | 杉並区杉並保健所 | 6杉保衛環第286号
+1469113427990691123,8-min Asagaya & 6-min Minami-Asagaya｜New 1LDK 42㎡,262166438,Sonoko,杉並区,35.701566861196696,139.63468417525291,Entire home/apt,19623,3,0,,,3,111,0,M130052713
+1470025686074399746,5 min walk to Honancho / with auto lock/d01,490397315,Sumyca,杉並区,35.68393,139.65459,Entire home/apt,500000,30,0,,,13,157,0,M130032112
+1471450639491094812,FINOA Residential Suite Takaido,6648140,Tatsuhiko & Yuka,杉並区,35.68766,139.61584,Entire home/apt,25993,1,0,,,15,137,0,M130053940
+1472231792512835732,Male Only Dorm Wi-Fi Easy Access to Shinjuku,700506638,幸太郎,杉並区,35.69913016680698,139.6533355417656,Shared room,2882,1,12,2025-09-22,9.73,11,183,12,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第81号
+1472267367701836270,501/オープンセール/最大6名/36㎡ /新宿まで電車7分、渋谷まで20分/東高円寺駅 徒歩4分,518527802,Mizuki,杉並区,35.69817132255207,139.65515866441802,Entire home/apt,19363,3,3,2025-09-16,2.57,7,226,3,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第60号
+1472817577694391133,2BDR｜9pax｜FamilyFriendly｜13minShinjuku｜TokyoLife,511145842,Takeda,杉並区,35.6913127,139.6507079,Entire home/apt,20715,2,1,2025-09-25,1,15,144,1,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第153号
+1472952541656181620,502/オープンセール/最大6名/36㎡ /新宿まで電車7分、渋谷まで20分/東高円寺駅 徒歩4分,518527802,Mizuki,杉並区,35.698132114443645,139.65516402883605,Entire home/apt,18515,3,7,2025-09-27,4.38,7,182,7,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第61号
+1472983166435203873,802/オープンセール/最大5名/36㎡ /新宿まで電車7分、渋谷まで20分/東高円寺駅 徒歩4分,518527802,Mizuki,杉並区,35.69816,139.65517,Entire home/apt,18463,3,1,2025-08-20,0.73,7,172,1,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第62号
+1477727729975729070,Retro-modern house renovated from a barber shop,247326938,Pqd,杉並区,35.70102,139.66041,Entire home/apt,28980,1,2,2025-08-29,1.58,40,154,2,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第８号
+1478219392152519005,8 min toSta./Shinjuku/7 people/2 bedrooms/Wi-Fi,230910892,Risa & Kei,杉並区,35.70394,139.61208,Entire home/apt,,3,2,2025-09-16,2,63,0,2,M130034374
+1480090355506832138,新宿直通6分・渋谷15分｜泉町一軒家・最大8名可,656032022,Yunli,杉並区,35.672671083452684,139.65782344722138,Entire home/apt,22372,3,3,2025-09-29,2.43,20,23,3,M130053168
+1480344704909519072,男女共用ドミトリー　荻窪とんぼホテル,711502067,良平,杉並区,35.70534026819227,139.61833692742167,Shared room,3181,1,14,2025-09-23,8.24,2,365,14,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第58号
+1482202893900220290,西荻窪駅徒歩4分/3名収容ベッド3台/新宿まで電車13分/吉祥寺・三鷹すぐ/コンビニや飲食店多数,691370379,Sakura,杉並区,35.7015145,139.6003621,Entire home/apt,9200,2,2,2025-09-24,1.82,1,294,2,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第93号
+1483715325785611494,方南町12/丸ノ内線「方南町」駅徒歩4分。高速Wifi。周辺充実。,34155786,Ij,杉並区,35.6823325829014,139.65394512209014,Entire home/apt,7953,2,0,,,22,204,0,M130044999
+1485149963623914979,方南町15/丸ノ内線「方南町」駅徒歩4分。交通便利。高速Wi-Fi。周辺充実。,34155786,Ij,杉並区,35.6824023,139.6539183,Entire home/apt,7953,2,2,2025-09-23,2,22,222,2,M130044999
+1485294488834982571,【New】JR徒歩3分/新宿10分/Japandi/小さな隠れ家/高速Wi-Fi,73353433,直美,杉並区,35.70431,139.62267,Entire home/apt,12987,2,7,2025-09-25,5.12,2,73,7,M130053954
+1485294619515497266,新宿まで15分！東京の穴場スポット東高円寺に泊まろう！最大5名様まで宿泊可能な2DK,348256355,Moeka,杉並区,35.69821,139.65893,Entire home/apt,12333,1,0,,,14,60,0,M130054294
+1485969844013915748,25 min to Shibuya by Train_1 min to Sta! 86㎡,712993391,徹也,杉並区,35.6852252,139.6082516,Entire home/apt,20716,2,4,2025-09-22,4,1,324,4,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第147号
+1486692238567192173,2025年9月新規オープン！新宿まで15分！最大4名まで宿泊可能な1DK,348256355,Moeka,杉並区,35.69848,139.66078,Entire home/apt,16543,1,0,,,14,97,0,M130054338
+1488823480806948435,方南町22/丸ノ内線「方南町」駅徒歩4分。房间很小适合2人入住。高速WIFI。周辺充実,34155786,Ij,杉並区,35.6824023,139.6539183,Entire home/apt,9212,2,0,,,22,231,0,M130044999
+1490899657900424848,新高円寺駅徒歩10分！新宿へ直通アクセス（9分）の便利な滞在先！,660616641,秋草,杉並区,35.69599917423174,139.64133310234104,Private room,8938,1,2,2025-09-20,2,1,70,2,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第85号
+1490975781046643968,女性専用ドミトリー　荻窪とんぼホテル,711502067,良平,杉並区,35.70532720000001,139.6183446,Shared room,3571,1,11,2025-09-26,9.17,2,365,11,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第58号
+1491613506556255736,さくら旅館～高円寺101/最大3名,678915355,正昭,杉並区,35.71003255580747,139.64758659325412,Entire home/apt,20900,2,0,,,7,343,0,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第72号
+1491632544433952648,さくら旅館～高円寺102/最大4名,678915355,正昭,杉並区,35.71003691161464,139.647565135582,Entire home/apt,24300,2,0,,,7,349,0,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第135号
+1491644907942452164,さくら旅館～高円寺201/最大4名,678915355,正昭,杉並区,35.71005433484106,139.64757050000003,Entire home/apt,19800,2,0,,,7,347,0,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第73号
+1491659708466768140,さくら旅館～高円寺202/最大6名,678915355,正昭,杉並区,35.71005,139.64759,Entire home/apt,28800,2,0,,,7,361,0,Hotels and Inns Business Act | 杉並区杉並保健所 | 7杉保衛環第136号
+1492470675652978644,Long term_8-min Asagaya & 6-min Minami-Asagaya 42㎡,262166438,Sonoko,杉並区,35.70155515372046,139.63467579334974,Entire home/apt,20800,30,0,,,3,203,0,M130052713
+1493860343396364570,方南町25/杉並区。丸ノ内線「方南町」駅徒歩4分。房间很小适合2人入住。高速WIFI。周辺充実,34155786,Ij,杉並区,35.6824023,139.6539183,Entire home/apt,8903,2,1,2025-09-15,1,22,185,1,M130044999
+1497096754505461509,Shinjuku/5 min toAsagaya Sta/4 people/Netflix/WiFi,230910892,Risa & Kei,杉並区,35.70812,139.63461,Entire home/apt,6835,3,0,,,63,46,0,M130032606
+1498247230830050107,Amber House｜Serene New-Japanese Villa,112037524,Kousin,杉並区,35.6943481,139.6641523,Entire home/apt,28858,1,1,2025-09-13,1,17,20,1,M130002904
+1502693361447464412,【Monthly stay】Designer Room I - 10 min to Shinjuku,74905511,Yoshinobu,杉並区,35.6979134,139.6431169,Entire home/apt,17372,20,0,,,2,319,0,M130043373
+1504226915148778979,Shinjuku/5 min toAsagaya Sta/4 people/Netflix/WiFi,230910892,Risa & Kei,杉並区,35.70836,139.63441,Entire home/apt,7426,3,0,,,63,67,0,M130032609
+1504788890839147407,Shinjuku/5 min toAsagaya Sta/4 people/Netflix/WiFi,230910892,Risa & Kei,杉並区,35.70795,139.63599,Entire home/apt,7492,3,0,,,63,54,0,M130032606
+1505410648709150240,新築・モダン｜長期滞在向け1R｜中野＆東高円寺2駅利用可・都心アクセス抜群,48293774,Yoshie,杉並区,35.70005647005738,139.66047657582328,Entire home/apt,7429,30,0,,,2,58,0,M130044996
+1506243110787906522,10分钟直达新宿/15分钟到涩谷/近车站步行仅7分钟/免费高速wifi/短期/长期入住方便 207,44066901,Yuqian,杉並区,35.66923,139.63253,Entire home/apt,6700,2,0,,,44,335,0,Hotels and Inns Business Act | 杉並区杉並保健所 | 5杉保衛環第153号
+1506486476537523152,8 min toSta./Shinjuku/9 people/2 bedrooms/Wi-Fi,230910892,Risa & Kei,杉並区,35.70382,139.61157,Entire home/apt,12350,3,0,,,63,32,0,M130034371
+1507880842085700724,8 min toSta./Shinjuku/7 people/2 bedrooms/Wi-Fi,230910892,Risa & Kei,杉並区,35.70539,139.61177,Entire home/apt,10043,3,0,,,63,25,0,M130034372
+1511431433008662394,NEWOPEN/Jr中央線高円寺駅徒歩4分/新宿駅まで6分,528930379,Shingo,杉並区,35.7083,139.65223,Entire home/apt,20086,3,1,2025-09-28,1,32,346,1,M130054317
+1511559060468537419,Shinjuku/5 min toAsagaya Sta/4 people/Netflix/WiFi,230910892,Risa & Kei,杉並区,35.70996253677664,139.6348471098872,Entire home/apt,7755,3,0,,,63,57,0,M130032606
+1512067968779458518,Shinjuku/5 min toAsagaya Sta/4 people/Netflix/Wifi,230910892,Risa & Kei,杉並区,35.7076,139.63631,Entire home/apt,7492,3,0,,,63,64,0,M130032609
+1512074338730630319,森の公園一望,719426905,結子,杉並区,35.69084,139.6262487,Private room,9440,2,0,,,1,269,0,M130055621
+1513337772903204956,8 min toSta./Shinjuku/7 people/2 bedrooms/Wi-Fi,230910892,Risa & Kei,杉並区,35.70424,139.61348,Entire home/apt,10015,3,0,,,63,58,0,M130034371
+1515543953781173943,8 min to Sta./Shinjuku/9 people/2 bedrooms/Wi-Fi,230910892,Risa & Kei,杉並区,35.70422,139.6118,Entire home/apt,7886,3,0,,,63,45,0,M130034372
