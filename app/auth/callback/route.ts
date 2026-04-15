@@ -9,7 +9,6 @@ export async function GET(request: Request) {
     const next = searchParams.get("next") ?? "/";
 
     const signupLocale = searchParams.get("signup_locale");
-    const shouldSendAccountCreatedMail = !!signupLocale;
 
     if (code) {
         const supabase = await createClient();
@@ -26,13 +25,23 @@ export async function GET(request: Request) {
                 });
             }
 
-            if (shouldSendAccountCreatedMail && data.user.email) {
+            const createdAt = data.user.created_at ? new Date(data.user.created_at) : null;
+            const createdWithin30Minutes =
+                !!createdAt && Date.now() - createdAt.getTime() <= 30 * 60 * 1000;
+            const shouldTryAccountCreatedMail = !!signupLocale || createdWithin30Minutes;
+
+            if (shouldTryAccountCreatedMail && data.user.email) {
                 try {
                     const { sendAccountCreatedEmailIfNeeded } = await import("@/lib/marketing/automation");
                     await sendAccountCreatedEmailIfNeeded({
                         userId: data.user.id,
                         email: data.user.email,
-                        signupLocale: signupLocale === "en" ? "en" : "ja",
+                        signupLocale:
+                            signupLocale === "en"
+                                ? "en"
+                                : data.user.user_metadata?.signup_locale === "en"
+                                    ? "en"
+                                    : "ja",
                     });
                 } catch (mailError) {
                     console.error("account_created auto send failed", mailError);

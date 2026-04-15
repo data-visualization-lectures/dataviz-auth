@@ -28,6 +28,11 @@ import type {
 
 const SEGMENT_SET = new Set<string>(SEGMENT_KEYS);
 const CAMPAIGN_TYPE_SET = new Set<string>(CAMPAIGN_TYPES);
+const AUTOMATION_CAMPAIGN_TYPE_SET = new Set<CampaignType>([
+  "account_created",
+  "trial_expired_unconverted",
+  "paid_canceled_nonrenewal",
+]);
 
 function baseUrl(): string {
   return process.env.NEXT_PUBLIC_SITE_URL || "https://app.dataviz.jp";
@@ -37,21 +42,13 @@ function parseSegmentKeys(input: string[]): SegmentKey[] {
   return input.filter((key): key is SegmentKey => SEGMENT_SET.has(key));
 }
 
-function normalizeEmailList(input: string[] | undefined): string[] {
-  if (!input) return [];
-  const set = new Set<string>();
-  for (const raw of input) {
-    const value = String(raw).trim().toLowerCase();
-    if (!value) continue;
-    if (!value.includes("@")) continue;
-    set.add(value);
-  }
-  return Array.from(set);
-}
-
 function parseCampaignType(input: string | null | undefined): CampaignType | null {
   if (!input) return null;
   return CAMPAIGN_TYPE_SET.has(input) ? (input as CampaignType) : null;
+}
+
+function isAutomationCampaignType(type: CampaignType): boolean {
+  return AUTOMATION_CAMPAIGN_TYPE_SET.has(type);
 }
 
 function ensureCampaignInput(input: CampaignInput): string | null {
@@ -279,14 +276,16 @@ export async function saveCampaign(input: CampaignInput) {
   const adminDb = createAdminClient();
   const segmentKeys = parseSegmentKeys(input.segmentKeys);
   const effectiveSegments = campaignType === "marketing" ? segmentKeys : [];
-  const effectiveAutoSendEnabled =
-    campaignType === "account_created" ? !!input.autoSendEnabled : false;
+  const effectiveAutoSendEnabled = isAutomationCampaignType(campaignType)
+    ? !!input.autoSendEnabled
+    : false;
 
   const payload = {
     title: input.title.trim(),
     email_title_ja: input.emailTitleJa.trim(),
     email_title_en: input.emailTitleEn.trim(),
     auto_send_enabled: effectiveAutoSendEnabled,
+    auto_send_enabled_at: null as string | null,
     campaign_type: campaignType,
     segment_keys: effectiveSegments,
     newsletter_label_ja: input.newsletterLabelJa.trim(),
@@ -319,18 +318,28 @@ export async function saveCampaign(input: CampaignInput) {
         .from("marketing_campaigns")
         .update({
           auto_send_enabled: false,
+          auto_send_enabled_at: null,
         })
-        .eq("campaign_type", "account_created")
+        .eq("campaign_type", campaignType)
         .eq("auto_send_enabled", true);
       if (disableError) {
         return { success: false as const, error: disableError.message };
       }
     }
 
+    const nextAutoSendEnabledAt = effectiveAutoSendEnabled
+      ? existing.auto_send_enabled &&
+        existing.campaign_type === campaignType &&
+        !!existing.auto_send_enabled_at
+        ? existing.auto_send_enabled_at
+        : new Date().toISOString()
+      : null;
+
     const { error } = await adminDb
       .from("marketing_campaigns")
       .update({
         ...payload,
+        auto_send_enabled_at: nextAutoSendEnabledAt,
         status: "draft",
       })
       .eq("id", input.id);
@@ -454,10 +463,16 @@ export async function createCampaignRun(campaignId: string, input: CreateRunInpu
   if (!campaign) {
     return { success: false as const, error: "メールが見つかりません" };
   }
-  if (campaign.campaign_type === "account_created") {
+  if (campaign.campaign_type !== "marketing") {
     return {
       success: false as const,
-      error: "この種別のメールはキュー実行できません",
+      error: "この種別のメールはキュー実行できません（マーケティングのみ可）",
+    };
+  }
+  if ((input as { targetEmails?: unknown }).targetEmails !== undefined) {
+    return {
+      success: false as const,
+      error: "本配信での宛先メール手入力は廃止されました。セグメントで指定してください。",
     };
   }
   if (!campaign.test_sent_at) {
@@ -468,21 +483,14 @@ export async function createCampaignRun(campaignId: string, input: CreateRunInpu
   }
 
   const segmentKeys = parseSegmentKeys(input.segmentKeys ?? campaign.segment_keys ?? []);
-  if (campaign.campaign_type === "marketing" && segmentKeys.length === 0) {
+  if (segmentKeys.length === 0) {
     return { success: false as const, error: "配信セグメントを1つ以上選択してください" };
   }
 
   const includePreviouslySent = !!input.includePreviouslySent;
-  const targetEmails = normalizeEmailList(input.targetEmails);
   const recipients = await resolveRecipientsBySegments(segmentKeys);
 
   let filtered = recipients;
-  if (targetEmails.length > 0) {
-    const targetSet = new Set(targetEmails);
-    filtered = filtered.filter((recipient) =>
-      targetSet.has(recipient.email.trim().toLowerCase())
-    );
-  }
 
   if (!includePreviouslySent) {
     const sentTargets = await listPreviouslySentTargets(campaignId);
@@ -570,7 +578,6 @@ export async function createCampaignRun(campaignId: string, input: CreateRunInpu
     totalCount: filtered.length,
     excludedCount: recipients.length - filtered.length,
     includePreviouslySent,
-    targetEmailCount: targetEmails.length,
   };
 }
 
@@ -640,6 +647,7 @@ export async function duplicateCampaign(campaignId: string) {
       body_md_ja: campaign.body_md_ja,
       body_md_en: campaign.body_md_en,
       auto_send_enabled: false,
+      auto_send_enabled_at: null,
       status: "draft",
       created_by: admin.id,
       total_count: 0,
@@ -672,10 +680,10 @@ export async function runCampaignRun(runId: string, batchSize = 20) {
   if (!campaign) {
     return { success: false as const, error: "メールが見つかりません" };
   }
-  if (campaign.campaign_type === "account_created") {
+  if (campaign.campaign_type !== "marketing") {
     return {
       success: false as const,
-      error: "この種別のメールはキュー実行できません",
+      error: "この種別のメールはキュー実行できません（マーケティングのみ可）",
     };
   }
 
@@ -850,10 +858,10 @@ export async function runCampaignQueue(campaignId: string, batchSize = 20) {
   if (!campaign) {
     return { success: false as const, error: "メールが見つかりません" };
   }
-  if (campaign.campaign_type === "account_created") {
+  if (campaign.campaign_type !== "marketing") {
     return {
       success: false as const,
-      error: "この種別のメールはキュー実行できません",
+      error: "この種別のメールはキュー実行できません（マーケティングのみ可）",
     };
   }
 

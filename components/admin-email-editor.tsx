@@ -23,7 +23,8 @@ const SEGMENT_LABELS: { key: SegmentKey; label: string }[] = [
 
 const CAMPAIGN_TYPE_LABELS: { key: CampaignType; label: string }[] = [
   { key: "account_created", label: "アカウント作成時" },
-  { key: "account_canceled", label: "解約時" },
+  { key: "trial_expired_unconverted", label: "無料期間終了（未課金）" },
+  { key: "paid_canceled_nonrenewal", label: "有料終了（継続なし）" },
   { key: "marketing", label: "マーケティング" },
 ];
 
@@ -63,8 +64,8 @@ export function AdminEmailEditor({
   const [cardUrl, setCardUrl] = useState("");
   const [cardLocale, setCardLocale] = useState<"ja" | "en">("ja");
   const isMarketingCampaign = campaignType === "marketing";
-  const isAccountCreatedCampaign = campaignType === "account_created";
-  const isQueueAvailableCampaign = campaignType !== "account_created";
+  const isAutomationCampaign = campaignType !== "marketing";
+  const isQueueAvailableCampaign = campaignType === "marketing";
 
   const canSave = useMemo(() => {
     return (
@@ -247,7 +248,7 @@ export function AdminEmailEditor({
                 if (nextType !== "marketing") {
                   setSegmentKeys([]);
                 }
-                if (nextType !== "account_created") {
+                if (nextType === "marketing") {
                   setAutoSendEnabled(false);
                 }
               }}
@@ -285,7 +286,7 @@ export function AdminEmailEditor({
             )}
           </div>
 
-          {isAccountCreatedCampaign ? (
+          {isAutomationCampaign ? (
             <div className="flex flex-col gap-2">
               <label className="text-sm font-medium">自動送信設定</label>
               <label className="flex items-center gap-2 text-sm border rounded px-3 py-2">
@@ -295,7 +296,7 @@ export function AdminEmailEditor({
                   disabled={isPending || (!canEnableAutoSend && !autoSendEnabled)}
                   onChange={(event) => setAutoSendEnabled(event.target.checked)}
                 />
-                <span>アカウント作成時にこのメールを自動送信する</span>
+                <span>この種別のイベント発生時にこのメールを自動送信する</span>
               </label>
               {!canEnableAutoSend && !autoSendEnabled ? (
                 <p className="text-xs text-muted-foreground">

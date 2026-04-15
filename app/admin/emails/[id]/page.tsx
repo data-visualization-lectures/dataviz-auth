@@ -19,7 +19,8 @@ function formatDate(value: string | null): string {
 
 function formatCampaignType(type: string): string {
   if (type === "account_created") return "アカウント作成時";
-  if (type === "account_canceled") return "解約時";
+  if (type === "trial_expired_unconverted") return "無料期間終了（未課金）";
+  if (type === "paid_canceled_nonrenewal") return "有料終了（継続なし）";
   return "マーケティング";
 }
 
@@ -56,7 +57,7 @@ export default async function CampaignDetailPage({
             <Button asChild variant="outline">
               <Link href={`/admin/emails/${campaign.id}/test`}>テスト送信</Link>
             </Button>
-            {campaign.campaign_type !== "account_created" ? (
+            {campaign.campaign_type === "marketing" ? (
               <Button asChild variant="outline">
                 <Link href={`/admin/emails/${campaign.id}/queue`}>キュー管理</Link>
               </Button>
@@ -106,7 +107,7 @@ export default async function CampaignDetailPage({
             <div>
               <div className="text-muted-foreground">自動送信</div>
               <div>
-                {campaign.campaign_type === "account_created"
+                {campaign.campaign_type !== "marketing"
                   ? campaign.auto_send_enabled
                     ? "有効"
                     : "無効"

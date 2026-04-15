@@ -31,7 +31,6 @@ export function AdminEmailQueueRunner({ campaignId, runOptions, initialRunId }: 
   const [isPending, startTransition] = useTransition();
   const [batchSize, setBatchSize] = useState("20");
   const [includePreviouslySent, setIncludePreviouslySent] = useState(false);
-  const [targetEmailsInput, setTargetEmailsInput] = useState("");
   const [selectedRunId, setSelectedRunId] = useState(initialRunId ?? "");
   const [notice, setNotice] = useState("");
   const [error, setError] = useState("");
@@ -39,14 +38,9 @@ export function AdminEmailQueueRunner({ campaignId, runOptions, initialRunId }: 
   const handleQueue = () => {
     setNotice("");
     setError("");
-    const targetEmails = targetEmailsInput
-      .split(/[\s,]+/)
-      .map((v) => v.trim())
-      .filter(Boolean);
     startTransition(async () => {
       const result = await createCampaignRun(campaignId, {
         includePreviouslySent,
-        targetEmails,
       });
       if (!result.success) {
         setError(result.error);
@@ -117,17 +111,6 @@ export function AdminEmailQueueRunner({ campaignId, runOptions, initialRunId }: 
             />
             <span>過去送信済みユーザーを含める</span>
           </label>
-        </div>
-        <div className="flex flex-col gap-2">
-          <span className="text-sm text-muted-foreground">
-            対象メールアドレス（任意: カンマ/改行/スペース区切り）
-          </span>
-          <textarea
-            className="border rounded px-3 py-2 text-sm min-h-20"
-            value={targetEmailsInput}
-            onChange={(event) => setTargetEmailsInput(event.target.value)}
-            placeholder="ogalgan27@slhs.us, yamamoto12923@ito-ya.co.jp"
-          />
         </div>
 
         <div className="flex flex-wrap gap-2">

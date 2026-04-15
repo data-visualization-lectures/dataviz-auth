@@ -27,7 +27,7 @@ export default async function CampaignQueuePage({
   const { id } = await params;
   const campaign = await getCampaignById(id);
   if (!campaign) notFound();
-  const isQueueEnabled = campaign.campaign_type !== "account_created";
+  const isQueueEnabled = campaign.campaign_type === "marketing";
   const runs = isQueueEnabled ? await listCampaignRuns(campaign.id, 30) : [];
   const latestRun = runs[0] ?? null;
 

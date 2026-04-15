@@ -17,7 +17,8 @@ export type CampaignStatus =
 
 export const CAMPAIGN_TYPES = [
   "account_created",
-  "account_canceled",
+  "trial_expired_unconverted",
+  "paid_canceled_nonrenewal",
   "marketing",
 ] as const;
 
@@ -51,6 +52,7 @@ export type CampaignRecord = {
   email_title_ja: string;
   email_title_en: string;
   auto_send_enabled: boolean;
+  auto_send_enabled_at: string | null;
   campaign_type: CampaignType;
   status: CampaignStatus;
   segment_keys: SegmentKey[];
@@ -142,7 +144,6 @@ export type CampaignRunRecipientRecord = {
 export type CreateRunInput = {
   segmentKeys?: SegmentKey[];
   includePreviouslySent?: boolean;
-  targetEmails?: string[];
 };
 
 export type EmailPreferenceRecord = {
@@ -162,13 +163,17 @@ export type ResolvedRecipient = {
   segmentKey: SegmentKey;
 };
 
-export type MarketingEventType = "account_created";
+export type MarketingEventType =
+  | "account_created"
+  | "trial_expired_unconverted"
+  | "paid_canceled_nonrenewal";
 
 export type MarketingEventDeliveryStatus = "sent" | "failed" | "skipped";
 
 export type MarketingEventDeliveryRecord = {
   id: string;
   event_type: MarketingEventType;
+  event_key: string;
   user_id: string;
   campaign_id: string | null;
   email: string;

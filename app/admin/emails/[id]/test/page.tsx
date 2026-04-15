@@ -29,7 +29,7 @@ export default async function CampaignTestPage({
             <Button asChild variant="outline">
               <Link href={`/admin/emails/${campaign.id}`}>詳細へ戻る</Link>
             </Button>
-            {campaign.campaign_type !== "account_created" ? (
+            {campaign.campaign_type === "marketing" ? (
               <Button asChild variant="outline">
                 <Link href={`/admin/emails/${campaign.id}/queue`}>キュー管理へ</Link>
               </Button>

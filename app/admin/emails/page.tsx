@@ -25,9 +25,14 @@ const GROUPS: { type: CampaignType; heading: string; emptyText: string }[] = [
     emptyText: "アカウント作成時のメールはありません。",
   },
   {
-    type: "account_canceled",
-    heading: "解約時",
-    emptyText: "解約時のメールはありません。",
+    type: "trial_expired_unconverted",
+    heading: "無料期間終了（未課金）",
+    emptyText: "無料期間終了（未課金）メールはありません。",
+  },
+  {
+    type: "paid_canceled_nonrenewal",
+    heading: "有料終了（継続なし）",
+    emptyText: "有料終了（継続なし）メールはありません。",
   },
   {
     type: "marketing",
@@ -39,7 +44,8 @@ const GROUPS: { type: CampaignType; heading: string; emptyText: string }[] = [
 function groupByType(campaigns: CampaignRecord[]): Record<CampaignType, CampaignRecord[]> {
   const grouped: Record<CampaignType, CampaignRecord[]> = {
     account_created: [],
-    account_canceled: [],
+    trial_expired_unconverted: [],
+    paid_canceled_nonrenewal: [],
     marketing: [],
   };
 
@@ -117,7 +123,7 @@ export default async function AdminEmailsPage() {
                               <td className="py-2 px-2">{campaign.title}</td>
                               <td className="py-2 px-2">{latestStatus}</td>
                               <td className="py-2 px-2">
-                                {campaign.campaign_type === "account_created"
+                                {campaign.campaign_type !== "marketing"
                                   ? campaign.auto_send_enabled
                                     ? "有効"
                                     : "無効"
@@ -140,7 +146,7 @@ export default async function AdminEmailsPage() {
                                   <Link className="underline" href={`/admin/emails/${campaign.id}/edit`}>
                                     編集
                                   </Link>
-                                  {campaign.campaign_type !== "account_created" ? (
+                                  {campaign.campaign_type === "marketing" ? (
                                     <Link className="underline" href={`/admin/emails/${campaign.id}/queue`}>
                                       キュー
                                     </Link>
