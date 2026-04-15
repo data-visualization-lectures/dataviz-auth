@@ -37,6 +37,18 @@ function parseSegmentKeys(input: string[]): SegmentKey[] {
   return input.filter((key): key is SegmentKey => SEGMENT_SET.has(key));
 }
 
+function normalizeEmailList(input: string[] | undefined): string[] {
+  if (!input) return [];
+  const set = new Set<string>();
+  for (const raw of input) {
+    const value = String(raw).trim().toLowerCase();
+    if (!value) continue;
+    if (!value.includes("@")) continue;
+    set.add(value);
+  }
+  return Array.from(set);
+}
+
 function parseCampaignType(input: string | null | undefined): CampaignType | null {
   if (!input) return null;
   return CAMPAIGN_TYPE_SET.has(input) ? (input as CampaignType) : null;
@@ -461,12 +473,20 @@ export async function createCampaignRun(campaignId: string, input: CreateRunInpu
   }
 
   const includePreviouslySent = !!input.includePreviouslySent;
+  const targetEmails = normalizeEmailList(input.targetEmails);
   const recipients = await resolveRecipientsBySegments(segmentKeys);
 
   let filtered = recipients;
+  if (targetEmails.length > 0) {
+    const targetSet = new Set(targetEmails);
+    filtered = filtered.filter((recipient) =>
+      targetSet.has(recipient.email.trim().toLowerCase())
+    );
+  }
+
   if (!includePreviouslySent) {
     const sentTargets = await listPreviouslySentTargets(campaignId);
-    filtered = recipients.filter((recipient) => {
+    filtered = filtered.filter((recipient) => {
       if (recipient.userId && sentTargets.userIds.has(recipient.userId)) {
         return false;
       }
@@ -550,6 +570,7 @@ export async function createCampaignRun(campaignId: string, input: CreateRunInpu
     totalCount: filtered.length,
     excludedCount: recipients.length - filtered.length,
     includePreviouslySent,
+    targetEmailCount: targetEmails.length,
   };
 }
 

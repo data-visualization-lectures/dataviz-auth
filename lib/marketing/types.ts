@@ -142,6 +142,7 @@ export type CampaignRunRecipientRecord = {
 export type CreateRunInput = {
   segmentKeys?: SegmentKey[];
   includePreviouslySent?: boolean;
+  targetEmails?: string[];
 };
 
 export type EmailPreferenceRecord = {
