@@ -1,7 +1,11 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { requireAdminForPage } from "@/lib/marketing/admin-auth";
-import { getCampaignById, getCampaignRecipients } from "@/lib/marketing/repository";
+import {
+  getCampaignById,
+  getCampaignRunRecipients,
+  listCampaignRuns,
+} from "@/lib/marketing/repository";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -19,14 +23,21 @@ function formatDate(value: string | null): string {
 
 export default async function CampaignRecipientsPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ id: string }>;
+  searchParams: Promise<{ runId?: string | string[] }>;
 }) {
   await requireAdminForPage();
   const { id } = await params;
+  const { runId } = await searchParams;
+  const runIdValue = Array.isArray(runId) ? runId[0] : runId;
   const campaign = await getCampaignById(id);
   if (!campaign) notFound();
-  const recipients = await getCampaignRecipients(campaign.id, 1000);
+  const runs = await listCampaignRuns(campaign.id, 50);
+  const selectedRun =
+    (runIdValue ? runs.find((run) => run.id === runIdValue) : null) ?? runs[0] ?? null;
+  const recipients = selectedRun ? await getCampaignRunRecipients(selectedRun.id, 1000) : [];
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40 p-4 md:p-10 gap-8">
@@ -43,7 +54,43 @@ export default async function CampaignRecipientsPage({
 
         <Card>
           <CardHeader>
-            <CardTitle>送信ログ（最大1000件表示）</CardTitle>
+            <CardTitle>Run選択</CardTitle>
+          </CardHeader>
+          <CardContent className="flex flex-wrap items-center gap-2 text-sm">
+            <form method="get" className="flex flex-wrap items-center gap-2">
+              <select
+                name="runId"
+                defaultValue={selectedRun?.id ?? ""}
+                className="border rounded px-3 py-2 text-sm min-w-[320px]"
+              >
+                {runs.length === 0 ? <option value="">Runなし</option> : null}
+                {runs.map((run) => (
+                  <option key={run.id} value={run.id}>
+                    {`${formatDate(run.created_at)} / ${run.status} / ${run.id.slice(0, 8)}`}
+                  </option>
+                ))}
+              </select>
+              <Button type="submit" variant="outline">
+                表示
+              </Button>
+            </form>
+            {selectedRun ? (
+              <div className="text-muted-foreground">
+                includePreviouslySent:{" "}
+                {selectedRun.include_previously_sent ? "true" : "false"}
+              </div>
+            ) : (
+              <div className="text-muted-foreground">表示可能なRunがありません</div>
+            )}
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>
+              送信ログ（最大1000件表示）
+              {selectedRun ? ` / Run ${selectedRun.id.slice(0, 8)}` : ""}
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="overflow-x-auto">
@@ -60,10 +107,10 @@ export default async function CampaignRecipientsPage({
                   </tr>
                 </thead>
                 <tbody>
-                  {recipients.length === 0 ? (
+                  {!selectedRun || recipients.length === 0 ? (
                     <tr>
                       <td colSpan={7} className="py-8 text-center text-muted-foreground">
-                        宛先データがありません。先にキュー作成を実行してください。
+                        宛先データがありません。先にRun作成を実行してください。
                       </td>
                     </tr>
                   ) : (

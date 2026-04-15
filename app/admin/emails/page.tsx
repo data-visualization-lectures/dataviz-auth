@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { requireAdminForPage } from "@/lib/marketing/admin-auth";
-import { listCampaigns } from "@/lib/marketing/repository";
+import { listCampaigns, listLatestCampaignRunsByCampaignIds } from "@/lib/marketing/repository";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { AdminEmailDuplicateButton } from "@/components/admin-email-duplicate-button";
 import type { CampaignRecord, CampaignType } from "@/lib/marketing/types";
 
 export const dynamic = "force-dynamic";
@@ -52,6 +53,7 @@ function groupByType(campaigns: CampaignRecord[]): Record<CampaignType, Campaign
 export default async function AdminEmailsPage() {
   await requireAdminForPage();
   const campaigns = await listCampaigns(200);
+  const latestRunMap = await listLatestCampaignRunsByCampaignIds(campaigns.map((c) => c.id));
   const groupedCampaigns = groupByType(campaigns);
 
   return (
@@ -103,43 +105,54 @@ export default async function AdminEmailsPage() {
                           </td>
                         </tr>
                       ) : (
-                        rows.map((campaign) => (
-                          <tr key={campaign.id} className="border-b last:border-0">
-                            <td className="py-2 px-2">{campaign.title}</td>
-                            <td className="py-2 px-2">{campaign.status}</td>
-                            <td className="py-2 px-2">
-                              {campaign.campaign_type === "account_created"
-                                ? campaign.auto_send_enabled
-                                  ? "有効"
-                                  : "無効"
-                                : "-"}
-                            </td>
-                            <td className="py-2 px-2 text-right">{campaign.total_count}</td>
-                            <td className="py-2 px-2 text-right">{campaign.sent_count}</td>
-                            <td className="py-2 px-2 text-right">{campaign.failed_count}</td>
-                            <td className="py-2 px-2 whitespace-nowrap">
-                              {formatDate(campaign.created_at)}
-                            </td>
-                            <td className="py-2 px-2 whitespace-nowrap">
-                              {formatDate(campaign.updated_at)}
-                            </td>
-                            <td className="py-2 px-2 whitespace-nowrap">
-                              <div className="flex flex-wrap gap-2">
-                                <Link className="underline" href={`/admin/emails/${campaign.id}`}>
-                                  詳細
-                                </Link>
-                                <Link className="underline" href={`/admin/emails/${campaign.id}/edit`}>
-                                  編集
-                                </Link>
-                                {campaign.campaign_type !== "account_created" ? (
-                                  <Link className="underline" href={`/admin/emails/${campaign.id}/queue`}>
-                                    キュー
+                        rows.map((campaign) => {
+                          const latestRun = latestRunMap[campaign.id];
+                          const latestStatus = latestRun?.status ?? "-";
+                          const latestTotal = latestRun?.total_count ?? 0;
+                          const latestSent = latestRun?.sent_count ?? 0;
+                          const latestFailed = latestRun?.failed_count ?? 0;
+
+                          return (
+                            <tr key={campaign.id} className="border-b last:border-0">
+                              <td className="py-2 px-2">{campaign.title}</td>
+                              <td className="py-2 px-2">{latestStatus}</td>
+                              <td className="py-2 px-2">
+                                {campaign.campaign_type === "account_created"
+                                  ? campaign.auto_send_enabled
+                                    ? "有効"
+                                    : "無効"
+                                  : "-"}
+                              </td>
+                              <td className="py-2 px-2 text-right">{latestTotal}</td>
+                              <td className="py-2 px-2 text-right">{latestSent}</td>
+                              <td className="py-2 px-2 text-right">{latestFailed}</td>
+                              <td className="py-2 px-2 whitespace-nowrap">
+                                {formatDate(campaign.created_at)}
+                              </td>
+                              <td className="py-2 px-2 whitespace-nowrap">
+                                {formatDate(campaign.updated_at)}
+                              </td>
+                              <td className="py-2 px-2 whitespace-nowrap">
+                                <div className="flex flex-wrap gap-2">
+                                  <Link className="underline" href={`/admin/emails/${campaign.id}`}>
+                                    詳細
                                   </Link>
-                                ) : null}
-                              </div>
-                            </td>
-                          </tr>
-                        ))
+                                  <Link className="underline" href={`/admin/emails/${campaign.id}/edit`}>
+                                    編集
+                                  </Link>
+                                  {campaign.campaign_type !== "account_created" ? (
+                                    <Link className="underline" href={`/admin/emails/${campaign.id}/queue`}>
+                                      キュー
+                                    </Link>
+                                  ) : null}
+                                  {campaign.campaign_type === "marketing" ? (
+                                    <AdminEmailDuplicateButton campaignId={campaign.id} />
+                                  ) : null}
+                                </div>
+                              </td>
+                            </tr>
+                          );
+                        })
                       )}
                     </tbody>
                   </table>

@@ -4,15 +4,24 @@ import { randomUUID } from "crypto";
 import { revalidatePath } from "next/cache";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { requireAdminForAction } from "@/lib/marketing/admin-auth";
-import { importHugoFromUrl, resolveUrlCard as resolveUrlCardInternal } from "@/lib/marketing/content-import";
-import { getCampaignById, getRecipientCounts } from "@/lib/marketing/repository";
+import {
+  importHugoFromUrl,
+  resolveUrlCard as resolveUrlCardInternal,
+} from "@/lib/marketing/content-import";
+import {
+  getCampaignById,
+  getCampaignRunById,
+  getLatestCampaignRunByCampaignId,
+} from "@/lib/marketing/repository";
 import { resolveRecipientsBySegments } from "@/lib/marketing/segments";
 import { sendMarketingEmail } from "@/lib/marketing/send";
 import { CAMPAIGN_TYPES, SEGMENT_KEYS } from "@/lib/marketing/types";
 import type {
   CampaignInput,
-  CampaignRecipientRecord,
+  CampaignRunRecord,
+  CampaignRunRecipientRecord,
   CampaignType,
+  CreateRunInput,
   LocaleCode,
   SegmentKey,
 } from "@/lib/marketing/types";
@@ -54,6 +63,16 @@ function ensureCampaignInput(input: CampaignInput): string | null {
     return "配信セグメントを1つ以上選択してください";
   }
   return null;
+}
+
+function revalidateCampaignPaths(campaignId: string) {
+  revalidatePath("/admin/emails");
+  revalidatePath(`/admin/emails/${campaignId}`);
+  revalidatePath(`/admin/emails/${campaignId}/edit`);
+  revalidatePath(`/admin/emails/${campaignId}/preview`);
+  revalidatePath(`/admin/emails/${campaignId}/test`);
+  revalidatePath(`/admin/emails/${campaignId}/queue`);
+  revalidatePath(`/admin/emails/${campaignId}/recipients`);
 }
 
 async function ensurePreferenceForUser(userId: string, locale: LocaleCode) {
@@ -117,44 +136,121 @@ function getLocalizedCampaignContent(
   };
 }
 
-async function refreshCampaignAggregate(campaignId: string) {
+async function countRunRecipients(runId: string, status?: "pending" | "sent" | "failed" | "skipped") {
   const adminDb = createAdminClient();
-  const counts = await getRecipientCounts(campaignId);
-  const {
-    count: retryableCount,
-    error: retryableError,
-  } = await adminDb
-    .from("marketing_campaign_recipients")
+  let query = adminDb
+    .from("marketing_campaign_run_recipients")
     .select("id", { count: "exact", head: true })
-    .eq("campaign_id", campaignId)
-    .in("status", ["pending", "failed"]);
+    .eq("run_id", runId);
 
-  if (retryableError) throw retryableError;
+  if (status) {
+    query = query.eq("status", status);
+  }
 
-  const status =
-    (retryableCount ?? 0) === 0
-      ? "completed"
-      : counts.pending === 0
-        ? "failed"
-        : "sending";
+  const { count, error } = await query;
+  if (error) throw error;
+  return count ?? 0;
+}
 
+async function syncCampaignSnapshotFromRun(run: CampaignRunRecord) {
+  const adminDb = createAdminClient();
   const { error } = await adminDb
     .from("marketing_campaigns")
     .update({
-      total_count: counts.total,
-      sent_count: counts.sent,
-      failed_count: counts.failed,
-      status,
-      completed_at: status === "completed" ? new Date().toISOString() : null,
+      status: run.status,
+      queued_at: run.queued_at,
+      started_at: run.started_at,
+      completed_at: run.completed_at,
+      total_count: run.total_count,
+      sent_count: run.sent_count,
+      failed_count: run.failed_count,
+      last_error: run.last_error,
     })
-    .eq("id", campaignId);
+    .eq("id", run.campaign_id);
+  if (error) throw error;
+}
+
+async function refreshRunAggregate(runId: string): Promise<{
+  run: CampaignRunRecord;
+  retryableCount: number;
+}> {
+  const run = await getCampaignRunById(runId);
+  if (!run) {
+    throw new Error("Runが見つかりません");
+  }
+
+  const [total, sent, failed, pending, skipped] = await Promise.all([
+    countRunRecipients(runId),
+    countRunRecipients(runId, "sent"),
+    countRunRecipients(runId, "failed"),
+    countRunRecipients(runId, "pending"),
+    countRunRecipients(runId, "skipped"),
+  ]);
+
+  const retryableCount = pending + failed;
+  const nextStatus: CampaignRunRecord["status"] =
+    retryableCount === 0 ? "completed" : pending === 0 ? "failed" : "sending";
+
+  const adminDb = createAdminClient();
+  const { data, error } = await adminDb
+    .from("marketing_campaign_runs")
+    .update({
+      status: nextStatus,
+      total_count: total,
+      sent_count: sent,
+      failed_count: failed,
+      skipped_count: skipped,
+      completed_at: nextStatus === "completed" ? new Date().toISOString() : null,
+    })
+    .eq("id", runId)
+    .select("*")
+    .single();
   if (error) throw error;
 
+  const updatedRun = data as CampaignRunRecord;
+  await syncCampaignSnapshotFromRun(updatedRun);
+
   return {
-    status,
-    ...counts,
-    retryableCount: retryableCount ?? 0,
+    run: updatedRun,
+    retryableCount,
   };
+}
+
+async function listPreviouslySentTargets(campaignId: string): Promise<{
+  userIds: Set<string>;
+  emails: Set<string>;
+}> {
+  const adminDb = createAdminClient();
+
+  const [newRes, legacyRes] = await Promise.all([
+    adminDb
+      .from("marketing_campaign_run_recipients")
+      .select("user_id, email")
+      .eq("campaign_id", campaignId)
+      .eq("status", "sent"),
+    adminDb
+      .from("marketing_campaign_recipients")
+      .select("user_id, email")
+      .eq("campaign_id", campaignId)
+      .eq("status", "sent"),
+  ]);
+
+  if (newRes.error) throw newRes.error;
+  if (legacyRes.error) throw legacyRes.error;
+
+  const userIds = new Set<string>();
+  const emails = new Set<string>();
+
+  for (const row of [...(newRes.data ?? []), ...(legacyRes.data ?? [])]) {
+    if (row.user_id) {
+      userIds.add(row.user_id);
+    }
+    if (row.email) {
+      emails.add(String(row.email).trim().toLowerCase());
+    }
+  }
+
+  return { userIds, emails };
 }
 
 export async function saveCampaign(input: CampaignInput) {
@@ -231,10 +327,7 @@ export async function saveCampaign(input: CampaignInput) {
       return { success: false as const, error: error.message };
     }
 
-    revalidatePath("/admin/emails");
-    revalidatePath(`/admin/emails/${input.id}`);
-    revalidatePath(`/admin/emails/${input.id}/edit`);
-    revalidatePath(`/admin/emails/${input.id}/preview`);
+    revalidateCampaignPaths(input.id);
     return { success: true as const, campaignId: input.id };
   }
 
@@ -332,10 +425,7 @@ export async function sendCampaignTest(
       .eq("id", campaignId);
     if (error) throw error;
 
-    revalidatePath(`/admin/emails/${campaignId}`);
-    revalidatePath(`/admin/emails/${campaignId}/test`);
-    revalidatePath(`/admin/emails/${campaignId}/queue`);
-    revalidatePath("/admin/emails");
+    revalidateCampaignPaths(campaignId);
 
     return { success: true as const, messageId };
   } catch (error) {
@@ -346,8 +436,8 @@ export async function sendCampaignTest(
   }
 }
 
-export async function queueCampaign(campaignId: string) {
-  await requireAdminForAction();
+export async function createCampaignRun(campaignId: string, input: CreateRunInput = {}) {
+  const admin = await requireAdminForAction();
   const campaign = await getCampaignById(campaignId);
   if (!campaign) {
     return { success: false as const, error: "メールが見つかりません" };
@@ -362,25 +452,61 @@ export async function queueCampaign(campaignId: string) {
     return { success: false as const, error: "先にテスト送信を実行してください" };
   }
   if (campaign.status === "sending") {
-    return { success: false as const, error: "配信中のメールはキュー作成できません" };
+    return { success: false as const, error: "配信中のメールはRun作成できません" };
   }
 
-  const recipients = await resolveRecipientsBySegments(campaign.segment_keys ?? []);
+  const segmentKeys = parseSegmentKeys(input.segmentKeys ?? campaign.segment_keys ?? []);
+  if (campaign.campaign_type === "marketing" && segmentKeys.length === 0) {
+    return { success: false as const, error: "配信セグメントを1つ以上選択してください" };
+  }
+
+  const includePreviouslySent = !!input.includePreviouslySent;
+  const recipients = await resolveRecipientsBySegments(segmentKeys);
+
+  let filtered = recipients;
+  if (!includePreviouslySent) {
+    const sentTargets = await listPreviouslySentTargets(campaignId);
+    filtered = recipients.filter((recipient) => {
+      if (recipient.userId && sentTargets.userIds.has(recipient.userId)) {
+        return false;
+      }
+      return !sentTargets.emails.has(recipient.email.trim().toLowerCase());
+    });
+  }
+
+  const now = new Date().toISOString();
   const adminDb = createAdminClient();
 
-  const { error: deleteError } = await adminDb
-    .from("marketing_campaign_recipients")
-    .delete()
-    .eq("campaign_id", campaignId);
-  if (deleteError) {
-    return { success: false as const, error: deleteError.message };
+  const { data: runRow, error: runError } = await adminDb
+    .from("marketing_campaign_runs")
+    .insert({
+      campaign_id: campaignId,
+      status: "queued",
+      segment_keys_snapshot: segmentKeys,
+      include_previously_sent: includePreviouslySent,
+      total_count: filtered.length,
+      sent_count: 0,
+      failed_count: 0,
+      skipped_count: 0,
+      queued_at: now,
+      started_at: null,
+      completed_at: null,
+      created_by: admin.id,
+      last_error: null,
+    })
+    .select("*")
+    .single();
+
+  if (runError || !runRow) {
+    return { success: false as const, error: runError?.message ?? "Run作成に失敗しました" };
   }
 
-  if (recipients.length > 0) {
+  if (filtered.length > 0) {
     const { error: insertError } = await adminDb
-      .from("marketing_campaign_recipients")
+      .from("marketing_campaign_run_recipients")
       .insert(
-        recipients.map((recipient) => ({
+        filtered.map((recipient) => ({
+          run_id: runRow.id,
           campaign_id: campaignId,
           user_id: recipient.userId,
           email: recipient.email,
@@ -389,36 +515,52 @@ export async function queueCampaign(campaignId: string) {
           status: "pending",
         }))
       );
+
     if (insertError) {
+      await adminDb.from("marketing_campaign_runs").delete().eq("id", runRow.id);
       return { success: false as const, error: insertError.message };
     }
   }
 
-  const now = new Date().toISOString();
-  const { error: updateError } = await adminDb
+  const { error: campaignUpdateError } = await adminDb
     .from("marketing_campaigns")
     .update({
       status: "queued",
       queued_at: now,
       started_at: null,
       completed_at: null,
-      total_count: recipients.length,
+      total_count: filtered.length,
       sent_count: 0,
       failed_count: 0,
       last_error: null,
     })
     .eq("id", campaignId);
-  if (updateError) {
-    return { success: false as const, error: updateError.message };
+
+  if (campaignUpdateError) {
+    await adminDb.from("marketing_campaign_run_recipients").delete().eq("run_id", runRow.id);
+    await adminDb.from("marketing_campaign_runs").delete().eq("id", runRow.id);
+    return { success: false as const, error: campaignUpdateError.message };
   }
 
-  revalidatePath("/admin/emails");
-  revalidatePath(`/admin/emails/${campaignId}`);
-  revalidatePath(`/admin/emails/${campaignId}/queue`);
-  revalidatePath(`/admin/emails/${campaignId}/recipients`);
+  revalidateCampaignPaths(campaignId);
+
   return {
     success: true as const,
-    totalCount: recipients.length,
+    runId: runRow.id,
+    totalCount: filtered.length,
+    excludedCount: recipients.length - filtered.length,
+    includePreviouslySent,
+  };
+}
+
+export async function queueCampaign(campaignId: string) {
+  const result = await createCampaignRun(campaignId, { includePreviouslySent: false });
+  if (!result.success) return result;
+  return {
+    success: true as const,
+    runId: result.runId,
+    totalCount: result.totalCount,
+    excludedCount: result.excludedCount,
   };
 }
 
@@ -441,20 +583,71 @@ export async function deleteCampaign(campaignId: string) {
     return { success: false as const, error: error.message };
   }
 
-  revalidatePath("/admin/emails");
-  revalidatePath(`/admin/emails/${campaignId}`);
-  revalidatePath(`/admin/emails/${campaignId}/edit`);
-  revalidatePath(`/admin/emails/${campaignId}/preview`);
-  revalidatePath(`/admin/emails/${campaignId}/test`);
-  revalidatePath(`/admin/emails/${campaignId}/queue`);
-  revalidatePath(`/admin/emails/${campaignId}/recipients`);
+  revalidateCampaignPaths(campaignId);
 
   return { success: true as const };
 }
 
-export async function runCampaignQueue(campaignId: string, batchSize = 20) {
-  await requireAdminForAction();
+export async function duplicateCampaign(campaignId: string) {
+  const admin = await requireAdminForAction();
   const campaign = await getCampaignById(campaignId);
+  if (!campaign) {
+    return { success: false as const, error: "メールが見つかりません" };
+  }
+  if (campaign.campaign_type !== "marketing") {
+    return { success: false as const, error: "マーケティングメールのみ複製できます" };
+  }
+
+  const today = new Date().toISOString().slice(0, 10);
+  const copiedTitle = `${campaign.title}（コピー ${today}）`;
+
+  const adminDb = createAdminClient();
+  const { data, error } = await adminDb
+    .from("marketing_campaigns")
+    .insert({
+      title: copiedTitle,
+      campaign_type: campaign.campaign_type,
+      segment_keys: campaign.segment_keys,
+      email_title_ja: campaign.email_title_ja,
+      email_title_en: campaign.email_title_en,
+      newsletter_label_ja: campaign.newsletter_label_ja,
+      newsletter_label_en: campaign.newsletter_label_en,
+      helper_text_ja: campaign.helper_text_ja,
+      helper_text_en: campaign.helper_text_en,
+      subject_ja: campaign.subject_ja,
+      subject_en: campaign.subject_en,
+      body_md_ja: campaign.body_md_ja,
+      body_md_en: campaign.body_md_en,
+      auto_send_enabled: false,
+      status: "draft",
+      created_by: admin.id,
+      total_count: 0,
+      sent_count: 0,
+      failed_count: 0,
+      queued_at: null,
+      started_at: null,
+      completed_at: null,
+      last_error: null,
+    })
+    .select("id")
+    .single();
+
+  if (error || !data) {
+    return { success: false as const, error: error?.message ?? "複製に失敗しました" };
+  }
+
+  revalidatePath("/admin/emails");
+  return { success: true as const, campaignId: data.id };
+}
+
+export async function runCampaignRun(runId: string, batchSize = 20) {
+  await requireAdminForAction();
+  const run = await getCampaignRunById(runId);
+  if (!run) {
+    return { success: false as const, error: "Runが見つかりません" };
+  }
+
+  const campaign = await getCampaignById(run.campaign_id);
   if (!campaign) {
     return { success: false as const, error: "メールが見つかりません" };
   }
@@ -464,16 +657,14 @@ export async function runCampaignQueue(campaignId: string, batchSize = 20) {
       error: "この種別のメールはキュー実行できません",
     };
   }
-  if (campaign.status === "draft") {
-    return { success: false as const, error: "先にキュー作成を実行してください" };
-  }
 
   const size = Math.max(1, Math.min(100, Math.floor(batchSize)));
   const adminDb = createAdminClient();
+
   const { data: recipients, error: recipientError } = await adminDb
-    .from("marketing_campaign_recipients")
+    .from("marketing_campaign_run_recipients")
     .select("*")
-    .eq("campaign_id", campaignId)
+    .eq("run_id", runId)
     .in("status", ["pending", "failed"])
     .order("created_at", { ascending: true })
     .limit(size);
@@ -482,15 +673,13 @@ export async function runCampaignQueue(campaignId: string, batchSize = 20) {
     return { success: false as const, error: recipientError.message };
   }
 
-  const pending = (recipients ?? []) as CampaignRecipientRecord[];
+  const pending = (recipients ?? []) as CampaignRunRecipientRecord[];
   if (pending.length === 0) {
-    const counts = await refreshCampaignAggregate(campaignId);
-    revalidatePath("/admin/emails");
-    revalidatePath(`/admin/emails/${campaignId}`);
-    revalidatePath(`/admin/emails/${campaignId}/queue`);
-    revalidatePath(`/admin/emails/${campaignId}/recipients`);
+    const counts = await refreshRunAggregate(runId);
+    revalidateCampaignPaths(campaign.id);
     return {
       success: true as const,
+      runId,
       processed: 0,
       sent: 0,
       failed: 0,
@@ -499,16 +688,30 @@ export async function runCampaignQueue(campaignId: string, batchSize = 20) {
     };
   }
 
-  if (!campaign.started_at) {
+  const now = new Date().toISOString();
+  if (!run.started_at) {
+    const { error: runUpdateError } = await adminDb
+      .from("marketing_campaign_runs")
+      .update({ status: "sending", started_at: now })
+      .eq("id", runId);
+    if (runUpdateError) {
+      return { success: false as const, error: runUpdateError.message };
+    }
+
     await adminDb
       .from("marketing_campaigns")
-      .update({ status: "sending", started_at: new Date().toISOString() })
-      .eq("id", campaignId);
+      .update({ status: "sending", started_at: now })
+      .eq("id", campaign.id);
   } else {
+    await adminDb
+      .from("marketing_campaign_runs")
+      .update({ status: "sending" })
+      .eq("id", runId);
+
     await adminDb
       .from("marketing_campaigns")
       .update({ status: "sending" })
-      .eq("id", campaignId);
+      .eq("id", campaign.id);
   }
 
   let sent = 0;
@@ -518,36 +721,28 @@ export async function runCampaignQueue(campaignId: string, batchSize = 20) {
   for (const recipient of pending) {
     const content = getLocalizedCampaignContent(campaign, recipient.locale);
     if (!content.subject.trim() || !content.bodyMarkdown.trim()) {
-      const { error } = await adminDb
-        .from("marketing_campaign_recipients")
+      await adminDb
+        .from("marketing_campaign_run_recipients")
         .update({
           status: "failed",
           attempt_count: recipient.attempt_count + 1,
           last_error: "localized_content_missing",
         })
         .eq("id", recipient.id);
-      if (error) {
-        failed += 1;
-      } else {
-        failed += 1;
-      }
+      failed += 1;
       continue;
     }
 
     if (!recipient.user_id) {
-      const { error } = await adminDb
-        .from("marketing_campaign_recipients")
+      await adminDb
+        .from("marketing_campaign_run_recipients")
         .update({
           status: "failed",
           attempt_count: recipient.attempt_count + 1,
           last_error: "user_id_missing",
         })
         .eq("id", recipient.id);
-      if (error) {
-        failed += 1;
-      } else {
-        failed += 1;
-      }
+      failed += 1;
       continue;
     }
 
@@ -555,7 +750,7 @@ export async function runCampaignQueue(campaignId: string, batchSize = 20) {
       const preference = await ensurePreferenceForUser(recipient.user_id, recipient.locale);
       if (!preference.marketing_opt_in || !!preference.unsubscribed_at) {
         const { error: skipError } = await adminDb
-          .from("marketing_campaign_recipients")
+          .from("marketing_campaign_run_recipients")
           .update({
             status: "skipped",
             attempt_count: recipient.attempt_count + 1,
@@ -580,7 +775,7 @@ export async function runCampaignQueue(campaignId: string, batchSize = 20) {
       });
 
       const { error: updateError } = await adminDb
-        .from("marketing_campaign_recipients")
+        .from("marketing_campaign_run_recipients")
         .update({
           status: "sent",
           attempt_count: recipient.attempt_count + 1,
@@ -594,7 +789,7 @@ export async function runCampaignQueue(campaignId: string, batchSize = 20) {
     } catch (error) {
       const message = error instanceof Error ? error.message : "send_failed";
       await adminDb
-        .from("marketing_campaign_recipients")
+        .from("marketing_campaign_run_recipients")
         .update({
           status: "failed",
           attempt_count: recipient.attempt_count + 1,
@@ -603,25 +798,48 @@ export async function runCampaignQueue(campaignId: string, batchSize = 20) {
         .eq("id", recipient.id);
       failed += 1;
       await adminDb
+        .from("marketing_campaign_runs")
+        .update({ last_error: message })
+        .eq("id", runId);
+      await adminDb
         .from("marketing_campaigns")
         .update({ last_error: message })
-        .eq("id", campaignId);
+        .eq("id", campaign.id);
     }
   }
 
-  const counts = await refreshCampaignAggregate(campaignId);
+  const counts = await refreshRunAggregate(runId);
 
-  revalidatePath("/admin/emails");
-  revalidatePath(`/admin/emails/${campaignId}`);
-  revalidatePath(`/admin/emails/${campaignId}/queue`);
-  revalidatePath(`/admin/emails/${campaignId}/recipients`);
+  revalidateCampaignPaths(campaign.id);
 
   return {
     success: true as const,
+    runId,
     processed: pending.length,
     sent,
     failed,
     skipped,
     remaining: counts.retryableCount,
   };
+}
+
+export async function runCampaignQueue(campaignId: string, batchSize = 20) {
+  await requireAdminForAction();
+  const campaign = await getCampaignById(campaignId);
+  if (!campaign) {
+    return { success: false as const, error: "メールが見つかりません" };
+  }
+  if (campaign.campaign_type === "account_created") {
+    return {
+      success: false as const,
+      error: "この種別のメールはキュー実行できません",
+    };
+  }
+
+  const latestRun = await getLatestCampaignRunByCampaignId(campaignId);
+  if (!latestRun) {
+    return { success: false as const, error: "先にキュー作成を実行してください" };
+  }
+
+  return runCampaignRun(latestRun.id, batchSize);
 }

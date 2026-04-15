@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { requireAdminForPage } from "@/lib/marketing/admin-auth";
-import { getCampaignById } from "@/lib/marketing/repository";
+import { getCampaignById, listCampaignRuns } from "@/lib/marketing/repository";
 import { AdminEmailQueueRunner } from "@/components/admin-email-queue-runner";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -28,6 +28,8 @@ export default async function CampaignQueuePage({
   const campaign = await getCampaignById(id);
   if (!campaign) notFound();
   const isQueueEnabled = campaign.campaign_type !== "account_created";
+  const runs = isQueueEnabled ? await listCampaignRuns(campaign.id, 30) : [];
+  const latestRun = runs[0] ?? null;
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40 p-4 md:p-10 gap-8">
@@ -51,40 +53,58 @@ export default async function CampaignQueuePage({
               <CardContent className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
                 <div>
                   <div className="text-muted-foreground">ステータス</div>
-                  <div>{campaign.status}</div>
+                  <div>{latestRun?.status ?? "-"}</div>
                 </div>
                 <div>
                   <div className="text-muted-foreground">対象件数</div>
-                  <div>{campaign.total_count}</div>
+                  <div>{latestRun?.total_count ?? 0}</div>
                 </div>
                 <div>
                   <div className="text-muted-foreground">送信成功</div>
-                  <div>{campaign.sent_count}</div>
+                  <div>{latestRun?.sent_count ?? 0}</div>
                 </div>
                 <div>
                   <div className="text-muted-foreground">送信失敗</div>
-                  <div>{campaign.failed_count}</div>
+                  <div>{latestRun?.failed_count ?? 0}</div>
                 </div>
                 <div>
                   <div className="text-muted-foreground">テスト送信日時</div>
                   <div>{formatDate(campaign.test_sent_at)}</div>
                 </div>
                 <div>
-                  <div className="text-muted-foreground">キュー作成日時</div>
-                  <div>{formatDate(campaign.queued_at)}</div>
+                  <div className="text-muted-foreground">Run作成日時</div>
+                  <div>{formatDate(latestRun?.queued_at ?? null)}</div>
                 </div>
                 <div>
-                  <div className="text-muted-foreground">配信開始日時</div>
-                  <div>{formatDate(campaign.started_at)}</div>
+                  <div className="text-muted-foreground">実行開始日時</div>
+                  <div>{formatDate(latestRun?.started_at ?? null)}</div>
                 </div>
                 <div>
                   <div className="text-muted-foreground">完了日時</div>
-                  <div>{formatDate(campaign.completed_at)}</div>
+                  <div>{formatDate(latestRun?.completed_at ?? null)}</div>
+                </div>
+                <div>
+                  <div className="text-muted-foreground">過去送信済み含む</div>
+                  <div>
+                    {latestRun
+                      ? latestRun.include_previously_sent
+                        ? "はい"
+                        : "いいえ"
+                      : "-"}
+                  </div>
                 </div>
               </CardContent>
             </Card>
 
-            <AdminEmailQueueRunner campaignId={campaign.id} />
+            <AdminEmailQueueRunner
+              campaignId={campaign.id}
+              runOptions={runs.map((run) => ({
+                id: run.id,
+                status: run.status,
+                createdAt: run.created_at,
+              }))}
+              initialRunId={latestRun?.id}
+            />
           </>
         ) : (
           <Card>

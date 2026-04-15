@@ -96,6 +96,54 @@ export type CampaignRecipientRecord = {
   updated_at: string;
 };
 
+export type CampaignRunStatus =
+  | "draft"
+  | "queued"
+  | "sending"
+  | "completed"
+  | "failed";
+
+export type CampaignRunRecord = {
+  id: string;
+  campaign_id: string;
+  status: CampaignRunStatus;
+  segment_keys_snapshot: SegmentKey[];
+  include_previously_sent: boolean;
+  total_count: number;
+  sent_count: number;
+  failed_count: number;
+  skipped_count: number;
+  queued_at: string | null;
+  started_at: string | null;
+  completed_at: string | null;
+  created_by: string | null;
+  last_error: string | null;
+  created_at: string;
+  updated_at: string;
+};
+
+export type CampaignRunRecipientRecord = {
+  id: string;
+  run_id: string;
+  campaign_id: string;
+  user_id: string | null;
+  email: string;
+  locale: LocaleCode;
+  segment_key: SegmentKey;
+  status: RecipientStatus;
+  attempt_count: number;
+  resend_message_id: string | null;
+  last_error: string | null;
+  sent_at: string | null;
+  created_at: string;
+  updated_at: string;
+};
+
+export type CreateRunInput = {
+  segmentKeys?: SegmentKey[];
+  includePreviouslySent?: boolean;
+};
+
 export type EmailPreferenceRecord = {
   user_id: string;
   locale: LocaleCode;

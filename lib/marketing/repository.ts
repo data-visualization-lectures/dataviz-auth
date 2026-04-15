@@ -1,6 +1,8 @@
 import { createAdminClient } from "@/lib/supabase/admin";
 import type {
   CampaignRecord,
+  CampaignRunRecipientRecord,
+  CampaignRunRecord,
   CampaignRecipientRecord,
   EmailPreferenceRecord,
 } from "@/lib/marketing/types";
@@ -25,6 +27,75 @@ export async function getCampaignById(id: string): Promise<CampaignRecord | null
     .maybeSingle();
   if (error) throw error;
   return (data ?? null) as CampaignRecord | null;
+}
+
+export async function listCampaignRuns(
+  campaignId: string,
+  limit = 20
+): Promise<CampaignRunRecord[]> {
+  const adminDb = createAdminClient();
+  const { data, error } = await adminDb
+    .from("marketing_campaign_runs")
+    .select("*")
+    .eq("campaign_id", campaignId)
+    .order("created_at", { ascending: false })
+    .limit(limit);
+  if (error) throw error;
+  return (data ?? []) as CampaignRunRecord[];
+}
+
+export async function getCampaignRunById(runId: string): Promise<CampaignRunRecord | null> {
+  const adminDb = createAdminClient();
+  const { data, error } = await adminDb
+    .from("marketing_campaign_runs")
+    .select("*")
+    .eq("id", runId)
+    .maybeSingle();
+  if (error) throw error;
+  return (data ?? null) as CampaignRunRecord | null;
+}
+
+export async function getLatestCampaignRunByCampaignId(
+  campaignId: string
+): Promise<CampaignRunRecord | null> {
+  const runs = await listCampaignRuns(campaignId, 1);
+  return runs[0] ?? null;
+}
+
+export async function getCampaignRunRecipients(
+  runId: string,
+  limit = 1000
+): Promise<CampaignRunRecipientRecord[]> {
+  const adminDb = createAdminClient();
+  const { data, error } = await adminDb
+    .from("marketing_campaign_run_recipients")
+    .select("*")
+    .eq("run_id", runId)
+    .order("created_at", { ascending: true })
+    .limit(limit);
+  if (error) throw error;
+  return (data ?? []) as CampaignRunRecipientRecord[];
+}
+
+export async function listLatestCampaignRunsByCampaignIds(
+  campaignIds: string[]
+): Promise<Record<string, CampaignRunRecord>> {
+  if (campaignIds.length === 0) return {};
+  const adminDb = createAdminClient();
+  const { data, error } = await adminDb
+    .from("marketing_campaign_runs")
+    .select("*")
+    .in("campaign_id", campaignIds)
+    .order("created_at", { ascending: false });
+  if (error) throw error;
+
+  const latestMap: Record<string, CampaignRunRecord> = {};
+  for (const row of (data ?? []) as CampaignRunRecord[]) {
+    if (!latestMap[row.campaign_id]) {
+      latestMap[row.campaign_id] = row;
+    }
+  }
+  return latestMap;
 }
 
 export async function getCampaignRecipients(
