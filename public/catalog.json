@@ -808,7 +808,8 @@
         "rawgraphs"
       ],
       "category": "tabular",
-      "fileUrlEn": null
+      "fileUrlEn": null,
+      "dataAsOf": "2015年1月18日収集"
     },
     {
       "id": "japan-fruit-production",
@@ -2738,7 +2739,8 @@
       "compatibleTools": [
         "rawgraphs",
         "voyager2",
-        "parallel-coordinates"
+        "parallel-coordinates",
+        "bar-chart-filter"
       ],
       "category": "tabular"
     },
