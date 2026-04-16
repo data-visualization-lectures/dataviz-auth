@@ -2995,6 +2995,40 @@
         "parallel-coordinates"
       ],
       "category": "tabular"
+    },
+    {
+      "id": "tse-listed-stocks",
+      "name": "東京証券取引所 上場銘柄一覧",
+      "nameEn": "Stocks Listed on the Tokyo Stock Exchange",
+      "description": "東京証券取引所に上場している銘柄の一覧。市場・商品区分、33業種区分、17業種区分、規模区分を含む",
+      "descriptionEn": "List of stocks listed on the Tokyo Stock Exchange, including market/product classification, 33-sector classification, 17-sector classification, and size classification",
+      "format": "csv",
+      "tags": [
+        "日本",
+        "金融",
+        "株式",
+        "証券取引所"
+      ],
+      "columns": [
+        "日付",
+        "コード",
+        "銘柄名",
+        "市場・商品区分",
+        "33業種区分",
+        "17業種区分",
+        "規模区分"
+      ],
+      "rowCount": 4444,
+      "fileUrl": "https://app.dataviz.jp/data/stocks-listed-on-the-Tokyo-Stock-Exchange.csv",
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "rawgraphs",
+        "voyager",
+        "bar-chart-filter"
+      ],
+      "category": "tabular",
+      "dataAsOf": "2026年3月31日公開",
+      "sourceUrl": "https://www.jpx.co.jp/markets/statistics-equities/misc/01.html"
     }
   ]
 }
