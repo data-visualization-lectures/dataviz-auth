@@ -6,20 +6,22 @@
       "id": "rg-hate-crimes-ny",
       "name": "NYヘイトクライム",
       "nameEn": "Hate Crimes in New York",
-      "description": "ニューヨークのヘイトクライムを性別・人種・年齢・動機別に分類。想定チャート: 沖積図",
-      "descriptionEn": "Hate crimes in New York by gender, race, age group, and bias motivation. Suggested chart: Alluvial Diagram",
+      "description": "ニューヨークのヘイトクライムを性別・人種・年齢・動機別に分類。想定チャート: 沖積図。 想定チャート(ICB): サークル・パッキング",
+      "descriptionEn": "Hate crimes in New York by gender, race, age group, and bias motivation. Suggested chart: Alluvial Diagram. Suggested chart (ICB): Circle packing",
       "format": "tsv",
       "tags": [
         "社会",
         "犯罪",
         "ニューヨーク",
-        "分類"
+        "分類",
+        "サークル・パッキング"
       ],
       "tagsEn": [
         "Society",
         "Crime",
         "New York",
-        "Classification"
+        "Classification",
+        "Circle packing"
       ],
       "columns": [
         "Gender",
@@ -31,7 +33,8 @@
       "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Alluvial diagram - Hate crimes in New York.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
-        "rawgraphs"
+        "rawgraphs",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "fileUrlEn": "https://app.dataviz.jp/data/rawgraphs-en/Alluvial diagram - Hate crimes in New York.tsv"
@@ -73,20 +76,24 @@
       "id": "rg-netflix-series",
       "name": "Netflixオリジナルシリーズ",
       "nameEn": "Netflix Original Series",
-      "description": "Netflixオリジナルシリーズのジャンル・シーズン数・IMDB評価など。想定チャート: 棒グラフ",
-      "descriptionEn": "Netflix original series with genre, seasons, episodes, and IMDB rating. Suggested chart: Bar chart",
+      "description": "Netflixオリジナルシリーズのジャンル・シーズン数・IMDB評価など。想定チャート: 棒グラフ。 想定チャート(ICB): ビースウォーム・プロット、時系列散布図",
+      "descriptionEn": "Netflix original series with genre, seasons, episodes, and IMDB rating. Suggested chart: Bar chart. Suggested chart (ICB): Beeswarm plot, Time-series scatter plot",
       "format": "tsv",
       "tags": [
         "エンタメ",
         "Netflix",
         "映像",
-        "評価"
+        "評価",
+        "ビースウォーム・プロット",
+        "時系列散布図"
       ],
       "tagsEn": [
         "Entertainment",
         "Netflix",
         "Video",
-        "Rating"
+        "Rating",
+        "Beeswarm plot",
+        "Time-series scatter plot"
       ],
       "columns": [
         "Genere",
@@ -102,7 +109,8 @@
       "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Bar chart - Netflix Original Series.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
-        "rawgraphs"
+        "rawgraphs",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "fileUrlEn": "https://app.dataviz.jp/data/rawgraphs-en/Bar chart - Netflix Original Series.tsv"
@@ -111,20 +119,22 @@
       "id": "rg-ny-wages",
       "name": "NY職業別平均賃金",
       "nameEn": "NY Mean Wages",
-      "description": "ニューヨークの職業別平均賃金データ。想定チャート: ビースウォーム",
-      "descriptionEn": "Mean wages by occupation in New York. Suggested chart: Beeswarm plot",
+      "description": "ニューヨークの職業別平均賃金データ。想定チャート: ビースウォーム。 想定チャート(ICB): ビースウォーム・プロット",
+      "descriptionEn": "Mean wages by occupation in New York. Suggested chart: Beeswarm plot. Suggested chart (ICB): Beeswarm plot",
       "format": "tsv",
       "tags": [
         "雇用",
         "賃金",
         "職業",
-        "ニューヨーク"
+        "ニューヨーク",
+        "ビースウォーム・プロット"
       ],
       "tagsEn": [
         "Employment",
         "Wages",
         "Occupation",
-        "New York"
+        "New York",
+        "Beeswarm plot"
       ],
       "columns": [
         "Occupation",
@@ -135,7 +145,8 @@
       "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Beeswarm plot - NY mean wages.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
-        "rawgraphs"
+        "rawgraphs",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "fileUrlEn": "https://app.dataviz.jp/data/rawgraphs-en/Beeswarm plot - NY mean wages.tsv"
@@ -144,20 +155,22 @@
       "id": "rg-top50-movies",
       "name": "映画興行収入TOP50",
       "nameEn": "Top 50 Grossing Movies",
-      "description": "興行収入上位50映画の予算・収益・ROI・ジャンル。想定チャート: バブル・チャート",
-      "descriptionEn": "Budget, box office, ROI, and genre for top 50 grossing movies. Suggested chart: Bubble chart",
+      "description": "興行収入上位50映画の予算・収益・ROI・ジャンル。想定チャート: バブル・チャート。 想定チャート(ICB): ビースウォーム・プロット",
+      "descriptionEn": "Budget, box office, ROI, and genre for top 50 grossing movies. Suggested chart: Bubble chart. Suggested chart (ICB): Beeswarm plot",
       "format": "tsv",
       "tags": [
         "映画",
         "エンタメ",
         "興行収入",
-        "比較"
+        "比較",
+        "ビースウォーム・プロット"
       ],
       "tagsEn": [
         "Movie",
         "Entertainment",
         "Box Office",
-        "Comparison"
+        "Comparison",
+        "Beeswarm plot"
       ],
       "columns": [
         "Budget (mln)",
@@ -170,7 +183,8 @@
       "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Bubble Chart - TOP 50 Groossing Movies.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
-        "rawgraphs"
+        "rawgraphs",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "fileUrlEn": "https://app.dataviz.jp/data/rawgraphs-en/Bubble Chart - TOP 50 Groossing Movies.tsv"
@@ -179,20 +193,24 @@
       "id": "rg-milan-foreigners",
       "name": "ミラノの外国人居住者",
       "nameEn": "Foreign Residents in Milan",
-      "description": "ミラノにおける国別外国人居住者数の推移。想定チャート: バンプ・チャート",
-      "descriptionEn": "Foreign residents in Milan by country over time. Suggested chart: Bumpchart",
+      "description": "ミラノにおける国別外国人居住者数の推移。想定チャート: バンプ・チャート。 想定チャート(ICB): ストリームグラフ、バンプ・チャート",
+      "descriptionEn": "Foreign residents in Milan by country over time. Suggested chart: Bumpchart. Suggested chart (ICB): Streamgraph, Bump chart",
       "format": "tsv",
       "tags": [
         "人口",
         "移民",
         "時系列",
-        "イタリア"
+        "イタリア",
+        "ストリームグラフ",
+        "バンプ・チャート"
       ],
       "tagsEn": [
         "Population",
         "Immigration",
         "Time Series",
-        "Italy"
+        "Italy",
+        "Streamgraph",
+        "Bump chart"
       ],
       "columns": [
         "Country",
@@ -203,7 +221,8 @@
       "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Bump chart - Foreign residents in Milan.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
-        "rawgraphs"
+        "rawgraphs",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "fileUrlEn": "https://app.dataviz.jp/data/rawgraphs-en/Bump chart - Foreign residents in Milan.tsv"
@@ -212,20 +231,22 @@
       "id": "rg-populated-cities",
       "name": "人口の多い都市",
       "nameEn": "Most Populated Cities",
-      "description": "世界の人口上位都市を大陸・国・都市の階層で分類。想定チャート: サークル・パッキング",
-      "descriptionEn": "Most populated cities by continent, country, and city. Suggested chart: Circle Packing",
+      "description": "世界の人口上位都市を大陸・国・都市の階層で分類。想定チャート: サークル・パッキング。 想定チャート(ICB): サークル・パッキング",
+      "descriptionEn": "Most populated cities by continent, country, and city. Suggested chart: Circle Packing. Suggested chart (ICB): Circle packing",
       "format": "tsv",
       "tags": [
         "人口",
         "都市",
         "世界",
-        "階層"
+        "階層",
+        "サークル・パッキング"
       ],
       "tagsEn": [
         "Population",
         "City",
         "World",
-        "Hierarchy"
+        "Hierarchy",
+        "Circle packing"
       ],
       "columns": [
         "Continent",
@@ -237,7 +258,8 @@
       "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Circle Packing - Most populated cities.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
-        "rawgraphs"
+        "rawgraphs",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "fileUrlEn": "https://app.dataviz.jp/data/rawgraphs-en/Circle Packing - Most populated cities.tsv"
@@ -278,20 +300,22 @@
       "id": "rg-iris-flowers",
       "name": "アヤメの花",
       "nameEn": "Iris Flowers",
-      "description": "アヤメ3品種の花弁・萼片の計測データ。想定チャート: 凸包",
-      "descriptionEn": "Iris flower measurements — sepal and petal dimensions for 3 species. Suggested chart: Convex hull",
+      "description": "アヤメ3品種の花弁・萼片の計測データ。想定チャート: 凸包。 想定チャート(ICB): ビースウォーム・プロット",
+      "descriptionEn": "Iris flower measurements — sepal and petal dimensions for 3 species. Suggested chart: Convex hull. Suggested chart (ICB): Beeswarm plot",
       "format": "tsv",
       "tags": [
         "植物",
         "分類",
         "多変量",
-        "統計"
+        "統計",
+        "ビースウォーム・プロット"
       ],
       "tagsEn": [
         "Plant",
         "Classification",
         "Multivariate",
-        "Statistics"
+        "Statistics",
+        "Beeswarm plot"
       ],
       "columns": [
         "Id",
@@ -305,7 +329,8 @@
       "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Convex hull - Iris flowers.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
-        "rawgraphs"
+        "rawgraphs",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "fileUrlEn": "https://app.dataviz.jp/data/rawgraphs-en/Convex hull - Iris flowers.tsv"
@@ -314,20 +339,22 @@
       "id": "rg-felidae",
       "name": "ネコ科の分類",
       "nameEn": "Felidae Classification",
-      "description": "ネコ科動物の分類体系（科・亜科・属・亜種・絶滅危惧度）。想定チャート: デンドログラム",
-      "descriptionEn": "Felidae taxonomy with family, subfamily, genus, subspecies, and extinction risk. Suggested chart: Linear dendrogram",
+      "description": "ネコ科動物の分類体系（科・亜科・属・亜種・絶滅危惧度）。想定チャート: デンドログラム。 想定チャート(ICB): サークル・パッキング",
+      "descriptionEn": "Felidae taxonomy with family, subfamily, genus, subspecies, and extinction risk. Suggested chart: Linear dendrogram. Suggested chart (ICB): Circle packing",
       "format": "tsv",
       "tags": [
         "生物学",
         "分類",
         "動物",
-        "階層"
+        "階層",
+        "サークル・パッキング"
       ],
       "tagsEn": [
         "Biology",
         "Classification",
         "Animal",
-        "Hierarchy"
+        "Hierarchy",
+        "Circle packing"
       ],
       "columns": [
         "Family",
@@ -341,7 +368,8 @@
       "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Dendrogram - Felidae classification.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
-        "rawgraphs"
+        "rawgraphs",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "fileUrlEn": "https://app.dataviz.jp/data/rawgraphs-en/Dendrogram - Felidae classification.tsv"
@@ -384,20 +412,22 @@
       "id": "rg-basketball-shots",
       "name": "バスケットボールのシュート",
       "nameEn": "Basketball Shots",
-      "description": "バスケットボールのシュート位置・種類・距離・成否データ。想定チャート: 六角形ビニング",
-      "descriptionEn": "Basketball shot positions, types, distances, and outcomes. Suggested chart: Hexagonal binning",
+      "description": "バスケットボールのシュート位置・種類・距離・成否データ。想定チャート: 六角形ビニング。 想定チャート(ICB): ビースウォーム・プロット",
+      "descriptionEn": "Basketball shot positions, types, distances, and outcomes. Suggested chart: Hexagonal binning. Suggested chart (ICB): Beeswarm plot",
       "format": "tsv",
       "tags": [
         "スポーツ",
         "バスケ",
         "位置データ",
-        "統計"
+        "統計",
+        "ビースウォーム・プロット"
       ],
       "tagsEn": [
         "Sports",
         "Basketball",
         "Location Data",
-        "Statistics"
+        "Statistics",
+        "Beeswarm plot"
       ],
       "columns": [
         "Action type",
@@ -412,7 +442,8 @@
       "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Hexbin - basketball shots.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
-        "rawgraphs"
+        "rawgraphs",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "fileUrlEn": "https://app.dataviz.jp/data/rawgraphs-en/Hexbin - basketball shots.tsv"
@@ -421,20 +452,24 @@
       "id": "rg-eu-consumer-prices",
       "name": "EU消費者物価指数",
       "nameEn": "EU Consumer Prices",
-      "description": "EUの消費者物価指数（HICP）のカテゴリ別推移。想定チャート: ホライズン・グラフ",
-      "descriptionEn": "EU Harmonised Index of Consumer Prices by category over time. Suggested chart: Horizon graph",
+      "description": "EUの消費者物価指数（HICP）のカテゴリ別推移。想定チャート: ホライズン・グラフ。 想定チャート(ICB): ストリームグラフ、3Dサーフェス・チャート",
+      "descriptionEn": "EU Harmonised Index of Consumer Prices by category over time. Suggested chart: Horizon graph. Suggested chart (ICB): Streamgraph, 3D surface chart",
       "format": "tsv",
       "tags": [
         "経済",
         "物価",
         "時系列",
-        "EU"
+        "EU",
+        "ストリームグラフ",
+        "3Dサーフェス・チャート"
       ],
       "tagsEn": [
         "Economy",
         "Prices",
         "Time Series",
-        "EU"
+        "EU",
+        "Streamgraph",
+        "3D surface chart"
       ],
       "columns": [
         "Category",
@@ -445,7 +480,8 @@
       "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Horizon Graph - EU Index of consumer prices.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
-        "rawgraphs"
+        "rawgraphs",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "fileUrlEn": "https://app.dataviz.jp/data/rawgraphs-en/Horizon Graph - EU Index of consumer prices.tsv"
@@ -454,20 +490,24 @@
       "id": "rg-riaa-music",
       "name": "音楽フォーマット別収益",
       "nameEn": "RIAA Music Format Revenues",
-      "description": "米国の音楽フォーマット別収益の推移（RIAA）。想定チャート: 折れ線グラフ",
-      "descriptionEn": "RIAA music format revenues over time in the US. Suggested chart: Line chart",
+      "description": "米国の音楽フォーマット別収益の推移（RIAA）。想定チャート: 折れ線グラフ。 想定チャート(ICB): ストリームグラフ、3Dサーフェス・チャート",
+      "descriptionEn": "RIAA music format revenues over time in the US. Suggested chart: Line chart. Suggested chart (ICB): Streamgraph, 3D surface chart",
       "format": "tsv",
       "tags": [
         "音楽",
         "収益",
         "時系列",
-        "メディア"
+        "メディア",
+        "ストリームグラフ",
+        "3Dサーフェス・チャート"
       ],
       "tagsEn": [
         "Music",
         "Revenue",
         "Time Series",
-        "Media"
+        "Media",
+        "Streamgraph",
+        "3D surface chart"
       ],
       "columns": [
         "Category",
@@ -482,7 +522,8 @@
       "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Line chart - RIAA Music format revenues.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
-        "rawgraphs"
+        "rawgraphs",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "fileUrlEn": "https://app.dataviz.jp/data/rawgraphs-en/Line chart - RIAA Music format revenues.tsv"
@@ -491,20 +532,22 @@
       "id": "rg-letter-frequencies",
       "name": "言語別文字頻度",
       "nameEn": "Letter Frequencies by Language",
-      "description": "各言語におけるアルファベット文字の出現頻度。想定チャート: マトリックス・プロット",
-      "descriptionEn": "Frequency of letters across different languages. Suggested chart: Matrix Plot",
+      "description": "各言語におけるアルファベット文字の出現頻度。想定チャート: マトリックス・プロット。 想定チャート(ICB): 3Dサーフェス・チャート",
+      "descriptionEn": "Frequency of letters across different languages. Suggested chart: Matrix Plot. Suggested chart (ICB): 3D surface chart",
       "format": "tsv",
       "tags": [
         "言語",
         "統計",
         "文字",
-        "比較"
+        "比較",
+        "3Dサーフェス・チャート"
       ],
       "tagsEn": [
         "Language",
         "Statistics",
         "Text",
-        "Comparison"
+        "Comparison",
+        "3D surface chart"
       ],
       "columns": [
         "Letter",
@@ -515,7 +558,8 @@
       "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Matrix Plot - Letters frequencies by language.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
-        "rawgraphs"
+        "rawgraphs",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "fileUrlEn": "https://app.dataviz.jp/data/rawgraphs-en/Matrix Plot - Letters frequencies by language.tsv"
@@ -524,20 +568,28 @@
       "id": "rg-happiness-index",
       "name": "世界幸福度指数",
       "nameEn": "Happiness Index",
-      "description": "各国の寛容さ・腐敗認知度・ポジティブ/ネガティブ感情の推移。想定チャート: 集合棒グラフ",
-      "descriptionEn": "Generosity, corruption perceptions, and affect scores by country over years. Suggested chart: Multi-set bar chart",
+      "description": "各国の寛容さ・腐敗認知度・ポジティブ/ネガティブ感情の推移。想定チャート: 集合棒グラフ。 想定チャート(ICB): ストリームグラフ、時系列散布図、3Dサーフェス・チャート、ビースウォーム・プロット",
+      "descriptionEn": "Generosity, corruption perceptions, and affect scores by country over years. Suggested chart: Multi-set bar chart. Suggested chart (ICB): Streamgraph, Time-series scatter plot, 3D surface chart, Beeswarm plot",
       "format": "tsv",
       "tags": [
         "社会",
         "幸福度",
         "世界",
-        "時系列"
+        "時系列",
+        "ストリームグラフ",
+        "時系列散布図",
+        "3Dサーフェス・チャート",
+        "ビースウォーム・プロット"
       ],
       "tagsEn": [
         "Society",
         "Happiness",
         "World",
-        "Time Series"
+        "Time Series",
+        "Streamgraph",
+        "Time-series scatter plot",
+        "3D surface chart",
+        "Beeswarm plot"
       ],
       "columns": [
         "Country",
@@ -551,7 +603,8 @@
       "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Multiset Barchart - Happiness Index.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
-        "rawgraphs"
+        "rawgraphs",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "fileUrlEn": "https://app.dataviz.jp/data/rawgraphs-en/Multiset Barchart - Happiness Index.tsv"
@@ -560,20 +613,22 @@
       "id": "rg-fifa-players",
       "name": "FIFAサッカー選手",
       "nameEn": "FIFA Players",
-      "description": "FIFAゲームのトップ選手のスキル値データ。想定チャート: レーダー・チャート",
-      "descriptionEn": "FIFA game top player skill attributes. Suggested chart: Radar Chart",
+      "description": "FIFAゲームのトップ選手のスキル値データ。想定チャート: レーダー・チャート。 想定チャート(ICB): ビースウォーム・プロット",
+      "descriptionEn": "FIFA game top player skill attributes. Suggested chart: Radar Chart. Suggested chart (ICB): Beeswarm plot",
       "format": "tsv",
       "tags": [
         "スポーツ",
         "サッカー",
         "選手",
-        "多変量"
+        "多変量",
+        "ビースウォーム・プロット"
       ],
       "tagsEn": [
         "Sports",
         "Soccer",
         "Athlete",
-        "Multivariate"
+        "Multivariate",
+        "Beeswarm plot"
       ],
       "columns": [
         "Name",
@@ -602,7 +657,8 @@
       "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Radar Chart - Fifa players.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
-        "rawgraphs"
+        "rawgraphs",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "fileUrlEn": "https://app.dataviz.jp/data/rawgraphs-en/Radar Chart - Fifa players.tsv"
@@ -676,20 +732,24 @@
       "id": "rg-olympics-medals",
       "name": "オリンピックメダル",
       "nameEn": "Olympics Medals",
-      "description": "オリンピックの地域・国別メダル獲得数の推移。想定チャート: ストリームグラフ",
-      "descriptionEn": "Olympic medals by macroarea and country over time. Suggested chart: Streamgraph (area chart)",
+      "description": "オリンピックの地域・国別メダル獲得数の推移。想定チャート: ストリームグラフ。 想定チャート(ICB): ストリームグラフ、バンプ・チャート",
+      "descriptionEn": "Olympic medals by macroarea and country over time. Suggested chart: Streamgraph (area chart). Suggested chart (ICB): Streamgraph, Bump chart",
       "format": "tsv",
       "tags": [
         "スポーツ",
         "オリンピック",
         "メダル",
-        "時系列"
+        "時系列",
+        "ストリームグラフ",
+        "バンプ・チャート"
       ],
       "tagsEn": [
         "Sports",
         "Olympics",
         "Medal",
-        "Time Series"
+        "Time Series",
+        "Streamgraph",
+        "Bump chart"
       ],
       "columns": [
         "Year",
@@ -701,7 +761,8 @@
       "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Streamgraph - Olympics Medals.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
-        "rawgraphs"
+        "rawgraphs",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "fileUrlEn": "https://app.dataviz.jp/data/rawgraphs-en/Streamgraph - Olympics Medals.tsv"
@@ -710,20 +771,22 @@
       "id": "rg-wine-aromas",
       "name": "ワインのアロマ",
       "nameEn": "Wine Aromas",
-      "description": "ワインのアロマを階層的に分類したデータ。想定チャート: サンバースト",
-      "descriptionEn": "Hierarchical classification of wine aromas. Suggested chart: Sunburst diagram",
+      "description": "ワインのアロマを階層的に分類したデータ。想定チャート: サンバースト。 想定チャート(ICB): サークル・パッキング",
+      "descriptionEn": "Hierarchical classification of wine aromas. Suggested chart: Sunburst diagram. Suggested chart (ICB): Circle packing",
       "format": "tsv",
       "tags": [
         "食品",
         "ワイン",
         "分類",
-        "階層"
+        "階層",
+        "サークル・パッキング"
       ],
       "tagsEn": [
         "Food",
         "Wine",
         "Classification",
-        "Hierarchy"
+        "Hierarchy",
+        "Circle packing"
       ],
       "columns": [
         "Root",
@@ -736,7 +799,8 @@
       "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Sunburst - Wine Aromas.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
-        "rawgraphs"
+        "rawgraphs",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "fileUrlEn": "https://app.dataviz.jp/data/rawgraphs-en/Sunburst - Wine Aromas.tsv"
@@ -745,20 +809,22 @@
       "id": "rg-orchestra",
       "name": "オーケストラの編成",
       "nameEn": "Orchestra",
-      "description": "オーケストラの楽器編成を種類・グループ別に分類。想定チャート: ツリーマップ",
-      "descriptionEn": "Orchestra instrument composition by type and group. Suggested chart: Treemap",
+      "description": "オーケストラの楽器編成を種類・グループ別に分類。想定チャート: ツリーマップ。 想定チャート(ICB): サークル・パッキング",
+      "descriptionEn": "Orchestra instrument composition by type and group. Suggested chart: Treemap. Suggested chart (ICB): Circle packing",
       "format": "tsv",
       "tags": [
         "音楽",
         "楽器",
         "分類",
-        "階層"
+        "階層",
+        "サークル・パッキング"
       ],
       "tagsEn": [
         "Music",
         "Instrument",
         "Classification",
-        "Hierarchy"
+        "Hierarchy",
+        "Circle packing"
       ],
       "columns": [
         "Orchestra type",
@@ -770,7 +836,8 @@
       "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Treemap - Orchestra.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
-        "rawgraphs"
+        "rawgraphs",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "fileUrlEn": "https://app.dataviz.jp/data/rawgraphs-en/Treemap - Orchestra.tsv"
@@ -779,20 +846,24 @@
       "id": "rg-ny-weather",
       "name": "ニューヨークの天気",
       "nameEn": "Weather in New York",
-      "description": "ニューヨークの日別気象データ（気温・降水量・風速）。想定チャート: バイオリン・プロット",
-      "descriptionEn": "Daily weather data in New York — temperature, precipitation, wind. Suggested chart: Violin plot",
+      "description": "ニューヨークの日別気象データ（気温・降水量・風速）。想定チャート: バイオリン・プロット。 想定チャート(ICB): ビースウォーム・プロット、時系列散布図",
+      "descriptionEn": "Daily weather data in New York — temperature, precipitation, wind. Suggested chart: Violin plot. Suggested chart (ICB): Beeswarm plot, Time-series scatter plot",
       "format": "tsv",
       "tags": [
         "気象",
         "時系列",
         "ニューヨーク",
-        "気温"
+        "気温",
+        "ビースウォーム・プロット",
+        "時系列散布図"
       ],
       "tagsEn": [
         "Weather",
         "Time Series",
         "New York",
-        "Temperature"
+        "Temperature",
+        "Beeswarm plot",
+        "Time-series scatter plot"
       ],
       "columns": [
         "location",
@@ -807,7 +878,8 @@
       "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Violin plot - Weather in New York.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
-        "rawgraphs"
+        "rawgraphs",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "fileUrlEn": "https://app.dataviz.jp/data/rawgraphs-en/Violin plot - Weather in New York.tsv"
@@ -816,20 +888,22 @@
       "id": "rg-us-presidential-elections",
       "name": "米国大統領選挙",
       "nameEn": "US Presidential Elections",
-      "description": "米国大統領選挙の州別・政党別得票データ。想定チャート: 折れ線グラフ",
-      "descriptionEn": "US presidential election results by state and party. Suggested chart: Line chart",
+      "description": "米国大統領選挙の州別・政党別得票データ。想定チャート: 折れ線グラフ。 想定チャート(ICB): ストリームグラフ",
+      "descriptionEn": "US presidential election results by state and party. Suggested chart: Line chart. Suggested chart (ICB): Streamgraph",
       "format": "tsv",
       "tags": [
         "政治",
         "選挙",
         "米国",
-        "時系列"
+        "時系列",
+        "ストリームグラフ"
       ],
       "tagsEn": [
         "Politics",
         "Election",
         "United States",
-        "Time Series"
+        "Time Series",
+        "Streamgraph"
       ],
       "columns": [
         "年",
@@ -844,7 +918,8 @@
       "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Line Graph - US Presidential Elections.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
-        "rawgraphs"
+        "rawgraphs",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "fileUrlEn": null
@@ -853,20 +928,22 @@
       "id": "rg-us-presidential-elections-full",
       "name": "米国大統領選挙 詳細版",
       "nameEn": "US Presidential Elections Full",
-      "description": "米国大統領選挙の候補者別詳細得票データ。想定チャート: 折れ線グラフ",
-      "descriptionEn": "Detailed US presidential election results by candidate. Suggested chart: Line chart",
+      "description": "米国大統領選挙の候補者別詳細得票データ。想定チャート: 折れ線グラフ。 想定チャート(ICB): ストリームグラフ",
+      "descriptionEn": "Detailed US presidential election results by candidate. Suggested chart: Line chart. Suggested chart (ICB): Streamgraph",
       "format": "tsv",
       "tags": [
         "政治",
         "選挙",
         "米国",
-        "詳細"
+        "詳細",
+        "ストリームグラフ"
       ],
       "tagsEn": [
         "Politics",
         "Election",
         "United States",
-        "Detail"
+        "Detail",
+        "Streamgraph"
       ],
       "columns": [
         "年",
@@ -882,7 +959,8 @@
       "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Line graph - US presidential election full.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
-        "rawgraphs"
+        "rawgraphs",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "fileUrlEn": null
@@ -891,20 +969,22 @@
       "id": "rg-seriea-ranking",
       "name": "セリエAランキング",
       "nameEn": "Premier Serie A Ranking",
-      "description": "イタリア・セリエAのチーム順位変動データ。想定チャート: スロープ・チャート",
-      "descriptionEn": "Italian Serie A team ranking changes between seasons. Suggested chart: Slope chart",
+      "description": "イタリア・セリエAのチーム順位変動データ。想定チャート: スロープ・チャート。 想定チャート(ICB): バンプ・チャート",
+      "descriptionEn": "Italian Serie A team ranking changes between seasons. Suggested chart: Slope chart. Suggested chart (ICB): Bump chart",
       "format": "tsv",
       "tags": [
         "スポーツ",
         "サッカー",
         "順位",
-        "イタリア"
+        "イタリア",
+        "バンプ・チャート"
       ],
       "tagsEn": [
         "Sports",
         "Soccer",
         "Ranking",
-        "Italy"
+        "Italy",
+        "Bump chart"
       ],
       "columns": [
         "チーム",
@@ -918,7 +998,8 @@
       "fileUrl": "https://app.dataviz.jp/data/rawgraphs/Slope graph - Premier SerieA ranking.tsv",
       "thumbnailUrl": null,
       "compatibleTools": [
-        "rawgraphs"
+        "rawgraphs",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "fileUrlEn": null
@@ -927,20 +1008,24 @@
       "id": "yogurt-nutrition",
       "name": "ヨーグルト栄養成分",
       "nameEn": "Yogurt Nutrition",
-      "description": "市販ヨーグルト製品の栄養成分比較データ（70品目、17項目）",
-      "descriptionEn": "Nutritional comparison of 70 commercial yogurt products (17 attributes)",
+      "description": "市販ヨーグルト製品の栄養成分比較データ（70品目、17項目）。 想定チャート(ICB): ビースウォーム・プロット、3Dサーフェス・チャート",
+      "descriptionEn": "Nutritional comparison of 70 commercial yogurt products (17 attributes). Suggested chart (ICB): Beeswarm plot, 3D surface chart",
       "format": "csv",
       "tags": [
         "食品",
         "栄養",
         "比較",
-        "多変量"
+        "多変量",
+        "ビースウォーム・プロット",
+        "3Dサーフェス・チャート"
       ],
       "tagsEn": [
         "Food",
         "Nutrition",
         "Comparison",
-        "Multivariate"
+        "Multivariate",
+        "Beeswarm plot",
+        "3D surface chart"
       ],
       "columns": [
         "商品名",
@@ -966,7 +1051,8 @@
       "thumbnailUrl": null,
       "compatibleTools": [
         "parallel-coordinates",
-        "rawgraphs"
+        "rawgraphs",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "fileUrlEn": null,
@@ -976,20 +1062,22 @@
       "id": "japan-fruit-production",
       "name": "都道府県別果物生産量",
       "nameEn": "Fruit Production by Prefecture",
-      "description": "日本の47都道府県の果物生産量データ（りんご・みかん・ぶどう等16品目）",
-      "descriptionEn": "Fruit production data for 47 Japanese prefectures (16 categories)",
+      "description": "日本の47都道府県の果物生産量データ（りんご・みかん・ぶどう等16品目）。 想定チャート(ICB): 3Dサーフェス・チャート",
+      "descriptionEn": "Fruit production data for 47 Japanese prefectures (16 categories). Suggested chart (ICB): 3D surface chart",
       "format": "csv",
       "tags": [
         "日本",
         "農業",
         "果物",
-        "都道府県"
+        "都道府県",
+        "3Dサーフェス・チャート"
       ],
       "tagsEn": [
         "Japan",
         "Agriculture",
         "Fruit",
-        "Prefecture"
+        "Prefecture",
+        "3D surface chart"
       ],
       "columns": [
         "都道府県",
@@ -1017,7 +1105,8 @@
         "rawgraphs",
         "parallel-coordinates",
         "cartogram-japan",
-        "choropleth-japan"
+        "choropleth-japan",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "fileUrlEn": null
@@ -1390,20 +1479,22 @@
       "id": "jgbcm-recent5",
       "name": "日本国債イールドカーブ（直近5年）",
       "nameEn": "Japan Govt Bond Yield Curve (Recent 5 Years)",
-      "description": "日本国債の年限別利回り推移（直近5年分）",
-      "descriptionEn": "Japanese government bond yields by maturity (recent 5 years)",
+      "description": "日本国債の年限別利回り推移（直近5年分）。 想定チャート(ICB): 3Dサーフェス・チャート",
+      "descriptionEn": "Japanese government bond yields by maturity (recent 5 years). Suggested chart (ICB): 3D surface chart",
       "format": "csv",
       "tags": [
         "金融",
         "国債",
         "時系列",
-        "日本"
+        "日本",
+        "3Dサーフェス・チャート"
       ],
       "tagsEn": [
         "Finance",
         "Government Bonds",
         "Time Series",
-        "Japan"
+        "Japan",
+        "3D surface chart"
       ],
       "columns": [
         "date",
@@ -1428,7 +1519,8 @@
       "fileUrlEn": null,
       "thumbnailUrl": null,
       "compatibleTools": [
-        "3d-surface-chart"
+        "3d-surface-chart",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "extra": {
@@ -1439,20 +1531,22 @@
       "id": "jgbcm-recent10",
       "name": "日本国債イールドカーブ（直近10年）",
       "nameEn": "Japan Govt Bond Yield Curve (Recent 10 Years)",
-      "description": "日本国債の年限別利回り推移（直近10年分）",
-      "descriptionEn": "Japanese government bond yields by maturity (recent 10 years)",
+      "description": "日本国債の年限別利回り推移（直近10年分）。 想定チャート(ICB): 3Dサーフェス・チャート",
+      "descriptionEn": "Japanese government bond yields by maturity (recent 10 years). Suggested chart (ICB): 3D surface chart",
       "format": "csv",
       "tags": [
         "金融",
         "国債",
         "時系列",
-        "日本"
+        "日本",
+        "3Dサーフェス・チャート"
       ],
       "tagsEn": [
         "Finance",
         "Government Bonds",
         "Time Series",
-        "Japan"
+        "Japan",
+        "3D surface chart"
       ],
       "columns": [
         "date",
@@ -1477,7 +1571,8 @@
       "fileUrlEn": null,
       "thumbnailUrl": null,
       "compatibleTools": [
-        "3d-surface-chart"
+        "3d-surface-chart",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "extra": {
@@ -1488,20 +1583,22 @@
       "id": "jgbcm-all",
       "name": "日本国債イールドカーブ（全期間）",
       "nameEn": "Japan Govt Bond Yield Curve (All Periods)",
-      "description": "日本国債の年限別利回り推移（1974年〜現在、全期間）",
-      "descriptionEn": "Japanese government bond yields by maturity (1974-present, all periods)",
+      "description": "日本国債の年限別利回り推移（1974年〜現在、全期間）。 想定チャート(ICB): 3Dサーフェス・チャート",
+      "descriptionEn": "Japanese government bond yields by maturity (1974-present, all periods). Suggested chart (ICB): 3D surface chart",
       "format": "csv",
       "tags": [
         "金融",
         "国債",
         "時系列",
-        "日本"
+        "日本",
+        "3Dサーフェス・チャート"
       ],
       "tagsEn": [
         "Finance",
         "Government Bonds",
         "Time Series",
-        "Japan"
+        "Japan",
+        "3D surface chart"
       ],
       "columns": [
         "date",
@@ -1526,7 +1623,8 @@
       "fileUrlEn": null,
       "thumbnailUrl": null,
       "compatibleTools": [
-        "3d-surface-chart"
+        "3d-surface-chart",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "extra": {
@@ -1537,20 +1635,22 @@
       "id": "us-treasury-yield",
       "name": "米国債イールドカーブ",
       "nameEn": "US Treasury Yield Curve",
-      "description": "米国債の年限別利回り推移（2019〜現在、月次）",
-      "descriptionEn": "US Treasury yields by maturity (2019-present, monthly)",
+      "description": "米国債の年限別利回り推移（2019〜現在、月次）。 想定チャート(ICB): 3Dサーフェス・チャート",
+      "descriptionEn": "US Treasury yields by maturity (2019-present, monthly). Suggested chart (ICB): 3D surface chart",
       "format": "csv",
       "tags": [
         "金融",
         "国債",
         "時系列",
-        "米国"
+        "米国",
+        "3Dサーフェス・チャート"
       ],
       "tagsEn": [
         "Finance",
         "Government Bonds",
         "Time Series",
-        "United States"
+        "United States",
+        "3D surface chart"
       ],
       "columns": [
         "date",
@@ -1570,7 +1670,8 @@
       "fileUrl": "https://app.dataviz.jp/data/us-treasury.csv",
       "thumbnailUrl": null,
       "compatibleTools": [
-        "3d-surface-chart"
+        "3d-surface-chart",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "fileUrlEn": null
@@ -1579,22 +1680,24 @@
       "id": "japan-births-by-prefecture",
       "name": "都道府県別出生数",
       "nameEn": "Number of Births by Prefecture",
-      "description": "日本の都道府県別出生数の年次推移（2011〜2022年）",
-      "descriptionEn": "Annual number of births by prefecture in Japan (2011-2022)",
+      "description": "日本の都道府県別出生数の年次推移（2011〜2022年）。 想定チャート(ICB): 3Dサーフェス・チャート",
+      "descriptionEn": "Annual number of births by prefecture in Japan (2011-2022). Suggested chart (ICB): 3D surface chart",
       "format": "csv",
       "tags": [
         "日本",
         "人口",
         "出生",
         "都道府県",
-        "時系列"
+        "時系列",
+        "3Dサーフェス・チャート"
       ],
       "tagsEn": [
         "Japan",
         "Population",
         "Birth",
         "Prefecture",
-        "Time Series"
+        "Time Series",
+        "3D surface chart"
       ],
       "columns": [
         "年度",
@@ -1650,7 +1753,8 @@
       "fileUrl": "https://app.dataviz.jp/data/number-of-births.csv",
       "thumbnailUrl": null,
       "compatibleTools": [
-        "3d-surface-chart"
+        "3d-surface-chart",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "fileUrlEn": null
@@ -1659,20 +1763,22 @@
       "id": "voyager-barley",
       "name": "大麦の収穫量",
       "nameEn": "Barley Yield",
-      "description": "1931〜1932年の米国中西部における品種別・地域別大麦収穫量",
-      "descriptionEn": "Barley yield by variety across the upper midwest in 1931 and 1932",
+      "description": "1931〜1932年の米国中西部における品種別・地域別大麦収穫量。 想定チャート(ICB): ビースウォーム・プロット",
+      "descriptionEn": "Barley yield by variety across the upper midwest in 1931 and 1932. Suggested chart (ICB): Beeswarm plot",
       "format": "json",
       "tags": [
         "農業",
         "収穫",
         "品種",
-        "比較"
+        "比較",
+        "ビースウォーム・プロット"
       ],
       "tagsEn": [
         "Agriculture",
         "Harvest",
         "Variety",
-        "Comparison"
+        "Comparison",
+        "Beeswarm plot"
       ],
       "columns": [
         "yield",
@@ -1685,7 +1791,8 @@
       "thumbnailUrl": null,
       "compatibleTools": [
         "voyager2",
-        "rawgraphs"
+        "rawgraphs",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "fileUrlEn": null
@@ -1694,20 +1801,24 @@
       "id": "voyager-cars",
       "name": "自動車統計",
       "nameEn": "Cars",
-      "description": "1970〜1982年の自動車モデル別スペックデータ（燃費、馬力、重量など）",
-      "descriptionEn": "Automotive statistics for a variety of car models between 1970 & 1982",
+      "description": "1970〜1982年の自動車モデル別スペックデータ（燃費、馬力、重量など）。 想定チャート(ICB): ビースウォーム・プロット、時系列散布図",
+      "descriptionEn": "Automotive statistics for a variety of car models between 1970 & 1982. Suggested chart (ICB): Beeswarm plot, Time-series scatter plot",
       "format": "json",
       "tags": [
         "自動車",
         "統計",
         "多変量",
-        "比較"
+        "比較",
+        "ビースウォーム・プロット",
+        "時系列散布図"
       ],
       "tagsEn": [
         "Automobile",
         "Statistics",
         "Multivariate",
-        "Comparison"
+        "Comparison",
+        "Beeswarm plot",
+        "Time-series scatter plot"
       ],
       "columns": [
         "Name",
@@ -1725,7 +1836,8 @@
       "thumbnailUrl": null,
       "compatibleTools": [
         "voyager2",
-        "rawgraphs"
+        "rawgraphs",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "fileUrlEn": null
@@ -1734,20 +1846,24 @@
       "id": "voyager-crimea",
       "name": "クリミア戦争の死因",
       "nameEn": "Crimea",
-      "description": "クリミア戦争における月別死因データ（負傷・病気・その他）",
-      "descriptionEn": "Monthly causes of death during the Crimean War (wounds, disease, other)",
+      "description": "クリミア戦争における月別死因データ（負傷・病気・その他）。 想定チャート(ICB): ストリームグラフ、時系列散布図",
+      "descriptionEn": "Monthly causes of death during the Crimean War (wounds, disease, other). Suggested chart (ICB): Streamgraph, Time-series scatter plot",
       "format": "json",
       "tags": [
         "歴史",
         "戦争",
         "死因",
-        "時系列"
+        "時系列",
+        "ストリームグラフ",
+        "時系列散布図"
       ],
       "tagsEn": [
         "History",
         "War",
         "Cause of Death",
-        "Time Series"
+        "Time Series",
+        "Streamgraph",
+        "Time-series scatter plot"
       ],
       "columns": [
         "date",
@@ -1760,7 +1876,8 @@
       "thumbnailUrl": null,
       "compatibleTools": [
         "voyager2",
-        "rawgraphs"
+        "rawgraphs",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "fileUrlEn": null
@@ -1769,20 +1886,22 @@
       "id": "voyager-driving",
       "name": "米国のドライブと燃料消費",
       "nameEn": "Driving",
-      "description": "米国の年間走行マイル数とガソリン価格の推移",
-      "descriptionEn": "US annual miles driven and gas prices over time",
+      "description": "米国の年間走行マイル数とガソリン価格の推移。 想定チャート(ICB): 時系列散布図",
+      "descriptionEn": "US annual miles driven and gas prices over time. Suggested chart (ICB): Time-series scatter plot",
       "format": "json",
       "tags": [
         "交通",
         "燃料",
         "時系列",
-        "米国"
+        "米国",
+        "時系列散布図"
       ],
       "tagsEn": [
         "Transportation",
         "Fuel",
         "Time Series",
-        "United States"
+        "United States",
+        "Time-series scatter plot"
       ],
       "columns": [
         "side",
@@ -1795,7 +1914,8 @@
       "thumbnailUrl": null,
       "compatibleTools": [
         "voyager2",
-        "rawgraphs"
+        "rawgraphs",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "fileUrlEn": null
@@ -1804,20 +1924,22 @@
       "id": "voyager-iris",
       "name": "アヤメのデータセット",
       "nameEn": "Iris",
-      "description": "アヤメ3品種の花弁・萼片の計測データ（フィッシャーのアヤメ）",
-      "descriptionEn": "Fisher's Iris dataset — sepal and petal measurements for 3 species",
+      "description": "アヤメ3品種の花弁・萼片の計測データ（フィッシャーのアヤメ）。 想定チャート(ICB): ビースウォーム・プロット",
+      "descriptionEn": "Fisher's Iris dataset — sepal and petal measurements for 3 species. Suggested chart (ICB): Beeswarm plot",
       "format": "json",
       "tags": [
         "植物",
         "分類",
         "多変量",
-        "統計"
+        "統計",
+        "ビースウォーム・プロット"
       ],
       "tagsEn": [
         "Plant",
         "Classification",
         "Multivariate",
-        "Statistics"
+        "Statistics",
+        "Beeswarm plot"
       ],
       "columns": [
         "sepalLength",
@@ -1831,7 +1953,8 @@
       "thumbnailUrl": null,
       "compatibleTools": [
         "voyager2",
-        "rawgraphs"
+        "rawgraphs",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "fileUrlEn": null
@@ -1840,20 +1963,22 @@
       "id": "voyager-jobs",
       "name": "米国の職業別雇用",
       "nameEn": "Jobs",
-      "description": "米国の職業別・性別・年代別雇用者数データ",
-      "descriptionEn": "US employment data by job type, sex, and year",
+      "description": "米国の職業別・性別・年代別雇用者数データ。 想定チャート(ICB): ストリームグラフ",
+      "descriptionEn": "US employment data by job type, sex, and year. Suggested chart (ICB): Streamgraph",
       "format": "json",
       "tags": [
         "雇用",
         "職業",
         "時系列",
-        "米国"
+        "米国",
+        "ストリームグラフ"
       ],
       "tagsEn": [
         "Employment",
         "Occupation",
         "Time Series",
-        "United States"
+        "United States",
+        "Streamgraph"
       ],
       "columns": [
         "job",
@@ -1867,7 +1992,8 @@
       "thumbnailUrl": null,
       "compatibleTools": [
         "voyager2",
-        "rawgraphs"
+        "rawgraphs",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "fileUrlEn": null
@@ -1876,20 +2002,24 @@
       "id": "voyager-population",
       "name": "米国の年齢別人口",
       "nameEn": "Population",
-      "description": "米国の年齢・性別・年代別人口推移データ",
-      "descriptionEn": "US population data by year, age, and sex",
+      "description": "米国の年齢・性別・年代別人口推移データ。 想定チャート(ICB): ストリームグラフ、3Dサーフェス・チャート",
+      "descriptionEn": "US population data by year, age, and sex. Suggested chart (ICB): Streamgraph, 3D surface chart",
       "format": "json",
       "tags": [
         "人口",
         "年齢",
         "時系列",
-        "米国"
+        "米国",
+        "ストリームグラフ",
+        "3Dサーフェス・チャート"
       ],
       "tagsEn": [
         "Population",
         "Age",
         "Time Series",
-        "United States"
+        "United States",
+        "Streamgraph",
+        "3D surface chart"
       ],
       "columns": [
         "year",
@@ -1902,7 +2032,8 @@
       "thumbnailUrl": null,
       "compatibleTools": [
         "voyager2",
-        "rawgraphs"
+        "rawgraphs",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "fileUrlEn": null
@@ -1911,20 +2042,24 @@
       "id": "voyager-movies",
       "name": "映画データ",
       "nameEn": "Movies",
-      "description": "映画の興行収入・予算・評価・ジャンルなどの包括的データセット",
-      "descriptionEn": "Comprehensive movie dataset with gross revenue, budget, ratings, genre, etc.",
+      "description": "映画の興行収入・予算・評価・ジャンルなどの包括的データセット。 想定チャート(ICB): ビースウォーム・プロット、時系列散布図",
+      "descriptionEn": "Comprehensive movie dataset with gross revenue, budget, ratings, genre, etc. Suggested chart (ICB): Beeswarm plot, Time-series scatter plot",
       "format": "json",
       "tags": [
         "映画",
         "エンタメ",
         "評価",
-        "多変量"
+        "多変量",
+        "ビースウォーム・プロット",
+        "時系列散布図"
       ],
       "tagsEn": [
         "Movie",
         "Entertainment",
         "Rating",
-        "Multivariate"
+        "Multivariate",
+        "Beeswarm plot",
+        "Time-series scatter plot"
       ],
       "columns": [
         "Title",
@@ -1942,7 +2077,8 @@
       "thumbnailUrl": null,
       "compatibleTools": [
         "voyager2",
-        "rawgraphs"
+        "rawgraphs",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "fileUrlEn": null
@@ -1951,20 +2087,22 @@
       "id": "voyager-birdstrikes",
       "name": "航空機バードストライク",
       "nameEn": "Birdstrikes",
-      "description": "航空機と鳥の衝突事故データ（空港、損害額、飛行フェーズなど）",
-      "descriptionEn": "Aircraft birdstrike incidents with airport, damage, flight phase, cost, etc.",
+      "description": "航空機と鳥の衝突事故データ（空港、損害額、飛行フェーズなど）。 想定チャート(ICB): ビースウォーム・プロット",
+      "descriptionEn": "Aircraft birdstrike incidents with airport, damage, flight phase, cost, etc. Suggested chart (ICB): Beeswarm plot",
       "format": "json",
       "tags": [
         "航空",
         "事故",
         "統計",
-        "安全"
+        "安全",
+        "ビースウォーム・プロット"
       ],
       "tagsEn": [
         "Aviation",
         "Accident",
         "Statistics",
-        "Safety"
+        "Safety",
+        "Beeswarm plot"
       ],
       "columns": [
         "Airport__Name",
@@ -1981,7 +2119,8 @@
       "thumbnailUrl": null,
       "compatibleTools": [
         "voyager2",
-        "rawgraphs"
+        "rawgraphs",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "fileUrlEn": null
@@ -1990,20 +2129,24 @@
       "id": "voyager-burtin",
       "name": "抗生物質の効果",
       "nameEn": "Burtin Antibiotics",
-      "description": "3種の抗生物質の細菌に対する最小阻止濃度データ",
-      "descriptionEn": "Minimum inhibitory concentration of 3 antibiotics against 16 bacteria",
+      "description": "3種の抗生物質の細菌に対する最小阻止濃度データ。 想定チャート(ICB): ビースウォーム・プロット、3Dサーフェス・チャート",
+      "descriptionEn": "Minimum inhibitory concentration of 3 antibiotics against 16 bacteria. Suggested chart (ICB): Beeswarm plot, 3D surface chart",
       "format": "json",
       "tags": [
         "医学",
         "抗生物質",
         "細菌",
-        "比較"
+        "比較",
+        "ビースウォーム・プロット",
+        "3Dサーフェス・チャート"
       ],
       "tagsEn": [
         "Medicine",
         "Antibiotics",
         "Bacteria",
-        "Comparison"
+        "Comparison",
+        "Beeswarm plot",
+        "3D surface chart"
       ],
       "columns": [
         "Bacteria",
@@ -2018,7 +2161,8 @@
       "thumbnailUrl": null,
       "compatibleTools": [
         "voyager2",
-        "rawgraphs"
+        "rawgraphs",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "fileUrlEn": null
@@ -2027,20 +2171,22 @@
       "id": "voyager-campaigns",
       "name": "米国選挙キャンペーン資金",
       "nameEn": "Campaigns (weball26)",
-      "description": "米国の選挙キャンペーンにおける候補者別の資金収支データ",
-      "descriptionEn": "US election campaign finance data by candidate",
+      "description": "米国の選挙キャンペーンにおける候補者別の資金収支データ。 想定チャート(ICB): ビースウォーム・プロット",
+      "descriptionEn": "US election campaign finance data by candidate. Suggested chart (ICB): Beeswarm plot",
       "format": "json",
       "tags": [
         "政治",
         "選挙",
         "資金",
-        "米国"
+        "米国",
+        "ビースウォーム・プロット"
       ],
       "tagsEn": [
         "Politics",
         "Election",
         "Funds",
-        "United States"
+        "United States",
+        "Beeswarm plot"
       ],
       "columns": [
         "Candidate_Name",
@@ -2055,7 +2201,8 @@
       "thumbnailUrl": null,
       "compatibleTools": [
         "voyager2",
-        "rawgraphs"
+        "rawgraphs",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "fileUrlEn": null
@@ -2239,20 +2386,22 @@
       "id": "di-iris",
       "name": "アヤメのデータセット",
       "nameEn": "Iris Dataset",
-      "description": "フィッシャーのアヤメ — 3品種の花弁・萼片の計測データ",
-      "descriptionEn": "Fisher's Iris — sepal and petal measurements for 3 species",
+      "description": "フィッシャーのアヤメ — 3品種の花弁・萼片の計測データ。 想定チャート(ICB): ビースウォーム・プロット",
+      "descriptionEn": "Fisher's Iris — sepal and petal measurements for 3 species. Suggested chart (ICB): Beeswarm plot",
       "format": "csv",
       "tags": [
         "植物",
         "分類",
         "多変量",
-        "統計"
+        "統計",
+        "ビースウォーム・プロット"
       ],
       "tagsEn": [
         "Plant",
         "Classification",
         "Multivariate",
-        "Statistics"
+        "Statistics",
+        "Beeswarm plot"
       ],
       "columns": [
         "id",
@@ -2269,7 +2418,8 @@
       "compatibleTools": [
         "data-illustrator",
         "rawgraphs",
-        "parallel-coordinates"
+        "parallel-coordinates",
+        "interactive-chart-builder"
       ],
       "category": "tabular"
     },
@@ -2277,18 +2427,22 @@
       "id": "di-cars",
       "name": "自動車スペック",
       "nameEn": "Cars Dataset",
-      "description": "自動車モデル別スペックデータ（燃費、馬力、重量など）",
-      "descriptionEn": "Automotive specs — economy, cylinders, displacement, power, weight, etc.",
+      "description": "自動車モデル別スペックデータ（燃費、馬力、重量など）。 想定チャート(ICB): ビースウォーム・プロット、時系列散布図",
+      "descriptionEn": "Automotive specs — economy, cylinders, displacement, power, weight, etc. Suggested chart (ICB): Beeswarm plot, Time-series scatter plot",
       "format": "csv",
       "tags": [
         "自動車",
         "統計",
-        "多変量"
+        "多変量",
+        "ビースウォーム・プロット",
+        "時系列散布図"
       ],
       "tagsEn": [
         "Automobile",
         "Statistics",
-        "Multivariate"
+        "Multivariate",
+        "Beeswarm plot",
+        "Time-series scatter plot"
       ],
       "columns": [
         "name",
@@ -2307,7 +2461,8 @@
       "compatibleTools": [
         "data-illustrator",
         "rawgraphs",
-        "parallel-coordinates"
+        "parallel-coordinates",
+        "interactive-chart-builder"
       ],
       "category": "tabular"
     },
@@ -2348,20 +2503,24 @@
       "id": "di-boston-weather",
       "name": "ボストンの天気",
       "nameEn": "Boston Weather",
-      "description": "ボストンの日別気象データ（平均・最高・最低気温、降水量、風速）",
-      "descriptionEn": "Daily weather in Boston — mean/max/min temp, precipitation, wind",
+      "description": "ボストンの日別気象データ（平均・最高・最低気温、降水量、風速）。 想定チャート(ICB): ビースウォーム・プロット、時系列散布図",
+      "descriptionEn": "Daily weather in Boston — mean/max/min temp, precipitation, wind. Suggested chart (ICB): Beeswarm plot, Time-series scatter plot",
       "format": "csv",
       "tags": [
         "気象",
         "時系列",
         "ボストン",
-        "気温"
+        "気温",
+        "ビースウォーム・プロット",
+        "時系列散布図"
       ],
       "tagsEn": [
         "Weather",
         "Time Series",
         "Boston",
-        "Temperature"
+        "Temperature",
+        "Beeswarm plot",
+        "Time-series scatter plot"
       ],
       "columns": [
         "date",
@@ -2379,7 +2538,8 @@
       "thumbnailUrl": null,
       "compatibleTools": [
         "data-illustrator",
-        "rawgraphs"
+        "rawgraphs",
+        "interactive-chart-builder"
       ],
       "category": "tabular"
     },
@@ -2421,20 +2581,22 @@
       "id": "di-olympic-medals",
       "name": "オリンピックメダル（国別）",
       "nameEn": "Olympic Medals by Country",
-      "description": "国別・メダル種別のオリンピックメダル獲得数",
-      "descriptionEn": "Olympic medal counts by country and medal type",
+      "description": "国別・メダル種別のオリンピックメダル獲得数。 想定チャート(ICB): ビースウォーム・プロット",
+      "descriptionEn": "Olympic medal counts by country and medal type. Suggested chart (ICB): Beeswarm plot",
       "format": "csv",
       "tags": [
         "スポーツ",
         "オリンピック",
         "メダル",
-        "国別"
+        "国別",
+        "ビースウォーム・プロット"
       ],
       "tagsEn": [
         "Sports",
         "Olympics",
         "Medal",
-        "By Country"
+        "By Country",
+        "Beeswarm plot"
       ],
       "columns": [
         "Country_Code",
@@ -2448,7 +2610,8 @@
       "thumbnailUrl": null,
       "compatibleTools": [
         "data-illustrator",
-        "rawgraphs"
+        "rawgraphs",
+        "interactive-chart-builder"
       ],
       "category": "tabular"
     },
@@ -2456,20 +2619,22 @@
       "id": "di-nightingale",
       "name": "ナイチンゲールの死因統計",
       "nameEn": "Nightingale Causes of Death",
-      "description": "フローレンス・ナイチンゲールの有名な月別死因データ",
-      "descriptionEn": "Florence Nightingale's famous monthly causes of death data",
+      "description": "フローレンス・ナイチンゲールの有名な月別死因データ。 想定チャート(ICB): ストリームグラフ",
+      "descriptionEn": "Florence Nightingale's famous monthly causes of death data. Suggested chart (ICB): Streamgraph",
       "format": "csv",
       "tags": [
         "医学",
         "歴史",
         "死因",
-        "統計"
+        "統計",
+        "ストリームグラフ"
       ],
       "tagsEn": [
         "Medicine",
         "History",
         "Cause of Death",
-        "Statistics"
+        "Statistics",
+        "Streamgraph"
       ],
       "columns": [
         "Month",
@@ -2482,7 +2647,8 @@
       "thumbnailUrl": null,
       "compatibleTools": [
         "data-illustrator",
-        "rawgraphs"
+        "rawgraphs",
+        "interactive-chart-builder"
       ],
       "category": "tabular"
     },
@@ -2490,20 +2656,22 @@
       "id": "di-household-spending",
       "name": "家計支出（国別）",
       "nameEn": "Household Spending by Country",
-      "description": "各国の年別カテゴリ別家計支出の割合データ",
-      "descriptionEn": "Household spending percentage by country, year, and category",
+      "description": "各国の年別カテゴリ別家計支出の割合データ。 想定チャート(ICB): ストリームグラフ",
+      "descriptionEn": "Household spending percentage by country, year, and category. Suggested chart (ICB): Streamgraph",
       "format": "csv",
       "tags": [
         "経済",
         "家計",
         "支出",
-        "世界"
+        "世界",
+        "ストリームグラフ"
       ],
       "tagsEn": [
         "Economy",
         "Household",
         "Expenditure",
-        "World"
+        "World",
+        "Streamgraph"
       ],
       "columns": [
         "Country",
@@ -2517,7 +2685,8 @@
       "thumbnailUrl": null,
       "compatibleTools": [
         "data-illustrator",
-        "rawgraphs"
+        "rawgraphs",
+        "interactive-chart-builder"
       ],
       "category": "tabular"
     },
@@ -2525,20 +2694,22 @@
       "id": "di-elections-2020",
       "name": "2020年米国大統領選挙",
       "nameEn": "US 2020 Presidential Election",
-      "description": "2020年米国大統領選挙の州別得票結果",
-      "descriptionEn": "US 2020 presidential election results by state",
+      "description": "2020年米国大統領選挙の州別得票結果。 想定チャート(ICB): ビースウォーム・プロット",
+      "descriptionEn": "US 2020 presidential election results by state. Suggested chart (ICB): Beeswarm plot",
       "format": "csv",
       "tags": [
         "政治",
         "選挙",
         "米国",
-        "2020"
+        "2020",
+        "ビースウォーム・プロット"
       ],
       "tagsEn": [
         "Politics",
         "Election",
         "United States",
-        "2020"
+        "2020",
+        "Beeswarm plot"
       ],
       "columns": [
         "State",
@@ -2556,7 +2727,8 @@
       "thumbnailUrl": null,
       "compatibleTools": [
         "data-illustrator",
-        "rawgraphs"
+        "rawgraphs",
+        "interactive-chart-builder"
       ],
       "category": "tabular"
     },
@@ -2564,20 +2736,22 @@
       "id": "di-gender-pay-gap",
       "name": "男女賃金格差",
       "nameEn": "Gender Pay Gap",
-      "description": "職位別の男女賃金中央値・四分位データ",
-      "descriptionEn": "Gender pay gap data by pay grade — median, percentiles",
+      "description": "職位別の男女賃金中央値・四分位データ。 想定チャート(ICB): ビースウォーム・プロット",
+      "descriptionEn": "Gender pay gap data by pay grade — median, percentiles. Suggested chart (ICB): Beeswarm plot",
       "format": "csv",
       "tags": [
         "社会",
         "賃金",
         "ジェンダー",
-        "格差"
+        "格差",
+        "ビースウォーム・プロット"
       ],
       "tagsEn": [
         "Society",
         "Wages",
         "Gender",
-        "Inequality"
+        "Inequality",
+        "Beeswarm plot"
       ],
       "columns": [
         "Gender",
@@ -2594,7 +2768,8 @@
       "thumbnailUrl": null,
       "compatibleTools": [
         "data-illustrator",
-        "rawgraphs"
+        "rawgraphs",
+        "interactive-chart-builder"
       ],
       "category": "tabular"
     },
@@ -2602,20 +2777,22 @@
       "id": "prefectures-municipal-population",
       "name": "都道府県別 市区町村人口データ",
       "nameEn": "Municipal Population by Prefecture",
-      "description": "各都道府県の市区町村別人口データ（総人口、年齢区分別、男女別、外国人人口）",
-      "descriptionEn": "Municipal population data by prefecture (total, age groups, gender, foreign residents)",
+      "description": "各都道府県の市区町村別人口データ（総人口、年齢区分別、男女別、外国人人口）。 想定チャート(ICB): ビースウォーム・プロット",
+      "descriptionEn": "Municipal population data by prefecture (total, age groups, gender, foreign residents). Suggested chart (ICB): Beeswarm plot",
       "format": "csv",
       "tags": [
         "日本",
         "人口",
         "都道府県",
-        "市区町村"
+        "市区町村",
+        "ビースウォーム・プロット"
       ],
       "tagsEn": [
         "Japan",
         "Population",
         "Prefecture",
-        "Municipality"
+        "Municipality",
+        "Beeswarm plot"
       ],
       "columns": [
         "市区町村",
@@ -2635,7 +2812,8 @@
       "thumbnailUrl": null,
       "compatibleTools": [
         "cartogram-prefectures",
-        "choropleth-prefectures"
+        "choropleth-prefectures",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "variants": [
@@ -2933,20 +3111,26 @@
       "id": "gapminder",
       "name": "Gapminder 世界開発指標",
       "nameEn": "Gapminder World Development Indicators",
-      "description": "戦後以降の長期間における国力（GDP・平均寿命・人口）の国際比較データ",
-      "descriptionEn": "International comparison of national power (GDP, life expectancy, population) over the long term since the postwar era",
+      "description": "戦後以降の長期間における国力（GDP・平均寿命・人口）の国際比較データ。 想定チャート(ICB): ストリームグラフ、バンプ・チャート、時系列散布図",
+      "descriptionEn": "International comparison of national power (GDP, life expectancy, population) over the long term since the postwar era. Suggested chart (ICB): Streamgraph, Bump chart, Time-series scatter plot",
       "format": "csv",
       "tags": [
         "人口",
         "経済",
         "世界",
-        "時系列"
+        "時系列",
+        "ストリームグラフ",
+        "バンプ・チャート",
+        "時系列散布図"
       ],
       "tagsEn": [
         "Population",
         "Economy",
         "World",
-        "Time Series"
+        "Time Series",
+        "Streamgraph",
+        "Bump chart",
+        "Time-series scatter plot"
       ],
       "columns": [
         "country",
@@ -2963,7 +3147,8 @@
       "compatibleTools": [
         "rawgraphs",
         "voyager2",
-        "parallel-coordinates"
+        "parallel-coordinates",
+        "interactive-chart-builder"
       ],
       "category": "tabular"
     },
@@ -2971,20 +3156,24 @@
       "id": "ssdse-c",
       "name": "SSDSE-C（家計調査）",
       "nameEn": "SSDSE-C (Household Survey)",
-      "description": "独立行政法人統計センターが公開する教育用標準データセットのうち、都道府県庁所在市別の家計調査（品目別消費支出）データ",
-      "descriptionEn": "Household Survey data (consumption expenditure by item) by prefectural capital city, from the Standard Statistical Dataset for Education published by the National Statistics Center",
+      "description": "独立行政法人統計センターが公開する教育用標準データセットのうち、都道府県庁所在市別の家計調査（品目別消費支出）データ。 想定チャート(ICB): ビースウォーム・プロット、3Dサーフェス・チャート",
+      "descriptionEn": "Household Survey data (consumption expenditure by item) by prefectural capital city, from the Standard Statistical Dataset for Education published by the National Statistics Center. Suggested chart (ICB): Beeswarm plot, 3D surface chart",
       "format": "csv",
       "tags": [
         "統計",
         "家計",
         "消費",
-        "都道府県"
+        "都道府県",
+        "ビースウォーム・プロット",
+        "3Dサーフェス・チャート"
       ],
       "tagsEn": [
         "Statistics",
         "Household",
         "Consumption",
-        "Prefecture"
+        "Prefecture",
+        "Beeswarm plot",
+        "3D surface chart"
       ],
       "columns": [
         "都道府県",
@@ -3009,7 +3198,8 @@
       "compatibleTools": [
         "rawgraphs",
         "voyager2",
-        "parallel-coordinates"
+        "parallel-coordinates",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "dataAsOf": "2025年4月25日公開",
@@ -3019,20 +3209,24 @@
       "id": "ssdse-e",
       "name": "SSDSE-E（都道府県・基本指標）",
       "nameEn": "SSDSE-E (Prefectures / Basic Indicators)",
-      "description": "独立行政法人統計センターが公開する教育用標準データセットのうち、人口・世帯・経済・教育・医療・環境など都道府県の基本指標を網羅したデータ",
-      "descriptionEn": "Basic prefectural indicators covering population, households, economy, education, healthcare, environment, etc., from the Standard Statistical Dataset for Education published by the National Statistics Center",
+      "description": "独立行政法人統計センターが公開する教育用標準データセットのうち、人口・世帯・経済・教育・医療・環境など都道府県の基本指標を網羅したデータ。 想定チャート(ICB): ビースウォーム・プロット、3Dサーフェス・チャート",
+      "descriptionEn": "Basic prefectural indicators covering population, households, economy, education, healthcare, environment, etc., from the Standard Statistical Dataset for Education published by the National Statistics Center. Suggested chart (ICB): Beeswarm plot, 3D surface chart",
       "format": "csv",
       "tags": [
         "統計",
         "社会",
         "経済",
-        "都道府県"
+        "都道府県",
+        "ビースウォーム・プロット",
+        "3Dサーフェス・チャート"
       ],
       "tagsEn": [
         "Statistics",
         "Society",
         "Economy",
-        "Prefecture"
+        "Prefecture",
+        "Beeswarm plot",
+        "3D surface chart"
       ],
       "columns": [
         "地域コード",
@@ -3066,7 +3260,8 @@
       "compatibleTools": [
         "rawgraphs",
         "voyager2",
-        "parallel-coordinates"
+        "parallel-coordinates",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "dataAsOf": "2025年4月25日公開",
@@ -3155,18 +3350,20 @@
       "id": "ibm-employee-attrition",
       "name": "IBM 従業員の離職率とパフォーマンス",
       "nameEn": "IBM Employee Attrition and Performance",
-      "description": "IBMのデータサイエンティストが作成した架空のデータセット。従業員の様々な属性を一つの表データにしています",
-      "descriptionEn": "A fictional dataset created by IBM data scientists. Various employee attributes consolidated in a single table",
+      "description": "IBMのデータサイエンティストが作成した架空のデータセット。従業員の様々な属性を一つの表データにしています。 想定チャート(ICB): ビースウォーム・プロット",
+      "descriptionEn": "A fictional dataset created by IBM data scientists. Various employee attributes consolidated in a single table. Suggested chart (ICB): Beeswarm plot",
       "format": "csv",
       "tags": [
         "人事",
         "離職",
-        "分析"
+        "分析",
+        "ビースウォーム・プロット"
       ],
       "tagsEn": [
         "HR",
         "Attrition",
-        "Analysis"
+        "Analysis",
+        "Beeswarm plot"
       ],
       "columns": [
         "年齢",
@@ -3204,7 +3401,8 @@
         "rawgraphs",
         "voyager2",
         "parallel-coordinates",
-        "bar-chart-filter"
+        "bar-chart-filter",
+        "interactive-chart-builder"
       ],
       "category": "tabular"
     },
@@ -3212,20 +3410,24 @@
       "id": "popular-pet-cat",
       "name": "人気ペット猫 品種別登録頭数",
       "nameEn": "Popular Pet Cats by Breed",
-      "description": "日本の飼い猫の品種別・カテゴリー別の登録頭数データ",
-      "descriptionEn": "Registered pet cat counts by breed and category in Japan",
+      "description": "日本の飼い猫の品種別・カテゴリー別の登録頭数データ。 想定チャート(ICB): ビースウォーム・プロット、サークル・パッキング",
+      "descriptionEn": "Registered pet cat counts by breed and category in Japan. Suggested chart (ICB): Beeswarm plot, Circle packing",
       "format": "csv",
       "tags": [
         "動物",
         "ペット",
         "猫",
-        "日本"
+        "日本",
+        "ビースウォーム・プロット",
+        "サークル・パッキング"
       ],
       "tagsEn": [
         "Animal",
         "Pet",
         "Cat",
-        "Japan"
+        "Japan",
+        "Beeswarm plot",
+        "Circle packing"
       ],
       "columns": [
         "種",
@@ -3240,7 +3442,8 @@
       "compatibleTools": [
         "rawgraphs",
         "voyager",
-        "data-illustrator"
+        "data-illustrator",
+        "interactive-chart-builder"
       ],
       "category": "tabular"
     },
@@ -3248,20 +3451,24 @@
       "id": "popular-pet-dog",
       "name": "人気ペット犬 品種別登録頭数",
       "nameEn": "Popular Pet Dogs by Breed",
-      "description": "日本の飼い犬の品種別・カテゴリー別の登録頭数データ",
-      "descriptionEn": "Registered pet dog counts by breed and category in Japan",
+      "description": "日本の飼い犬の品種別・カテゴリー別の登録頭数データ。 想定チャート(ICB): ビースウォーム・プロット、サークル・パッキング",
+      "descriptionEn": "Registered pet dog counts by breed and category in Japan. Suggested chart (ICB): Beeswarm plot, Circle packing",
       "format": "csv",
       "tags": [
         "動物",
         "ペット",
         "犬",
-        "日本"
+        "日本",
+        "ビースウォーム・プロット",
+        "サークル・パッキング"
       ],
       "tagsEn": [
         "Animal",
         "Pet",
         "Dog",
-        "Japan"
+        "Japan",
+        "Beeswarm plot",
+        "Circle packing"
       ],
       "columns": [
         "種",
@@ -3276,7 +3483,8 @@
       "compatibleTools": [
         "rawgraphs",
         "voyager",
-        "data-illustrator"
+        "data-illustrator",
+        "interactive-chart-builder"
       ],
       "category": "tabular"
     },
@@ -3284,22 +3492,24 @@
       "id": "airbnb-tokyo",
       "name": "Airbnb東京物件リスト",
       "nameEn": "Airbnb Tokyo Listings",
-      "description": "東京都内のAirbnb物件データ。自治体別に分割されており、物件種別・価格・レビュー数・稼働日数・位置情報などを含む",
-      "descriptionEn": "Airbnb listings in Tokyo, split by municipality. Includes room type, price, reviews, availability, and coordinates",
+      "description": "東京都内のAirbnb物件データ。自治体別に分割されており、物件種別・価格・レビュー数・稼働日数・位置情報などを含む。 想定チャート(ICB): ビースウォーム・プロット",
+      "descriptionEn": "Airbnb listings in Tokyo, split by municipality. Includes room type, price, reviews, availability, and coordinates. Suggested chart (ICB): Beeswarm plot",
       "format": "csv",
       "tags": [
         "不動産",
         "宿泊",
         "東京",
         "Airbnb",
-        "観光"
+        "観光",
+        "ビースウォーム・プロット"
       ],
       "tagsEn": [
         "Real Estate",
         "Lodging",
         "Tokyo",
         "Airbnb",
-        "Tourism"
+        "Tourism",
+        "Beeswarm plot"
       ],
       "columns": [
         "id",
@@ -3328,7 +3538,8 @@
         "rawgraphs",
         "voyager",
         "kepler-gl",
-        "data-illustrator"
+        "data-illustrator",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "dataAsOf": "2025年9年29日公開",
@@ -3634,20 +3845,22 @@
       "id": "spotify-j-pop",
       "name": "Spotify J-Popトラック特徴量",
       "nameEn": "Spotify J-Pop Track Features",
-      "description": "SpotifyのJ-Popジャンルの楽曲データ。テンポ・ダンス性・エネルギー・人気度などの音響特徴量を含む",
-      "descriptionEn": "Spotify J-Pop genre tracks with audio features including tempo, danceability, energy, and popularity",
+      "description": "SpotifyのJ-Popジャンルの楽曲データ。テンポ・ダンス性・エネルギー・人気度などの音響特徴量を含む。 想定チャート(ICB): ビースウォーム・プロット",
+      "descriptionEn": "Spotify J-Pop genre tracks with audio features including tempo, danceability, energy, and popularity. Suggested chart (ICB): Beeswarm plot",
       "format": "csv",
       "tags": [
         "音楽",
         "Spotify",
         "J-Pop",
-        "エンタメ"
+        "エンタメ",
+        "ビースウォーム・プロット"
       ],
       "tagsEn": [
         "Music",
         "Spotify",
         "J-Pop",
-        "Entertainment"
+        "Entertainment",
+        "Beeswarm plot"
       ],
       "columns": [
         "Id",
@@ -3680,7 +3893,8 @@
         "rawgraphs",
         "voyager",
         "data-illustrator",
-        "parallel-coordinates"
+        "parallel-coordinates",
+        "interactive-chart-builder"
       ],
       "category": "tabular"
     },
@@ -3688,20 +3902,22 @@
       "id": "spotify-k-pop",
       "name": "Spotify K-Popトラック特徴量",
       "nameEn": "Spotify K-Pop Track Features",
-      "description": "SpotifyのK-Popジャンルの楽曲データ。テンポ・ダンス性・エネルギー・人気度などの音響特徴量を含む",
-      "descriptionEn": "Spotify K-Pop genre tracks with audio features including tempo, danceability, energy, and popularity",
+      "description": "SpotifyのK-Popジャンルの楽曲データ。テンポ・ダンス性・エネルギー・人気度などの音響特徴量を含む。 想定チャート(ICB): ビースウォーム・プロット",
+      "descriptionEn": "Spotify K-Pop genre tracks with audio features including tempo, danceability, energy, and popularity. Suggested chart (ICB): Beeswarm plot",
       "format": "csv",
       "tags": [
         "音楽",
         "Spotify",
         "K-Pop",
-        "エンタメ"
+        "エンタメ",
+        "ビースウォーム・プロット"
       ],
       "tagsEn": [
         "Music",
         "Spotify",
         "K-Pop",
-        "Entertainment"
+        "Entertainment",
+        "Beeswarm plot"
       ],
       "columns": [
         "Id",
@@ -3734,7 +3950,8 @@
         "rawgraphs",
         "voyager",
         "data-illustrator",
-        "parallel-coordinates"
+        "parallel-coordinates",
+        "interactive-chart-builder"
       ],
       "category": "tabular"
     },
@@ -3742,20 +3959,22 @@
       "id": "tse-listed-stocks",
       "name": "東京証券取引所 上場銘柄一覧",
       "nameEn": "Stocks Listed on the Tokyo Stock Exchange",
-      "description": "東京証券取引所に上場している銘柄の一覧。市場・商品区分、33業種区分、17業種区分、規模区分を含む",
-      "descriptionEn": "List of stocks listed on the Tokyo Stock Exchange, including market/product classification, 33-sector classification, 17-sector classification, and size classification",
+      "description": "東京証券取引所に上場している銘柄の一覧。市場・商品区分、33業種区分、17業種区分、規模区分を含む。 想定チャート(ICB): サークル・パッキング",
+      "descriptionEn": "List of stocks listed on the Tokyo Stock Exchange, including market/product classification, 33-sector classification, 17-sector classification, and size classification. Suggested chart (ICB): Circle packing",
       "format": "csv",
       "tags": [
         "日本",
         "金融",
         "株式",
-        "証券取引所"
+        "証券取引所",
+        "サークル・パッキング"
       ],
       "tagsEn": [
         "Japan",
         "Finance",
         "Stocks",
-        "Stock Exchange"
+        "Stock Exchange",
+        "Circle packing"
       ],
       "columns": [
         "日付",
@@ -3772,11 +3991,43 @@
       "compatibleTools": [
         "rawgraphs",
         "voyager",
-        "bar-chart-filter"
+        "bar-chart-filter",
+        "interactive-chart-builder"
       ],
       "category": "tabular",
       "dataAsOf": "2026年3月31日公開",
       "sourceUrl": "https://www.jpx.co.jp/markets/statistics-equities/misc/01.html"
+    },
+    {
+      "id": "aids-tuberculosis",
+      "name": "エイズと結核の感染者",
+      "nameEn": "AIDS and Tuberculosis Patients",
+      "description": "世界のエイズ・結核の感染者数と、両疾患に重複感染している人数の集合データ。 想定チャート(ICB): ベン図・オイラー図",
+      "descriptionEn": "Global AIDS and tuberculosis patient counts with co-infection overlaps. Suggested chart (ICB): Venn / Euler diagram",
+      "format": "json",
+      "tags": [
+        "医学",
+        "感染症",
+        "疾患",
+        "世界",
+        "ベン図・オイラー図"
+      ],
+      "tagsEn": [
+        "Medicine",
+        "Infection",
+        "Disease",
+        "World",
+        "Venn / Euler diagram"
+      ],
+      "columns": [],
+      "rowCount": 2,
+      "fileUrl": "https://app.dataviz.jp/data/aids-tuberculosis.json",
+      "fileUrlEn": null,
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "interactive-chart-builder"
+      ],
+      "category": "tabular"
     }
   ]
 }

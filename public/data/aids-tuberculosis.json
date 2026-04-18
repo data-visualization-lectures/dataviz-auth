@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "preset": "2set",
+  "sets": [
+    {
+      "id": "A",
+      "name": "エイズ",
+      "size": 40138000,
+      "color": "#1f77b4"
+    },
+    {
+      "id": "B",
+      "name": "結核",
+      "size": 10138000,
+      "color": "#ff7f0e"
+    }
+  ],
+  "intersections": [
+    {
+      "sets": [
+        "A",
+        "B"
+      ],
+      "size": 662000
+    }
+  ]
+}
