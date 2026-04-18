@@ -52,6 +52,19 @@ export function DataLibraryClient({ locale }: Props) {
     return Array.from(toolSet).sort();
   }, [catalog]);
 
+  // ja タグ → en タグの逆引き辞書（activeTags チップ表示用）
+  const tagTranslations = useMemo(() => {
+    const map: Record<string, string> = {};
+    for (const entry of catalog) {
+      if (!entry.tagsEn) continue;
+      entry.tags.forEach((tag, i) => {
+        const en = entry.tagsEn?.[i];
+        if (en && !(tag in map)) map[tag] = en;
+      });
+    }
+    return map;
+  }, [catalog]);
+
   // Filter & sort
   const filtered = useMemo(() => {
     const categoryOrder: Record<CatalogEntry["category"], number> = {
@@ -70,7 +83,8 @@ export function DataLibraryClient({ locale }: Props) {
           e.nameEn.toLowerCase().includes(q) ||
           e.description.toLowerCase().includes(q) ||
           e.descriptionEn.toLowerCase().includes(q) ||
-          e.tags.some((tag) => tag.toLowerCase().includes(q))
+          e.tags.some((tag) => tag.toLowerCase().includes(q)) ||
+          (e.tagsEn?.some((tag) => tag.toLowerCase().includes(q)) ?? false)
       );
     }
 
@@ -136,6 +150,7 @@ export function DataLibraryClient({ locale }: Props) {
         onClearAll={handleClearAll}
         availableFormats={availableFormats}
         availableTools={availableTools}
+        tagTranslations={tagTranslations}
       />
 
       {isLoading ? (

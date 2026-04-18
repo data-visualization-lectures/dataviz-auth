@@ -118,18 +118,22 @@ export function CatalogCard({ entry, locale, onSelect, onTagClick }: CatalogCard
         )}
 
         <div className="flex flex-wrap gap-1 mt-1">
-          {entry.tags.slice(0, 4).map((tag) => (
-            <span
-              key={tag}
-              onClick={(e) => {
-                e.stopPropagation();
-                onTagClick(tag);
-              }}
-              className="text-xs px-1.5 py-0.5 rounded bg-muted hover:bg-muted/80 cursor-pointer transition-colors"
-            >
-              {tag}
-            </span>
-          ))}
+          {entry.tags.slice(0, 4).map((tag, i) => {
+            const displayTag =
+              locale === "en" ? entry.tagsEn?.[i] ?? tag : tag;
+            return (
+              <span
+                key={tag}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onTagClick(tag);
+                }}
+                className="text-xs px-1.5 py-0.5 rounded bg-muted hover:bg-muted/80 cursor-pointer transition-colors"
+              >
+                {displayTag}
+              </span>
+            );
+          })}
         </div>
       </div>
     </div>

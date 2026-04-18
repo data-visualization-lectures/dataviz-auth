@@ -30,6 +30,7 @@ type FilterBarProps = {
   onClearAll: () => void;
   availableFormats: string[];
   availableTools: string[];
+  tagTranslations?: Record<string, string>;
 };
 
 export function FilterBar({
@@ -47,6 +48,7 @@ export function FilterBar({
   onClearAll,
   availableFormats,
   availableTools,
+  tagTranslations,
 }: FilterBarProps) {
   const hasActiveFilters =
     searchQuery ||
@@ -128,17 +130,21 @@ export function FilterBar({
 
       {(activeTags.length > 0 || hasActiveFilters) && (
         <div className="flex flex-wrap items-center gap-2">
-          {activeTags.map((tag) => (
-            <Badge
-              key={tag}
-              variant="secondary"
-              className="cursor-pointer gap-1"
-              onClick={() => onRemoveTag(tag)}
-            >
-              {tag}
-              <X className="h-3 w-3" />
-            </Badge>
-          ))}
+          {activeTags.map((tag) => {
+            const displayTag =
+              locale === "en" ? tagTranslations?.[tag] ?? tag : tag;
+            return (
+              <Badge
+                key={tag}
+                variant="secondary"
+                className="cursor-pointer gap-1"
+                onClick={() => onRemoveTag(tag)}
+              >
+                {displayTag}
+                <X className="h-3 w-3" />
+              </Badge>
+            );
+          })}
           {hasActiveFilters && (
             <Button variant="ghost" size="sm" onClick={onClearAll}>
               {t(locale, "dataLibrary.clearFilters")}

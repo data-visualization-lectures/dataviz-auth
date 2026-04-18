@@ -183,11 +183,15 @@ export function CatalogDetail({
 
           {/* Tags */}
           <div className="flex flex-wrap gap-1.5">
-            {entry.tags.map((tag) => (
-              <Badge key={tag} variant="outline" className="text-xs">
-                {tag}
-              </Badge>
-            ))}
+            {entry.tags.map((tag, i) => {
+              const displayTag =
+                locale === "en" ? entry.tagsEn?.[i] ?? tag : tag;
+              return (
+                <Badge key={tag} variant="outline" className="text-xs">
+                  {displayTag}
+                </Badge>
+              );
+            })}
           </div>
 
           {/* Data Preview — only show when variant is selected (or no variants) */}

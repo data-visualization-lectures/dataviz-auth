@@ -14,6 +14,7 @@ export type CatalogEntry = {
   descriptionEn: string;
   format: "csv" | "tsv" | "json" | "geojson" | "topojson" | "gexf" | "graphml" | "vega-spec";
   tags: string[];
+  tagsEn?: string[];
   columns: string[];
   rowCount: number;
   fileUrl: string;

@@ -15,6 +15,12 @@
         "ニューヨーク",
         "分類"
       ],
+      "tagsEn": [
+        "Society",
+        "Crime",
+        "New York",
+        "Classification"
+      ],
       "columns": [
         "Gender",
         "Race",
@@ -43,6 +49,12 @@
         "関係",
         "ドラマ"
       ],
+      "tagsEn": [
+        "Fiction",
+        "People",
+        "Relationship",
+        "Drama"
+      ],
       "columns": [
         "Source",
         "Target",
@@ -69,6 +81,12 @@
         "Netflix",
         "映像",
         "評価"
+      ],
+      "tagsEn": [
+        "Entertainment",
+        "Netflix",
+        "Video",
+        "Rating"
       ],
       "columns": [
         "Genere",
@@ -102,6 +120,12 @@
         "職業",
         "ニューヨーク"
       ],
+      "tagsEn": [
+        "Employment",
+        "Wages",
+        "Occupation",
+        "New York"
+      ],
       "columns": [
         "Occupation",
         "Mean wage",
@@ -128,6 +152,12 @@
         "エンタメ",
         "興行収入",
         "比較"
+      ],
+      "tagsEn": [
+        "Movie",
+        "Entertainment",
+        "Box Office",
+        "Comparison"
       ],
       "columns": [
         "Budget (mln)",
@@ -158,6 +188,12 @@
         "時系列",
         "イタリア"
       ],
+      "tagsEn": [
+        "Population",
+        "Immigration",
+        "Time Series",
+        "Italy"
+      ],
       "columns": [
         "Country",
         "Date",
@@ -184,6 +220,12 @@
         "都市",
         "世界",
         "階層"
+      ],
+      "tagsEn": [
+        "Population",
+        "City",
+        "World",
+        "Hierarchy"
       ],
       "columns": [
         "Continent",
@@ -213,6 +255,12 @@
         "パリ",
         "気温"
       ],
+      "tagsEn": [
+        "Weather",
+        "Time Series",
+        "Paris",
+        "Temperature"
+      ],
       "columns": [
         "Date",
         "Mean temerature (°C)"
@@ -238,6 +286,12 @@
         "分類",
         "多変量",
         "統計"
+      ],
+      "tagsEn": [
+        "Plant",
+        "Classification",
+        "Multivariate",
+        "Statistics"
       ],
       "columns": [
         "Id",
@@ -269,6 +323,12 @@
         "動物",
         "階層"
       ],
+      "tagsEn": [
+        "Biology",
+        "Classification",
+        "Animal",
+        "Hierarchy"
+      ],
       "columns": [
         "Family",
         "Subfamily",
@@ -299,6 +359,12 @@
         "イタリア",
         "時系列"
       ],
+      "tagsEn": [
+        "Politics",
+        "History",
+        "Italy",
+        "Time Series"
+      ],
       "columns": [
         "Politician",
         "Start date",
@@ -326,6 +392,12 @@
         "バスケ",
         "位置データ",
         "統計"
+      ],
+      "tagsEn": [
+        "Sports",
+        "Basketball",
+        "Location Data",
+        "Statistics"
       ],
       "columns": [
         "Action type",
@@ -358,6 +430,12 @@
         "時系列",
         "EU"
       ],
+      "tagsEn": [
+        "Economy",
+        "Prices",
+        "Time Series",
+        "EU"
+      ],
       "columns": [
         "Category",
         "Date",
@@ -384,6 +462,12 @@
         "収益",
         "時系列",
         "メディア"
+      ],
+      "tagsEn": [
+        "Music",
+        "Revenue",
+        "Time Series",
+        "Media"
       ],
       "columns": [
         "Category",
@@ -416,6 +500,12 @@
         "文字",
         "比較"
       ],
+      "tagsEn": [
+        "Language",
+        "Statistics",
+        "Text",
+        "Comparison"
+      ],
       "columns": [
         "Letter",
         "Language",
@@ -442,6 +532,12 @@
         "幸福度",
         "世界",
         "時系列"
+      ],
+      "tagsEn": [
+        "Society",
+        "Happiness",
+        "World",
+        "Time Series"
       ],
       "columns": [
         "Country",
@@ -472,6 +568,12 @@
         "サッカー",
         "選手",
         "多変量"
+      ],
+      "tagsEn": [
+        "Sports",
+        "Soccer",
+        "Athlete",
+        "Multivariate"
       ],
       "columns": [
         "Name",
@@ -517,6 +619,11 @@
         "フロー",
         "環境"
       ],
+      "tagsEn": [
+        "Energy",
+        "Flow",
+        "Environment"
+      ],
       "columns": [
         "From",
         "To",
@@ -543,6 +650,12 @@
         "GDP",
         "産業",
         "世界"
+      ],
+      "tagsEn": [
+        "Economy",
+        "GDP",
+        "Industry",
+        "World"
       ],
       "columns": [
         "Country",
@@ -572,6 +685,12 @@
         "メダル",
         "時系列"
       ],
+      "tagsEn": [
+        "Sports",
+        "Olympics",
+        "Medal",
+        "Time Series"
+      ],
       "columns": [
         "Year",
         "Macroarea",
@@ -599,6 +718,12 @@
         "ワイン",
         "分類",
         "階層"
+      ],
+      "tagsEn": [
+        "Food",
+        "Wine",
+        "Classification",
+        "Hierarchy"
       ],
       "columns": [
         "Root",
@@ -629,6 +754,12 @@
         "分類",
         "階層"
       ],
+      "tagsEn": [
+        "Music",
+        "Instrument",
+        "Classification",
+        "Hierarchy"
+      ],
       "columns": [
         "Orchestra type",
         "Group",
@@ -656,6 +787,12 @@
         "時系列",
         "ニューヨーク",
         "気温"
+      ],
+      "tagsEn": [
+        "Weather",
+        "Time Series",
+        "New York",
+        "Temperature"
       ],
       "columns": [
         "location",
@@ -688,6 +825,12 @@
         "米国",
         "時系列"
       ],
+      "tagsEn": [
+        "Politics",
+        "Election",
+        "United States",
+        "Time Series"
+      ],
       "columns": [
         "年",
         "州",
@@ -718,6 +861,12 @@
         "選挙",
         "米国",
         "詳細"
+      ],
+      "tagsEn": [
+        "Politics",
+        "Election",
+        "United States",
+        "Detail"
       ],
       "columns": [
         "年",
@@ -751,6 +900,12 @@
         "順位",
         "イタリア"
       ],
+      "tagsEn": [
+        "Sports",
+        "Soccer",
+        "Ranking",
+        "Italy"
+      ],
       "columns": [
         "チーム",
         "2018-2020",
@@ -780,6 +935,12 @@
         "栄養",
         "比較",
         "多変量"
+      ],
+      "tagsEn": [
+        "Food",
+        "Nutrition",
+        "Comparison",
+        "Multivariate"
       ],
       "columns": [
         "商品名",
@@ -823,6 +984,12 @@
         "農業",
         "果物",
         "都道府県"
+      ],
+      "tagsEn": [
+        "Japan",
+        "Agriculture",
+        "Fruit",
+        "Prefecture"
       ],
       "columns": [
         "都道府県",
@@ -868,6 +1035,12 @@
         "人物",
         "共起"
       ],
+      "tagsEn": [
+        "Network",
+        "Literature",
+        "People",
+        "Co-occurrence"
+      ],
       "columns": [],
       "rowCount": 78,
       "fileUrl": "https://app.dataviz.jp/data/les-miserables.gexf",
@@ -890,6 +1063,11 @@
         "ネットワーク",
         "生物学",
         "神経科学"
+      ],
+      "tagsEn": [
+        "Network",
+        "Biology",
+        "Neuroscience"
       ],
       "columns": [],
       "rowCount": 307,
@@ -915,6 +1093,12 @@
         "疾患",
         "タンパク質"
       ],
+      "tagsEn": [
+        "Network",
+        "Medicine",
+        "Disease",
+        "Protein"
+      ],
       "columns": [],
       "rowCount": 1420,
       "fileUrl": "https://app.dataviz.jp/data/diseasome.gexf",
@@ -938,6 +1122,12 @@
         "社会",
         "経済",
         "欧州"
+      ],
+      "tagsEn": [
+        "Network",
+        "Society",
+        "Economy",
+        "Europe"
       ],
       "columns": [],
       "rowCount": 1286,
@@ -963,6 +1153,12 @@
         "人物",
         "ドラマ"
       ],
+      "tagsEn": [
+        "Network",
+        "Fiction",
+        "People",
+        "Drama"
+      ],
       "columns": [],
       "rowCount": 107,
       "fileUrl": "https://app.dataviz.jp/data/game-of-thrones.graphml",
@@ -986,6 +1182,12 @@
         "プログラミング",
         "Java",
         "クラス階層"
+      ],
+      "tagsEn": [
+        "Network",
+        "Programming",
+        "Java",
+        "Class Hierarchy"
       ],
       "columns": [],
       "rowCount": 1539,
@@ -1011,6 +1213,12 @@
         "マーベル",
         "コミック"
       ],
+      "tagsEn": [
+        "Network",
+        "Fiction",
+        "Marvel",
+        "Comics"
+      ],
       "columns": [],
       "rowCount": 327,
       "fileUrl": "https://app.dataviz.jp/data/marvel.graphml",
@@ -1034,6 +1242,12 @@
         "インフラ",
         "電力",
         "米国"
+      ],
+      "tagsEn": [
+        "Network",
+        "Infrastructure",
+        "Electricity",
+        "United States"
       ],
       "columns": [],
       "rowCount": 4942,
@@ -1059,6 +1273,12 @@
         "宗教",
         "社会"
       ],
+      "tagsEn": [
+        "Network",
+        "History",
+        "Religion",
+        "Society"
+      ],
       "columns": [],
       "rowCount": 96,
       "fileUrl": "https://app.dataviz.jp/data/quakers.graphml",
@@ -1082,6 +1302,12 @@
         "観光",
         "時系列",
         "旅行者"
+      ],
+      "tagsEn": [
+        "Japan",
+        "Tourism",
+        "Time Series",
+        "Traveler"
       ],
       "columns": [
         "国名",
@@ -1107,6 +1333,11 @@
         "日本",
         "人口",
         "時系列"
+      ],
+      "tagsEn": [
+        "Japan",
+        "Population",
+        "Time Series"
       ],
       "columns": [
         "date",
@@ -1135,6 +1366,12 @@
         "時系列",
         "経済"
       ],
+      "tagsEn": [
+        "Finance",
+        "Exchange Rate",
+        "Time Series",
+        "Economy"
+      ],
       "columns": [
         "date",
         "value"
@@ -1161,6 +1398,12 @@
         "国債",
         "時系列",
         "日本"
+      ],
+      "tagsEn": [
+        "Finance",
+        "Government Bonds",
+        "Time Series",
+        "Japan"
       ],
       "columns": [
         "date",
@@ -1205,6 +1448,12 @@
         "時系列",
         "日本"
       ],
+      "tagsEn": [
+        "Finance",
+        "Government Bonds",
+        "Time Series",
+        "Japan"
+      ],
       "columns": [
         "date",
         "1Y",
@@ -1247,6 +1496,12 @@
         "国債",
         "時系列",
         "日本"
+      ],
+      "tagsEn": [
+        "Finance",
+        "Government Bonds",
+        "Time Series",
+        "Japan"
       ],
       "columns": [
         "date",
@@ -1291,6 +1546,12 @@
         "時系列",
         "米国"
       ],
+      "tagsEn": [
+        "Finance",
+        "Government Bonds",
+        "Time Series",
+        "United States"
+      ],
       "columns": [
         "date",
         "1M",
@@ -1327,6 +1588,13 @@
         "出生",
         "都道府県",
         "時系列"
+      ],
+      "tagsEn": [
+        "Japan",
+        "Population",
+        "Birth",
+        "Prefecture",
+        "Time Series"
       ],
       "columns": [
         "年度",
@@ -1400,6 +1668,12 @@
         "品種",
         "比較"
       ],
+      "tagsEn": [
+        "Agriculture",
+        "Harvest",
+        "Variety",
+        "Comparison"
+      ],
       "columns": [
         "yield",
         "variety",
@@ -1428,6 +1702,12 @@
         "統計",
         "多変量",
         "比較"
+      ],
+      "tagsEn": [
+        "Automobile",
+        "Statistics",
+        "Multivariate",
+        "Comparison"
       ],
       "columns": [
         "Name",
@@ -1463,6 +1743,12 @@
         "死因",
         "時系列"
       ],
+      "tagsEn": [
+        "History",
+        "War",
+        "Cause of Death",
+        "Time Series"
+      ],
       "columns": [
         "date",
         "wounds",
@@ -1492,6 +1778,12 @@
         "時系列",
         "米国"
       ],
+      "tagsEn": [
+        "Transportation",
+        "Fuel",
+        "Time Series",
+        "United States"
+      ],
       "columns": [
         "side",
         "year",
@@ -1520,6 +1812,12 @@
         "分類",
         "多変量",
         "統計"
+      ],
+      "tagsEn": [
+        "Plant",
+        "Classification",
+        "Multivariate",
+        "Statistics"
       ],
       "columns": [
         "sepalLength",
@@ -1551,6 +1849,12 @@
         "時系列",
         "米国"
       ],
+      "tagsEn": [
+        "Employment",
+        "Occupation",
+        "Time Series",
+        "United States"
+      ],
       "columns": [
         "job",
         "sex",
@@ -1581,6 +1885,12 @@
         "時系列",
         "米国"
       ],
+      "tagsEn": [
+        "Population",
+        "Age",
+        "Time Series",
+        "United States"
+      ],
       "columns": [
         "year",
         "age",
@@ -1609,6 +1919,12 @@
         "エンタメ",
         "評価",
         "多変量"
+      ],
+      "tagsEn": [
+        "Movie",
+        "Entertainment",
+        "Rating",
+        "Multivariate"
       ],
       "columns": [
         "Title",
@@ -1644,6 +1960,12 @@
         "統計",
         "安全"
       ],
+      "tagsEn": [
+        "Aviation",
+        "Accident",
+        "Statistics",
+        "Safety"
+      ],
       "columns": [
         "Airport__Name",
         "Aircraft__Make_Model",
@@ -1677,6 +1999,12 @@
         "細菌",
         "比較"
       ],
+      "tagsEn": [
+        "Medicine",
+        "Antibiotics",
+        "Bacteria",
+        "Comparison"
+      ],
       "columns": [
         "Bacteria",
         "Penicillin",
@@ -1707,6 +2035,12 @@
         "選挙",
         "資金",
         "米国"
+      ],
+      "tagsEn": [
+        "Politics",
+        "Election",
+        "Funds",
+        "United States"
       ],
       "columns": [
         "Candidate_Name",
@@ -1739,6 +2073,12 @@
         "交通",
         "路線"
       ],
+      "tagsEn": [
+        "Network",
+        "Aviation",
+        "Transportation",
+        "Route"
+      ],
       "columns": [],
       "rowCount": 235,
       "fileUrl": "https://app.dataviz.jp/data/airlines.graphml",
@@ -1763,6 +2103,13 @@
         "追跡",
         "G7",
         "フライト"
+      ],
+      "tagsEn": [
+        "Geography",
+        "Aviation",
+        "Tracking",
+        "G7",
+        "Flight"
       ],
       "columns": [
         "Timestamp",
@@ -1797,6 +2144,13 @@
         "G7",
         "フライト"
       ],
+      "tagsEn": [
+        "Geography",
+        "Aviation",
+        "Tracking",
+        "G7",
+        "Flight"
+      ],
       "columns": [
         "Timestamp",
         "UTC",
@@ -1829,6 +2183,12 @@
         "H3",
         "時系列"
       ],
+      "tagsEn": [
+        "Geography",
+        "Grid",
+        "H3",
+        "Time Series"
+      ],
       "columns": [
         "hex_id",
         "value",
@@ -1859,6 +2219,12 @@
         "郵便番号",
         "境界"
       ],
+      "tagsEn": [
+        "Geography",
+        "San Francisco",
+        "Postal Code",
+        "Boundary"
+      ],
       "columns": [],
       "rowCount": 0,
       "fileUrl": "https://app.dataviz.jp/data/sf-zip-geo.json",
@@ -1881,6 +2247,12 @@
         "分類",
         "多変量",
         "統計"
+      ],
+      "tagsEn": [
+        "Plant",
+        "Classification",
+        "Multivariate",
+        "Statistics"
       ],
       "columns": [
         "id",
@@ -1912,6 +2284,11 @@
         "自動車",
         "統計",
         "多変量"
+      ],
+      "tagsEn": [
+        "Automobile",
+        "Statistics",
+        "Multivariate"
       ],
       "columns": [
         "name",
@@ -1947,6 +2324,12 @@
         "時系列",
         "価格"
       ],
+      "tagsEn": [
+        "Finance",
+        "Cryptocurrency",
+        "Time Series",
+        "Price"
+      ],
       "columns": [
         "date",
         "value"
@@ -1973,6 +2356,12 @@
         "時系列",
         "ボストン",
         "気温"
+      ],
+      "tagsEn": [
+        "Weather",
+        "Time Series",
+        "Boston",
+        "Temperature"
       ],
       "columns": [
         "date",
@@ -2007,6 +2396,12 @@
         "時系列",
         "米国"
       ],
+      "tagsEn": [
+        "Economy",
+        "GDP",
+        "Time Series",
+        "United States"
+      ],
       "columns": [
         "Year",
         "Quarter",
@@ -2034,6 +2429,12 @@
         "オリンピック",
         "メダル",
         "国別"
+      ],
+      "tagsEn": [
+        "Sports",
+        "Olympics",
+        "Medal",
+        "By Country"
       ],
       "columns": [
         "Country_Code",
@@ -2064,6 +2465,12 @@
         "死因",
         "統計"
       ],
+      "tagsEn": [
+        "Medicine",
+        "History",
+        "Cause of Death",
+        "Statistics"
+      ],
       "columns": [
         "Month",
         "Type",
@@ -2092,6 +2499,12 @@
         "支出",
         "世界"
       ],
+      "tagsEn": [
+        "Economy",
+        "Household",
+        "Expenditure",
+        "World"
+      ],
       "columns": [
         "Country",
         "Year",
@@ -2119,6 +2532,12 @@
         "政治",
         "選挙",
         "米国",
+        "2020"
+      ],
+      "tagsEn": [
+        "Politics",
+        "Election",
+        "United States",
         "2020"
       ],
       "columns": [
@@ -2154,6 +2573,12 @@
         "ジェンダー",
         "格差"
       ],
+      "tagsEn": [
+        "Society",
+        "Wages",
+        "Gender",
+        "Inequality"
+      ],
       "columns": [
         "Gender",
         "Pay Grade",
@@ -2185,6 +2610,12 @@
         "人口",
         "都道府県",
         "市区町村"
+      ],
+      "tagsEn": [
+        "Japan",
+        "Population",
+        "Prefecture",
+        "Municipality"
       ],
       "columns": [
         "市区町村",
@@ -2511,6 +2942,12 @@
         "世界",
         "時系列"
       ],
+      "tagsEn": [
+        "Population",
+        "Economy",
+        "World",
+        "Time Series"
+      ],
       "columns": [
         "country",
         "continent",
@@ -2542,6 +2979,12 @@
         "家計",
         "消費",
         "都道府県"
+      ],
+      "tagsEn": [
+        "Statistics",
+        "Household",
+        "Consumption",
+        "Prefecture"
       ],
       "columns": [
         "都道府県",
@@ -2584,6 +3027,12 @@
         "社会",
         "経済",
         "都道府県"
+      ],
+      "tagsEn": [
+        "Statistics",
+        "Society",
+        "Economy",
+        "Prefecture"
       ],
       "columns": [
         "地域コード",
@@ -2635,6 +3084,11 @@
         "店舗",
         "東京"
       ],
+      "tagsEn": [
+        "Food & Drink",
+        "Store",
+        "Tokyo"
+      ],
       "columns": [
         "市区町村",
         "店舗名",
@@ -2676,6 +3130,11 @@
         "野球",
         "ネットワーク"
       ],
+      "tagsEn": [
+        "Sports",
+        "Baseball",
+        "Network"
+      ],
       "columns": [
         "school",
         "value",
@@ -2703,6 +3162,11 @@
         "人事",
         "離職",
         "分析"
+      ],
+      "tagsEn": [
+        "HR",
+        "Attrition",
+        "Analysis"
       ],
       "columns": [
         "年齢",
@@ -2757,6 +3221,12 @@
         "猫",
         "日本"
       ],
+      "tagsEn": [
+        "Animal",
+        "Pet",
+        "Cat",
+        "Japan"
+      ],
       "columns": [
         "種",
         "カテゴリー",
@@ -2786,6 +3256,12 @@
         "ペット",
         "犬",
         "日本"
+      ],
+      "tagsEn": [
+        "Animal",
+        "Pet",
+        "Dog",
+        "Japan"
       ],
       "columns": [
         "種",
@@ -2817,6 +3293,13 @@
         "東京",
         "Airbnb",
         "観光"
+      ],
+      "tagsEn": [
+        "Real Estate",
+        "Lodging",
+        "Tokyo",
+        "Airbnb",
+        "Tourism"
       ],
       "columns": [
         "id",
@@ -2851,55 +3334,300 @@
       "dataAsOf": "2025年9年29日公開",
       "sourceUrl": "https://insideairbnb.com/get-the-data/",
       "variants": [
-        { "label": "千代田区", "labelEn": "Chiyoda Ward", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_ChiyodaKu.csv", "rowCount": 259 },
-        { "label": "中央区", "labelEn": "Chuo Ward", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_ChuoKu.csv", "rowCount": 382 },
-        { "label": "港区", "labelEn": "Minato Ward", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_MinatoKu.csv", "rowCount": 1193 },
-        { "label": "新宿区", "labelEn": "Shinjuku Ward", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_ShinjukuKu.csv", "rowCount": 5017 },
-        { "label": "文京区", "labelEn": "Bunkyo Ward", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_BunkyoKu.csv", "rowCount": 484 },
-        { "label": "台東区", "labelEn": "Taito Ward", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_TaitoKu.csv", "rowCount": 2959 },
-        { "label": "墨田区", "labelEn": "Sumida Ward", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_SumidaKu.csv", "rowCount": 4001 },
-        { "label": "江東区", "labelEn": "Koto Ward", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_KotoKu.csv", "rowCount": 550 },
-        { "label": "品川区", "labelEn": "Shinagawa Ward", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_ShinagawaKu.csv", "rowCount": 479 },
-        { "label": "目黒区", "labelEn": "Meguro Ward", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_MeguroKu.csv", "rowCount": 139 },
-        { "label": "大田区", "labelEn": "Ota Ward", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_OtaKu.csv", "rowCount": 1211 },
-        { "label": "世田谷区", "labelEn": "Setagaya Ward", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_SetagayaKu.csv", "rowCount": 919 },
-        { "label": "渋谷区", "labelEn": "Shibuya Ward", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_ShibuyaKu.csv", "rowCount": 1910 },
-        { "label": "中野区", "labelEn": "Nakano Ward", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_NakanoKu.csv", "rowCount": 906 },
-        { "label": "杉並区", "labelEn": "Suginami Ward", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_SuginamiKu.csv", "rowCount": 627 },
-        { "label": "豊島区", "labelEn": "Toshima Ward", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_ToshimaKu.csv", "rowCount": 2753 },
-        { "label": "北区", "labelEn": "Kita Ward", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_KitaKu.csv", "rowCount": 891 },
-        { "label": "荒川区", "labelEn": "Arakawa Ward", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_ArakawaKu.csv", "rowCount": 259 },
-        { "label": "板橋区", "labelEn": "Itabashi Ward", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_ItabashiKu.csv", "rowCount": 503 },
-        { "label": "練馬区", "labelEn": "Nerima Ward", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_NerimaKu.csv", "rowCount": 150 },
-        { "label": "足立区", "labelEn": "Adachi Ward", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_AdachiKu.csv", "rowCount": 435 },
-        { "label": "葛飾区", "labelEn": "Katsushika Ward", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_KatsushikaKu.csv", "rowCount": 918 },
-        { "label": "江戸川区", "labelEn": "Edogawa Ward", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_EdogawaKu.csv", "rowCount": 593 },
-        { "label": "八王子市", "labelEn": "Hachioji City", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_HachiojiShi.csv", "rowCount": 53 },
-        { "label": "立川市", "labelEn": "Tachikawa City", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_TachikawaShi.csv", "rowCount": 10 },
-        { "label": "武蔵野市", "labelEn": "Musashino City", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_MusashinoShi.csv", "rowCount": 80 },
-        { "label": "三鷹市", "labelEn": "Mitaka City", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_MitakaShi.csv", "rowCount": 46 },
-        { "label": "青梅市", "labelEn": "Ome City", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_OmeShi.csv", "rowCount": 43 },
-        { "label": "府中市", "labelEn": "Fuchu City", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_FuchuShi.csv", "rowCount": 22 },
-        { "label": "昭島市", "labelEn": "Akishima City", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_AkishimaShi.csv", "rowCount": 4 },
-        { "label": "調布市", "labelEn": "Chofu City", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_ChofuShi.csv", "rowCount": 32 },
-        { "label": "町田市", "labelEn": "Machida City", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_MachidaShi.csv", "rowCount": 43 },
-        { "label": "小金井市", "labelEn": "Koganei City", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_KoganeiShi.csv", "rowCount": 12 },
-        { "label": "小平市", "labelEn": "Kodaira City", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_KodairaShi.csv", "rowCount": 12 },
-        { "label": "日野市", "labelEn": "Hino City", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_HinoShi.csv", "rowCount": 26 },
-        { "label": "東村山市", "labelEn": "Higashimurayama City", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_HigashimurayamaShi.csv", "rowCount": 15 },
-        { "label": "国分寺市", "labelEn": "Kokubunji City", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_KokubunjiShi.csv", "rowCount": 26 },
-        { "label": "国立市", "labelEn": "Kunitachi City", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_KunitachiShi.csv", "rowCount": 15 },
-        { "label": "福生市", "labelEn": "Fussa City", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_FussaShi.csv", "rowCount": 13 },
-        { "label": "狛江市", "labelEn": "Komae City", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_KomaeShi.csv", "rowCount": 17 },
-        { "label": "東大和市", "labelEn": "Higashiyamato City", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_HigashiyamatoShi.csv", "rowCount": 1 },
-        { "label": "清瀬市", "labelEn": "Kiyose City", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_KiyoseShi.csv", "rowCount": 13 },
-        { "label": "多摩市", "labelEn": "Tama City", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_TamaShi.csv", "rowCount": 7 },
-        { "label": "稲城市", "labelEn": "Inagi City", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_InagiShi.csv", "rowCount": 2 },
-        { "label": "羽村市", "labelEn": "Hamura City", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_HamuraShi.csv", "rowCount": 7 },
-        { "label": "あきる野市", "labelEn": "Akiruno City", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_AkirunoShi.csv", "rowCount": 34 },
-        { "label": "西東京市", "labelEn": "Nishitokyo City", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_NishitokyoShi.csv", "rowCount": 13 },
-        { "label": "檜原村", "labelEn": "Hinohara Village", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_HinoharaMura.csv", "rowCount": 5 },
-        { "label": "奥多摩町", "labelEn": "Okutama Town", "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_OkutamaMachi.csv", "rowCount": 8 }
+        {
+          "label": "千代田区",
+          "labelEn": "Chiyoda Ward",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_ChiyodaKu.csv",
+          "rowCount": 259
+        },
+        {
+          "label": "中央区",
+          "labelEn": "Chuo Ward",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_ChuoKu.csv",
+          "rowCount": 382
+        },
+        {
+          "label": "港区",
+          "labelEn": "Minato Ward",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_MinatoKu.csv",
+          "rowCount": 1193
+        },
+        {
+          "label": "新宿区",
+          "labelEn": "Shinjuku Ward",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_ShinjukuKu.csv",
+          "rowCount": 5017
+        },
+        {
+          "label": "文京区",
+          "labelEn": "Bunkyo Ward",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_BunkyoKu.csv",
+          "rowCount": 484
+        },
+        {
+          "label": "台東区",
+          "labelEn": "Taito Ward",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_TaitoKu.csv",
+          "rowCount": 2959
+        },
+        {
+          "label": "墨田区",
+          "labelEn": "Sumida Ward",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_SumidaKu.csv",
+          "rowCount": 4001
+        },
+        {
+          "label": "江東区",
+          "labelEn": "Koto Ward",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_KotoKu.csv",
+          "rowCount": 550
+        },
+        {
+          "label": "品川区",
+          "labelEn": "Shinagawa Ward",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_ShinagawaKu.csv",
+          "rowCount": 479
+        },
+        {
+          "label": "目黒区",
+          "labelEn": "Meguro Ward",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_MeguroKu.csv",
+          "rowCount": 139
+        },
+        {
+          "label": "大田区",
+          "labelEn": "Ota Ward",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_OtaKu.csv",
+          "rowCount": 1211
+        },
+        {
+          "label": "世田谷区",
+          "labelEn": "Setagaya Ward",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_SetagayaKu.csv",
+          "rowCount": 919
+        },
+        {
+          "label": "渋谷区",
+          "labelEn": "Shibuya Ward",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_ShibuyaKu.csv",
+          "rowCount": 1910
+        },
+        {
+          "label": "中野区",
+          "labelEn": "Nakano Ward",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_NakanoKu.csv",
+          "rowCount": 906
+        },
+        {
+          "label": "杉並区",
+          "labelEn": "Suginami Ward",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_SuginamiKu.csv",
+          "rowCount": 627
+        },
+        {
+          "label": "豊島区",
+          "labelEn": "Toshima Ward",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_ToshimaKu.csv",
+          "rowCount": 2753
+        },
+        {
+          "label": "北区",
+          "labelEn": "Kita Ward",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_KitaKu.csv",
+          "rowCount": 891
+        },
+        {
+          "label": "荒川区",
+          "labelEn": "Arakawa Ward",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_ArakawaKu.csv",
+          "rowCount": 259
+        },
+        {
+          "label": "板橋区",
+          "labelEn": "Itabashi Ward",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_ItabashiKu.csv",
+          "rowCount": 503
+        },
+        {
+          "label": "練馬区",
+          "labelEn": "Nerima Ward",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_NerimaKu.csv",
+          "rowCount": 150
+        },
+        {
+          "label": "足立区",
+          "labelEn": "Adachi Ward",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_AdachiKu.csv",
+          "rowCount": 435
+        },
+        {
+          "label": "葛飾区",
+          "labelEn": "Katsushika Ward",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_KatsushikaKu.csv",
+          "rowCount": 918
+        },
+        {
+          "label": "江戸川区",
+          "labelEn": "Edogawa Ward",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_EdogawaKu.csv",
+          "rowCount": 593
+        },
+        {
+          "label": "八王子市",
+          "labelEn": "Hachioji City",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_HachiojiShi.csv",
+          "rowCount": 53
+        },
+        {
+          "label": "立川市",
+          "labelEn": "Tachikawa City",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_TachikawaShi.csv",
+          "rowCount": 10
+        },
+        {
+          "label": "武蔵野市",
+          "labelEn": "Musashino City",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_MusashinoShi.csv",
+          "rowCount": 80
+        },
+        {
+          "label": "三鷹市",
+          "labelEn": "Mitaka City",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_MitakaShi.csv",
+          "rowCount": 46
+        },
+        {
+          "label": "青梅市",
+          "labelEn": "Ome City",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_OmeShi.csv",
+          "rowCount": 43
+        },
+        {
+          "label": "府中市",
+          "labelEn": "Fuchu City",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_FuchuShi.csv",
+          "rowCount": 22
+        },
+        {
+          "label": "昭島市",
+          "labelEn": "Akishima City",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_AkishimaShi.csv",
+          "rowCount": 4
+        },
+        {
+          "label": "調布市",
+          "labelEn": "Chofu City",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_ChofuShi.csv",
+          "rowCount": 32
+        },
+        {
+          "label": "町田市",
+          "labelEn": "Machida City",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_MachidaShi.csv",
+          "rowCount": 43
+        },
+        {
+          "label": "小金井市",
+          "labelEn": "Koganei City",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_KoganeiShi.csv",
+          "rowCount": 12
+        },
+        {
+          "label": "小平市",
+          "labelEn": "Kodaira City",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_KodairaShi.csv",
+          "rowCount": 12
+        },
+        {
+          "label": "日野市",
+          "labelEn": "Hino City",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_HinoShi.csv",
+          "rowCount": 26
+        },
+        {
+          "label": "東村山市",
+          "labelEn": "Higashimurayama City",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_HigashimurayamaShi.csv",
+          "rowCount": 15
+        },
+        {
+          "label": "国分寺市",
+          "labelEn": "Kokubunji City",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_KokubunjiShi.csv",
+          "rowCount": 26
+        },
+        {
+          "label": "国立市",
+          "labelEn": "Kunitachi City",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_KunitachiShi.csv",
+          "rowCount": 15
+        },
+        {
+          "label": "福生市",
+          "labelEn": "Fussa City",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_FussaShi.csv",
+          "rowCount": 13
+        },
+        {
+          "label": "狛江市",
+          "labelEn": "Komae City",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_KomaeShi.csv",
+          "rowCount": 17
+        },
+        {
+          "label": "東大和市",
+          "labelEn": "Higashiyamato City",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_HigashiyamatoShi.csv",
+          "rowCount": 1
+        },
+        {
+          "label": "清瀬市",
+          "labelEn": "Kiyose City",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_KiyoseShi.csv",
+          "rowCount": 13
+        },
+        {
+          "label": "多摩市",
+          "labelEn": "Tama City",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_TamaShi.csv",
+          "rowCount": 7
+        },
+        {
+          "label": "稲城市",
+          "labelEn": "Inagi City",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_InagiShi.csv",
+          "rowCount": 2
+        },
+        {
+          "label": "羽村市",
+          "labelEn": "Hamura City",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_HamuraShi.csv",
+          "rowCount": 7
+        },
+        {
+          "label": "あきる野市",
+          "labelEn": "Akiruno City",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_AkirunoShi.csv",
+          "rowCount": 34
+        },
+        {
+          "label": "西東京市",
+          "labelEn": "Nishitokyo City",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_NishitokyoShi.csv",
+          "rowCount": 13
+        },
+        {
+          "label": "檜原村",
+          "labelEn": "Hinohara Village",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_HinoharaMura.csv",
+          "rowCount": 5
+        },
+        {
+          "label": "奥多摩町",
+          "labelEn": "Okutama Town",
+          "fileUrl": "https://app.dataviz.jp/data/airbnb/Airbnb_OkutamaMachi.csv",
+          "rowCount": 8
+        }
       ]
     },
     {
@@ -2914,6 +3642,12 @@
         "Spotify",
         "J-Pop",
         "エンタメ"
+      ],
+      "tagsEn": [
+        "Music",
+        "Spotify",
+        "J-Pop",
+        "Entertainment"
       ],
       "columns": [
         "Id",
@@ -2963,6 +3697,12 @@
         "K-Pop",
         "エンタメ"
       ],
+      "tagsEn": [
+        "Music",
+        "Spotify",
+        "K-Pop",
+        "Entertainment"
+      ],
       "columns": [
         "Id",
         "track_id",
@@ -3010,6 +3750,12 @@
         "金融",
         "株式",
         "証券取引所"
+      ],
+      "tagsEn": [
+        "Japan",
+        "Finance",
+        "Stocks",
+        "Stock Exchange"
       ],
       "columns": [
         "日付",
