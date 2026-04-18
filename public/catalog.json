@@ -3896,7 +3896,8 @@
         "parallel-coordinates",
         "interactive-chart-builder"
       ],
-      "category": "tabular"
+      "category": "tabular",
+      "sourceUrl": "https://www.kaggle.com/datasets/maharshipandya/-spotify-tracks-dataset/data"
     },
     {
       "id": "spotify-k-pop",
@@ -3953,7 +3954,8 @@
         "parallel-coordinates",
         "interactive-chart-builder"
       ],
-      "category": "tabular"
+      "category": "tabular",
+      "sourceUrl": "https://www.kaggle.com/datasets/maharshipandya/-spotify-tracks-dataset/data"
     },
     {
       "id": "tse-listed-stocks",
@@ -4028,6 +4030,151 @@
         "interactive-chart-builder"
       ],
       "category": "tabular"
+    },
+    {
+      "id": "shinagawa-near-miss-map",
+      "name": "品川区 ヒヤリハットマップ",
+      "nameEn": "Shinagawa Ward — Near-miss Incident Map",
+      "description": "品川区内で交通上危険と思われる地点（ヒヤリハット地点）の位置情報。区民から収集された交通安全マップ。",
+      "descriptionEn": "Locations reported as potentially dangerous for traffic within Shinagawa Ward, Tokyo. Community-sourced traffic safety map.",
+      "format": "csv",
+      "tags": [
+        "日本",
+        "東京",
+        "市区町村",
+        "交通",
+        "安全",
+        "位置データ"
+      ],
+      "tagsEn": [
+        "Japan",
+        "Tokyo",
+        "Municipality",
+        "Transportation",
+        "Safety",
+        "Location Data"
+      ],
+      "columns": [
+        "年度",
+        "名称",
+        "所属団体名",
+        "発生時期",
+        "地点住所",
+        "交通状況",
+        "概要",
+        "情報",
+        "緯度",
+        "経度"
+      ],
+      "rowCount": 99,
+      "fileUrl": "https://app.dataviz.jp/data/shinagawa_hiyarihatto.csv",
+      "fileUrlEn": null,
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "kepler-gl",
+        "rawgraphs",
+        "voyager"
+      ],
+      "category": "geographic",
+      "dataAsOf": "令和1年〜",
+      "sourceUrl": "https://catalog.data.metro.tokyo.lg.jp/dataset/t131091d0000000116"
+    },
+    {
+      "id": "shinagawa-injury-accidents",
+      "name": "品川区 交通負傷事故マップ",
+      "nameEn": "Shinagawa Ward — Traffic Injury Accident Map",
+      "description": "品川区内で発生した交通負傷事故の地点情報（事故種別、上半期/下半期、緯度経度）。",
+      "descriptionEn": "Locations of traffic injury accidents in Shinagawa Ward, Tokyo (accident type, half-year split, lat/lon).",
+      "format": "csv",
+      "tags": [
+        "日本",
+        "東京",
+        "市区町村",
+        "交通",
+        "事故",
+        "安全",
+        "位置データ"
+      ],
+      "tagsEn": [
+        "Japan",
+        "Tokyo",
+        "Municipality",
+        "Transportation",
+        "Accident",
+        "Safety",
+        "Location Data"
+      ],
+      "columns": [
+        "年度",
+        "事故種別",
+        "上半期",
+        "下半期",
+        "緯度",
+        "経度"
+      ],
+      "rowCount": 3352,
+      "fileUrl": "https://app.dataviz.jp/data/shinagawa__fusyojiko.csv",
+      "fileUrlEn": null,
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "kepler-gl",
+        "rawgraphs",
+        "voyager"
+      ],
+      "category": "geographic",
+      "dataAsOf": "令和1年〜",
+      "sourceUrl": "https://catalog.data.metro.tokyo.lg.jp/dataset/t131091d0000000116"
+    },
+    {
+      "id": "shinagawa-fatal-accidents",
+      "name": "品川区 交通死亡事故マップ",
+      "nameEn": "Shinagawa Ward — Fatal Traffic Accident Map",
+      "description": "品川区内で発生した交通死亡事故の詳細（発生日時、場所、路線、当事者、緯度経度）。",
+      "descriptionEn": "Detailed records of fatal traffic accidents in Shinagawa Ward, Tokyo (date, location, route, parties involved, lat/lon).",
+      "format": "csv",
+      "tags": [
+        "日本",
+        "東京",
+        "市区町村",
+        "交通",
+        "事故",
+        "安全",
+        "位置データ"
+      ],
+      "tagsEn": [
+        "Japan",
+        "Tokyo",
+        "Municipality",
+        "Transportation",
+        "Accident",
+        "Safety",
+        "Location Data"
+      ],
+      "columns": [
+        "年度",
+        "事故種別",
+        "発生日",
+        "発生時間",
+        "場所",
+        "路線",
+        "事故当事者",
+        "上半期",
+        "下半期",
+        "緯度",
+        "経度"
+      ],
+      "rowCount": 10,
+      "fileUrl": "https://app.dataviz.jp/data/shinagawa_shiboujiko.csv",
+      "fileUrlEn": null,
+      "thumbnailUrl": null,
+      "compatibleTools": [
+        "kepler-gl",
+        "rawgraphs",
+        "voyager"
+      ],
+      "category": "geographic",
+      "dataAsOf": "令和1年〜",
+      "sourceUrl": "https://catalog.data.metro.tokyo.lg.jp/dataset/t131091d0000000116"
     }
   ]
 }
