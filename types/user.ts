@@ -13,6 +13,16 @@ export type AdminUserRow = {
   subscriptionCreatedAt: string | null;
 };
 
+export type ProjectRankingRow = {
+  id: string;
+  email: string;
+  displayName: string | null;
+  projectCount: number;
+  openrefineCount: number;
+  totalCount: number;
+  byApp: Record<string, number>;
+};
+
 export type MeResponse = {
     user: {
         id: string;

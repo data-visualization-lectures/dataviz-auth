@@ -15,9 +15,10 @@ import {
   TrialBreakdownChart,
 } from "@/components/admin-charts";
 import { AdminUserList } from "@/components/admin-user-list";
+import { AdminProjectRanking } from "@/components/admin-project-ranking";
 import { AdminGroupManagement } from "@/components/admin-group-management";
 import { getGroups } from "@/app/admin/group-actions";
-import type { AdminUserRow } from "@/types/user";
+import type { AdminUserRow, ProjectRankingRow } from "@/types/user";
 
 export const dynamic = "force-dynamic";
 
@@ -189,6 +190,8 @@ export default async function AdminPage() {
     { data: allProfiles },
     { data: allSubscriptions },
     { data: academiaDomains },
+    { data: allProjectRows },
+    { data: allOpenRefineRows },
   ] = await Promise.all([
     adminDb
       .from("profiles")
@@ -202,6 +205,14 @@ export default async function AdminPage() {
       .from("academia_domains")
       .select("domain")
       .eq("is_active", true),
+    adminDb
+      .from("projects")
+      .select("user_id, app_name")
+      .not("user_id", "in", adminFilter),
+    adminDb
+      .from("openrefine_projects")
+      .select("user_id")
+      .not("user_id", "in", adminFilter),
   ]);
 
   const profileMap = new Map((allProfiles ?? []).map((p) => [p.id, p]));
@@ -230,6 +241,37 @@ export default async function AdminPage() {
       subscriptionCreatedAt: sub?.created_at ?? null,
     };
   });
+
+  // ユーザー別プロジェクト数ランキング
+  const projectCountMap = new Map<string, { total: number; byApp: Record<string, number> }>();
+  for (const row of allProjectRows ?? []) {
+    const entry = projectCountMap.get(row.user_id) ?? { total: 0, byApp: {} };
+    entry.total += 1;
+    entry.byApp[row.app_name] = (entry.byApp[row.app_name] ?? 0) + 1;
+    projectCountMap.set(row.user_id, entry);
+  }
+  const openrefineCountMap = new Map<string, number>();
+  for (const row of allOpenRefineRows ?? []) {
+    openrefineCountMap.set(row.user_id, (openrefineCountMap.get(row.user_id) ?? 0) + 1);
+  }
+  const projectRankingList: ProjectRankingRow[] = nonAdminUsers
+    .map((u) => {
+      const pc = projectCountMap.get(u.id);
+      const orc = openrefineCountMap.get(u.id) ?? 0;
+      const projectCount = pc?.total ?? 0;
+      const totalCount = projectCount + orc;
+      return {
+        id: u.id,
+        email: u.email,
+        displayName: profileMap.get(u.id)?.display_name ?? null,
+        projectCount,
+        openrefineCount: orc,
+        totalCount,
+        byApp: pc?.byApp ?? {},
+      };
+    })
+    .filter((r) => r.totalCount > 0)
+    .sort((a, b) => b.totalCount - a.totalCount);
 
   // MRR計算
   const mrr = (activeSubsWithPlan ?? []).reduce((sum, sub) => {
@@ -475,6 +517,9 @@ export default async function AdminPage() {
 
         {/* ユーザー一覧 */}
         <AdminUserList data={userList} />
+
+        {/* ユーザー別プロジェクト数ランキング */}
+        <AdminProjectRanking data={projectRankingList} />
 
         {/* グループ管理 */}
         <GroupManagementSection />
