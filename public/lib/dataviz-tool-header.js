@@ -295,7 +295,7 @@ class DatavizToolHeader extends HTMLElement {
    * @param {object} projectConfig
    * @param {string} projectConfig.appName - App identifier (e.g., 'cartogram-japan')
    * @param {string} [projectConfig.apiBaseUrl] - Override API base URL
-   * @param {function} projectConfig.onProjectLoad - Called with (projectData) when user selects a project to load
+   * @param {function} projectConfig.onProjectLoad - Called with (projectData, meta) when user selects a project to load. meta = { isGroupProject: boolean, projectId: string }
    * @param {function} [projectConfig.onProjectSave] - Called with (projectMeta) after successful save
    * @param {function} [projectConfig.onProjectDelete] - Called with (projectId) after successful delete
   */
