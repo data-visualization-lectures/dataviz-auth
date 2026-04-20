@@ -30,6 +30,26 @@ export default async function PublicProjectsPage({
 
   const locale = await getLocale();
 
+  const [{ data: subscription }, { data: profile }] = await Promise.all([
+    supabase
+      .from("subscriptions")
+      .select("status, current_period_end")
+      .eq("user_id", user.id)
+      .maybeSingle(),
+    supabase
+      .from("profiles")
+      .select("is_admin")
+      .eq("id", user.id)
+      .maybeSingle(),
+  ]);
+
+  const isAdmin = !!profile?.is_admin;
+  const isSubscribed =
+    subscription &&
+    (subscription.status === "active" || subscription.status === "trialing") &&
+    new Date(subscription.current_period_end) > new Date();
+  const canUseTool = !!isSubscribed || isAdmin;
+
   let allProjects: SavedProject[] = [];
 
   if (PUBLIC_PROJECT_USER_ID) {
@@ -64,7 +84,7 @@ export default async function PublicProjectsPage({
               <p>{t(locale, "public.empty")}</p>
             </div>
           ) : (
-            <SavedProjectsGrid projects={allProjects} initialFilter={initialTool} locale={locale} />
+            <SavedProjectsGrid projects={allProjects} initialFilter={initialTool} locale={locale} isSubscribed={canUseTool} />
           )}
         </div>
       </main>
