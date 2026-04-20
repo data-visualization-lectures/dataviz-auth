@@ -3,6 +3,7 @@ import { SavedProjectsGrid, type SavedProject } from "@/components/saved-project
 import { hasEnvVars } from "@/lib/utils";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { fetchProjects } from "@/lib/apiServer";
 import { getLocale, t } from "@/lib/i18n.server";
 
 export async function generateMetadata() {
@@ -60,12 +61,8 @@ export default async function ProjectsPage({
   let allProjects: SavedProject[] = [];
 
   if (hasEnvVars) {
-    const [{ data }, { data: orData }] = await Promise.all([
-      supabase
-        .from("projects")
-        .select("*")
-        .eq("user_id", user.id)
-        .order("updated_at", { ascending: false }),
+    const [data, { data: orData }] = await Promise.all([
+      fetchProjects().catch(() => []),
       supabase
         .from("openrefine_projects")
         .select("id, name, archive_path, updated_at")
@@ -73,20 +70,18 @@ export default async function ProjectsPage({
         .order("updated_at", { ascending: false }),
     ]);
 
-    const projects: SavedProject[] = data
-      ? await Promise.all(
-          data.map(async (p) => {
-            let signedUrl = null;
-            if (p.thumbnail_path) {
-              const { data: signedData } = await supabase.storage
-                .from("user_projects")
-                .createSignedUrl(p.thumbnail_path, 3600);
-              signedUrl = signedData?.signedUrl || null;
-            }
-            return { ...p, signedUrl, source: "projects" as const, canDelete: true };
-          })
-        )
-      : [];
+    const projects: SavedProject[] = await Promise.all(
+      data.map(async (p) => {
+        let signedUrl = null;
+        if (p.thumbnail_path) {
+          const { data: signedData } = await supabase.storage
+            .from("user_projects")
+            .createSignedUrl(p.thumbnail_path, 3600);
+          signedUrl = signedData?.signedUrl || null;
+        }
+        return { ...p, signedUrl, source: "projects" as const, canDelete: true };
+      })
+    );
 
     const orProjects: SavedProject[] = (orData ?? []).map((p) => ({
       id: p.id,
@@ -108,41 +103,25 @@ export default async function ProjectsPage({
   // チームプロジェクト取得
   let groupProjects: SavedProject[] = [];
   try {
+    const gProjects = await fetchProjects({ source: "group" });
     const adminDb = createAdminClient();
-    const { data: membership } = await adminDb
-      .from("group_members")
-      .select("group_id")
-      .eq("user_id", user.id);
-
-    if (membership && membership.length > 0) {
-      const groupIds = membership.map((m: any) => m.group_id);
-      const { data: gProjects } = await adminDb
-        .from("projects")
-        .select("*")
-        .in("group_id", groupIds)
-        .not("group_id", "is", null)
-        .order("updated_at", { ascending: false });
-
-      if (gProjects) {
-        groupProjects = await Promise.all(
-          gProjects.map(async (p: any) => {
-            let signedUrl = null;
-            if (p.thumbnail_path) {
-              const { data: signedData } = await adminDb.storage
-                .from("user_projects")
-                .createSignedUrl(p.thumbnail_path, 3600);
-              signedUrl = signedData?.signedUrl || null;
-            }
-            return {
-              ...p,
-              signedUrl,
-              source: "projects" as const,
-              canDelete: p.user_id === user.id,
-            };
-          })
-        );
-      }
-    }
+    groupProjects = await Promise.all(
+      gProjects.map(async (p) => {
+        let signedUrl = null;
+        if (p.thumbnail_path) {
+          const { data: signedData } = await adminDb.storage
+            .from("user_projects")
+            .createSignedUrl(p.thumbnail_path, 3600);
+          signedUrl = signedData?.signedUrl || null;
+        }
+        return {
+          ...p,
+          signedUrl,
+          source: "projects" as const,
+          canDelete: p.user_id === user.id,
+        };
+      })
+    );
   } catch (err) {
     console.error("Failed to fetch group projects:", err);
   }
@@ -151,32 +130,25 @@ export default async function ProjectsPage({
   let publicProjects: SavedProject[] = [];
   if (showPublicProjects) {
     try {
+      const pubData = await fetchProjects({ source: "public" });
       const adminDb = createAdminClient();
-      const { data: pubData } = await adminDb
-        .from("projects")
-        .select("*")
-        .eq("user_id", PUBLIC_PROJECT_USER_ID)
-        .order("updated_at", { ascending: false });
-
-      if (pubData) {
-        publicProjects = await Promise.all(
-          pubData.map(async (p: any) => {
-            let signedUrl = null;
-            if (p.thumbnail_path) {
-              const { data: signedData } = await adminDb.storage
-                .from("user_projects")
-                .createSignedUrl(p.thumbnail_path, 3600);
-              signedUrl = signedData?.signedUrl || null;
-            }
-            return {
-              ...p,
-              signedUrl,
-              source: "projects" as const,
-              canDelete: false,
-            };
-          })
-        );
-      }
+      publicProjects = await Promise.all(
+        pubData.map(async (p) => {
+          let signedUrl = null;
+          if (p.thumbnail_path) {
+            const { data: signedData } = await adminDb.storage
+              .from("user_projects")
+              .createSignedUrl(p.thumbnail_path, 3600);
+            signedUrl = signedData?.signedUrl || null;
+          }
+          return {
+            ...p,
+            signedUrl,
+            source: "projects" as const,
+            canDelete: false,
+          };
+        })
+      );
     } catch (err) {
       console.error("Failed to fetch public projects:", err);
     }

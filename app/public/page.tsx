@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { SavedProjectsGrid, type SavedProject } from "@/components/saved-projects-grid";
 import { createClient } from "@/lib/supabase/server";
+import { fetchProjects } from "@/lib/apiServer";
 import { getLocale, t } from "@/lib/i18n.server";
 
 export async function generateMetadata() {
@@ -32,26 +33,20 @@ export default async function PublicProjectsPage({
   let allProjects: SavedProject[] = [];
 
   if (PUBLIC_PROJECT_USER_ID) {
-    const { data } = await supabase
-      .from("projects")
-      .select("*")
-      .eq("user_id", PUBLIC_PROJECT_USER_ID)
-      .order("updated_at", { ascending: false });
+    const data = await fetchProjects({ source: "public" }).catch(() => []);
 
-    allProjects = data
-      ? await Promise.all(
-          data.map(async (p) => {
-            let signedUrl = null;
-            if (p.thumbnail_path) {
-              const { data: signedData } = await supabase.storage
-                .from("user_projects")
-                .createSignedUrl(p.thumbnail_path, 3600);
-              signedUrl = signedData?.signedUrl || null;
-            }
-            return { ...p, signedUrl, source: "projects" as const, canDelete: user.id === PUBLIC_PROJECT_USER_ID };
-          })
-        )
-      : [];
+    allProjects = await Promise.all(
+      data.map(async (p) => {
+        let signedUrl = null;
+        if (p.thumbnail_path) {
+          const { data: signedData } = await supabase.storage
+            .from("user_projects")
+            .createSignedUrl(p.thumbnail_path, 3600);
+          signedUrl = signedData?.signedUrl || null;
+        }
+        return { ...p, signedUrl, source: "projects" as const, canDelete: user.id === PUBLIC_PROJECT_USER_ID };
+      })
+    );
   }
 
   return (

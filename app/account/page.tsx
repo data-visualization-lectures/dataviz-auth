@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { fetchProjectCount } from "@/lib/apiServer";
 import {
   Card,
   CardContent,
@@ -39,7 +40,7 @@ export default async function AccountPage() {
     { data: subscription },
     { data: plans },
     { data: profile },
-    { count: projectCount },
+    projectCount,
     { count: orProjectCount },
   ] = await Promise.all([
     supabase
@@ -55,10 +56,7 @@ export default async function AccountPage() {
       .select("display_name")
       .eq("id", user.id)
       .maybeSingle(),
-    supabase
-      .from("projects")
-      .select("*", { count: "exact", head: true })
-      .eq("user_id", user.id),
+    fetchProjectCount().catch(() => 0),
     supabase
       .from("openrefine_projects")
       .select("*", { count: "exact", head: true })
