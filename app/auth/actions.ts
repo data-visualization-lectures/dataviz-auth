@@ -2,6 +2,7 @@
 
 import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
+import { mypageUrl } from "@/lib/mypage-url";
 
 export async function login(formData: FormData) {
     const email = formData.get("email") as string;
@@ -19,7 +20,7 @@ export async function login(formData: FormData) {
         return { error: error.message };
     }
 
-    return redirect(redirectTo ?? "/account");
+    return redirect(redirectTo ?? (await mypageUrl("/account")));
 }
 
 export async function signUp(formData: FormData) {
