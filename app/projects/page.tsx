@@ -61,14 +61,7 @@ export default async function ProjectsPage({
   let allProjects: SavedProject[] = [];
 
   if (hasEnvVars) {
-    const [data, { data: orData }] = await Promise.all([
-      fetchProjects().catch(() => []),
-      supabase
-        .from("openrefine_projects")
-        .select("id, name, archive_path, updated_at")
-        .eq("user_id", user.id)
-        .order("updated_at", { ascending: false }),
-    ]);
+    const data = await fetchProjects().catch(() => []);
 
     const projects: SavedProject[] = await Promise.all(
       data.map(async (p) => {
@@ -83,19 +76,7 @@ export default async function ProjectsPage({
       })
     );
 
-    const orProjects: SavedProject[] = (orData ?? []).map((p) => ({
-      id: p.id,
-      name: p.name,
-      app_name: "openrefine",
-      updated_at: p.updated_at,
-      storage_path: p.archive_path,
-      thumbnail_path: null,
-      signedUrl: null,
-      source: "openrefine" as const,
-      canDelete: true,
-    }));
-
-    allProjects = [...projects, ...orProjects].sort(
+    allProjects = projects.sort(
       (a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
     );
   }

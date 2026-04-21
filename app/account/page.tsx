@@ -41,7 +41,6 @@ export default async function AccountPage() {
     { data: plans },
     { data: profile },
     projectCount,
-    { count: orProjectCount },
   ] = await Promise.all([
     supabase
       .from("subscriptions")
@@ -57,10 +56,6 @@ export default async function AccountPage() {
       .eq("id", user.id)
       .maybeSingle(),
     fetchProjectCount().catch(() => 0),
-    supabase
-      .from("openrefine_projects")
-      .select("*", { count: "exact", head: true })
-      .eq("user_id", user.id),
   ]);
 
   const email = user.email || "";
@@ -93,7 +88,7 @@ export default async function AccountPage() {
     : null;
 
   const hasEmailLogin = user.identities?.some((i) => i.provider === "email");
-  const totalProjects = (projectCount ?? 0) + (orProjectCount ?? 0);
+  const totalProjects = projectCount ?? 0;
 
   let planStatus = t(locale, "account.statusNone");
   let statusColor = "bg-gray-100 text-gray-700 border-gray-200";
