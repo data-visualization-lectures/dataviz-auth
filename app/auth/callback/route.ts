@@ -14,9 +14,16 @@ export async function GET(request: Request) {
         const supabase = await createClient();
         const { data, error } = await supabase.auth.exchangeCodeForSession(code);
         if (!error && data?.user) {
-            // Apply trial subscription to all new users
-            const { applyTrialSubscription } = await import("@/lib/auth-utils");
-            await applyTrialSubscription(data.user.id);
+            // academia メールは academia サブスクリプション、それ以外は 14日 trial を付与
+            const userEmail = data.user.email ?? "";
+            const { isAcademiaEmail } = await import("@/lib/academia");
+            if (userEmail && (await isAcademiaEmail(userEmail))) {
+                const { applyAcademiaSubscription } = await import("@/lib/auth-utils");
+                await applyAcademiaSubscription(data.user.id);
+            } else {
+                const { applyTrialSubscription } = await import("@/lib/auth-utils");
+                await applyTrialSubscription(data.user.id);
+            }
 
             // OAuth新規ユーザーにsignup_localeを保存（既存ユーザーは上書きしない）
             if (signupLocale && !data.user.user_metadata?.signup_locale) {

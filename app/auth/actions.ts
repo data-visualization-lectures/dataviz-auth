@@ -57,10 +57,17 @@ export async function signUp(formData: FormData) {
         return { error: "このメールアドレスは既に登録されています" };
     }
 
-    // 全新規ユーザーにトライアルサブスクリプションを作成
+    // academia メールは academia サブスクリプション、それ以外は 14日 trial を付与
     if (data.user) {
-        const { applyTrialSubscription } = await import("@/lib/auth-utils");
-        await applyTrialSubscription(data.user.id);
+        const userEmail = data.user.email ?? "";
+        const { isAcademiaEmail } = await import("@/lib/academia");
+        if (userEmail && (await isAcademiaEmail(userEmail))) {
+            const { applyAcademiaSubscription } = await import("@/lib/auth-utils");
+            await applyAcademiaSubscription(data.user.id);
+        } else {
+            const { applyTrialSubscription } = await import("@/lib/auth-utils");
+            await applyTrialSubscription(data.user.id);
+        }
     }
 
     return { success: true };

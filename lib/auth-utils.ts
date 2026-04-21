@@ -39,6 +39,54 @@ export async function applyTrialSubscription(userId: string) {
 }
 
 /**
+ * academia（学生無料）ユーザー向けのサブスクリプションを付与する。
+ * 恒久付与のため `status='active'` + `current_period_end=null`（admin プランと同型）。
+ * 既に subscriptions レコードがある場合は skip。
+ */
+export async function applyAcademiaSubscription(userId: string) {
+    if (!userId) {
+        return { success: false, reason: "missing_user_id" as const };
+    }
+
+    try {
+        const adminClient = createAdminClient();
+
+        const { data: existing, error: fetchError } = await adminClient
+            .from("subscriptions")
+            .select("id")
+            .eq("user_id", userId)
+            .maybeSingle();
+
+        if (fetchError) {
+            console.error("[ERROR] Failed to fetch subscription for academia:", fetchError);
+            return { success: false, reason: "fetch_error" as const };
+        }
+
+        if (existing) {
+            return { success: false, reason: "already_exists" as const };
+        }
+
+        const { error: insertError } = await adminClient.from("subscriptions").insert({
+            user_id: userId,
+            status: "active",
+            plan_id: "academia",
+            current_period_end: null,
+        });
+
+        if (insertError) {
+            console.error("[ERROR] Failed to create academia subscription:", insertError);
+            return { success: false, reason: "insert_error" as const, error: insertError };
+        }
+
+        console.log("[SUCCESS] Academia subscription created for user:", userId);
+        return { success: true as const };
+    } catch (err) {
+        console.error("[ERROR] Exception in applyAcademiaSubscription:", err);
+        return { success: false, reason: "unexpected_error" as const, error: err };
+    }
+}
+
+/**
  * Applies a trial subscription to an existing user (already registered).
  * Handles both users with no subscription record and users with expired/canceled subscriptions.
  */
