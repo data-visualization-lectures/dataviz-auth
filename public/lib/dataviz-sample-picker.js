@@ -59,7 +59,7 @@ const _dvFormatColors = {
 
 // カタログキャッシュ（一度取得したら再利用）
 let _dvCatalogCache = null;
-const _dvCatalogUrl = (window.datavizAuthUrl || 'https://app.dataviz.jp') + '/catalog.json';
+const _dvCatalogUrl = (window.datavizAuthUrl || 'https://id.dataviz.jp') + '/catalog.json';
 
 async function _dvFetchCatalog() {
   if (_dvCatalogCache) return _dvCatalogCache;

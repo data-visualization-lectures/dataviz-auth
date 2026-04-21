@@ -62,7 +62,7 @@ function _dvT(key) { return (_dvI18n[key] && _dvI18n[key][_dvGetLocale()]) || ke
 const SUPABASE_URL = "https://vebhoeiltxspsurqoxvl.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZlYmhvZWlsdHhzcHN1cnFveHZsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzAyMjI2MTIsImV4cCI6MjA0NTc5ODYxMn0.sV-Xf6wP_m46D_q-XN0oZfK9NogDqD9xV5sS-n6J8c4"; // 公開OKなAnon Key
 const API_BASE_URL = "https://api.dataviz.jp"; // ユーザープロファイルAPIなど
-const AUTH_APP_URL = "https://app.dataviz.jp"; // ログイン画面
+const AUTH_APP_URL = "https://id.dataviz.jp"; // ログイン画面（認証専用ドメイン）
 
 // ガイドに従った固定クッキー名
 const AUTH_COOKIE_NAME = "sb-dataviz-auth-token";

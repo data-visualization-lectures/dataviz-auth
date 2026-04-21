@@ -13,6 +13,16 @@ const NEXT_JS_ROUTES = [
     '/data-library', '/projects', '/public',
 ];
 
+// 認証/マイページ ドメイン責務分離（id.dataviz.jp / app.dataviz.jp）
+const ID_HOST = 'id.dataviz.jp';
+const APP_HOST = 'app.dataviz.jp';
+const AUTH_ONLY_PREFIXES = ['/auth'];
+const MYPAGE_ONLY_PREFIXES = ['/account', '/projects', '/admin', '/billing'];
+
+function startsWithAnyPrefix(pathname: string, prefixes: readonly string[]): boolean {
+    return prefixes.some((p) => pathname === p || pathname.startsWith(p + '/'));
+}
+
 type Locale = 'ja' | 'en';
 
 function isLocale(value: string | null | undefined): value is Locale {
@@ -96,7 +106,26 @@ function setLocaleCookie(
 
 export async function middleware(request: NextRequest) {
     const useSecureCookie = request.nextUrl.protocol === 'https:';
-    const localeCookieDomain = getLocaleCookieDomain(request.nextUrl.hostname);
+    const hostname = request.nextUrl.hostname;
+    const pathname = request.nextUrl.pathname;
+
+    // ドメイン責務分離: id.dataviz.jp = 認証専用、app.dataviz.jp = マイページ専用
+    // ENV フラグで無効化可能（ロールバック用）
+    const splitEnabled = process.env.AUTH_DOMAIN_SPLIT_ENABLED !== 'false';
+    if (splitEnabled) {
+        if (hostname === ID_HOST && startsWithAnyPrefix(pathname, MYPAGE_ONLY_PREFIXES)) {
+            return new NextResponse('Not Found', { status: 404 });
+        }
+        if (hostname === APP_HOST && startsWithAnyPrefix(pathname, AUTH_ONLY_PREFIXES)) {
+            const redirectUrl = request.nextUrl.clone();
+            redirectUrl.host = ID_HOST;
+            redirectUrl.protocol = 'https:';
+            redirectUrl.port = '';
+            return NextResponse.redirect(redirectUrl, 302);
+        }
+    }
+
+    const localeCookieDomain = getLocaleCookieDomain(hostname);
     const origin = request.headers.get('origin') ?? '';
     // Allow specific origins OR any subdomain of the main domain (securely checked via suffix)
     const isAllowedOrigin = allowedOrigins.includes(origin) ||
@@ -117,7 +146,6 @@ export async function middleware(request: NextRequest) {
     // Hugoサイト（/以下のツール一覧/詳細ページ）で locale=en の場合は /en へリダイレクト
     // Next.jsネイティブルートは対象外
     const langParam = request.nextUrl.searchParams.get('lang');
-    const pathname = request.nextUrl.pathname;
     const isNextJsRoute = NEXT_JS_ROUTES.some(
         (r) => pathname === r || pathname.startsWith(r + '/'),
     );

@@ -5,7 +5,28 @@ const HUGO_APP_ORIGIN = "https://dataviz-jp-app.vercel.app";
 const TARGET_CATEGORIES =
   "data-visualization|data-visualization-map|data-visualization-parts|data-visualization-color|data-wrangling|data-wrangling-map";
 
+const ID_HOST = "id.dataviz.jp";
+const APP_HOST = "app.dataviz.jp";
+
 const nextConfig: NextConfig = {
+  async redirects() {
+    // 認証/マイページ責務分離: app.dataviz.jp 配下の /lib/* と /catalog.json は
+    // id.dataviz.jp 配信に 301 リダイレクト。既存ツールの <script src> は段階移行。
+    return [
+      {
+        source: "/lib/:path*",
+        has: [{ type: "host", value: APP_HOST }],
+        destination: `https://${ID_HOST}/lib/:path*`,
+        permanent: true,
+      },
+      {
+        source: "/catalog.json",
+        has: [{ type: "host", value: APP_HOST }],
+        destination: `https://${ID_HOST}/catalog.json`,
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {
