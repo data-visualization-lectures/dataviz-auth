@@ -50,7 +50,7 @@ export default async function ProjectsPage({
   const isSubscribed =
     subscription &&
     (subscription.status === "active" || subscription.status === "trialing") &&
-    new Date(subscription.current_period_end) > new Date();
+    (!subscription.current_period_end || new Date(subscription.current_period_end) > new Date());
 
   const showPublicProjects =
     !!PUBLIC_PROJECT_USER_ID &&

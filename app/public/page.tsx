@@ -47,7 +47,7 @@ export default async function PublicProjectsPage({
   const isSubscribed =
     subscription &&
     (subscription.status === "active" || subscription.status === "trialing") &&
-    new Date(subscription.current_period_end) > new Date();
+    (!subscription.current_period_end || new Date(subscription.current_period_end) > new Date());
   const canUseTool = !!isSubscribed || isAdmin;
 
   let allProjects: SavedProject[] = [];

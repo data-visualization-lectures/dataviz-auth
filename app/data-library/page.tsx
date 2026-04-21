@@ -37,7 +37,7 @@ export default async function DataLibraryPage() {
   const isSubscribed =
     subscription &&
     (subscription.status === "active" || subscription.status === "trialing") &&
-    new Date(subscription.current_period_end) > new Date();
+    (!subscription.current_period_end || new Date(subscription.current_period_end) > new Date());
 
   const locale = await getLocale();
 
