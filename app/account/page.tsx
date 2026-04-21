@@ -181,9 +181,11 @@ export default async function AccountPage() {
                     </p>
                   )}
                 </div>
-                <div className="flex flex-col gap-2">
-                  <ManageSubscriptionButton isActive={isActive && subscription?.status !== "trialing"} locale={locale} />
-                </div>
+                {subscription?.plan_id !== "academia" && (
+                  <div className="flex flex-col gap-2">
+                    <ManageSubscriptionButton isActive={isActive && subscription?.status !== "trialing"} locale={locale} />
+                  </div>
+                )}
               </div>
             </CardContent>
           </Card>
