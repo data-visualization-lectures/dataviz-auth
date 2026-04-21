@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { SavedProjectsGrid, type SavedProject } from "@/components/saved-projects-grid";
 import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { fetchProjects } from "@/lib/apiServer";
 import { getLocale, t } from "@/lib/i18n.server";
 
@@ -54,12 +55,13 @@ export default async function PublicProjectsPage({
 
   if (PUBLIC_PROJECT_USER_ID) {
     const data = await fetchProjects({ source: "public" }).catch(() => []);
+    const adminDb = createAdminClient();
 
     allProjects = await Promise.all(
       data.map(async (p) => {
         let signedUrl = null;
         if (p.thumbnail_path) {
-          const { data: signedData } = await supabase.storage
+          const { data: signedData } = await adminDb.storage
             .from("user_projects")
             .createSignedUrl(p.thumbnail_path, 3600);
           signedUrl = signedData?.signedUrl || null;
