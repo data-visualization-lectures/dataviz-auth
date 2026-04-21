@@ -63,6 +63,7 @@ const SUPABASE_URL = "https://vebhoeiltxspsurqoxvl.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZlYmhvZWlsdHhzcHN1cnFveHZsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzAyMjI2MTIsImV4cCI6MjA0NTc5ODYxMn0.sV-Xf6wP_m46D_q-XN0oZfK9NogDqD9xV5sS-n6J8c4"; // 公開OKなAnon Key
 const API_BASE_URL = "https://api.dataviz.jp"; // ユーザープロファイルAPIなど
 const AUTH_APP_URL = "https://id.dataviz.jp"; // ログイン画面（認証専用ドメイン）
+const MYPAGE_APP_URL = "https://app.dataviz.jp"; // マイページ（/account, /projects, /admin, /billing）
 
 // ガイドに従った固定クッキー名
 const AUTH_COOKIE_NAME = "sb-dataviz-auth-token";
@@ -388,8 +389,8 @@ class DatavizGlobalHeader extends HTMLElement {
   render() {
     const { isLoading, user, error } = this.state;
 
-    // アカウントページのURL
-    const accountUrl = `${AUTH_APP_URL}/account`;
+    // アカウントページのURL（マイページドメイン）
+    const accountUrl = `${MYPAGE_APP_URL}/account`;
     const loginUrl = `${AUTH_APP_URL}/auth/login?redirect_to=${encodeURIComponent(window.location.href)}&lang=${_dvGetLocale()}`;
 
     let rightContent = '';
@@ -538,9 +539,12 @@ async function verifyUserAccess(session) {
             return { ...profile, email: session.user.email, _inactive: true };
           }
 
-          // 自己リダイレクトループ防止: 既に AUTH_APP_URL にいる場合は
-          // 期限切れでもリダイレクトせず閲覧させる（ツール一覧/詳細ページの閲覧を許可）
-          if (window.location.origin === AUTH_APP_URL) {
+          // 自己リダイレクトループ防止: 認証ドメイン/マイページドメイン上では
+          // 期限切れでもリダイレクトせず閲覧させる（auth 画面/マイページの閲覧を許可）
+          if (
+            window.location.origin === AUTH_APP_URL ||
+            window.location.origin === MYPAGE_APP_URL
+          ) {
             return { ...profile, email: session.user.email, _inactive: true };
           }
 
