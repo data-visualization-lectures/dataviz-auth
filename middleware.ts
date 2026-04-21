@@ -16,8 +16,15 @@ const NEXT_JS_ROUTES = [
 // 認証/マイページ ドメイン責務分離（id.dataviz.jp / app.dataviz.jp）
 const ID_HOST = 'id.dataviz.jp';
 const APP_HOST = 'app.dataviz.jp';
+// app.dataviz.jp では /auth/* を id.dataviz.jp へリダイレクト（ブラックリスト）
 const AUTH_ONLY_PREFIXES = ['/auth'];
-const MYPAGE_ONLY_PREFIXES = ['/account', '/projects', '/admin', '/billing'];
+// id.dataviz.jp では /auth/* と /api/* のみ許可（ホワイトリスト）
+// /api/* は auth ページが内部で使う locale API や emails API 用
+// マイページ系（/account, /projects, /data-library, /public, /admin, /billing, /campaign）
+// と Hugo fallback ルートは全て 404 or ログイン画面へリダイレクト
+const ID_HOST_ALLOWED_PREFIXES = ['/auth', '/api'];
+// id.dataviz.jp のルートアクセス時はログイン画面へリダイレクト（ユーザー導線）
+const ID_HOST_ROOT_PATHS = new Set(['/', '/en', '/en/']);
 
 function startsWithAnyPrefix(pathname: string, prefixes: readonly string[]): boolean {
     return prefixes.some((p) => pathname === p || pathname.startsWith(p + '/'));
@@ -113,7 +120,15 @@ export async function middleware(request: NextRequest) {
     // ENV フラグで無効化可能（ロールバック用）
     const splitEnabled = process.env.AUTH_DOMAIN_SPLIT_ENABLED !== 'false';
     if (splitEnabled) {
-        if (hostname === ID_HOST && startsWithAnyPrefix(pathname, MYPAGE_ONLY_PREFIXES)) {
+        if (hostname === ID_HOST && !startsWithAnyPrefix(pathname, ID_HOST_ALLOWED_PREFIXES)) {
+            // ルート/en はログイン画面へリダイレクト（ユーザー導線）
+            if (ID_HOST_ROOT_PATHS.has(pathname)) {
+                const redirectUrl = request.nextUrl.clone();
+                redirectUrl.pathname = '/auth/login';
+                redirectUrl.search = '';
+                return NextResponse.redirect(redirectUrl, 307);
+            }
+            // それ以外（マイページ系・Hugo fallback 等）は 404
             return new NextResponse('Not Found', { status: 404 });
         }
         if (hostname === APP_HOST && startsWithAnyPrefix(pathname, AUTH_ONLY_PREFIXES)) {
