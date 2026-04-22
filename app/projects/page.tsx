@@ -72,7 +72,7 @@ export default async function ProjectsPage({
             .createSignedUrl(p.thumbnail_path, 3600);
           signedUrl = signedData?.signedUrl || null;
         }
-        return { ...p, signedUrl, source: "projects" as const, canDelete: true };
+        return { ...p, signedUrl, source: "projects" as const, canDelete: canUseTool };
       })
     );
 
@@ -99,7 +99,7 @@ export default async function ProjectsPage({
           ...p,
           signedUrl,
           source: "projects" as const,
-          canDelete: p.user_id === user.id,
+          canDelete: p.user_id === user.id && canUseTool,
         };
       })
     );

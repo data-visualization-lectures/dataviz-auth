@@ -66,7 +66,7 @@ export default async function PublicProjectsPage({
             .createSignedUrl(p.thumbnail_path, 3600);
           signedUrl = signedData?.signedUrl || null;
         }
-        return { ...p, signedUrl, source: "projects" as const, canDelete: user.id === PUBLIC_PROJECT_USER_ID };
+        return { ...p, signedUrl, source: "projects" as const, canDelete: user.id === PUBLIC_PROJECT_USER_ID && canUseTool };
       })
     );
   }

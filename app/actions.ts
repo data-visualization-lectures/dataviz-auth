@@ -2,6 +2,32 @@
 
 import { createClient } from "@/lib/supabase/server";
 import { revalidatePath } from "next/cache";
+import type { SupabaseClient } from "@supabase/supabase-js";
+
+async function assertCanDelete(supabase: SupabaseClient, userId: string) {
+    const [{ data: subscription }, { data: profile }] = await Promise.all([
+        supabase
+            .from("subscriptions")
+            .select("status, current_period_end")
+            .eq("user_id", userId)
+            .maybeSingle(),
+        supabase
+            .from("profiles")
+            .select("is_admin")
+            .eq("id", userId)
+            .maybeSingle(),
+    ]);
+
+    const isSubscribed =
+        subscription &&
+        (subscription.status === "active" || subscription.status === "trialing") &&
+        (!subscription.current_period_end ||
+            new Date(subscription.current_period_end) > new Date());
+
+    if (!isSubscribed && !profile?.is_admin) {
+        throw new Error("Subscription required");
+    }
+}
 
 export async function deleteProject(
     projectId: string,
@@ -19,6 +45,8 @@ export async function deleteProject(
         if (!user) {
             throw new Error("Unauthorized");
         }
+
+        await assertCanDelete(supabase, user.id);
 
         // 2. Delete from Database first (to ensure consistency/permission via RLS)
         // The RLS policy "Users can delete own projects" ensures the user owns this record.
@@ -71,6 +99,8 @@ export async function deleteOpenRefineProject(
         if (!user) {
             throw new Error("Unauthorized");
         }
+
+        await assertCanDelete(supabase, user.id);
 
         const { error: dbError } = await supabase
             .from("openrefine_projects")
