@@ -52,7 +52,7 @@ const _dvI18n = {
   adminDashboard:{ ja: '管理者ダッシュボード', en: 'Admin Dashboard' },
   logOut:        { ja: 'ログアウト', en: 'Log out' },
   logIn:         { ja: 'ログイン', en: 'Log in' },
-  notLoggedIn:   { ja: '未ログイン', en: 'Not logged in' },
+  signUp:        { ja: '新規登録', en: 'Sign up' },
   confirmLogout: { ja: 'ログアウトしますか？', en: 'Log out?' },
 };
 function _dvT(key) { return (_dvI18n[key] && _dvI18n[key][_dvGetLocale()]) || key; }
@@ -392,6 +392,7 @@ class DatavizGlobalHeader extends HTMLElement {
     // アカウントページのURL（マイページドメイン）
     const accountUrl = `${MYPAGE_APP_URL}/account`;
     const loginUrl = `${AUTH_APP_URL}/auth/login?redirect_to=${encodeURIComponent(window.location.href)}&lang=${_dvGetLocale()}`;
+    const signupUrl = `${AUTH_APP_URL}/auth/sign-up?redirect_to=${encodeURIComponent(window.location.href)}&lang=${_dvGetLocale()}`;
 
     let rightContent = '';
 
@@ -409,8 +410,8 @@ class DatavizGlobalHeader extends HTMLElement {
       `;
     } else {
       rightContent = `
-        <span style="font-size:12px; color:#888;">${_dvT('notLoggedIn')}</span>
         <a href="${loginUrl}" class="dv-btn dv-btn-primary">${_dvT('logIn')}</a>
+        <a href="${signupUrl}" class="dv-btn">${_dvT('signUp')}</a>
       `;
     }
 
