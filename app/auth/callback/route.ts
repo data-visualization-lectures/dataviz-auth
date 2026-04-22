@@ -90,16 +90,13 @@ export async function GET(request: Request) {
                 return NextResponse.redirect(next);
             }
 
-            const forwardedHost = request.headers.get("x-forwarded-host"); // original origin before load balancer
+            // OAuth コールバックは id.dataviz.jp 上で受けるが、マイページ系は app.dataviz.jp でしか
+            // 配信していないため、本番では常に app.dataviz.jp へ飛ばす。
             const isLocalEnv = process.env.NODE_ENV === "development";
             if (isLocalEnv) {
-                // we can be sure that there is no load balancer in between, so no need to watch for X-Forwarded-Host
-                return NextResponse.redirect(`${origin}${next}`);
-            } else if (forwardedHost) {
-                return NextResponse.redirect(`https://${forwardedHost}${next}`);
-            } else {
                 return NextResponse.redirect(`${origin}${next}`);
             }
+            return NextResponse.redirect(`https://app.dataviz.jp${next}`);
         }
         console.error("Auth Loop Error:", error);
     } else {

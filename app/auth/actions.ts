@@ -4,6 +4,18 @@ import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 import { mypageUrl } from "@/lib/mypage-url";
 
+const APP_HOST = "app.dataviz.jp";
+
+function isSafeLoginRedirect(redirectTo: string | null): boolean {
+    if (!redirectTo) return false;
+    if (redirectTo.startsWith("/") && !redirectTo.startsWith("//")) return true;
+    try {
+        return new URL(redirectTo).host === APP_HOST;
+    } catch {
+        return false;
+    }
+}
+
 export async function login(formData: FormData) {
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
@@ -20,7 +32,8 @@ export async function login(formData: FormData) {
         return { error: error.message };
     }
 
-    return redirect(redirectTo ?? (await mypageUrl("/account")));
+    const safeRedirect = isSafeLoginRedirect(redirectTo) ? redirectTo! : null;
+    return redirect(safeRedirect ?? (await mypageUrl("/account")));
 }
 
 export async function signUp(formData: FormData) {
