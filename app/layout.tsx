@@ -4,6 +4,7 @@ import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { Header } from "@/components/header";
+import { Analytics } from "@/components/analytics";
 import { getLocale } from "@/lib/i18n.server";
 
 const defaultUrl = process.env.VERCEL_URL
@@ -40,6 +41,7 @@ export default async function RootLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <body className={`${geistSans.className} antialiased`}>
+        <Analytics />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
