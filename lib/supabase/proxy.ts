@@ -1,10 +1,17 @@
 import { createServerClient } from "@supabase/ssr";
+import type { SupabaseClient } from "@supabase/supabase-js";
 import { NextResponse, type NextRequest } from "next/server";
 import { hasEnvVars } from "../utils";
 
 import { APP_CONFIG } from "@/lib/config";
 
-export async function updateSession(request: NextRequest) {
+export type UpdateSessionResult = {
+  response: NextResponse;
+  supabase: SupabaseClient | null;
+  userId: string | null;
+};
+
+export async function updateSession(request: NextRequest): Promise<UpdateSessionResult> {
   let supabaseResponse = NextResponse.next({
     request,
   });
@@ -23,7 +30,7 @@ export async function updateSession(request: NextRequest) {
   // If the env vars are not set, skip proxy check. You can remove this
   // once you setup the project.
   if (!hasEnvVars) {
-    return supabaseResponse;
+    return { response: supabaseResponse, supabase: null, userId: null };
   }
 
   // With Fluid compute, don't put this client in a global environment
@@ -67,10 +74,11 @@ export async function updateSession(request: NextRequest) {
 
   // IMPORTANT: If you remove getClaims() and you use server-side rendering
   // with the Supabase client, your users may be randomly logged out.
-  let user = null;
+  let userId: string | null = null;
   try {
     const { data } = await supabase.auth.getClaims();
-    user = data?.claims ?? null;
+    const sub = data?.claims?.sub;
+    userId = typeof sub === "string" ? sub : null;
   } catch (error) {
     console.error("getClaims error", error);
   }
@@ -88,5 +96,5 @@ export async function updateSession(request: NextRequest) {
   // If this is not done, you may be causing the browser and server to go out
   // of sync and terminate the user's session prematurely!
 
-  return supabaseResponse;
+  return { response: supabaseResponse, supabase, userId };
 }

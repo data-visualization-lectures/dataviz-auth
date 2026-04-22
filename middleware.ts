@@ -16,6 +16,9 @@ const NEXT_JS_ROUTES = [
 // 認証/マイページ ドメイン責務分離（id.dataviz.jp / app.dataviz.jp）
 const ID_HOST = 'id.dataviz.jp';
 const APP_HOST = 'app.dataviz.jp';
+// app.dataviz.jp のルート = ツール一覧ページ（layouts/index.html の headerMode=protected 分岐）
+// 未購読ユーザーは料金ページへリダイレクト
+const TOOLS_LIST_PATHS = new Set(['/', '/en', '/en/']);
 // app.dataviz.jp では /auth/* を id.dataviz.jp へリダイレクト（ブラックリスト）
 const AUTH_ONLY_PREFIXES = ['/auth'];
 // id.dataviz.jp では /auth/* と /api/* のみ許可（ホワイトリスト）
@@ -185,7 +188,63 @@ export async function middleware(request: NextRequest) {
     }
 
     // Call updateSession (Supabase session handling)
-    const response = await updateSession(request);
+    const { response, supabase, userId } = await updateSession(request);
+
+    // updateSession が付与したセッション Cookie を引き継いでリダイレクト
+    const redirectWithSession = (url: string | URL, status = 307) => {
+        const redirectResponse = NextResponse.redirect(url, status);
+        response.cookies.getAll().forEach((cookie) => {
+            const { name, value, ...options } = cookie;
+            redirectResponse.cookies.set(name, value, options);
+        });
+        return redirectResponse;
+    };
+
+    // ツール一覧（app.dataviz.jp の / または /en）は有料プラン or アドミンのみ許可
+    // data-library と同じゲート方針
+    if (
+        splitEnabled &&
+        hostname === APP_HOST &&
+        TOOLS_LIST_PATHS.has(pathname) &&
+        supabase
+    ) {
+        if (!userId) {
+            const loginUrl = request.nextUrl.clone();
+            loginUrl.host = ID_HOST;
+            loginUrl.protocol = 'https:';
+            loginUrl.port = '';
+            loginUrl.pathname = '/auth/login';
+            loginUrl.search = '';
+            return redirectWithSession(loginUrl);
+        }
+
+        const [{ data: subscription }, { data: profile }] = await Promise.all([
+            supabase
+                .from('subscriptions')
+                .select('status, current_period_end')
+                .eq('user_id', userId)
+                .maybeSingle(),
+            supabase
+                .from('profiles')
+                .select('is_admin')
+                .eq('id', userId)
+                .maybeSingle(),
+        ]);
+
+        const isSubscribed =
+            subscription &&
+            (subscription.status === 'active' || subscription.status === 'trialing') &&
+            (!subscription.current_period_end ||
+                new Date(subscription.current_period_end) > new Date());
+
+        if (!isSubscribed && !profile?.is_admin) {
+            const pricingUrl =
+                normalizedLocale === 'en'
+                    ? 'https://www.dataviz.jp/en/pricing/'
+                    : 'https://www.dataviz.jp/pricing/';
+            return redirectWithSession(pricingUrl);
+        }
+    }
 
     // Append CORS headers to the response
     if (isAllowedOrigin) {
