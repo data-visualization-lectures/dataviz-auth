@@ -523,8 +523,11 @@ async function verifyUserAccess(session) {
         const sub = profile.subscription || {};
         const status = sub.status || "none";
 
-        // 「キャンセル済みだが期間内」は cancel_at_period_end で判断
-        const isCanceledButValid = sub.cancel_at_period_end;
+        // 「キャンセル済みだが期間内」は cancel_at_period_end かつ current_period_end が未来
+        const isCanceledButValid =
+          sub.cancel_at_period_end &&
+          sub.current_period_end &&
+          new Date(sub.current_period_end).getTime() > Date.now();
 
         const isActive = status === "active" || status === "trialing" || isCanceledButValid;
 
