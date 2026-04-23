@@ -72,10 +72,12 @@ export async function signUp(formData: FormData) {
     }
 
     // academia メールは academia サブスクリプション、それ以外は 14日 trial を付与
+    let isAcademia = false;
     if (data.user) {
         const userEmail = data.user.email ?? "";
         const { isAcademiaEmail } = await import("@/lib/academia");
-        if (userEmail && (await isAcademiaEmail(userEmail))) {
+        isAcademia = !!userEmail && (await isAcademiaEmail(userEmail));
+        if (isAcademia) {
             const { applyAcademiaSubscription } = await import("@/lib/auth-utils");
             await applyAcademiaSubscription(data.user.id);
         } else {
@@ -84,5 +86,5 @@ export async function signUp(formData: FormData) {
         }
     }
 
-    return { success: true };
+    return { success: true, isAcademia };
 }
