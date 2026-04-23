@@ -17,6 +17,10 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import type { Locale } from "@/lib/i18n";
 import { t } from "@/lib/i18n";
+import {
+  trackSignupCompleted,
+  trackSignupStarted,
+} from "@/lib/analytics/events";
 
 export function SignUpForm({
   locale,
@@ -52,6 +56,10 @@ export function SignUpForm({
     window.history.replaceState({}, document.title, url.toString());
   }, [searchParams]);
 
+  useEffect(() => {
+    trackSignupStarted();
+  }, []);
+
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -84,6 +92,7 @@ export function SignUpForm({
         throw new Error(result.error);
       }
 
+      trackSignupCompleted("email", !!result.isAcademia);
       router.push("/auth/sign-up-success");
     } catch (error: unknown) {
       setError(error instanceof Error ? error.message : t(locale, "signUp.error"));

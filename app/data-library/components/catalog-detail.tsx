@@ -15,6 +15,7 @@ import type { CatalogEntry } from "@/types/catalog";
 import type { Locale } from "@/lib/i18n";
 import { t } from "@/lib/i18n";
 import { APP_CONFIG } from "@/lib/config";
+import { trackDataSampleLoaded } from "@/lib/analytics/events";
 import { DataPreviewTable } from "./data-preview-table";
 
 const CATEGORY_LABEL_KEYS: Record<string, "dataLibrary.catTabular" | "dataLibrary.catGeographic" | "dataLibrary.catNetwork" | "dataLibrary.catSpec"> = {
@@ -232,6 +233,7 @@ export function CatalogDetail({
                       href={buildToolUrl(toolKey, resolvedFileUrl)}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() => trackDataSampleLoaded(toolKey, entry.id)}
                       className="gap-1.5"
                     >
                       {toolDisplayName(toolKey)}

@@ -17,6 +17,12 @@ import { createClient } from "@/lib/supabase/client";
 import { createCheckoutSession, type PlanType, type CurrencyType } from "@/lib/apiClient";
 import { toast } from "sonner";
 import { t, type Locale } from "@/lib/i18n";
+import { trackCheckoutStarted } from "@/lib/analytics/events";
+
+function extractPriceNumber(priceLabel: string): number {
+  const digits = priceLabel.replace(/[^\d]/g, "");
+  return digits ? parseInt(digits, 10) : 0;
+}
 
 const PLAN_DISPLAY_JPY: Record<PlanType, { name: string; price: string }> = {
   monthly: { name: "通常プラン（月額）", price: "¥2,480/月" },
@@ -96,6 +102,8 @@ export function CheckoutForm({
       if (profileError) {
         throw new Error(t(locale, "checkout.errorProfileSave"));
       }
+
+      trackCheckoutStarted(plan, extractPriceNumber(planInfo.price), currency);
 
       const data = await createCheckoutSession(plan, currency);
 

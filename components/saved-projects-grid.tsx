@@ -15,6 +15,7 @@ import {
 import { Button } from "@/components/ui/button";
 import type { Locale } from "@/lib/i18n";
 import { t, formatDateLocale } from "@/lib/i18n";
+import { trackToolOpened } from "@/lib/analytics/events";
 
 export type SavedProject = {
     id: string;
@@ -189,6 +190,7 @@ export function SavedProjectsGrid({
                                             href={getToolUrl(project.app_name, project.id)}
                                             target="_blank"
                                             rel="noopener noreferrer"
+                                            onClick={() => trackToolOpened(project.app_name)}
                                             className="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 text-sm font-medium text-primary-foreground bg-primary rounded-md hover:bg-primary/90 transition-colors"
                                         >
                                             <ExternalLink className="w-4 h-4" />

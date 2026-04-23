@@ -19,6 +19,7 @@ import type { Locale } from "@/lib/i18n";
 import { t } from "@/lib/i18n";
 
 import { login } from "@/app/auth/actions";
+import { trackLogin } from "@/lib/analytics/events";
 
 export function LoginForm({
   locale,
@@ -53,6 +54,8 @@ export function LoginForm({
     if (result?.error) {
       setError(result.error);
       setIsLoading(false);
+    } else {
+      trackLogin("email");
     }
     // If success, the server action will redirect, so we don't need to do anything here
     // but the state update might unmount the component.
@@ -63,6 +66,7 @@ export function LoginForm({
     setIsLoading(true);
     setError(null);
     try {
+      trackLogin("google");
       const { error } = await supabase.auth.signInWithOAuth({
         provider: "google",
         options: {
