@@ -11,8 +11,16 @@ export const trackSignupCompleted = (
 
 export const trackLogin = (method: string) => event("login", { method });
 
-export const trackCheckoutStarted = (plan: string, price: number) =>
-  event("checkout_started", { plan, value: price, currency: "JPY" });
+export const trackCheckoutStarted = (
+  plan: string,
+  price: number,
+  currency: string = "JPY",
+) =>
+  event("checkout_started", {
+    plan,
+    value: price,
+    currency: currency.toUpperCase(),
+  });
 
 export const trackTrialStarted = (plan: string) =>
   event("trial_started", { plan });
@@ -21,11 +29,12 @@ export const trackPurchase = (
   plan: string,
   price: number,
   transactionId: string,
+  currency: string = "JPY",
 ) =>
   event("purchase", {
     items: [{ item_id: plan }],
     value: price,
-    currency: "JPY",
+    currency: currency.toUpperCase(),
     transaction_id: transactionId,
   });
 
