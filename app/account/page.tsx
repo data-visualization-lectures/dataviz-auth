@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { fetchMeServer, fetchProjectCount, type ApiMeSubscription } from "@/lib/apiServer";
+import { resolveToolAccessFromApiMe, resolveToolAccessFromFallbackData } from "@/lib/tool-access";
 import {
   Card,
   CardContent,
@@ -80,7 +81,7 @@ export default async function AccountPage() {
       .select("id, name, name_en, amount"),
     supabase
       .from("profiles")
-      .select("display_name")
+      .select("display_name, is_admin")
       .eq("id", user.id)
       .maybeSingle(),
     fetchProjectCount().catch(() => 0),
@@ -102,6 +103,12 @@ export default async function AccountPage() {
 
   const displayName = profile?.display_name ?? me?.profile?.display_name ?? null;
   const email = user.email || "";
+  const toolAccess =
+    resolveToolAccessFromApiMe(me) ??
+    resolveToolAccessFromFallbackData({
+      subscription: dbSubscription,
+      isAdmin: profile?.is_admin,
+    });
 
   const providerLabels: Record<string, string> = {
     email: t(locale, "account.providerEmail"),
@@ -112,7 +119,7 @@ export default async function AccountPage() {
     .filter((v, idx, arr) => arr.indexOf(v) === idx)
     .join(t(locale, "account.providerSeparator")) || t(locale, "account.providerUnknown");
 
-  const isActive = subscription?.status === "active" || subscription?.status === "trialing";
+  const isActive = toolAccess.isSubscribed;
   const isCanceled = subscription?.cancel_at_period_end;
 
   const currentPlan = plans?.find((p) => p.id === subscription?.plan_id);
