@@ -117,14 +117,13 @@ export default async function AdminPage() {
       .in("plan_id", Object.keys(MRR_MONTHLY_AMOUNTS))
       .not("user_id", "in", adminFilter)
       .gte("current_period_end", nowIso),
-    // MRR用: activeな有料サブスクとプランID（期限切れ除外）
+    // MRR用: activeな有料サブスクとプランID（status=activeを権威とし期限チェックは行わない）
     adminDb
       .from("subscriptions")
       .select("plan_id")
       .eq("status", "active")
       .in("plan_id", Object.keys(MRR_MONTHLY_AMOUNTS))
-      .not("user_id", "in", adminFilter)
-      .gte("current_period_end", nowIso),
+      .not("user_id", "in", adminFilter),
     // 月別サブスク推移用（カットオフ日以降のみ）
     adminDb
       .from("subscriptions")
