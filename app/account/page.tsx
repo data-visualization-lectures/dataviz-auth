@@ -3,6 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { fetchMeServer, fetchProjectCount, type ApiMeSubscription } from "@/lib/apiServer";
 import { resolveToolAccessFromApiMe, resolveToolAccessFromFallbackData } from "@/lib/tool-access";
+import { isAcademiaEmail } from "@/lib/academia";
 import {
   Card,
   CardContent,
@@ -34,6 +35,8 @@ type AccountSubscription = {
   created_at: string | null;
 };
 
+type AccountSubscriptionLike = Partial<Record<keyof AccountSubscription, unknown>> | null | undefined;
+
 function normalizeSubscription(sub: ApiMeSubscription | null | undefined): AccountSubscription | null {
   if (!sub) return null;
   return {
@@ -47,6 +50,128 @@ function normalizeSubscription(sub: ApiMeSubscription | null | undefined): Accou
       typeof sub.stripe_subscription_id === "string" ? sub.stripe_subscription_id : null,
     created_at: typeof sub.created_at === "string" ? sub.created_at : null,
   };
+}
+
+function normalizeDbSubscription(sub: AccountSubscriptionLike): AccountSubscription | null {
+  if (!sub) return null;
+  return {
+    status: typeof sub.status === "string" ? sub.status : null,
+    current_period_end: typeof sub.current_period_end === "string" ? sub.current_period_end : null,
+    plan_id: typeof sub.plan_id === "string" ? sub.plan_id : null,
+    cancel_at_period_end:
+      typeof sub.cancel_at_period_end === "boolean" ? sub.cancel_at_period_end : null,
+    refunded_at: typeof sub.refunded_at === "string" ? sub.refunded_at : null,
+    stripe_subscription_id:
+      typeof sub.stripe_subscription_id === "string" ? sub.stripe_subscription_id : null,
+    created_at: typeof sub.created_at === "string" ? sub.created_at : null,
+  };
+}
+
+async function getFallbackActiveTeamSubscription(userId: string): Promise<{ current_period_end: string | null } | null> {
+  const adminClient = createAdminClient();
+
+  const { data: memberships, error: membershipError } = await adminClient
+    .from("group_members")
+    .select("group_id")
+    .eq("user_id", userId);
+  if (membershipError) {
+    console.error("fallback group memberships lookup failed", membershipError);
+    return null;
+  }
+
+  const groupIds = (memberships ?? [])
+    .map((row) => row.group_id)
+    .filter((id): id is string => typeof id === "string");
+  if (groupIds.length === 0) return null;
+
+  const { data: owners, error: ownerError } = await adminClient
+    .from("group_members")
+    .select("user_id")
+    .in("group_id", groupIds)
+    .eq("role", "owner");
+  if (ownerError) {
+    console.error("fallback group owners lookup failed", ownerError);
+    return null;
+  }
+
+  const ownerIds = [...new Set(
+    (owners ?? [])
+      .map((row) => row.user_id)
+      .filter((id): id is string => typeof id === "string"),
+  )];
+  if (ownerIds.length === 0) return null;
+
+  const { data: subscription, error: subError } = await adminClient
+    .from("subscriptions")
+    .select("status, current_period_end, plan_id")
+    .in("user_id", ownerIds)
+    .eq("status", "active")
+    .like("plan_id", "team_%")
+    .limit(1)
+    .maybeSingle();
+  if (subError) {
+    console.error("fallback owner subscription lookup failed", subError);
+    return null;
+  }
+
+  if (!subscription) return null;
+  return {
+    current_period_end:
+      typeof subscription.current_period_end === "string"
+        ? subscription.current_period_end
+        : null,
+  };
+}
+
+async function resolveFallbackAccountSubscription(params: {
+  userId: string;
+  email: string;
+  dbSubscription: AccountSubscription | null;
+}): Promise<AccountSubscription | null> {
+  let finalSubscription = params.dbSubscription;
+
+  // /api/me と同じ順序で判定する（academia safety-net → team_member）
+  if (
+    (!finalSubscription || finalSubscription.status !== "active") &&
+    params.email &&
+    (await isAcademiaEmail(params.email))
+  ) {
+    if (!finalSubscription) {
+      finalSubscription = {
+        status: "active",
+        plan_id: "academia",
+        current_period_end: null,
+        cancel_at_period_end: null,
+        refunded_at: null,
+        stripe_subscription_id: null,
+        created_at: new Date().toISOString(),
+      };
+    } else {
+      finalSubscription = {
+        ...finalSubscription,
+        status: "active",
+        plan_id: "academia",
+        current_period_end: null,
+      };
+    }
+  }
+
+  if (!finalSubscription || finalSubscription.status !== "active") {
+    const groupSub = await getFallbackActiveTeamSubscription(params.userId);
+    if (groupSub) {
+      finalSubscription = {
+        status: "active",
+        plan_id: "team_member",
+        current_period_end: groupSub.current_period_end,
+        cancel_at_period_end: null,
+        refunded_at: null,
+        stripe_subscription_id: null,
+        created_at: new Date().toISOString(),
+      };
+    }
+  }
+
+  return finalSubscription;
 }
 
 export default async function AccountPage() {
@@ -65,7 +190,7 @@ export default async function AccountPage() {
   // /api/me が失敗した場合のみ DB 参照へフォールバック。
   const [
     me,
-    { data: dbSubscription },
+    { data: dbSubscriptionRaw },
     { data: plans },
     { data: profile },
     projectCount,
@@ -87,26 +212,23 @@ export default async function AccountPage() {
     fetchProjectCount().catch(() => 0),
   ]);
 
-  const subscription =
-    normalizeSubscription(me?.subscription) ??
-    (dbSubscription
-      ? {
-          status: dbSubscription.status ?? null,
-          current_period_end: dbSubscription.current_period_end ?? null,
-          plan_id: dbSubscription.plan_id ?? null,
-          cancel_at_period_end: dbSubscription.cancel_at_period_end ?? null,
-          refunded_at: dbSubscription.refunded_at ?? null,
-          stripe_subscription_id: dbSubscription.stripe_subscription_id ?? null,
-          created_at: dbSubscription.created_at ?? null,
-        }
-      : null);
+  const dbSubscription = normalizeDbSubscription(dbSubscriptionRaw as AccountSubscriptionLike);
+  const fallbackSubscription = me
+    ? null
+    : await resolveFallbackAccountSubscription({
+        userId: user.id,
+        email: user.email || "",
+        dbSubscription,
+      });
+
+  const subscription = normalizeSubscription(me?.subscription) ?? fallbackSubscription ?? dbSubscription;
 
   const displayName = profile?.display_name ?? me?.profile?.display_name ?? null;
   const email = user.email || "";
   const toolAccess =
     resolveToolAccessFromApiMe(me) ??
     resolveToolAccessFromFallbackData({
-      subscription: dbSubscription,
+      subscription,
       isAdmin: profile?.is_admin,
     });
 
@@ -222,7 +344,7 @@ export default async function AccountPage() {
                         : isCanceled
                           ? t(locale, "account.validUntil")
                           : t(locale, "account.nextRenewal")
-                      }: {formatDateLocale(locale, subscription?.current_period_end)}
+                      }: {formatDateLocale(locale, subscription?.current_period_end ?? undefined)}
                     </p>
                   )}
                 </div>
