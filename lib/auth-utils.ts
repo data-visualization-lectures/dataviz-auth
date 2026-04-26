@@ -1,8 +1,8 @@
 import { createAdminClient } from "@/lib/supabase/admin";
 
 /**
- * Validates an invite code and applies a trial subscription to a user.
- * Automatically applies a 14-day trial to all new users after signup or first-time OAuth login.
+ * signup / OAuth 初回ログイン直後の新規ユーザーに 14日トライアルを自動付与する。
+ * （academia 判定に該当する場合は呼び出し元で applyAcademiaSubscription() を優先）
  */
 export async function applyTrialSubscription(userId: string) {
     if (!userId) {

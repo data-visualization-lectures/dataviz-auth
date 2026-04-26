@@ -39,22 +39,9 @@ export function SignUpForm({
     (typeof window !== "undefined"
       ? new URLSearchParams(window.location.search).get("redirect_to")
       : null);
-  const inviteCode = searchParams.get("invite_code") || searchParams.get("code");
   const redirectQuery = redirectTo
     ? `?redirect_to=${encodeURIComponent(redirectTo)}`
     : "";
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const url = new URL(window.location.href);
-    if (!url.searchParams.has("code")) return;
-    const codeValue = url.searchParams.get("code");
-    if (codeValue && !url.searchParams.has("invite_code")) {
-      url.searchParams.set("invite_code", codeValue);
-    }
-    url.searchParams.delete("code");
-    window.history.replaceState({}, document.title, url.toString());
-  }, [searchParams]);
 
   useEffect(() => {
     trackSignupStarted();
@@ -76,9 +63,6 @@ export function SignUpForm({
       const formData = new FormData();
       formData.append("email", email);
       formData.append("password", password);
-      if (inviteCode) {
-        formData.append("inviteCode", inviteCode);
-      }
       if (redirectTo) {
         formData.append("redirectTo", redirectTo);
       }
@@ -109,15 +93,13 @@ export function SignUpForm({
       const mainSiteUrl = process.env.NEXT_PUBLIC_MAIN_SITE_URL || "https://www.dataviz.jp";
       const pricingPath = locale === "en" ? "/en/pricing/" : "/pricing/";
       const nextParam = redirectTo || `${mainSiteUrl}${pricingPath}`;
-      const inviteQuery = inviteCode ? `&invite_code=${encodeURIComponent(inviteCode)}` : "";
-
       const localeQuery = `&signup_locale=${encodeURIComponent(locale)}`;
       const { error } = await supabase.auth.signInWithOAuth({
         provider: "google",
         options: {
           redirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(
             nextParam,
-          )}${inviteQuery}${localeQuery}`,
+          )}${localeQuery}`,
         },
       });
       if (error) throw error;
