@@ -109,20 +109,20 @@ export default async function AdminPage() {
     { data: planDistributionRows },
     { data: allPlans },
   ] = await Promise.all([
-    // 有料サブスク数（active のみ、管理者・期限切れ除外）
+    // 有料サブスク数（active のみ、有料プランのみ・管理者・期限切れ除外）
     adminDb
       .from("subscriptions")
       .select("*", { count: "exact", head: true })
       .eq("status", "active")
+      .in("plan_id", Object.keys(MRR_MONTHLY_AMOUNTS))
       .not("user_id", "in", adminFilter)
-      .neq("plan_id", "admin")
       .gte("current_period_end", nowIso),
     // MRR用: activeな有料サブスクとプランID（期限切れ除外）
     adminDb
       .from("subscriptions")
       .select("plan_id")
       .eq("status", "active")
-      .in("plan_id", ["pro_monthly", "pro_yearly", "coaching_monthly", "coaching_yearly"])
+      .in("plan_id", Object.keys(MRR_MONTHLY_AMOUNTS))
       .not("user_id", "in", adminFilter)
       .gte("current_period_end", nowIso),
     // 月別サブスク推移用（カットオフ日以降のみ）
@@ -138,13 +138,14 @@ export default async function AdminPage() {
       .eq("plan_id", "trial")
       .not("user_id", "in", adminFilter)
       .gte("created_at", CHART_CUTOFF_DATE),
-    // 有料プランactive数（転換率の分子、期限切れ除外）
+    // 有料プランactive数（転換率の分子・カットオフ日以降・期限切れ除外）
     adminDb
       .from("subscriptions")
       .select("*", { count: "exact", head: true })
-      .in("plan_id", ["pro_monthly", "pro_yearly", "coaching_monthly", "coaching_yearly"])
+      .in("plan_id", Object.keys(MRR_MONTHLY_AMOUNTS))
       .eq("status", "active")
       .not("user_id", "in", adminFilter)
+      .gte("created_at", CHART_CUTOFF_DATE)
       .gte("current_period_end", nowIso),
     // 今月の解約数
     adminDb
@@ -293,7 +294,7 @@ export default async function AdminPage() {
     let expiringSoon = 0;
     let expired = 0;
     for (const sub of subs) {
-      if (sub.status === "trialing") {
+      if (sub.status === "trialing" || sub.status === "active") {
         const end = new Date(sub.current_period_end).getTime();
         if (end < now) {
           expired++;
