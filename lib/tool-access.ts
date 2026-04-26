@@ -12,6 +12,11 @@ type SupabaseLikeClient = {
   };
 };
 
+type FallbackSubscription = {
+  status?: unknown;
+  current_period_end?: unknown;
+} | null;
+
 export type ApiMeResponse = {
   profile?: {
     is_admin?: boolean | null;
@@ -32,7 +37,7 @@ export type ToolAccessState = {
   source: "api-me" | "fallback";
 };
 
-function isLegacySubscribed(subscription: Record<string, unknown> | null): boolean {
+function isLegacySubscribed(subscription: FallbackSubscription): boolean {
   if (!subscription) return false;
 
   const status = subscription.status;
@@ -60,6 +65,25 @@ export function resolveToolAccessFromApiMe(me: ApiMeResponse | null): ToolAccess
     status,
     planId,
     source: "api-me",
+  };
+}
+
+export function resolveToolAccessFromFallbackData(params: {
+  subscription: FallbackSubscription;
+  isAdmin?: boolean | null;
+}): ToolAccessState {
+  const { subscription, isAdmin } = params;
+  const status =
+    typeof subscription?.status === "string" ? subscription.status : null;
+  const isSubscribed = isLegacySubscribed(subscription);
+
+  return {
+    canUseTool: isSubscribed || !!isAdmin,
+    isAdmin: !!isAdmin,
+    isSubscribed,
+    status,
+    planId: null,
+    source: "fallback",
   };
 }
 
@@ -100,19 +124,10 @@ async function getFallbackToolAccess(
       .maybeSingle(),
   ]);
 
-  const status =
-    typeof subscription?.status === "string" ? subscription.status : null;
-  const isSubscribed = isLegacySubscribed(subscription);
-  const isAdmin = !!profile?.is_admin;
-
-  return {
-    canUseTool: isSubscribed || isAdmin,
-    isAdmin,
-    isSubscribed,
-    status,
-    planId: null,
-    source: "fallback",
-  };
+  return resolveToolAccessFromFallbackData({
+    subscription: subscription as FallbackSubscription,
+    isAdmin: !!profile?.is_admin,
+  });
 }
 
 export async function getToolAccessForUser(params: {
