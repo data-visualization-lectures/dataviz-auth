@@ -71,3 +71,27 @@ export async function fetchProjectCount(options: { app?: string } = {}): Promise
   );
   return result.count ?? 0;
 }
+
+export type ApiMeSubscription = {
+  status?: string | null;
+  current_period_end?: string | null;
+  plan_id?: string | null;
+  cancel_at_period_end?: boolean | null;
+  refunded_at?: string | null;
+  stripe_subscription_id?: string | null;
+  created_at?: string | null;
+};
+
+export type ApiMeProfile = {
+  display_name?: string | null;
+  is_admin?: boolean | null;
+};
+
+export type ApiMeResponse = {
+  profile?: ApiMeProfile | null;
+  subscription?: ApiMeSubscription | null;
+};
+
+export async function fetchMeServer(): Promise<ApiMeResponse> {
+  return callApiServer<ApiMeResponse>("/api/me");
+}

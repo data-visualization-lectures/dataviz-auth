@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
-import { fetchProjectCount } from "@/lib/apiServer";
+import { fetchMeServer, fetchProjectCount, type ApiMeSubscription } from "@/lib/apiServer";
 import {
   Card,
   CardContent,
@@ -23,6 +23,31 @@ export async function generateMetadata() {
   return { title: t(locale, "account.title") };
 }
 
+type AccountSubscription = {
+  status: string | null;
+  current_period_end: string | null;
+  plan_id: string | null;
+  cancel_at_period_end: boolean | null;
+  refunded_at: string | null;
+  stripe_subscription_id: string | null;
+  created_at: string | null;
+};
+
+function normalizeSubscription(sub: ApiMeSubscription | null | undefined): AccountSubscription | null {
+  if (!sub) return null;
+  return {
+    status: typeof sub.status === "string" ? sub.status : null,
+    current_period_end: typeof sub.current_period_end === "string" ? sub.current_period_end : null,
+    plan_id: typeof sub.plan_id === "string" ? sub.plan_id : null,
+    cancel_at_period_end:
+      typeof sub.cancel_at_period_end === "boolean" ? sub.cancel_at_period_end : null,
+    refunded_at: typeof sub.refunded_at === "string" ? sub.refunded_at : null,
+    stripe_subscription_id:
+      typeof sub.stripe_subscription_id === "string" ? sub.stripe_subscription_id : null,
+    created_at: typeof sub.created_at === "string" ? sub.created_at : null,
+  };
+}
+
 export default async function AccountPage() {
   const supabase = await createClient();
   const {
@@ -35,13 +60,16 @@ export default async function AccountPage() {
 
   const locale = await getLocale();
 
-  // Fetch Subscription, Plans, Profile, and Project Counts
+  // Subscription の表示判定は /api/me を一次ソースにする。
+  // /api/me が失敗した場合のみ DB 参照へフォールバック。
   const [
-    { data: subscription },
+    me,
+    { data: dbSubscription },
     { data: plans },
     { data: profile },
     projectCount,
   ] = await Promise.all([
+    fetchMeServer().catch(() => null),
     supabase
       .from("subscriptions")
       .select("status, current_period_end, plan_id, cancel_at_period_end, refunded_at, stripe_subscription_id, created_at")
@@ -58,6 +86,21 @@ export default async function AccountPage() {
     fetchProjectCount().catch(() => 0),
   ]);
 
+  const subscription =
+    normalizeSubscription(me?.subscription) ??
+    (dbSubscription
+      ? {
+          status: dbSubscription.status ?? null,
+          current_period_end: dbSubscription.current_period_end ?? null,
+          plan_id: dbSubscription.plan_id ?? null,
+          cancel_at_period_end: dbSubscription.cancel_at_period_end ?? null,
+          refunded_at: dbSubscription.refunded_at ?? null,
+          stripe_subscription_id: dbSubscription.stripe_subscription_id ?? null,
+          created_at: dbSubscription.created_at ?? null,
+        }
+      : null);
+
+  const displayName = profile?.display_name ?? me?.profile?.display_name ?? null;
   const email = user.email || "";
 
   const providerLabels: Record<string, string> = {
@@ -135,7 +178,7 @@ export default async function AccountPage() {
             <CardContent>
               <div className="flex flex-col gap-2">
                 <div className="text-xl font-bold">{email}</div>
-                <EditDisplayName userId={user.id} initialName={profile?.display_name ?? null} locale={locale} />
+                <EditDisplayName userId={user.id} initialName={displayName} locale={locale} />
                 <p className="text-sm text-muted-foreground">
                   {t(locale, "account.createdAt")}: {formatDateLocale(locale, user.created_at)}
                 </p>
@@ -278,12 +321,18 @@ async function GroupInfoCard({ userId, locale }: { userId: string; locale: impor
     .select("group_id, role, groups(name)")
     .eq("user_id", userId);
 
-  if (!memberships || memberships.length === 0) return null;
+  type GroupMembership = {
+    group_id: string;
+    role: string;
+    groups?: { name?: string | null } | { name?: string | null }[] | null;
+  };
+  const items = (memberships ?? []) as GroupMembership[];
+  if (items.length === 0) return null;
 
   return (
     <>
-      {memberships.map((m: any) => {
-        const group = m.groups;
+      {items.map((m) => {
+        const group = Array.isArray(m.groups) ? m.groups[0] : m.groups;
         return (
           <Card key={m.group_id}>
             <CardHeader className="pb-2">
