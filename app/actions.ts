@@ -3,28 +3,20 @@
 import { createClient } from "@/lib/supabase/server";
 import { revalidatePath } from "next/cache";
 import type { SupabaseClient } from "@supabase/supabase-js";
+import { getToolAccessForUser } from "@/lib/tool-access";
 
-async function assertCanDelete(supabase: SupabaseClient, userId: string) {
-    const [{ data: subscription }, { data: profile }] = await Promise.all([
-        supabase
-            .from("subscriptions")
-            .select("status, current_period_end")
-            .eq("user_id", userId)
-            .maybeSingle(),
-        supabase
-            .from("profiles")
-            .select("is_admin")
-            .eq("id", userId)
-            .maybeSingle(),
-    ]);
+async function assertCanDelete(
+    supabase: SupabaseClient,
+    userId: string,
+    accessToken?: string | null,
+) {
+    const toolAccess = await getToolAccessForUser({
+        supabase,
+        userId,
+        accessToken,
+    });
 
-    const isSubscribed =
-        subscription &&
-        (subscription.status === "active" || subscription.status === "trialing") &&
-        (!subscription.current_period_end ||
-            new Date(subscription.current_period_end) > new Date());
-
-    if (!isSubscribed && !profile?.is_admin) {
+    if (!toolAccess.canUseTool) {
         throw new Error("Subscription required");
     }
 }
@@ -38,15 +30,19 @@ export async function deleteProject(
 
     try {
         // 1. Check authentication
-        const {
-            data: { user },
-        } = await supabase.auth.getUser();
+        const [
+            { data: { user } },
+            { data: { session } },
+        ] = await Promise.all([
+            supabase.auth.getUser(),
+            supabase.auth.getSession(),
+        ]);
 
         if (!user) {
             throw new Error("Unauthorized");
         }
 
-        await assertCanDelete(supabase, user.id);
+        await assertCanDelete(supabase, user.id, session?.access_token);
 
         // 2. Delete from Database first (to ensure consistency/permission via RLS)
         // The RLS policy "Users can delete own projects" ensures the user owns this record.
@@ -92,15 +88,19 @@ export async function deleteOpenRefineProject(
     const supabase = await createClient();
 
     try {
-        const {
-            data: { user },
-        } = await supabase.auth.getUser();
+        const [
+            { data: { user } },
+            { data: { session } },
+        ] = await Promise.all([
+            supabase.auth.getUser(),
+            supabase.auth.getSession(),
+        ]);
 
         if (!user) {
             throw new Error("Unauthorized");
         }
 
-        await assertCanDelete(supabase, user.id);
+        await assertCanDelete(supabase, user.id, session?.access_token);
 
         const { error: dbError } = await supabase
             .from("openrefine_projects")

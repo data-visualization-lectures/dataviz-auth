@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { fetchProjects } from "@/lib/apiServer";
 import { getLocale, t } from "@/lib/i18n.server";
+import { getToolAccessForUser } from "@/lib/tool-access";
 
 export async function generateMetadata() {
   const locale = await getLocale();
@@ -31,25 +32,13 @@ export default async function PublicProjectsPage({
 
   const locale = await getLocale();
 
-  const [{ data: subscription }, { data: profile }] = await Promise.all([
-    supabase
-      .from("subscriptions")
-      .select("status, current_period_end")
-      .eq("user_id", user.id)
-      .maybeSingle(),
-    supabase
-      .from("profiles")
-      .select("is_admin")
-      .eq("id", user.id)
-      .maybeSingle(),
-  ]);
-
-  const isAdmin = !!profile?.is_admin;
-  const isSubscribed =
-    subscription &&
-    (subscription.status === "active" || subscription.status === "trialing") &&
-    (!subscription.current_period_end || new Date(subscription.current_period_end) > new Date());
-  const canUseTool = !!isSubscribed || isAdmin;
+  const { data: { session } } = await supabase.auth.getSession();
+  const toolAccess = await getToolAccessForUser({
+    supabase,
+    userId: user.id,
+    accessToken: session?.access_token,
+  });
+  const canUseTool = toolAccess.canUseTool;
 
   let allProjects: SavedProject[] = [];
 

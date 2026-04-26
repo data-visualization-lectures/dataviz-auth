@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from 'next/server'
 import { updateSession } from '@/lib/supabase/proxy'
+import { getToolAccessForUser } from '@/lib/tool-access';
 
 import { APP_CONFIG } from '@/lib/config';
 
@@ -218,26 +219,14 @@ export async function middleware(request: NextRequest) {
             return redirectWithSession(loginUrl);
         }
 
-        const [{ data: subscription }, { data: profile }] = await Promise.all([
-            supabase
-                .from('subscriptions')
-                .select('status, current_period_end')
-                .eq('user_id', userId)
-                .maybeSingle(),
-            supabase
-                .from('profiles')
-                .select('is_admin')
-                .eq('id', userId)
-                .maybeSingle(),
-        ]);
+        const { data: { session } } = await supabase.auth.getSession();
+        const toolAccess = await getToolAccessForUser({
+            supabase,
+            userId,
+            accessToken: session?.access_token,
+        });
 
-        const isSubscribed =
-            subscription &&
-            (subscription.status === 'active' || subscription.status === 'trialing') &&
-            (!subscription.current_period_end ||
-                new Date(subscription.current_period_end) > new Date());
-
-        if (!isSubscribed && !profile?.is_admin) {
+        if (!toolAccess.canUseTool) {
             const pricingUrl =
                 normalizedLocale === 'en'
                     ? 'https://www.dataviz.jp/en/pricing/'
