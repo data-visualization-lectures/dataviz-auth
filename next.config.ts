@@ -14,6 +14,12 @@ const nextConfig: NextConfig = {
     // id.dataviz.jp 配信に 301 リダイレクト。既存ツールの <script src> は段階移行。
     return [
       {
+        source: "/",
+        has: [{ type: "host", value: APP_HOST }],
+        destination: "/account",
+        permanent: false,
+      },
+      {
         source: "/lib/:path*",
         has: [{ type: "host", value: APP_HOST }],
         destination: `https://${ID_HOST}/lib/:path*`,
