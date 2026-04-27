@@ -49,13 +49,18 @@ export function LoginForm({
       formData.append("redirectTo", redirectTo);
     }
 
-    const result = await login(formData);
+    let result: { error?: string } | undefined;
+    try {
+      result = await login(formData);
+    } catch (e) {
+      // Next.js の redirect() は throw されるため、ここに到達 = ログイン成功
+      trackLogin("email");
+      throw e;
+    }
 
     if (result?.error) {
       setError(result.error);
       setIsLoading(false);
-    } else {
-      trackLogin("email");
     }
     // If success, the server action will redirect, so we don't need to do anything here
     // but the state update might unmount the component.
