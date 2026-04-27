@@ -17,6 +17,7 @@ import { EditDisplayName } from "@/components/edit-display-name";
 import { ChangePasswordButton } from "@/components/change-password-button";
 import { ChangeEmailForm } from "@/components/change-email-form";
 import { getLocale, t, formatDateLocale } from "@/lib/i18n.server";
+import { GaSignupTracker } from "@/components/ga-signup-tracker";
 
 export const dynamic = "force-dynamic";
 
@@ -283,6 +284,7 @@ export default async function AccountPage() {
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40 p-4 md:p-10 gap-8">
+      <GaSignupTracker />
 
       {/* Main Content */}
       <main className="grid flex-1 items-start gap-4 p-4 md:gap-8 md:p-0 max-w-5xl mx-auto w-full">

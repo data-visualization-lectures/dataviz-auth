@@ -17,7 +17,8 @@ export async function GET(request: Request) {
             // academia メールは academia サブスクリプション、それ以外は 14日 trial を付与
             const userEmail = data.user.email ?? "";
             const { isAcademiaEmail } = await import("@/lib/academia");
-            if (userEmail && (await isAcademiaEmail(userEmail))) {
+            const isAcademia = userEmail ? await isAcademiaEmail(userEmail) : false;
+            if (isAcademia) {
                 const { applyAcademiaSubscription } = await import("@/lib/auth-utils");
                 await applyAcademiaSubscription(data.user.id);
             } else {
@@ -90,13 +91,20 @@ export async function GET(request: Request) {
                 return NextResponse.redirect(next);
             }
 
+            // 新規ユーザーのみ GA イベント用クエリを付与
+            let gaNext = next;
+            if (createdWithin30Minutes) {
+                const sep = next.includes("?") ? "&" : "?";
+                gaNext = `${next}${sep}ga=signup_completed&method=google&academia=${isAcademia ? "1" : "0"}`;
+            }
+
             // OAuth コールバックは id.dataviz.jp 上で受けるが、マイページ系は app.dataviz.jp でしか
             // 配信していないため、本番では常に app.dataviz.jp へ飛ばす。
             const isLocalEnv = process.env.NODE_ENV === "development";
             if (isLocalEnv) {
-                return NextResponse.redirect(`${origin}${next}`);
+                return NextResponse.redirect(`${origin}${gaNext}`);
             }
-            return NextResponse.redirect(`https://app.dataviz.jp${next}`);
+            return NextResponse.redirect(`https://app.dataviz.jp${gaNext}`);
         }
         console.error("Auth Loop Error:", error);
     } else {
